@@ -16,6 +16,7 @@
 #'   result <- stretch_nltt_matrix(m = m, dt = 0.5, step_type = "lower")
 #'   testit::assert(identical(result, expected))
 #'
+#' @author Richel Bilderbeek
 #' @export
 stretch_nltt_matrix <- function(
   m,

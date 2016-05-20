@@ -6,6 +6,7 @@
 #' @examples
 #'   get_average_nltt(c(ape::rcoal(10), ape::rcoal(20)))
 #'
+#' @author Richel Bilderbeek
 #' @export
 get_average_nltt_matrix <- function(
   phylogenies,
@@ -20,7 +21,7 @@ get_average_nltt_matrix <- function(
 #' @param phylogenies the phylogenies, supplied as either a list or a multiPhylo object, where the phylogenies are of type 'phylo'
 #' @param dt The timestep resolution, where 1/dt is the number of points evaluated
 #' @return A matrix of timepoints with the average number of (normalized) lineages through (normalized) time
-#'
+#' @author Richel Bilderbeek
 #' @export
 get_average_nltt_matrix_impl_1 <- function(phylogenies, dt) {
   if (length(phylogenies) < 1) {
@@ -75,7 +76,7 @@ get_average_nltt_matrix_impl_1 <- function(phylogenies, dt) {
 #' @param phylogenies the phylogenies, supplied as either a list or a multiPhylo object, where the phylogenies are of type 'phylo'
 #' @param dt The timestep resolution, where 1/dt is the number of points evaluated
 #' @return A matrix of timepoints with the average number of (normalized) lineages through (normalized) time
-#'
+#' @author Richel Bilderbeek
 #' @export
 get_average_nltt_matrix_impl_2 <- function(phylogenies, dt) {
   xy <- ribir::get_average_nltt_matrix_impl_1(
