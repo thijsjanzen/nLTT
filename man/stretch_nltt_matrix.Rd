@@ -32,4 +32,7 @@ Stretch matrix 'm' with a timestep resolution of 'dt'
   testit::assert(identical(result, expected))
 
 }
+\author{
+Richel Bilderbeek
+}
 

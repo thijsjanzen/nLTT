@@ -1,3 +1,5 @@
+context("get_average_nltt_matrix")
+
 test_that(paste("get_average_nltt_matrix: ",
   "How to stretch an nLTT timepoints matrix: ",
   "Example: Easy tree", sep = ""), {
@@ -18,7 +20,7 @@ test_that(paste("get_average_nltt_matrix: ",
   newick2 <- "((A:2,B:2):1,C:3);"
   phylogeny1 <- ape::read.tree(text = newick1)
   phylogeny2 <- ape::read.tree(text = newick2)
-  nltt_matrix1 <- ribir::stretch_nltt_matrix(
+  nltt_matrix1 <- nLTT::stretch_nltt_matrix(
     get_phylogeny_nltt_matrix(phylogeny1),
     dt = 0.2, step_type = "upper")
   ##      [,1]      [,2]  # nolint
@@ -32,7 +34,7 @@ test_that(paste("get_average_nltt_matrix: ",
     rep(2 / 3, 4), rep(1, 2)), ncol = 2)
   testit::assert(all.equal(nltt_matrix1, expected_nltt_matrix1))
 
-  nltt_matrix2 <- ribir::stretch_nltt_matrix(
+  nltt_matrix2 <- nLTT::stretch_nltt_matrix(
     get_phylogeny_nltt_matrix(phylogeny2),
     dt = 0.2, step_type = "upper")
   ##      [,1]      [,2]  # nolint
@@ -46,7 +48,7 @@ test_that(paste("get_average_nltt_matrix: ",
     rep(2 / 3, 2), rep(1, 4)), ncol = 2)
   testit::assert(all.equal(nltt_matrix2, expected_nltt_matrix2))
 
-  result <- ribir::get_average_nltt_matrix(
+  result <- nLTT::get_average_nltt_matrix(
     c(phylogeny1, phylogeny2), dt = 0.20)
   ##      [,1]      [,2]  # nolint
   ## [1,]  0.0 0.6666667  # nolint
@@ -74,8 +76,8 @@ test_that(paste("get_average_nltt_matrix: ",
   phylogeny1 <- ape::read.tree(text = newick1)
   phylogeny2 <- ape::read.tree(text = newick2)
 
-  nltt_matrix1 <- ribir::stretch_nltt_matrix(
-    ribir::get_phylogeny_nltt_matrix(phylogeny1),
+  nltt_matrix1 <- nLTT::stretch_nltt_matrix(
+    nLTT::get_phylogeny_nltt_matrix(phylogeny1),
     dt = 0.20, step_type = "upper")
 
   ##      [,1] [,2]  # nolint
@@ -89,8 +91,8 @@ test_that(paste("get_average_nltt_matrix: ",
     rep(0.5, 3), rep(1.0, 3)), ncol = 2)
   testit::assert(all.equal(nltt_matrix1, expected_nltt_matrix1))
 
-  nltt_matrix2 <- ribir::stretch_nltt_matrix(
-    ribir::get_phylogeny_nltt_matrix(phylogeny2),
+  nltt_matrix2 <- nLTT::stretch_nltt_matrix(
+    nLTT::get_phylogeny_nltt_matrix(phylogeny2),
     dt = 0.20, step_type = "upper")
   ##      [,1]      [,2]  # nolint
   ## [1,]  0.0 0.2222222  # nolint
@@ -105,11 +107,11 @@ test_that(paste("get_average_nltt_matrix: ",
   #phylogenies <- c(phylogeny1, phylogeny2)  # nolint
 
   # The real tests
-  result <- ribir::get_average_nltt_matrix(
+  result <- nLTT::get_average_nltt_matrix(
     c(phylogeny1, phylogeny2), dt = 0.20)
-  result_1 <- ribir::get_average_nltt_matrix_impl_1(
+  result_1 <- nLTT::get_average_nltt_matrix_impl_1(
     c(phylogeny1, phylogeny2), dt = 0.20)
-  result_2 <- ribir::get_average_nltt_matrix_impl_2(
+  result_2 <- nLTT::get_average_nltt_matrix_impl_2(
     c(phylogeny1, phylogeny2), dt = 0.20)
 
   ##      [,1]      [,2]  # nolint
@@ -171,8 +173,8 @@ test_that("get_average_nltt_matrix: speed comparison", {
   # but it is called with lower dt, making it slower
   timings <- microbenchmark::microbenchmark(
 
-    ribir::get_average_nltt_matrix_impl_1(treesim_phylogenies, dt = 0.1),
-    ribir::get_average_nltt_matrix_impl_2(treesim_phylogenies, dt = 0.01),
+    nLTT::get_average_nltt_matrix_impl_1(treesim_phylogenies, dt = 0.1),
+    nLTT::get_average_nltt_matrix_impl_2(treesim_phylogenies, dt = 0.01),
     times = 2
   )
   timings_summary <- summary(timings)

@@ -53,14 +53,14 @@ nLTT.plot(phylogeny1, ylim = c(0, 1))
 As a collection of timepoints:
 
 ```{r}
-t <- ribir::get_phylogeny_nltt_matrix(phylogeny1)
+t <- nLTT::get_phylogeny_nltt_matrix(phylogeny1)
 knitr::kable(t)
 ```
 
 Plotting those timepoints:
 
 ```{r}
-df <- as.data.frame(ribir::get_phylogeny_nltt_matrix(phylogeny1))
+df <- as.data.frame(nLTT::get_phylogeny_nltt_matrix(phylogeny1))
 qplot(time, N, data = df, geom = "step", ylim = c(0,1), direction = "vh", main = "NLTT plot of phylogeny 1")
 ```
 
@@ -81,14 +81,14 @@ nLTT.plot(phylogeny2, ylim = c(0, 1))
 As a collection of timepoints:
 
 ```{r}
-t <- ribir::get_phylogeny_nltt_matrix(phylogeny2)
+t <- nLTT::get_phylogeny_nltt_matrix(phylogeny2)
 knitr::kable(t)
 ```
 
 Plotting those timepoints:
 
 ```{r}
-df <- as.data.frame(ribir::get_phylogeny_nltt_matrix(phylogeny2))
+df <- as.data.frame(nLTT::get_phylogeny_nltt_matrix(phylogeny2))
 qplot(time, N, data = df, geom = "step", ylim = c(0,1), direction = "vh", main = "NLTT plot of phylogeny 2")
 ```
 
@@ -100,21 +100,21 @@ It is constructed from stretched nLTT matrices.
 Here is the nLTT matrix of the first phylogeny:
 
 ```{r}
-t <- ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
+t <- nLTT::stretch_nltt_matrix(nLTT::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
 knitr::kable(t)
 ```
 
 Here is the nLTT matrix of the second phylogeny:
 
 ```{r}
-t <- ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
+t <- nLTT::stretch_nltt_matrix(nLTT::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
 knitr::kable(t)
 ```
 
 Here is the average nLTT matrix of both phylogenies:
 
 ```{r}
-t <- ribir::get_average_nltt_matrix(phylogenies, dt = 0.20)
+t <- nLTT::get_average_nltt_matrix(phylogenies, dt = 0.20)
 knitr::kable(t)
 ```
 
@@ -123,20 +123,20 @@ Observe how the numbers get averaged.
 The same, now shown as a plot:
 
 ```{r}
-ribir::get_average_nltt(phylogenies, dt = 0.20, plot_nltts = TRUE)
+nLTT::get_average_nltt(phylogenies, dt = 0.20, plot_nltts = TRUE)
 ```
 
 Here a demo how the new function works:
 
 ```{r}
-t <- ribir::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.2)
+t <- nLTT::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.2)
 knitr::kable(t)
 ```
 
 Plotting options, first create a data frame:
 
 ```{r}
-df <- ribir::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.01)
+df <- nLTT::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.01)
 ```
 
 Here we see an averaged nLTT plot, where the original nLTT values are still visible:
@@ -182,7 +182,7 @@ nLTT.plot(phylogeny1, ylim = c(0, 1))
 As a collection of timepoints:
 
 ```{r}
-t <- ribir::get_phylogeny_nltt_matrix(phylogeny2)
+t <- nLTT::get_phylogeny_nltt_matrix(phylogeny2)
 knitr::kable(t)
 ```
 
@@ -202,7 +202,7 @@ nLTT.plot(phylogeny2, ylim = c(0, 1))
 As a collection of timepoints:
 
 ```{r}
-t <- ribir::get_phylogeny_nltt_matrix(phylogeny2)
+t <- nLTT::get_phylogeny_nltt_matrix(phylogeny2)
 knitr::kable(t)
 ```
 
@@ -214,21 +214,21 @@ It is constructed from stretched nLTT matrices.
 Here is the nLTT matrix of the first phylogeny:
 
 ```{r}
-t <- ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
+t <- nLTT::stretch_nltt_matrix(nLTT::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
 knitr::kable(t)
 ```
 
 Here is the nLTT matrix of the second phylogeny:
 
 ```{r}
-t <- ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
+t <- nLTT::stretch_nltt_matrix(nLTT::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
 knitr::kable(t)
 ```
 
 Here is the average nLTT matrix of both phylogenies:
 
 ```{r}
-t <- ribir::get_average_nltt_matrix(phylogenies, dt = 0.20)
+t <- nLTT::get_average_nltt_matrix(phylogenies, dt = 0.20)
 knitr::kable(t)
 ```
 
@@ -237,14 +237,14 @@ Observe how the numbers get averaged.
 Here a demo how the new function works:
 
 ```{r}
-t <- ribir::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.2)
+t <- nLTT::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.2)
 knitr::kable(t)
 ```
 
 Plotting options, first create a data frame:
 
 ```{r}
-df <- ribir::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.01)
+df <- nLTT::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.01)
 ```
 
 Here we see an averaged nLTT plot, where the original nLTT values are still visible:
@@ -282,7 +282,7 @@ phylogenies <- c(phylogeny1, phylogeny2, phylogeny3,
 Here a demo how the new function works:
 
 ```{r}
-t <- ribir::get_nltt_values(phylogenies, dt = 0.2)
+t <- nLTT::get_nltt_values(phylogenies, dt = 0.2)
 knitr::kable(t)
 ```
 

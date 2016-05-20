@@ -20,7 +20,7 @@ Collects the nLTT values of all phylogenies in the melted/uncast/long form
 \examples{
   library(ape)
   library(ggplot2)
-  library(ribir)
+  library(nLTT)
 
   # Create some random phylogenies
   phylogeny1 <- rcoal(10)
@@ -61,5 +61,8 @@ Collects the nLTT values of all phylogenies in the melted/uncast/long form
   ) + stat_summary(
     fun.data = "mean_cl_boot", color = "red", geom = "smooth"
   )
+}
+\author{
+Richel Bilderbeek
 }
 

@@ -17,4 +17,7 @@ A matrix of timepoints with the average number of (normalized) lineages through 
 \description{
 Internal function. Second implementation of get_average_nltt_matrix. A stub now.
 }
+\author{
+Richel Bilderbeek
+}
 

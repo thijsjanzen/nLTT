@@ -34,4 +34,7 @@ Get the average nLTT from a collection of phylogenies
   get_average_nltt(c(ape::rcoal(10), ape::rcoal(20)), dt = 0.1)
 
 }
+\author{
+Richel Bilderbeek
+}
 

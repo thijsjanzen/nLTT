@@ -34,7 +34,7 @@ test_that("return data type", {
   phylogeny1 <- ape::read.tree(text = newick1)
   phylogeny2 <- ape::read.tree(text = newick2)
   phylogenies <- c(phylogeny1, phylogeny2)
-  result <- ribir::get_nltt_values(
+  result <- nLTT::get_nltt_values(
     c(phylogeny1, phylogeny2), dt = 0.20)
 
   expect_equal(names(result), c("id", "t", "nltt"))
@@ -70,7 +70,7 @@ test_that(paste("How to stretch an nltt timepoints matrix: ",
   phylogeny1 <- ape::read.tree(text = newick1)
   phylogeny2 <- ape::read.tree(text = newick2)
   n_phylogenies <- 2
-  nltt_matrix1 <- ribir::stretch_nltt_matrix(
+  nltt_matrix1 <- nLTT::stretch_nltt_matrix(
     get_phylogeny_nltt_matrix(phylogeny1),
     dt = 0.2, step_type = "upper")
   ##      [,1]      [,2]  # nolint
@@ -84,7 +84,7 @@ test_that(paste("How to stretch an nltt timepoints matrix: ",
     rep(2 / 3, 4), rep(1, 2)), ncol = 2)
   testit::assert(all.equal(nltt_matrix1, expected_nltt_matrix1))
 
-  nltt_matrix2 <- ribir::stretch_nltt_matrix(
+  nltt_matrix2 <- nLTT::stretch_nltt_matrix(
     get_phylogeny_nltt_matrix(phylogeny2),
     dt = 0.2, step_type = "upper")
   ##      [,1]      [,2]  # nolint
@@ -100,7 +100,7 @@ test_that(paste("How to stretch an nltt timepoints matrix: ",
 
   phylogenies <- c(phylogeny1, phylogeny2)
   testit::assert(length(phylogenies) == 2)
-  result <- ribir::get_nltt_values(
+  result <- nLTT::get_nltt_values(
     phylogenies, dt = 0.20)
   ## [1,]  1 0.0 0.6666667  # nolint
   ## [2,]  1 0.2 0.6666667  # nolint
@@ -144,8 +144,8 @@ test_that(paste("How to stretch an nltt timepoints matrix: ",
   phylogeny2 <- ape::read.tree(text = newick2)
   n_phylogenies <- 2
 
-  nltt_matrix1 <- ribir::stretch_nltt_matrix(
-    ribir::get_phylogeny_nltt_matrix(phylogeny1),
+  nltt_matrix1 <- nLTT::stretch_nltt_matrix(
+    nLTT::get_phylogeny_nltt_matrix(phylogeny1),
     dt = 0.20, step_type = "upper")
 
   ##      [,1] [,2]  # nolint
@@ -159,8 +159,8 @@ test_that(paste("How to stretch an nltt timepoints matrix: ",
     rep(0.5, 3), rep(1.0, 3)), ncol = 2)
   testit::assert(all.equal(nltt_matrix1, expected_nltt_matrix1))
 
-  nltt_matrix2 <- ribir::stretch_nltt_matrix(
-    ribir::get_phylogeny_nltt_matrix(phylogeny2),
+  nltt_matrix2 <- nLTT::stretch_nltt_matrix(
+    nLTT::get_phylogeny_nltt_matrix(phylogeny2),
     dt = 0.20, step_type = "upper")
   ##      [,1]      [,2]  # nolint
   ## [1,]  0.0 0.2222222  # nolint
@@ -175,7 +175,7 @@ test_that(paste("How to stretch an nltt timepoints matrix: ",
   #phylogenies <- c(phylogeny1, phylogeny2)  # nolint
 
   # The real tests
-  result <- ribir::get_nltt_values(
+  result <- nLTT::get_nltt_values(
     c(phylogeny1, phylogeny2), dt = 0.20)
 
   ## [1,]  1 0.0  0.5  # nolint
@@ -220,7 +220,7 @@ test_that(paste("get_nltt_values: ",
   phylogenies <- c(phylogeny1, phylogeny2, phylogeny3)
 
   # The real tests
-  result <- ribir::get_nltt_values(phylogenies, dt = 0.20)
+  result <- nLTT::get_nltt_values(phylogenies, dt = 0.20)
 
   expect_equal(nrow(result), 18)
   expect_equal(ncol(result), 3)

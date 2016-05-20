@@ -51,7 +51,7 @@ nLTT.plot(phylogeny1, ylim = c(0, 1))
 As a collection of timepoints:
 
 ```{r}
-ribir::get_phylogeny_nltt_matrix(phylogeny1)
+nLTT::get_phylogeny_nltt_matrix(phylogeny1)
 ```
 
 `phylogeny2` has longer tips:
@@ -70,7 +70,7 @@ nLTT.plot(phylogeny2, ylim = c(0, 1))
 As a collection of timepoints:
 
 ```{r}
-ribir::get_phylogeny_nltt_matrix(phylogeny2)
+nLTT::get_phylogeny_nltt_matrix(phylogeny2)
 ```
 
 
@@ -81,19 +81,19 @@ It is constructed from stretched nLTT matrices.
 Here is the nLTT matrix of the first phylogeny:
 
 ```{r}
-ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
+nLTT::stretch_nltt_matrix(nLTT::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
 ```
 
 Here is the nLTT matrix of the second phylogeny:
 
 ```{r}
-ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
+nLTT::stretch_nltt_matrix(nLTT::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
 ```
 
 Here is the average nLTT matrix of both phylogenies:
 
 ```{r}
-ribir::get_average_nltt_matrix(c(phylogeny1, phylogeny2), dt = 0.20)
+nLTT::get_average_nltt_matrix(c(phylogeny1, phylogeny2), dt = 0.20)
 ```
 
 Observe how the numbers get averaged.
@@ -101,7 +101,7 @@ Observe how the numbers get averaged.
 The same, now shown as a plot:
 
 ```{r}
-ribir::get_average_nltt(c(phylogeny1, phylogeny2), dt = 0.20, plot_nltts = TRUE)
+nLTT::get_average_nltt(c(phylogeny1, phylogeny2), dt = 0.20, plot_nltts = TRUE)
 ```
 
 
@@ -132,7 +132,7 @@ nLTT.plot(phylogeny1, ylim = c(0, 1))
 As a collection of timepoints:
 
 ```{r}
-ribir::get_phylogeny_nltt_matrix(phylogeny2)
+nLTT::get_phylogeny_nltt_matrix(phylogeny2)
 ```
 
 `phylogeny2` is more elaborate:
@@ -151,7 +151,7 @@ nLTT.plot(phylogeny2, ylim = c(0, 1))
 As a collection of timepoints:
 
 ```{r}
-ribir::get_phylogeny_nltt_matrix(phylogeny2)
+nLTT::get_phylogeny_nltt_matrix(phylogeny2)
 ```
 
 
@@ -162,19 +162,19 @@ It is constructed from stretched nLTT matrices.
 Here is the nLTT matrix of the first phylogeny:
 
 ```{r}
-ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
+nLTT::stretch_nltt_matrix(nLTT::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
 ```
 
 Here is the nLTT matrix of the second phylogeny:
 
 ```{r}
-ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
+nLTT::stretch_nltt_matrix(nLTT::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
 ```
 
 Here is the average nLTT matrix of both phylogenies:
 
 ```{r}
-ribir::get_average_nltt_matrix(c(phylogeny1, phylogeny2), dt = 0.20)
+nLTT::get_average_nltt_matrix(c(phylogeny1, phylogeny2), dt = 0.20)
 ```
 
 Observe how the numbers get averaged.
@@ -182,5 +182,5 @@ Observe how the numbers get averaged.
 The same, now shown as a plot:
 
 ```{r}
-ribir::get_average_nltt(c(phylogeny1, phylogeny2), dt = 0.20, plot_nltts = TRUE)
+nLTT::get_average_nltt(c(phylogeny1, phylogeny2), dt = 0.20, plot_nltts = TRUE)
 ```

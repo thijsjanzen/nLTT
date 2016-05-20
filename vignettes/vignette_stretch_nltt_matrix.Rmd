@@ -45,7 +45,7 @@ We can extract the timepoints of the nLTT plot using the
 `get_phylogeny_nltt_matrix` function. 
 
 ```{r}
-nltt <- ribir::get_phylogeny_nltt_matrix(phylogeny)
+nltt <- nLTT::get_phylogeny_nltt_matrix(phylogeny)
 print(nltt)
 ```
 
@@ -59,8 +59,8 @@ points(nltt, pch = 19, col="red")
 The function `stretch_nltt_matrix` inserts timepoints, as shown in this table:
 
 ```{r}
-nltt <- ribir::get_phylogeny_nltt_matrix(phylogeny)
-stretch_matrix <- ribir::stretch_nltt_matrix(nltt, dt = 0.25, step_type = "upper")
+nltt <- nLTT::get_phylogeny_nltt_matrix(phylogeny)
+stretch_matrix <- nLTT::stretch_nltt_matrix(nltt, dt = 0.25, step_type = "upper")
 print(stretch_matrix)
 ```
 
@@ -95,7 +95,7 @@ We can extract the timepoints of the nLTT plot using the
 `get_phylogeny_nltt_matrix` function. 
 
 ```{r}
-nltt <- ribir::get_phylogeny_nltt_matrix(phylogeny)
+nltt <- nLTT::get_phylogeny_nltt_matrix(phylogeny)
 print(nltt)
 ```
 
@@ -110,8 +110,8 @@ points(nltt, pch = 19, col="red")
 The function `stretch_nltt_matrix` inserts timepoints, as shown in this table:
 
 ```{r}
-nltt <- ribir::get_phylogeny_nltt_matrix(phylogeny)
-stretch_matrix <- ribir::stretch_nltt_matrix(nltt, dt = 0.25, step_type = "upper")
+nltt <- nLTT::get_phylogeny_nltt_matrix(phylogeny)
+stretch_matrix <- nLTT::stretch_nltt_matrix(nltt, dt = 0.25, step_type = "upper")
 print(stretch_matrix)
 ```
 
@@ -148,7 +148,7 @@ We can extract the timepoints of the nLTT plot using the
 `get_phylogeny_nltt_matrix` function. 
 
 ```{r}
-nltt <- ribir::get_phylogeny_nltt_matrix(phylogeny)
+nltt <- nLTT::get_phylogeny_nltt_matrix(phylogeny)
 print(nltt)
 ```
 
@@ -164,9 +164,9 @@ The function `stretch_nltt_matrix` inserts blue points between these
 red points:
 
 ```{r}
-nltt <- ribir::get_phylogeny_nltt_matrix(phylogeny)
+nltt <- nLTT::get_phylogeny_nltt_matrix(phylogeny)
 nLTT.plot(phylogeny)
-stretch_matrix <- ribir::stretch_nltt_matrix(nltt, dt = 0.05, step_type = "upper")
+stretch_matrix <- nLTT::stretch_nltt_matrix(nltt, dt = 0.05, step_type = "upper")
 points(nltt, pch = 19, col="red")
 points(stretch_matrix, pch = 19, col="blue")
 ```

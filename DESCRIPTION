@@ -15,7 +15,10 @@ Imports:
     coda,
     ape
 Suggests:
-    TESS
+    ggplot2,
+    TESS,
+    testit,
+    testthat
 NeedsCompilation: no
 Packaged: 2016-05-20 07:46:57 UTC; janzen
 RoxygenNote: 5.0.1

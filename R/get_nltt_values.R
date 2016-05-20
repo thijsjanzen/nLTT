@@ -6,7 +6,7 @@
 #' @examples
 #'   library(ape)
 #'   library(ggplot2)
-#'   library(ribir)
+#'   library(nLTT)
 #'
 #'   # Create some random phylogenies
 #'   phylogeny1 <- rcoal(10)
@@ -78,8 +78,8 @@ get_nltt_values <- function(phylogenies, dt) {
   m <- matrix(nrow = n_rows, ncol = n_cols)
   for (i in seq(1, n_phylogenies)) {
     testit::assert(i >= 1 && i <= n_phylogenies)
-    new_col <- ribir::stretch_nltt_matrix(
-      m = ribir::get_phylogeny_nltt_matrix(phylogenies[[i]]),
+    new_col <- nLTT::stretch_nltt_matrix(
+      m = nLTT::get_phylogeny_nltt_matrix(phylogenies[[i]]),
       dt = dt,
       step_type = "upper"
     )
