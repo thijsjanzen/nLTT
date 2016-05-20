@@ -17,6 +17,7 @@ Imports:
 Suggests:
     ggplot2,
     Hmisc,
+    microbenchmark,
     TESS,
     testit,
     testthat,
