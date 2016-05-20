@@ -1,0 +1,7 @@
+importFrom("graphics", "lines", "plot.default")
+importFrom("stats", "approxfun", "dnorm", "rnorm", "runif", "sd")
+importFrom("utils", "flush.console")
+import(deSolve)
+import(coda)
+import(ape)
+exportPattern("^[[:alpha:]]+")

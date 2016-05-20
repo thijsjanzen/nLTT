@@ -1,0 +1,13 @@
+Package: nLTT
+Type: Package
+Title: Calculate the NLTT Statistic
+Version: 1.2.1
+Date: 2016-05-20
+Author: Thijs Janzen
+Maintainer: Thijs Janzen <thijsjanzen@gmail.com>
+Description: Provides functions to calculate the normalised Lineage-Through-Time (nLTT) statistic, given two phylogenetic trees. The nLTT statistic measures the difference between two Lineage-Through-Time curves, where each curve is normalised both in time and in number of lineages.
+License: GPL-2
+Imports: deSolve, coda, ape
+Suggests: TESS
+NeedsCompilation: no
+Packaged: 2016-05-20 07:46:57 UTC; janzen
