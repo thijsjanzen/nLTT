@@ -1,0 +1,302 @@
+---
+title: "How to get the average nLTT plot"
+author: "Richel Bilderbeek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to get the average nLTT plot}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Calculating the average nLTT plot of multiple phylogenies
+is not a trivial tasks. The function `get_nltt_values`
+does exactly this.
+
+## Examples
+
+For all examples, the following R code must be run:
+
+```{r}
+library(ape)
+library(Hmisc)
+library(nLTT)
+library(ggplot2)
+library(testit)
+```
+
+### Example: Easy trees
+
+Create two easy trees:
+
+```{r}
+newick1 <- "((A:1,B:1):2,C:3);"
+newick2 <- "((A:2,B:2):1,C:3);"
+phylogeny1 <- ape::read.tree(text = newick1)
+phylogeny2 <- ape::read.tree(text = newick2)
+phylogenies <- c(phylogeny1, phylogeny2)
+```
+
+There are very similar. `phylogeny1` has short tips:
+
+```{r}
+plot(phylogeny1)
+add.scale.bar()
+```
+
+This can be observed in the nLTT plot:
+
+```{r}
+nLTT.plot(phylogeny1, ylim = c(0, 1))
+```
+
+As a collection of timepoints:
+
+```{r}
+t <- ribir::get_phylogeny_nltt_matrix(phylogeny1)
+knitr::kable(t)
+```
+
+Plotting those timepoints:
+
+```{r}
+df <- as.data.frame(ribir::get_phylogeny_nltt_matrix(phylogeny1))
+qplot(time, N, data = df, geom = "step", ylim = c(0,1), direction = "vh", main = "NLTT plot of phylogeny 1")
+```
+
+
+`phylogeny2` has longer tips:
+
+```{r}
+plot(phylogeny2)
+add.scale.bar()
+```
+
+Also this can be observed in the nLTT plot:
+
+```{r}
+nLTT.plot(phylogeny2, ylim = c(0, 1))
+```
+
+As a collection of timepoints:
+
+```{r}
+t <- ribir::get_phylogeny_nltt_matrix(phylogeny2)
+knitr::kable(t)
+```
+
+Plotting those timepoints:
+
+```{r}
+df <- as.data.frame(ribir::get_phylogeny_nltt_matrix(phylogeny2))
+qplot(time, N, data = df, geom = "step", ylim = c(0,1), direction = "vh", main = "NLTT plot of phylogeny 2")
+```
+
+
+The average nLTT plot should be somewhere in the middle.
+
+It is constructed from stretched nLTT matrices.
+
+Here is the nLTT matrix of the first phylogeny:
+
+```{r}
+t <- ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
+knitr::kable(t)
+```
+
+Here is the nLTT matrix of the second phylogeny:
+
+```{r}
+t <- ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
+knitr::kable(t)
+```
+
+Here is the average nLTT matrix of both phylogenies:
+
+```{r}
+t <- ribir::get_average_nltt_matrix(phylogenies, dt = 0.20)
+knitr::kable(t)
+```
+
+Observe how the numbers get averaged.
+
+The same, now shown as a plot:
+
+```{r}
+ribir::get_average_nltt(phylogenies, dt = 0.20, plot_nltts = TRUE)
+```
+
+Here a demo how the new function works:
+
+```{r}
+t <- ribir::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.2)
+knitr::kable(t)
+```
+
+Plotting options, first create a data frame:
+
+```{r}
+df <- ribir::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.01)
+```
+
+Here we see an averaged nLTT plot, where the original nLTT values are still visible:
+
+```{r}
+qplot(t, nltt, data = df, geom = "point", ylim = c(0,1), main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)) + 
+  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+```
+
+Here we see an averaged nLTT plot, with the original nLTT values omitted:
+
+```{r}
+qplot(t, nltt, data = df, geom = "blank", ylim = c(0,1), main = "Average nLTT plot of phylogenies") + 
+  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+```
+
+
+### Example: Harder trees
+
+Create two harder trees:
+
+```{r}
+newick1 <- "((A:1,B:1):1,(C:1,D:1):1);"
+newick2 <- "((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):4,((AE:1,BE:1):1,(WD:1,YD:1):1):5);"
+phylogeny1 <- ape::read.tree(text = newick1)
+phylogeny2 <- ape::read.tree(text = newick2)
+phylogenies <- c(phylogeny1, phylogeny2)
+```
+
+There are different. `phylogeny1` is relatively simple, with two branching events happening at the same time:
+
+```{r}
+plot(phylogeny1)
+add.scale.bar()
+```
+
+This can be observed in the nLTT plot:
+
+```{r}
+nLTT.plot(phylogeny1, ylim = c(0, 1))
+```
+
+As a collection of timepoints:
+
+```{r}
+t <- ribir::get_phylogeny_nltt_matrix(phylogeny2)
+knitr::kable(t)
+```
+
+`phylogeny2` is more elaborate:
+
+```{r}
+plot(phylogeny2)
+add.scale.bar()
+```
+
+Also this can be observed in the nLTT plot:
+
+```{r}
+nLTT.plot(phylogeny2, ylim = c(0, 1))
+```
+
+As a collection of timepoints:
+
+```{r}
+t <- ribir::get_phylogeny_nltt_matrix(phylogeny2)
+knitr::kable(t)
+```
+
+
+The average nLTT plot should be somewhere in the middle.
+
+It is constructed from stretched nLTT matrices.
+
+Here is the nLTT matrix of the first phylogeny:
+
+```{r}
+t <- ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
+knitr::kable(t)
+```
+
+Here is the nLTT matrix of the second phylogeny:
+
+```{r}
+t <- ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
+knitr::kable(t)
+```
+
+Here is the average nLTT matrix of both phylogenies:
+
+```{r}
+t <- ribir::get_average_nltt_matrix(phylogenies, dt = 0.20)
+knitr::kable(t)
+```
+
+Observe how the numbers get averaged.
+
+Here a demo how the new function works:
+
+```{r}
+t <- ribir::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.2)
+knitr::kable(t)
+```
+
+Plotting options, first create a data frame:
+
+```{r}
+df <- ribir::get_nltt_values(c(phylogeny1,phylogeny2), dt = 0.01)
+```
+
+Here we see an averaged nLTT plot, where the original nLTT values are still visible:
+
+```{r}
+qplot(t, nltt, data = df, geom = "point", ylim = c(0,1), main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)) + 
+  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+```
+
+Here we see an averaged nLTT plot, with the original nLTT values omitted:
+
+
+```{r}
+qplot(t, nltt, data = df, geom = "blank", ylim = c(0,1), main = "Average nLTT plot of phylogenies") + 
+  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+```
+
+### Example: Five random trees
+
+Create three random trees:
+
+```{r}
+set.seed(42)
+phylogeny1 <- rcoal(10)
+phylogeny2 <- rcoal(20)
+phylogeny3 <- rcoal(30)
+phylogeny4 <- rcoal(40)
+phylogeny5 <- rcoal(50)
+phylogeny6 <- rcoal(60)
+phylogeny7 <- rcoal(70)
+phylogenies <- c(phylogeny1, phylogeny2, phylogeny3, 
+  phylogeny4, phylogeny5, phylogeny6, phylogeny7)
+```
+
+Here a demo how the new function works:
+
+```{r}
+t <- ribir::get_nltt_values(phylogenies, dt = 0.2)
+knitr::kable(t)
+```
+
+
+Here we see an averaged nLTT plot, where the original nLTT values are still visible:
+
+```{r}
+qplot(t, nltt, data = df, geom = "point", ylim = c(0,1), main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)) + 
+  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+```
+
+Here we see an averaged nLTT plot, with the original nLTT values omitted:
+
+```{r}
+qplot(t, nltt, data = df, geom = "blank", ylim = c(0,1), main = "Average nLTT plot of phylogenies") + 
+  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+```

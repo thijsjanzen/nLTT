@@ -1,0 +1,186 @@
+---
+title: "How to get the average nLTT plot"
+author: "Richel Bilderbeek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to get the average nLTT plot}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Calculating the average nLTT plot of multiple phylogenies
+is not a trivial tasks. The function `get_average_nltt`
+does exactly this.
+
+
+## Examples
+
+For all examples, the following R code must be run:
+
+```{r}
+library(ape)
+library(nLTT)
+library(testit)
+```
+
+### Example: Easy trees
+
+Create two easy trees:
+
+```{r}
+newick1 <- "((A:1,B:1):2,C:3);"
+newick2 <- "((A:2,B:2):1,C:3);"
+phylogeny1 <- ape::read.tree(text = newick1)
+phylogeny2 <- ape::read.tree(text = newick2)
+```
+
+There are very similar. `phylogeny1` has short tips:
+
+```{r}
+plot(phylogeny1)
+add.scale.bar()
+```
+
+This can be observed in the nLTT plot:
+
+```{r}
+nLTT.plot(phylogeny1, ylim = c(0, 1))
+```
+
+As a collection of timepoints:
+
+```{r}
+ribir::get_phylogeny_nltt_matrix(phylogeny1)
+```
+
+`phylogeny2` has longer tips:
+
+```{r}
+plot(phylogeny2)
+add.scale.bar()
+```
+
+Also this can be observed in the nLTT plot:
+
+```{r}
+nLTT.plot(phylogeny2, ylim = c(0, 1))
+```
+
+As a collection of timepoints:
+
+```{r}
+ribir::get_phylogeny_nltt_matrix(phylogeny2)
+```
+
+
+The average nLTT plot should be somewhere in the middle.
+
+It is constructed from stretched nLTT matrices.
+
+Here is the nLTT matrix of the first phylogeny:
+
+```{r}
+ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
+```
+
+Here is the nLTT matrix of the second phylogeny:
+
+```{r}
+ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
+```
+
+Here is the average nLTT matrix of both phylogenies:
+
+```{r}
+ribir::get_average_nltt_matrix(c(phylogeny1, phylogeny2), dt = 0.20)
+```
+
+Observe how the numbers get averaged.
+
+The same, now shown as a plot:
+
+```{r}
+ribir::get_average_nltt(c(phylogeny1, phylogeny2), dt = 0.20, plot_nltts = TRUE)
+```
+
+
+### Example: Harder trees
+
+Create two easy trees:
+
+```{r}
+newick1 <- "((A:1,B:1):1,(C:1,D:1):1);"
+newick2 <- "((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):4,((AE:1,BE:1):1,(WD:1,YD:1):1):5);"
+phylogeny1 <- ape::read.tree(text = newick1)
+phylogeny2 <- ape::read.tree(text = newick2)
+```
+
+There are different. `phylogeny1` is relatively simple, with two branching events happening at the same time:
+
+```{r}
+plot(phylogeny1)
+add.scale.bar()
+```
+
+This can be observed in the nLTT plot:
+
+```{r}
+nLTT.plot(phylogeny1, ylim = c(0, 1))
+```
+
+As a collection of timepoints:
+
+```{r}
+ribir::get_phylogeny_nltt_matrix(phylogeny2)
+```
+
+`phylogeny2` is more elaborate:
+
+```{r}
+plot(phylogeny2)
+add.scale.bar()
+```
+
+Also this can be observed in the nLTT plot:
+
+```{r}
+nLTT.plot(phylogeny2, ylim = c(0, 1))
+```
+
+As a collection of timepoints:
+
+```{r}
+ribir::get_phylogeny_nltt_matrix(phylogeny2)
+```
+
+
+The average nLTT plot should be somewhere in the middle.
+
+It is constructed from stretched nLTT matrices.
+
+Here is the nLTT matrix of the first phylogeny:
+
+```{r}
+ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny1), dt = 0.20, step_type = "upper")
+```
+
+Here is the nLTT matrix of the second phylogeny:
+
+```{r}
+ribir::stretch_nltt_matrix(ribir::get_phylogeny_nltt_matrix(phylogeny2), dt = 0.20, step_type = "upper")
+```
+
+Here is the average nLTT matrix of both phylogenies:
+
+```{r}
+ribir::get_average_nltt_matrix(c(phylogeny1, phylogeny2), dt = 0.20)
+```
+
+Observe how the numbers get averaged.
+
+The same, now shown as a plot:
+
+```{r}
+ribir::get_average_nltt(c(phylogeny1, phylogeny2), dt = 0.20, plot_nltts = TRUE)
+```
