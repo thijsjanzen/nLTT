@@ -16,6 +16,7 @@ Imports:
     ape
 Suggests:
     ggplot2,
+    Hmisc,
     TESS,
     testit,
     testthat
