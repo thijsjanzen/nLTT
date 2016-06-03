@@ -1,4 +1,3 @@
-
 ################################################################################
 # 
 # @brief plot the normalized nLTT plot of a tree
@@ -14,19 +13,20 @@
 #
 ################################################################################
 
+nLTT.plot <- function( phy, xlab = "Normalized Time",
+  ylab = "Normalized Lineages", ...) {
 
-nLTT.plot <- function(phy,xlab="Normalized Time",ylab="Normalized Lineages", ...) {
+  #we use the ltt.plot.coords function from the package ape
+  xy <- ltt.plot.coords( phy, backward = TRUE, tol = 1e-6);
+  xy[, 2] <- xy[, 2] / max(xy[, 2]); #normalize number lineages
 
- xy <- ltt.plot.coords(phy,backward=TRUE,tol=1e-6);  #we use the ltt.plot.coords function from the package ape
- xy[,2] <- xy[,2]/max(xy[,2]); #normalize number lineages
- 
- xy[,1] <- xy[,1] + abs(min(xy[,1])); #make sure time runs from 0..T
- xy[,1] <- xy[,1] / max(xy[,1]);      #normalize time
- 
- plot.default(xy, xlab = xlab, ylab = ylab, xaxs = "r", yaxs = "r", 
-					type = "S", ...) #type = "S" ensures a stepwise function
+  xy[, 1] <- xy[, 1] + abs( min( xy[, 1])); #make sure time runs from 0..T
+  xy[, 1] <- xy[, 1] / max( xy[, 1]);      #normalize time
+
+  plot.default(xy, xlab = xlab, ylab = ylab, xaxs = "r", yaxs = "r",
+    type = "S", ...) #type = "S" ensures a stepwise function
 }
-		
+
 ################################################################################
 # 
 # @brief add a nLTT line to an existing nLTT plot
@@ -39,15 +39,12 @@ nLTT.plot <- function(phy,xlab="Normalized Time",ylab="Normalized Lineages", ...
 #
 ################################################################################
 
-
-
 nLTT.lines <- function(phy, ...) {
 
-  xy <- ltt.plot.coords(phy, backward=TRUE, tol=1e-6)
-  xy[,2] <- xy[,2]/max(xy[,2]); #normalize number lineages
- 
-  xy[,1] <- xy[,1] + abs(min(xy[,1])); #make sure time runs from 0..T
-  xy[,1] <- xy[,1] / max(xy[,1]);      #normalize time
+  xy <- ltt.plot.coords( phy, backward = TRUE, tol = 1e-6)
+  xy[, 2] <- xy[, 2] / max( xy[, 2]); #normalize number lineages
+
+  xy[, 1] <- xy[, 1] + abs( min( xy[, 1])); #make sure time runs from 0..T
+  xy[, 1] <- xy[, 1] / max( xy[, 1]);      #normalize time
   lines(xy, type = "S", ...)
 }
-		
