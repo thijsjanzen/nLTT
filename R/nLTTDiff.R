@@ -1,53 +1,5 @@
 ################################################################################
 # 
-# @brief Wrapper to calculate the nLTT statistic
-#
-# @date Last modified: 2015-21-04
-# @author Thijs Janzen
-# @since 2015-21-04, version 1.1
-#
-# @param    tree1                  phylo      First phylogenetic tree
-# @param    tree2                  phylo      Second phylogenetic tree
-# @param    distance_method        string     Method to calculate the difference, either absolute, or squared
-# @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
-#
-################################################################################
-
-nLTTstat <- function( tree1, tree2, distance_method = "abs") {
-  if ( distance_method != "abs" && distance_method != "sque") {
-    cat( "chosen unknown distance method!\n" );
-    flush.console();
-  }
-  diff <- nltt_diff( tree1, tree2, distance_method);
-  return (diff);
-}
-
-################################################################################
-# 
-# @brief Wrapper to calculate the nLTT statistic - exact version
-#
-# @date Last modified: 2016-26-04
-# @author Thijs Janzen
-# @since 2016-26-04, version 1.2
-#
-# @param    tree1                  phylo      First phylogenetic tree
-# @param    tree2                  phylo      Second phylogenetic tree
-# @param    distance_method        string     Method to calculate the difference, either absolute, or squared
-# @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
-#
-################################################################################
-
-nLTTstat_exact <- function(tree1, tree2, distance_method = "abs")   {
-  if (distance_method != "abs" && distance_method != "sque") {
-    cat("chosen unknown distance method!\n");
-    flush.console();
-  }
-  diff <- nltt_diff_exact( tree1, tree2, distance_method);
-  return (diff);
-}
-
-################################################################################
-# 
 # @brief Calculates the exact, difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
 #
 # @date Last modified: 2016-05-20
@@ -63,7 +15,7 @@ nLTTstat_exact <- function(tree1, tree2, distance_method = "abs")   {
 
 nltt_diff_exact <- function(tree1, tree2, distance_method = "abs")  {
   #branching times of tree1, including the present time (0)
-  b_times <- c(-1 * rev(sort(branching.times(tree1))), 0);
+  b_times <- c(-1 * rev(sort(ape::branching.times(tree1))), 0);
 
   #the number of lineages, we assume that the
   # first branching time indicates the crown age.
@@ -72,13 +24,13 @@ nltt_diff_exact <- function(tree1, tree2, distance_method = "abs")  {
   b_times_N <- 1 - b_times / min(b_times); #normalize branching times
   lineages_N <- lineages / max(lineages);  #normalize lineages
 
-  b_times2 <- c(-1 * rev(sort(branching.times(tree2))), 0);
+  b_times2 <- c(-1 * rev(sort(ape::branching.times(tree2))), 0);
   lineages2 <- c(2:length(b_times2), length(b_times2));
   b_times2_N <- 1 - b_times2 / min(b_times2); #normalize branching times
   lineages2_N <- lineages2 / max(lineages2);  #normalize lineages
 
   #make a list of all branching times, and remove duplicates
-  all_b_times <- unique( sort( c(b_times_N, b_times2_N)));
+  all_b_times <- unique(sort(c(b_times_N, b_times2_N)));
   diff <- 0;
   #iterate through all branching times
   for (k in 2:length( all_b_times)) {
@@ -122,7 +74,7 @@ nltt_diff_exact <- function(tree1, tree2, distance_method = "abs")  {
 
 nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
   #branching times of tree1, including the present time (0)
-  b_times    <- c(-1 * rev( sort( branching.times( tree1))), 0);
+  b_times    <- c(-1 * rev( sort( ape::branching.times( tree1))), 0);
 
   #the number of lineages
   #we assume that the first branching time indicates the crown age.
@@ -134,7 +86,7 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
   ltt1       <- approxfun( b_times_N, lineages_N, method = "constant");
 
   #branching times of tree2, including the present time (0)
-  b_times2    <- c(-1 * rev( sort( branching.times( tree2))), 0);
+  b_times2    <- c(-1 * rev( sort( ape::branching.times( tree2))), 0);
 
   #the number of lineages
   #we assume that the first branching time indicates the crown age.
@@ -161,7 +113,80 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
   times <- ( 0:100 ) / 100;
   #integrate over t: 0 < t < 1, notice tcrit=0 indicating t
   #should never be larger than 0:
-  int_1 <- lsoda( 0, times, func = f, tcrit = c( 1 ) );
+  int_1 <- deSolve::lsoda( 0, times, func = f, tcrit = c( 1 ) );
   total_area <- int_1[length(times), 2]
   return( total_area)
+}
+
+################################################################################
+# 
+# @brief Wrapper to calculate the nLTT statistic
+#
+# @date Last modified: 2015-21-04
+# @author Thijs Janzen
+# @since 2015-21-04, version 1.1
+#
+# @param    tree1                  phylo      First phylogenetic tree
+# @param    tree2                  phylo      Second phylogenetic tree
+# @param    distance_method        string     Method to calculate the difference, either absolute, or squared
+# @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
+#
+################################################################################
+
+nLTTstat <- function( tree1, tree2, distance_method = "abs") {
+  if (!inherits(tree1, "phylo")) {
+    # Just checking
+    stop("nLTT.plot: ",
+      "tree1 must be of class 'phylo', ",
+      "but was of type '", class(tree1), "' instead")
+  }
+  if (!inherits(tree2, "phylo")) {
+    # Just checking
+    stop("nLTT.plot: ",
+      "tree1 must be of class 'phylo', ",
+      "but was of type '", class(tree2), "' instead")
+  }
+
+  if ( distance_method != "abs" && distance_method != "sque") {
+    cat( "chosen unknown distance method!\n" );
+    flush.console();
+  }
+  diff <- nltt_diff( tree1, tree2, distance_method);
+  return (diff);
+}
+
+################################################################################
+# 
+# @brief Wrapper to calculate the nLTT statistic - exact version
+#
+# @date Last modified: 2016-26-04
+# @author Thijs Janzen
+# @since 2016-26-04, version 1.2
+#
+# @param    tree1                  phylo      First phylogenetic tree
+# @param    tree2                  phylo      Second phylogenetic tree
+# @param    distance_method        string     Method to calculate the difference, either absolute, or squared
+# @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
+#
+################################################################################
+
+nLTTstat_exact <- function(tree1, tree2, distance_method = "abs")   {
+  if (!inherits(tree1, "phylo")) {
+    # Just checking
+    stop("nLTT.plot: ",
+      "tree1 must be of class 'phylo', ",
+      "but was of type '", class(tree1), "' instead")
+  }
+  if (!inherits(tree2, "phylo")) {
+    # Just checking
+    stop("nLTT.plot: ",
+      "tree1 must be of class 'phylo', ",
+      "but was of type '", class(tree2), "' instead")
+  }
+  if (distance_method != "abs" && distance_method != "sque") {
+    cat("chosen unknown distance method!\n");
+    flush.console();
+  }
+  diff <- nltt_diff_exact( tree1, tree2, distance_method);
+  return (diff);
 }

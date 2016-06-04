@@ -242,7 +242,6 @@ mcmc_nltt <- function(phy, likelihood_function,
           stop("Cannot propose new value for a parameter with value 0.0.")
         }
 
-        #propose a new value for parameter[j]
         eta           <- log(parameters[j])
         new_eta       <- eta + rnorm(1, 0, sigma)
         new_val       <- exp(new_eta)
@@ -260,7 +259,7 @@ mcmc_nltt <- function(phy, likelihood_function,
           parameters[j] <- exp(eta)
         }
       } else {
-      	#propose a new value for parameter[j]
+
         eta           <- parameters[j]
         new_val       <- eta + rnorm(1, 0, sigma)
         #calculate the Hastings ratio
@@ -292,5 +291,5 @@ mcmc_nltt <- function(phy, likelihood_function,
   }
   cat("Finished MCMC.\n")
   #return a mcmc object, used by coda to plot
-  return( as.mcmc(chain) )
+  return( coda::as.mcmc(chain) )
 }
