@@ -37,6 +37,6 @@ The difference between the two nLTT statistics
 \examples{
 	data(exampleTrees);
 	nltt_plot(exampleTrees[[1]]);
-	nnltt_lines(exampleTrees[[2]], lty=2);
+	nltt_lines(exampleTrees[[2]], lty=2);
 	nLTTstat(exampleTrees[[1]], exampleTrees[[2]], distance_method = "abs");
 }
