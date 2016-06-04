@@ -13,14 +13,14 @@
 #
 ################################################################################
 
-nLTT.plot <- function( phy, xlab = "Normalized Time",
+nltt_plot <- function( phy, xlab = "Normalized Time",
   ylab = "Normalized Lineages", ...) {
 
-  if (!inherits(phylogeny, "phylo")) {
+  if (!inherits(phy, "phylo")) {
     # Stop imposed by ape::ltt.plot.coords
     stop("nLTT.plot: ",
       "phylogeny must be of class 'phylo', ",
-      "but was of type '", class(phylogeny), "' instead")
+      "but was of type '", class(phy), "' instead")
   }
 
   #we use the ltt.plot.coords function from the package ape
@@ -46,13 +46,13 @@ nLTT.plot <- function( phy, xlab = "Normalized Time",
 #
 ################################################################################
 
-nLTT.lines <- function(phy, ...) {
+nltt_lines <- function(phy, ...) {
 
-  if (!inherits(phylogeny, "phylo")) {
+  if (!inherits(phy, "phylo")) {
     # Stop imposed by ape::ltt.plot.coords
     stop("nLTT.lines: ",
       "phylogeny must be of class 'phylo', ",
-      "but was of type '", class(phylogeny), "' instead")
+      "but was of type '", class(phy), "' instead")
   }
   xy <- ape::ltt.plot.coords( phy, backward = TRUE, tol = 1e-6)
   xy[, 2] <- xy[, 2] / max( xy[, 2]); #normalize number lineages

@@ -1,5 +1,5 @@
-\name{nLTT.lines}
-\alias{nLTT.lines}
+\name{nltt_lines}
+\alias{nltt_lines}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 	Normalized version of the ape function ltt.lines.
@@ -8,7 +8,7 @@
 This is a modified version of the \code{ape} function ltt.lines: add the normalized Lineage-Through-Time statistic of a phylogenetic tree to an already existing plot
 }
 \usage{
-nLTT.lines(phy, ...)
+nltt_lines(phy, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,6 +26,6 @@ further graphical arguments that can be passed to \code{lines()}
 
 \examples{
 	data(exampleTrees);
-	nLTT.plot(exampleTrees[[1]]);
-	nLTT.lines(exampleTrees[[2]],lty=2);
+	nltt_plot(exampleTrees[[1]]);
+	nltt_lines(exampleTrees[[2]],lty=2);
 }
