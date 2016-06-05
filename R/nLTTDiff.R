@@ -37,26 +37,25 @@ nltt_diff_exact <- function(tree1, tree2, distance_method = "abs")  {
       tim <- all_b_times[k];
       #find the index of the first branching time
       #that is up to the focal branching time
-      index1 <- max(which(b_times_N <= tim));
-      index2 <- max(which(b_times2_N <= tim));  #same for the other tree
+      index1 <- max(which(b_times_N < tim));
+      index2 <- max(which(b_times2_N < tim));  #same for the other tree
 
       #find the number of lineages at time "tim" for tree 1
-      lins1 <- lineages_N[index1];
+      lins1 <- lineages_N[max(index1,1)];
       #find the number of lineages at time "tim" for tree 2
-      lins2 <- lineages2_N[index2];
+      lins2 <- lineages2_N[max(index2,1)];
 
       #the amount of time that this difference persisted
       dt <- all_b_times[k] - all_b_times[k - 1]
       if (distance_method == "abs") {
         diff <- diff + dt * abs( lins1 - lins2);     #update the difference
       }
-      if (distance_method == "sq")  {
+      if (distance_method == "squ")  {
         diff <- diff + dt * ( lins1 - lins2) * ( lins1 - lins2);
       }
   }
   return ( diff);
 }
-
 ################################################################################
 # 
 # @brief Calculates the exact, difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
@@ -115,7 +114,7 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
   #should never be larger than 0:
   int_1 <- deSolve::lsoda( 0, times, func = f, tcrit = c( 1 ) );
   total_area <- int_1[length(times), 2]
-  return( total_area)
+  return( total_area[[1]])
 }
 
 ################################################################################
@@ -147,7 +146,7 @@ nLTTstat <- function( tree1, tree2, distance_method = "abs") {
       "but was of type '", class(tree2), "' instead")
   }
 
-  if ( distance_method != "abs" && distance_method != "sque") {
+  if ( distance_method != "abs" && distance_method != "squ") {
     cat( "chosen unknown distance method!\n" );
     flush.console();
   }
@@ -183,7 +182,7 @@ nLTTstat_exact <- function(tree1, tree2, distance_method = "abs")   {
       "tree1 must be of class 'phylo', ",
       "but was of type '", class(tree2), "' instead")
   }
-  if (distance_method != "abs" && distance_method != "sque") {
+  if (distance_method != "abs" && distance_method != "squ") {
     cat("chosen unknown distance method!\n");
     flush.console();
   }
