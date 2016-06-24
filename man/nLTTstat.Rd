@@ -8,7 +8,7 @@
   This function takes two ultrametric phylogenetic trees, calculates the normalized Lineage-Through-Time statistic for both trees and then calculates the difference between the two statistics.
 }
 \usage{
-nLTTstat(tree1, tree2,distance_method = "abs")
+nLTTstat(tree1, tree2, distance_method = "abs")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

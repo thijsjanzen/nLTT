@@ -7,7 +7,7 @@
   This function performs Metropolis-Hastings MCMC, where the user provides a likelihood function and a phylogenetic tree.
 }
 \usage{
-mcmc_nltt(phy, likelihood_function, parameters, logtransforms, 
+mcmc_nltt(phy, likelihood_function, parameters, logtransforms,
 		  iterations, burnin = round(iterations / 3), thinning = 1, sigma=1)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -34,7 +34,7 @@ mcmc_nltt(phy, likelihood_function, parameters, logtransforms,
 	Size of thinning, default = 1
 }
   \item{sigma}{
-	Standard deviation of the jumping distribution, which is N(0,sigma).
+	Standard deviation of the jumping distribution, which is N(0, sigma).
 }
 }
 \value{
@@ -53,20 +53,20 @@ require(TESS);
 
 obs <- TESS.sim.age(n = 1, lambda = 0.5, mu = 0.1, age = 10)[[1]];
 
-LL_BD <- function(params,phy) {
- lnl <- tess.likelihood(phy, lambda = params[1], mu = params[2], 
+LL_BD <- function(params, phy) {
+ lnl <- tess.likelihood(phy, lambda = params[1], mu = params[2],
  							  samplingProbability = 1, log = TRUE);
  prior1 <- dunif( params[1], 0, 100, log = TRUE)
  prior2 <- dunif( params[2], 0, 100, log = TRUE);
  return(lnl + prior1 + prior2);
-} 
+}
 
 require(coda);
 
 mcmc_out <- mcmc_nltt(obs, LL_BD, c(0.5, 0.1), c(TRUE, TRUE),
 			iterations = 1000, burnin = 100, thinning = 10, sigma = 1)
 plot(mcmc_out);
-} 
+}
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

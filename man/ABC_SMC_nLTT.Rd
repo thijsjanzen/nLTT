@@ -9,8 +9,8 @@ A function to perform Approximate Bayesian Computation within an Sequential Mark
 This function performs ABC-SMC as described in Toni 2009 for given diversification model, provided a phylogenetic tree. ABC-SMC is not limited to only using the normalized LTT as statistic.
 }
 \usage{
-abc_smc_nltt(tree, statistics, simulation_function, init_epsilon_values, 
-		     prior_generating_function, prior_density_function, 
+abc_smc_nltt(tree, statistics, simulation_function, init_epsilon_values,
+		     prior_generating_function, prior_density_function,
 		     number_of_particles = 1000, sigma = 0.05, stop_rate = 1e-05)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -54,7 +54,7 @@ abc_smc_nltt(tree, statistics, simulation_function, init_epsilon_values,
 }
 \examples{
 
-############# Code to run the ABC-SMC algorithm would involve a lot 
+############# Code to run the ABC-SMC algorithm would involve a lot
 ############# of dependencies on other packages, and be computationally demanding
 ############# here we sketch out an example, but do not execute it:
 
@@ -62,7 +62,7 @@ abc_smc_nltt(tree, statistics, simulation_function, init_epsilon_values,
 
 
  prior_gen <- function() {
- 	return ( rexp(n=2,rate=0.1) );
+ 	return ( rexp(n=2, rate=0.1) );
  }
 
  prior_dens <- function(val) {
@@ -71,24 +71,24 @@ abc_smc_nltt(tree, statistics, simulation_function, init_epsilon_values,
 
  require(TESS);
  treeSim <- function(params) {
- 	t <- TESS.sim.age(n=1,lambda = params[1], mu = params[2], age = 10)[[1]];
+ 	t <- TESS.sim.age(n=1, lambda = params[1], mu = params[2], age = 10)[[1]];
 	return (t);
  }
 
  obs <- treeSim(c(0.5,0.1));
- 
+
  statWrapper <- function(tree1) {
 	return ( nLTTstat_exact(tree1, obs, "abs"));
  }
-	
+
  stats <- c(statWrapper);
- 
+
  results <-  abc.smc.nltt(obs, stats, treeSim, init_epsilon_values = 0.2,
-		     prior_generating_function = prior_gen, 
+		     prior_generating_function = prior_gen,
 		     prior_density_function = prior_dens,
   		     number_of_particles = 1000, sigma = 0.05, stop_rate = 1e-5);
 
-} 
+}
 
 
 }

@@ -213,7 +213,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
 # @param    iterations            scalar      Length of the chain
 # @param    burnin                scalar      Length of the burnin, default is 30% of iterations
 # @param    thinning              scalar      Size of thinning, default = 1
-# @param    sigma                 scalar      Standard deviation of the jumping distribution, which is N(0,sigma).
+# @param    sigma                 scalar      Standard deviation of the jumping distribution, which is N(0, sigma).
 # @return                         mcmc        An MCMC object, as used by the package "coda".
 #
 ################################################################################

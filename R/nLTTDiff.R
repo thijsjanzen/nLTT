@@ -13,7 +13,7 @@
 #
 ################################################################################
 
-nltt_diff_exact <- function(tree1, tree2, distance_method = "abs")  {
+nltt_diff_exact <- function(tree1, tree2, distance_method = "abs") { # nolint
   #branching times of tree1, including the present time (0)
   b_times <- c(-1 * rev(sort(ape::branching.times(tree1))), 0);
 
@@ -41,9 +41,9 @@ nltt_diff_exact <- function(tree1, tree2, distance_method = "abs")  {
       index2 <- max(which(b_times2_N < tim));  #same for the other tree
 
       #find the number of lineages at time "tim" for tree 1
-      lins1 <- lineages_N[max(index1,1)];
+      lins1 <- lineages_N[max(index1, 1)];
       #find the number of lineages at time "tim" for tree 2
-      lins2 <- lineages2_N[max(index2,1)];
+      lins2 <- lineages2_N[max(index2, 1)];
 
       #the amount of time that this difference persisted
       dt <- all_b_times[k] - all_b_times[k - 1]

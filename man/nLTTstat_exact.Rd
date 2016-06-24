@@ -5,10 +5,10 @@
   Calculate the exact difference between two normalized Lineage-Through-Time curves, given two phylogenetic trees.
 }
 \description{
-  This function takes two ultrametric phylogenetic trees, calculates the normalized Lineage-Through-Time statistic for both trees and then calculates the exact difference between the two statistics. Whereas the function \code{nLTTstat} uses an approximation to calculate the difference (which is faster for large trees), the function \code{nLTTstat_exact} calculates the exact difference, and should generally be preferred. Although the estimates are highly similar, \code{nLTTstat_exact} tends to return slightly higher values. 
+  This function takes two ultrametric phylogenetic trees, calculates the normalized Lineage-Through-Time statistic for both trees and then calculates the exact difference between the two statistics. Whereas the function \code{nLTTstat} uses an approximation to calculate the difference (which is faster for large trees), the function \code{nLTTstat_exact} calculates the exact difference, and should generally be preferred. Although the estimates are highly similar, \code{nLTTstat_exact} tends to return slightly higher values.
 }
 \usage{
-nLTTstat_exact(tree1, tree2,distance_method = "abs")
+nLTTstat_exact(tree1, tree2, distance_method = "abs")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -37,6 +37,6 @@ The exact difference between the two nLTT statistics
 \examples{
 	data(exampleTrees);
 	nltt_plot(exampleTrees[[1]]);
-	nltt_lines(exampleTrees[[2]],lty=2);
+	nltt_lines(exampleTrees[[2]], lty=2);
 	nLTTstat_exact(exampleTrees[[1]], exampleTrees[[2]], distance_method = "abs");
 }

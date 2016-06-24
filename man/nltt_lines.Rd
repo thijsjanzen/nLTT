@@ -27,5 +27,5 @@ further graphical arguments that can be passed to \code{lines()}
 \examples{
 	data(exampleTrees);
 	nltt_plot(exampleTrees[[1]]);
-	nltt_lines(exampleTrees[[2]],lty=2);
+	nltt_lines(exampleTrees[[2]], lty=2);
 }
