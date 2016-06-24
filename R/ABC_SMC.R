@@ -1,5 +1,5 @@
 ################################################################################
-# 
+#
 # @brief calculate the weight of a parameter combination
 #
 # @date Last modified: 2016-03-07
@@ -9,7 +9,7 @@
 # @param    weights                 vector       Vector of weights
 # @param    particles               list         List of parameter combinations
 # @param    current                 vector       Current parameter combination for which we are determining the weight
-# @param    sigma                   scalar       standard deviation of the perturbation 
+# @param    sigma                   scalar       standard deviation of the perturbation
 # @param    prior_density_function  function     Function to calculate the prior probability of a set of parameters
 # @return                           scalar       Estimated weight
 #
@@ -32,7 +32,7 @@ calculate_weight <- function(weights, particles,
 }
 
 ################################################################################
-# 
+#
 # @brief apply the ABC routine used in our Methods in Ecology and Evolution Paper
 #
 # @date Last modified: 2016-03-07
@@ -198,7 +198,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
 }
 
 ################################################################################
-# 
+#
 # @brief Estimate the likelihood of a given tree, provided a likelihood function, using a Monte Carlo Markov Chain
 #
 # @date Last modified: 2014-20-09
@@ -206,7 +206,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
 # @since 2014-20-09, version 1.0
 #
 # @param    phy                   phylo       Vector of weights
-# @param    likelihood_function   function    Function that calculates the likelihood of our diversification model, given the tree. 
+# @param    likelihood_function   function    Function that calculates the likelihood of our diversification model, given the tree.
 #                                             function should be of the format function(parameters, phy).
 # @param    parameters            vector      Initial parameters to start the chain.
 # @param    logtransforms         scalar      Whether to perform jumps on logtransformed parameters (TRUE) or not (FALSE)

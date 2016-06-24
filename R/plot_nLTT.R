@@ -1,5 +1,5 @@
 ################################################################################
-# 
+#
 # @brief plot the normalized nLTT plot of a tree
 #
 # @date Last modified: 2014-20-09
@@ -9,7 +9,7 @@
 # @param    tree1                  phylo      Phylogenetic tree
 # @param    xlab                   string     Label on the x-axis
 # @param    ylab                   string     Label on the y-axis
-# 
+#
 #
 ################################################################################
 
@@ -35,14 +35,14 @@ nltt_plot <- function( phy, xlab = "Normalized Time",
 }
 
 ################################################################################
-# 
+#
 # @brief add a nLTT line to an existing nLTT plot
 # @date Last modified: 2014-20-09
 # @author Thijs Janzen
 # @since 2014-20-09, version 1.0
 #
 # @param    tree1                  phylo      Phylogenetic tree
-# 
+#
 #
 ################################################################################
 
