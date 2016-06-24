@@ -132,7 +132,7 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
 #
 ################################################################################
 
-nLTTstat <- function( tree1, tree2, distance_method = "abs") {
+nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep function name non-all-lowercase, due to backwards compatibility
   if (!inherits(tree1, "phylo")) {
     # Just checking
     stop("nLTT.plot: ",
@@ -150,7 +150,7 @@ nLTTstat <- function( tree1, tree2, distance_method = "abs") {
     cat( "chosen unknown distance method!\n" );
     flush.console();
   }
-  diff <- nltt_diff( tree1, tree2, distance_method);
+  diff <- nLTT::nltt_diff( tree1, tree2, distance_method);
   return (diff);
 }
 
@@ -169,7 +169,7 @@ nLTTstat <- function( tree1, tree2, distance_method = "abs") {
 #
 ################################################################################
 
-nLTTstat_exact <- function(tree1, tree2, distance_method = "abs")   {
+nLTTstat_exact <- function(tree1, tree2, distance_method = "abs") { # nolint keep function name non-all-lowercase, due to backwards compatibility
   if (!inherits(tree1, "phylo")) {
     # Just checking
     stop("nLTT.plot: ",
@@ -186,6 +186,6 @@ nLTTstat_exact <- function(tree1, tree2, distance_method = "abs")   {
     cat("chosen unknown distance method!\n");
     flush.console();
   }
-  diff <- nltt_diff_exact( tree1, tree2, distance_method);
+  diff <- nLTT::nltt_diff_exact( tree1, tree2, distance_method);
   return (diff);
 }
