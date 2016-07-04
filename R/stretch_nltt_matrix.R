@@ -52,17 +52,24 @@ stretch_nltt_matrix <- function(
   n_ts <- seq(0.0, 1.0, dt)
   n_ns <- rep(NA, times = n_nrow)
   n <- matrix( c(n_ts, n_ns), ncol = 2, nrow = n_nrow)
-  names(n) <- names(m)
-  m <- rbind(m, c(1.0, 1.0))
+
+  # Add endtime at the bottom
+  m <- rbind(m, c(1e99, 1.0))
 
   # Fill in the N's in n
   m_row_index <- 1
   for (n_row_index in seq(1, n_nrow)) {
-    if (n[n_row_index, 1] >= m[m_row_index + 1, 1]) {
-      testit::assert(m_row_index + 1 <= nrow(m))
+    while (n[n_row_index, 1] >= m[m_row_index + 1, 1]) {
+      if (m_row_index > nrow(m)) {
+        break
+      }
       m_row_index <- m_row_index + 1
     }
-    n[n_row_index, 2] <- m[m_row_index + ifelse(step_type == "lower", 0, 1), 2]
+    if (m_row_index  + ifelse(step_type == "lower", 0, 1) > nrow(m)) {
+      n[n_row_index, 2] <- 1
+    } else {
+      n[n_row_index, 2] <- m[m_row_index + ifelse(step_type == "lower", 0, 1), 2]
+    }
   }
   n
 }
