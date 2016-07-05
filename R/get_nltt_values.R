@@ -96,6 +96,7 @@ get_nltt_values <- function(phylogenies, dt) {
   }
   z <- as.data.frame(x = m)
   colnames(z) <- c("id", "t", "nltt")
-  z[, 1] <- sapply(z[, 1], as.integer)
+  #z[, 1] <- sapply(z[, 1], as.integer)
+  z$id <- as.factor(z$id)
   z
 }

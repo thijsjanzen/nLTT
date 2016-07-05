@@ -41,11 +41,10 @@ test_that("return data type", {
   expect_equal(nrow(result), 12)
   expect_equal(ncol(result), 3)
 
-  expect_equal(is.data.frame(result), TRUE)
-  expect_equal(is.integer(result$id), TRUE)
-  expect_equal(is.factor(result$id), FALSE)
-  expect_equal(is.numeric(result$t), TRUE)
-  expect_equal(is.numeric(result$nltt), TRUE)
+  expect_true(is.data.frame(result))
+  expect_true(is.factor(result$id))
+  expect_true(is.numeric(result$t))
+  expect_true(is.numeric(result$nltt))
 })
 
 
@@ -123,7 +122,7 @@ test_that(paste("How to stretch an nltt timepoints matrix: ",
     )
   expected <- as.data.frame(x = m)
   colnames(expected) <- c("id", "t", "nltt")
-  expected[, 1] <- sapply(expected[, 1], as.integer)
+  expected$id <- as.factor(expected$id)
 
   expect_equal(nrow(result), 12)
   expect_equal(ncol(result), 3)
@@ -198,7 +197,7 @@ test_that(paste("How to stretch an nltt timepoints matrix: ",
     ncol = 3, byrow = FALSE)
   expected <- as.data.frame(x = m)
   colnames(expected) <- c("id", "t", "nltt")
-  expected[, 1] <- sapply(expected[, 1], as.integer)
+  expected$id <- as.factor(expected$id)
   expect_equal(nrow(result), 12)
   expect_equal(ncol(result), 3)
   expect_equal(all.equal(result, expected), TRUE)
