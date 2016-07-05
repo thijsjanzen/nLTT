@@ -56,18 +56,41 @@ stretch_nltt_matrix <- function(
   # Add endtime at the bottom
   m <- rbind(m, c(1e99, 1.0))
 
-  # Fill in the N's in n
+  # Fill in the nLTT values (the second column) in n
+  # (n already has the time values in its first column):
+  # - go through the values of m until desired timepoint is exceded
+  # - copy that nLTT value to n
+  #
+  #       m                 n
+  #
+  # |
+  # |        +-*     |
+  # |      +-*       |    +----*
+  # |    +-*      -> |    |
+  # |  +-*           +----*
+  # |+-*             |
+  # |*               *
+  # +-----------     +----------------
+  # ^    ^    ^      ^    ^    ^
+  #
+
   m_row_index <- 1
-  for (n_row_index in seq(1, n_nrow)) {
+  for (n_row_index in 1:n_nrow) {
+    # Find the value in m that has a time later than the time value in n
     while (n[n_row_index, 1] >= m[m_row_index + 1, 1]) {
       if (m_row_index > nrow(m)) {
+        # At the end, the nLTT value will always become one
         break
       }
+      # Work further through m
       m_row_index <- m_row_index + 1
     }
+    # At the end of matrix m?
     if (m_row_index  + ifelse(step_type == "lower", 0, 1) > nrow(m)) {
+      # At the end, the nLTT value will always become one
       n[n_row_index, 2] <- 1
     } else {
+      # Copy the nLTT value from m
       n[n_row_index, 2] <- m[m_row_index + ifelse(step_type == "lower", 0, 1), 2]
     }
   }
