@@ -91,7 +91,7 @@ stretch_nltt_matrix <- function(
       n[n_row_index, 2] <- 1
     } else {
       # Copy the nLTT value from m
-      n[n_row_index, 2] <- m[m_row_index + ifelse(step_type == "lower", 0, 1), 2]
+      n[n_row_index, 2] <- m[m_row_index + ifelse(step_type == "lower", 0, 1), 2]  # nolint
     }
   }
   n
