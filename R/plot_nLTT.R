@@ -18,7 +18,7 @@ nltt_plot <- function( phy, xlab = "Normalized Time",
 
   if (!inherits(phy, "phylo")) {
     # Stop imposed by ape::ltt.plot.coords
-    stop("nLTT.plot: ",
+    stop("nltt_plot: ",
       "phylogeny must be of class 'phylo', ",
       "but was of type '", class(phy), "' instead")
   }

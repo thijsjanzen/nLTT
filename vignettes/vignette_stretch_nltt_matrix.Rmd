@@ -38,7 +38,7 @@ add.scale.bar()
 From this tree, we can create an nLTT plot:
 
 ```{r}
-nLTT.plot(phylogeny)
+nltt_plot(phylogeny)
 ```
 
 We can extract the timepoints of the nLTT plot using the
@@ -52,7 +52,7 @@ print(nltt)
 The timepoints are plotted in red over the nLTT plot:
 
 ```{r}
-nLTT.plot(phylogeny)
+nltt_plot(phylogeny)
 points(nltt, pch = 19, col="red")
 ```
 
@@ -67,7 +67,7 @@ print(stretch_matrix)
 Plotting these as blue points between the red points:
 
 ```{r}
-nLTT.plot(phylogeny)
+nltt_plot(phylogeny)
 points(nltt, pch = 19, col="red")
 points(stretch_matrix, pch = 19, col="blue")
 ```
@@ -88,7 +88,7 @@ add.scale.bar()
 From this tree, we can create an nLTT plot:
 
 ```{r}
-nLTT.plot(phylogeny)
+nltt_plot(phylogeny)
 ```
 
 We can extract the timepoints of the nLTT plot using the
@@ -103,7 +103,7 @@ The timepoints are plotted
 in red over the nLTT plot:
 
 ```{r}
-nLTT.plot(phylogeny)
+nltt_plot(phylogeny)
 points(nltt, pch = 19, col="red")
 ```
 
@@ -119,7 +119,7 @@ Plotting these as blue points between the red points:
 
 
 ```{r}
-nLTT.plot(phylogeny)
+nltt_plot(phylogeny)
 points(nltt, pch = 19, col="red")
 points(stretch_matrix, pch = 19, col="blue")
 ```
@@ -141,7 +141,7 @@ add.scale.bar()
 From this tree, we can create an nLTT plot:
 
 ```{r}
-nLTT.plot(phylogeny)
+nltt_plot(phylogeny)
 ```
 
 We can extract the timepoints of the nLTT plot using the
@@ -156,7 +156,7 @@ The timepoints are plotted
 in red over the nLTT plot:
 
 ```{r}
-nLTT.plot(phylogeny)
+nltt_plot(phylogeny)
 points(nltt, pch = 19, col="red")
 ```
 
@@ -165,7 +165,7 @@ red points:
 
 ```{r}
 nltt <- nLTT::get_phylogeny_nltt_matrix(phylogeny)
-nLTT.plot(phylogeny)
+nltt_plot(phylogeny)
 stretch_matrix <- nLTT::stretch_nltt_matrix(nltt, dt = 0.05, step_type = "upper")
 points(nltt, pch = 19, col="red")
 points(stretch_matrix, pch = 19, col="blue")

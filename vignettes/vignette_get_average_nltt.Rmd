@@ -45,7 +45,7 @@ add.scale.bar()
 This can be observed in the nLTT plot:
 
 ```{r}
-nLTT.plot(phylogeny1, ylim = c(0, 1))
+nltt_plot(phylogeny1, ylim = c(0, 1))
 ```
 
 As a collection of timepoints:
@@ -64,7 +64,7 @@ add.scale.bar()
 Also this can be observed in the nLTT plot:
 
 ```{r}
-nLTT.plot(phylogeny2, ylim = c(0, 1))
+nltt_plot(phylogeny2, ylim = c(0, 1))
 ```
 
 As a collection of timepoints:
@@ -126,7 +126,7 @@ add.scale.bar()
 This can be observed in the nLTT plot:
 
 ```{r}
-nLTT.plot(phylogeny1, ylim = c(0, 1))
+nltt_plot(phylogeny1, ylim = c(0, 1))
 ```
 
 As a collection of timepoints:
@@ -145,7 +145,7 @@ add.scale.bar()
 Also this can be observed in the nLTT plot:
 
 ```{r}
-nLTT.plot(phylogeny2, ylim = c(0, 1))
+nltt_plot(phylogeny2, ylim = c(0, 1))
 ```
 
 As a collection of timepoints:

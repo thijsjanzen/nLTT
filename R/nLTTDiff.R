@@ -135,13 +135,13 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
 nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep function name non-all-lowercase, due to backwards compatibility
   if (!inherits(tree1, "phylo")) {
     # Just checking
-    stop("nLTT.plot: ",
+    stop("nLTTstat: ",
       "tree1 must be of class 'phylo', ",
       "but was of type '", class(tree1), "' instead")
   }
   if (!inherits(tree2, "phylo")) {
     # Just checking
-    stop("nLTT.plot: ",
+    stop("nLTTstat: ",
       "tree1 must be of class 'phylo', ",
       "but was of type '", class(tree2), "' instead")
   }
@@ -172,13 +172,13 @@ nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep fun
 nLTTstat_exact <- function(tree1, tree2, distance_method = "abs") { # nolint keep function name non-all-lowercase, due to backwards compatibility
   if (!inherits(tree1, "phylo")) {
     # Just checking
-    stop("nLTT.plot: ",
+    stop("nLTTstat_exact: ",
       "tree1 must be of class 'phylo', ",
       "but was of type '", class(tree1), "' instead")
   }
   if (!inherits(tree2, "phylo")) {
     # Just checking
-    stop("nLTT.plot: ",
+    stop("nLTTstat_exact: ",
       "tree1 must be of class 'phylo', ",
       "but was of type '", class(tree2), "' instead")
   }
