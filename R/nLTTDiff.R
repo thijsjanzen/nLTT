@@ -179,7 +179,7 @@ nLTTstat_exact <- function(tree1, tree2, distance_method = "abs") { # nolint kee
   if (!inherits(tree2, "phylo")) {
     # Just checking
     stop("nLTTstat_exact: ",
-      "tree1 must be of class 'phylo', ",
+      "tree2 must be of class 'phylo', ",
       "but was of type '", class(tree2), "' instead")
   }
   if (distance_method != "abs" && distance_method != "squ") {

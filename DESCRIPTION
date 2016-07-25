@@ -21,7 +21,10 @@ Suggests:
     TESS,
     testit,
     testthat,
-    TreeSim
+    TreeSim,
+    knitr,
+    rmarkdown
 NeedsCompilation: no
 Packaged: 2016-05-20 07:46:57 UTC; janzen
 RoxygenNote: 5.0.1
+VignetteBuilder: knitr
