@@ -184,8 +184,8 @@ nLTTstat_exact <- function(tree1, tree2, distance_method = "abs") { # nolint kee
   }
   if (distance_method != "abs" && distance_method != "squ") {
     cat("chosen unknown distance method!\n");
-    flush.console();
+    flush.console()
   }
-  diff <- nLTT::nltt_diff_exact( tree1, tree2, distance_method);
-  return (diff);
+  diff <- nLTT::nltt_diff_exact( tree1, tree2, distance_method)
+  return (diff)
 }
