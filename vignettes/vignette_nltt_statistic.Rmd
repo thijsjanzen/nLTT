@@ -1,22 +1,20 @@
 ---
-title: "Demonstration of nLTTstat function"
+title: "Demonstration of nLTTstat functions"
 author: "Richel Bilderbeek"
 date: "`r Sys.Date()`"
 output: rmarkdown::pdf_document
 vignette: >
-  %\VignetteIndexEntry{Demonstration of nLTTstat function}
+  %\VignetteIndexEntry{Demonstration of nLTTstat functions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-`nLTTstat` calculates the nLTT statistic values, which is
-a measure of mismatch between one phylogeny and multiple posterior
-phylogenies.
+Both `nLTTstat` and `nLTTstat_exact` calculate the nLTT statistic value.
+The nLTT statistic is a measure of mismatch between two phylogenies.
 
 In this vignette:
 
  * an introduction of the data we work on
- * a detailed demo how to calculate the nLTT statistic
  * a demo of how to use the function itself
 
 ## General setup
@@ -25,10 +23,15 @@ Load all libraries:
 
 ```{r}
 library(nLTT)
+```
+
+Use the heigest warning level:
+
+```{r}
 options(warn = 2)
 ```
 
-Set the random number generator seed. 
+Set the random number generator seed:
 
 ```{r}
 set.seed(42)
@@ -38,10 +41,10 @@ Setting a random number generator seed makes the results reproducible.
 
 The data we work on will be:
 
- * a species tree
- * a posterior, consisting of multiple phylogenies
+ * a focal phylogeny, called 'the species tree'
+ * multiple other phylogenies to be compared to the species tree, called 'the posterior'
 
-First we construct a species tree:
+First we construct the focal species tree:
 
 ```{r}
 species_tree <- ape::rcoal(n = 10)
@@ -96,14 +99,21 @@ for (p in posteriors) {
 }
 ```
 
-Then we calculate the nLTT statistic between original species
+## The nLTT statistic
+
+The `nLTT` package supplies two version of calculating the 
+nLTT statistic: exact or approximated.
+
+First, we calculate both nLTT statistic between original species
 tree and each posterior tree:
 
 ```{r}
-nltt_stats <- rep(x = 0, times = length(posteriors))
+nltt_stats_exact  <- rep(x = 0, times = length(posteriors))
+nltt_stats_approx <- rep(x = 0, times = length(posteriors))
 i <- 1
 for (p in posteriors) {
-  nltt_stats[i] <- nLTTstat_exact(species_tree, p)
+  nltt_stats_exact[i]  <- nLTTstat_exact(species_tree, p)
+  nltt_stats_approx[i] <- nLTTstat(species_tree, p)
   i <- i + 1
 }
 ```
@@ -116,21 +126,41 @@ Here we put the results in a data frame and display it as a table:
 
 ```{r}
 nltt_stats <- data.frame(
-  id = seq(1, length(nltt_stats)),
-  nltt_stat = nltt_stats
+  id = seq(1, length(nltt_stats_exact)),
+  nltt_stat_exact = nltt_stats_exact, 
+  nltt_stat_approx = nltt_stats_approx
 )
 knitr::kable(nltt_stats)
 ```
 
-Or as a boxplot:
+The date frame shows that both methods result in
+appoximately the same values.
+
+Melting this data for the next plot:
+
+```{r}
+df <- reshape2::melt(
+  nltt_stats, 
+  id.vars = c("id"), 
+  measure.vars = c( "nltt_stat_exact", "nltt_stat_approx")
+)
+names(df) <- c("id", "method", "nltt_stat")
+df$id <- as.factor(df$id)
+df$method <- plyr::revalue(
+  df$method, 
+  c("nltt_stat_exact" = "exact", "nltt_stat_approx" = "approx")
+)
+```
+
+Plotting the methods in a boxplot:
 
 ```{r}
 ggplot2::ggplot(
-  data = nltt_stats, 
-  ggplot2::aes(x = 1, y = nltt_stats$nltt_stat)
+  data = df, 
+  ggplot2::aes(x = df$method, y = df$nltt_stat)
 ) + ggplot2::geom_boxplot(
-) + ggplot2::geom_point(color = nltt_stats$id
+) + ggplot2::geom_point(color = df$id
 ) + ggplot2::scale_y_continuous(name = "nLTT statistic"
-) + ggplot2::scale_x_discrete(name = "The one posterior"
+) + ggplot2::scale_x_discrete(name = "Method"
 ) + ggplot2::ggtitle("Posterior nLTT statistic distribution")
 ```
