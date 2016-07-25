@@ -33,7 +33,6 @@ test_that("nLTTstat_exact use", {
     tolerance = 0.0001
   )
 
-  # Cannot test for incorrect distance_method due to Issue #6
 })
 
 
@@ -49,6 +48,9 @@ test_that("nLTTstat_exact abuse", {
     nLTTstat_exact(tree1 = phylo, tree2 = 42, distance_method = "abs"), # nolint nLTTstat_exact should be all lowercase, left in for backwards compatibility
     "nLTTstat_exact: tree2 must be of class 'phylo'"
   )
+  expect_error(
+    nLTTstat_exact(tree1 = phylo, tree2 = phylo, distance_method = "nonsense"), # nolint nLTTstat_exact should be all lowercase, left in for backwards compatibility
+    "nLTTstat_exact: distance method unknown"
+  )
 
-  # Cannot test for incorrect distance_method due to Issue #6
 })

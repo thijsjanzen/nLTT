@@ -50,5 +50,9 @@ test_that("nLTTstat abuse", {
     "nLTTstat: tree2 must be of class 'phylo'"
   )
 
-  # Cannot test for incorrect distance_method due to Issue #6
+  expect_error(
+    nLTTstat(tree1 = phylo, tree2 = phylo, distance_method = "nonsense"), # nolint nLTTstat_exact should be all lowercase, left in for backwards compatibility
+    "nLTTstat: distance method unknown"
+  )
+
 })

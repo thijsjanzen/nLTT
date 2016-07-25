@@ -147,8 +147,7 @@ nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep fun
   }
 
   if ( distance_method != "abs" && distance_method != "squ") {
-    cat( "chosen unknown distance method!\n" )
-    flush.console()
+    stop("nLTTstat: distance method unknown")
   }
   diff <- nLTT::nltt_diff( tree1, tree2, distance_method)
   return (diff)
@@ -183,8 +182,7 @@ nLTTstat_exact <- function(tree1, tree2, distance_method = "abs") { # nolint kee
       "but was of type '", class(tree2), "' instead")
   }
   if (distance_method != "abs" && distance_method != "squ") {
-    cat("chosen unknown distance method!\n")
-    flush.console()
+    stop("nLTTstat_exact: distance method unknown")
   }
   diff <- nLTT::nltt_diff_exact( tree1, tree2, distance_method)
   return (diff)
