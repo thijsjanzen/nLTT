@@ -36,8 +36,6 @@ set.seed(42)
 
 Setting a random number generator seed makes the results reproducible.
 
-A `dt` (the timestep) close to zero gives a more detailed analysis, but it will take longer.
-
 The data we work on will be:
 
  * a species tree
@@ -52,7 +50,7 @@ species_tree <- ape::rcoal(n = 10)
 Then we collect four possible posterior species trees:
 
 ```{r}
-posteriors <- c(
+posteriors <- list(
   ape::rcoal(n = 10), 
   ape::rcoal(n = 10), 
   species_tree, 
@@ -66,127 +64,25 @@ tree and each posterior tree:
 ```{r}
 nltt_stats <- rep(x = 0, times = length(posteriors))
 for (i in 1:length(posteriors)) {
-  nltt_stats[i] <- nLTT::nLTTstat(species_tree, posteriors[i])
+  nltt_stats[i] <- nLTTstat_exact(species_tree, posteriors[[i]])
 }
-
-inherits(species_tree, "phylo")
-
-postr_nltts <- nLTT::get_nltt_values(phylogenies = posteriors, dt = dt)
 ```
 
 One of the posterior tree is a copy of the input phylogeny.
 This allows us to check our algorithm: the final nLTT statistic
 should be zero for that posterior tree.
 
-
-Here an nLTT plot is shown, with the original species tree in black, and
-the posterior trees in other colors:
-
-```{r fig.width = 7, fig.height = 7}
-ggplot2::ggplot(
-  data = stree_nltts,
-  ggplot2::aes(x = stree_nltts$t, y = stree_nltts$nltt)
-) + ggplot2::geom_step(
-  direction = "vh",
-  size = 2
-) + ggplot2::geom_step(
-  data = postr_nltts,
-  ggplot2::aes(x = postr_nltts$t, y = postr_nltts$nltt,   colour = postr_nltts$id),
-  direction = "vh",
-  position = ggplot2::position_dodge(width = 0.02)
-) + ggplot2::scale_x_continuous(
-  limits = c(0, 1), breaks = seq(0, 1, 0.1), name = "Normalized time"
-) + ggplot2::scale_y_continuous(
-  limits = c(0, 1), breaks = seq(0, 1, 0.1), name = "nLTT"
-) + ggplot2::ggtitle("True species tree nLTT and its posteriors")
-```
-
-One can see that one posterior tree has exactly the same nLTT plot as
-the original species tree.
-
-Of this data, the nLTT statistic is calculated twice:
-
- * a detailed demo how to calculate the nLTT statistic
- * a demo of how to use the `calc_nltt_stat` function
-
-## How to calculate the nLTT statistic
-
-The first step in calculating the nLTT statistic is to 
-collect the mismatch per time point, between the one species tree 
-and each of the posterior trees.
-This can be done by subtracting the nLTT values of the original species tree 
-from each of the posteriors:
+Here we put the results in a data frame and display it as a table:
 
 ```{r}
-diff_nltts <- postr_nltts
-diff_nltts$nltt <- abs(diff_nltts$nltt - rep(stree_nltts$nltt, length(posteriors)))
-```
-
-Here we plot the differences per timepoint as a boxplot:
-
-```{r fig.width = 7, fig.height = 7}
-ggplot2::ggplot(
-  data = diff_nltts,
-  ggplot2::aes(x = factor(diff_nltts$t), y = diff_nltts$nltt)
-) + ggplot2::geom_boxplot(
-) + ggplot2::scale_x_discrete(
-  name = "Normalized time"
-) + ggplot2::scale_y_continuous(
-  limits = c(0, 1), breaks = seq(0, 1, 0.1), name = "nLTT difference"
-) + ggplot2::ggtitle("Difference between true species tree nLTT and its posteriors")
-```
-
-The nLTT statistic of a posterior tree equals the surface between 
-its nLTT plot and the original species tree its nLTT plot.
-
-We can get this surface by taking the mean of all differences (technically,
-this gives us the average height of a rectangle. We should also multiply by one,
-which is that rectangle its width, but this is omitted 
-for conciseness in the calculation):
-
-```{r}
-nltt_stats <- dplyr::summarize(dplyr::group_by(diff_nltts, id), nltt_stat = mean(nltt))
-```
-
-Here are the four nLTT statistic values as four nice-looking bar-charts:
-
-```{r}
-ggplot2::ggplot(
-  data = nltt_stats, 
-  ggplot2::aes(x = nltt_stats$id, y = nltt_stats$nltt_stat, fill = nltt_stats$id)
-) + ggplot2::geom_bar(stat = "identity", colour = "black"
-) + ggplot2::scale_y_continuous(name = "nLTT statistic"
-) + ggplot2::scale_x_discrete(name = "Posterior #"
-) + ggplot2::ggtitle("Posterior nLTT statistic values")
-```
-
-This plot is pretty, though not very interesting. Instead, the
-distribution of the nLTT statistic gives us more useful information.
-The distribution of nLTT statitic values is plotted as a boxplot here:
-
-```{r}
-ggplot2::ggplot(
-  data = nltt_stats, 
-  ggplot2::aes(x = 1, y = nltt_stats$nltt_stat)
-) + ggplot2::geom_boxplot(
-) + ggplot2::geom_point(color = nltt_stats$id
-) + ggplot2::scale_y_continuous(name = "nLTT statistic"
-) + ggplot2::scale_x_discrete(name = "The one posterior"
-) + ggplot2::ggtitle("Posterior nLTT statistic distribution")
-```
-
-The function `calc_nltt_stats` does this in one step.
-
-# How to use `calc_nltt_stats`
-
-```{r}
-nltt_stats <- calc_nltt_stats(
-  phylogeny = species_tree, 
-  others = posteriors,
-  dt = dt
+nltt_stats <- data.frame(
+  id = seq(1, length(nltt_stats)),
+  nltt_stat = nltt_stats
 )
-names(nltt_stats)
+knitr::kable(nltt_stats)
 ```
+
+Or as a boxplot:
 
 ```{r}
 ggplot2::ggplot(
