@@ -2,7 +2,6 @@ Package: nLTT
 Type: Package
 Title: Calculate the NLTT Statistic
 Version: 1.2.1
-Date: 2016-05-20
 Author: Thijs Janzen
 Maintainer: Thijs Janzen <thijsjanzen@gmail.com>
 Description: Provides functions to calculate the normalised Lineage-Through-
@@ -28,3 +27,4 @@ NeedsCompilation: no
 Packaged: 2016-05-20 07:46:57 UTC; janzen
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
+URL: https://github.com/richelbilderbeek/nLTT
