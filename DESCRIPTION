@@ -28,3 +28,4 @@ Packaged: 2016-05-20 07:46:57 UTC; janzen
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/nLTT
+BugReports: https://github.com/richelbilderbeek/nLTT/issues
