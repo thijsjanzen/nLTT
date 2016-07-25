@@ -58,7 +58,7 @@ nltt_diff_exact <- function(tree1, tree2, distance_method = "abs") { # nolint
 }
 ################################################################################
 #
-# @brief Calculates the exact, difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
+# @brief Calculates the exact difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
 #
 # @date Last modified: 2016-05-20
 # @author Thijs Janzen
