@@ -142,7 +142,7 @@ nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep fun
   if (!inherits(tree2, "phylo")) {
     # Just checking
     stop("nLTTstat: ",
-      "tree1 must be of class 'phylo', ",
+      "tree2 must be of class 'phylo', ",
       "but was of type '", class(tree2), "' instead")
   }
 
