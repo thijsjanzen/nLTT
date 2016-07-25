@@ -47,6 +47,15 @@ First we construct a species tree:
 species_tree <- ape::rcoal(n = 10)
 ```
 
+Here the phylogeny and nLTT plot are displayed:
+
+```{r fig.width = 7, fig.height = 4}
+par(mfrow = c(1, 2))
+ape::plot.phylo(species_tree)
+nLTT::nltt_plot(species_tree)
+par(mfrow = c(1, 1))
+```
+
 Then we collect four possible posterior species trees:
 
 ```{r}
@@ -56,6 +65,33 @@ posteriors <- list(
   species_tree, 
   ape::rcoal(n = 10)
 )
+```
+
+Here these phylogenies and nLTT plots are displayed:
+
+```{r fig.width = 7, fig.height = 10}
+par(mfrow = c(4, 2))
+for (i in 1:length(posteriors)) {
+  ape::plot.phylo(posteriors[[i]], cex = 1)
+  nLTT::nltt_plot(posteriors[[i]])
+}
+par(mfrow = c(1, 1))
+```
+
+Here we display the nLTT plots of both the original
+species tree (thicker lines) and its posteriors:
+
+```{r fig.width = 7, fig.height = 7}
+# Set the plot area
+nLTT::nltt_plot(species_tree)
+# Set the background to light grey
+rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4], col = colors()[240])
+# Draw the species tree
+nLTT::nltt_lines(species_tree, lwd = 5)
+# Draw the posteriors
+for (i in 1:length(posteriors)) {
+  nLTT::nltt_lines(posteriors[[i]], lwd = 3, lty = 2, col = i + 1)
+}
 ```
 
 Then we calculate the nLTT statistic between original species
