@@ -1,0 +1,51 @@
+---
+title: "Trees with a root edge"
+author: "Richel Bilderbeek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Trees with a root edge}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This document intends to display a feature of the nLTT package:
+if a stem is added to a phylogeny, the begin of that stem
+is set as the most recent common ancestor.
+
+Here I create a random phylogeny:
+
+```{r}
+set.seed(42)
+p <- ape::rcoal(4)
+```
+
+Here is how it looks like:
+
+```{r fig.width = 7, fig.height = 7}
+ape::plot.phylo(p, root.edge = TRUE)
+```
+
+I set `root.edge` to `TRUE`, just show it is absent.
+
+I copy that same phylogeny and add a stem:
+
+```{r}
+q <- p
+q$root.edge <- 5
+```
+
+This is how that phylogeny looks like:
+
+```{r fig.width = 7, fig.height = 7}
+ape::plot.phylo(q, root.edge = TRUE)
+```
+
+When overlaying their nLTT plots, one can see
+that the stem is counted:
+
+```{r fig.width = 7, fig.height = 7}
+nLTT::nltt_plot(p)
+nLTT::nltt_lines(q, col = "red")
+```
+
