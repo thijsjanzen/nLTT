@@ -22,7 +22,7 @@ p <- ape::rcoal(4)
 
 Here is how it looks like:
 
-```{r fig.width = 7, fig.height = 7}
+```{r fig.width = 3, fig.height = 3}
 ape::plot.phylo(p, root.edge = TRUE)
 ```
 
@@ -37,15 +37,37 @@ q$root.edge <- 5
 
 This is how that phylogeny looks like:
 
-```{r fig.width = 7, fig.height = 7}
+```{r fig.width = 3, fig.height = 3}
 ape::plot.phylo(q, root.edge = TRUE)
 ```
 
-When overlaying their nLTT plots, one can see
-that the stem is counted:
+When overlaying their nLTT plots, one can expect two things:
 
-```{r fig.width = 7, fig.height = 7}
+ * it is assumed that the phylogeny without a root is leading, and the 
+   other phylogeny has its root removed
+ * it is assumed that the phylogeny with a root is leading, and the 
+   other phylogeny is assumed to have a root of length zero
+
+The nLTT package does the latter:
+
+```{r fig.width = 3, fig.height = 3}
 nLTT::nltt_plot(p)
 nLTT::nltt_lines(q, col = "red")
 ```
+
+When looking at the nLTT plot, one can eyeball that 
+the nLTT statistic (the surface between the two curves)
+is around about 0.4.
+
+But when calculating the nLTT statistic, it ignores the stems, resulting
+in an nLTT statistic of zero:
+
+```{r}
+if (nLTT::nLTTstat_exact(p, q) > 0) {
+  print("nLTTstat_exact takes stem into account")
+} else {
+  print("nLTTstat_exact ignores stem")
+}
+```
+
 
