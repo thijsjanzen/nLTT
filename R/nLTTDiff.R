@@ -9,11 +9,17 @@
 # @param    tree1                  phylo      First phylogenetic tree
 # @param    tree2                  phylo      Second phylogenetic tree
 # @param    distance_method        string     absolute, or squared distance?
+# @param    ignore_stem            logical    Should the phylogeny its stem be ignored?
 # @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
 #
 ################################################################################
 
-nltt_diff_exact <- function(tree1, tree2, distance_method = "abs") { # nolint
+nltt_diff_exact <- function(
+  tree1,
+  tree2,
+  distance_method = "abs",
+  ignore_stem = TRUE
+) {
   #branching times of tree1, including the present time (0)
   b_times <- c(-1 * rev(sort(ape::branching.times(tree1))), 0)
 
@@ -164,26 +170,33 @@ nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep fun
 # @param    tree1                  phylo      First phylogenetic tree
 # @param    tree2                  phylo      Second phylogenetic tree
 # @param    distance_method        string     Method to calculate the difference, either absolute, or squared
+# @param    ignore_stem            logical    Should the phylogeny its stem be ignored?
 # @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
 #
 ################################################################################
 
-nLTTstat_exact <- function(tree1, tree2, distance_method = "abs") { # nolint keep function name non-all-lowercase, due to backwards compatibility
+nLTTstat_exact <- function(
+  tree1,
+  tree2,
+  distance_method = "abs",
+  ignore_stem = TRUE
+) { # nolint keep function name non-all-lowercase, due to backwards compatibility
   if (!inherits(tree1, "phylo")) {
     # Just checking
-    stop("nLTTstat_exact: ",
-      "tree1 must be of class 'phylo', ",
+    stop("nLTTstat_exact: tree1 must be of class 'phylo', ",
       "but was of type '", class(tree1), "' instead")
   }
   if (!inherits(tree2, "phylo")) {
     # Just checking
-    stop("nLTTstat_exact: ",
-      "tree2 must be of class 'phylo', ",
+    stop("nLTTstat_exact: tree2 must be of class 'phylo', ",
       "but was of type '", class(tree2), "' instead")
   }
   if (distance_method != "abs" && distance_method != "squ") {
     stop("nLTTstat_exact: distance method unknown")
   }
-  diff <- nLTT::nltt_diff_exact( tree1, tree2, distance_method)
+  if (!is.logical(ignore_stem)) {
+    stop("nLTTstat_exact: ignore_stem must be logical")
+  }
+  diff <- nLTT::nltt_diff_exact( tree1, tree2, distance_method, ignore_stem)
   return (diff)
 }

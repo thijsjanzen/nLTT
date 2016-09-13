@@ -2,7 +2,7 @@
 title: "Trees with a root edge"
 author: "Richel Bilderbeek"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 vignette: >
   %\VignetteIndexEntry{Trees with a root edge}
   %\VignetteEngine{knitr::rmarkdown}
@@ -24,6 +24,7 @@ Here is how it looks like:
 
 ```{r fig.width = 3, fig.height = 3}
 ape::plot.phylo(p, root.edge = TRUE)
+ape::add.scale.bar()
 ```
 
 I set `root.edge` to `TRUE`, just show it is absent.
@@ -32,13 +33,15 @@ I copy that same phylogeny and add a stem:
 
 ```{r}
 q <- p
-q$root.edge <- 5
+stem_length <- 1
+q$root.edge <- stem_length
 ```
 
 This is how that phylogeny looks like:
 
 ```{r fig.width = 3, fig.height = 3}
 ape::plot.phylo(q, root.edge = TRUE)
+ape::add.scale.bar()
 ```
 
 When overlaying their nLTT plots, one can expect two things:
@@ -63,11 +66,15 @@ But when calculating the nLTT statistic, it ignores the stems, resulting
 in an nLTT statistic of zero:
 
 ```{r}
-if (nLTT::nLTTstat_exact(p, q) > 0) {
-  print("nLTTstat_exact takes stem into account")
-} else {
-  print("nLTTstat_exact ignores stem")
-}
+testit::assert(nLTT::nLTTstat_exact(p, q, ignore_stem = TRUE) < 0.01)
+testit::assert(nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE) > 0.1)
+print(nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE))
+
+c(-1 * rev(sort(ape::branching.times(p))), 0)
+c(-1 * rev(sort(ape::branching.times(q))), 0) + stem_length
+c(-1 * rev(sort(ape::branching.times(q))), 0)
+
+
 ```
 
 

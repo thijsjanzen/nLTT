@@ -53,4 +53,18 @@ test_that("nLTTstat_exact abuse", {
     "nLTTstat_exact: distance method unknown"
   )
 
+  expect_error(
+    nLTTstat_exact(tree1 = phylo, tree2 = phylo, ignore_stem = "no logical"), # nolint nLTTstat_exact should be all lowercase, left in for backwards compatibility
+    "nLTTstat_exact: ignore_stem must be logical"
+  )
+})
+
+test_that("nLTTstat_exact may ignore the stem", {
+
+  tree1 <- ape::rcoal(4)
+  tree2 <- tree1
+  tree2$root.edge <- 5
+  expect_true(nLTT::nLTTstat_exact(p, q, ignore_stem = TRUE) < 0.01)
+
+  expect_true(nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE) > 0.4)
 })

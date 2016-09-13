@@ -56,3 +56,4 @@ test_that("nLTTstat abuse", {
   )
 
 })
+
