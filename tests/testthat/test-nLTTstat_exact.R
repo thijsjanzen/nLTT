@@ -61,9 +61,29 @@ test_that("nLTTstat_exact abuse", {
 
 test_that("nLTTstat_exact may ignore the stem", {
 
-  tree1 <- ape::rcoal(4)
+  # Create a stemless phylogeny with two branches of length 1.0
+  tree1 <- ape::rcoal(2)
+  tree1$edge.length <- tree1$edge.length / tree1$edge.length[1]
+  # Create a phylogeny with two branches of length 1.0 and a stem length of 1
   tree2 <- tree1
-  tree2$root.edge <- 5
-  expect_true(nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = TRUE) < 0.01)
-  expect_true(nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = FALSE) > 0.09)
+  tree2$root.edge <- 1
+
+  # Without taking the stem into account, the nLTT statistic between
+  # identical  trees is zero
+  expect_equal(0.0, nLTT::nLTTstat_exact(tree1, tree1, ignore_stem = TRUE))
+  expect_equal(0.0, nLTT::nLTTstat_exact(tree2, tree2, ignore_stem = TRUE))
+
+  # Without the stem, there is no nLTT difference between the two phylogenies
+  expect_equal(0.00, nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = TRUE))
+  expect_equal(0.00, nLTT::nLTTstat_exact(tree2, tree1, ignore_stem = TRUE))
+
+  # With taking the stem into account, the nLTT statistic between
+  # identical  trees is zero
+  expect_equal(0.0, nLTT::nLTTstat_exact(tree1, tree1, ignore_stem = FALSE))
+  expect_equal(0.0, nLTT::nLTTstat_exact(tree2, tree2, ignore_stem = FALSE))
+
+  # With taking the stem into account, the nLTT statistic between
+  # different trees is about one quarter
+  expect_equal(0.25, nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = FALSE))
+  expect_equal(0.25, nLTT::nLTTstat_exact(tree2, tree1, ignore_stem = FALSE))
 })
