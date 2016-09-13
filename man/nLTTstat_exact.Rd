@@ -26,6 +26,10 @@ Chosen measurement of distance between the two nLTT curves, options are (case se
 	- "abs": use the absolute distance\cr
 	- "squ": use the squared distance;\cr
   }
+  \item{ignore_stem}{
+    a boolean whether to ignore the stem length
+  }
+
 }
 \value{
 The exact difference between the two nLTT statistics
