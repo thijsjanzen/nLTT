@@ -10,19 +10,21 @@ Description: Provides functions to calculate the normalised Lineage-Through-
     normalised both in time and in number of lineages.
 License: file LICENSE
 Imports:
-    deSolve,
+    ape,
     coda,
-    ape
+    deSolve
 Suggests:
     ggplot2,
     Hmisc,
+    knitr,
     microbenchmark,
+    plyr,
+    reshape2,
+    rmarkdown,
     TESS,
     testit,
     testthat,
-    TreeSim,
-    knitr,
-    rmarkdown
+    TreeSim
 NeedsCompilation: no
 Packaged: 2016-05-20 07:46:57 UTC; janzen
 RoxygenNote: 5.0.1
