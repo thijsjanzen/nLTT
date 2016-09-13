@@ -64,7 +64,6 @@ test_that("nLTTstat_exact may ignore the stem", {
   tree1 <- ape::rcoal(4)
   tree2 <- tree1
   tree2$root.edge <- 5
-  expect_true(nLTT::nLTTstat_exact(p, q, ignore_stem = TRUE) < 0.01)
-
-  expect_true(nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE) > 0.4)
+  expect_true(nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = TRUE) < 0.01)
+  expect_true(nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = FALSE) > 0.09)
 })

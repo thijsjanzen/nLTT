@@ -2,7 +2,7 @@
 title: "Trees with a root edge"
 author: "Richel Bilderbeek"
 date: "`r Sys.Date()`"
-output: rmarkdown::pdf_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Trees with a root edge}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,13 +17,16 @@ Here I create a random phylogeny:
 
 ```{r}
 set.seed(42)
-p <- ape::rcoal(4)
+tree1 <- ape::rcoal(4)
+tree2 <- tree1
+tree1$root.edge <- 1
+tree2$root.edge <- 5
 ```
 
 Here is how it looks like:
 
 ```{r fig.width = 3, fig.height = 3}
-ape::plot.phylo(p, root.edge = TRUE)
+ape::plot.phylo(tree1, root.edge = TRUE)
 ape::add.scale.bar()
 ```
 
@@ -32,15 +35,12 @@ I set `root.edge` to `TRUE`, just show it is absent.
 I copy that same phylogeny and add a stem:
 
 ```{r}
-q <- p
-stem_length <- 1
-q$root.edge <- stem_length
 ```
 
 This is how that phylogeny looks like:
 
 ```{r fig.width = 3, fig.height = 3}
-ape::plot.phylo(q, root.edge = TRUE)
+ape::plot.phylo(tree2, root.edge = TRUE)
 ape::add.scale.bar()
 ```
 
@@ -53,28 +53,25 @@ When overlaying their nLTT plots, one can expect two things:
 
 The nLTT package does the latter:
 
-```{r fig.width = 3, fig.height = 3}
-nLTT::nltt_plot(p)
-nLTT::nltt_lines(q, col = "red")
+```{r fig.width = 7, fig.height = 7}
+nLTT::nltt_plot(tree1, xlim = c(0, 1), ylim = c(0, 1))
+nLTT::nltt_lines(tree2, col = "red")
 ```
 
 When looking at the nLTT plot, one can eyeball that 
 the nLTT statistic (the surface between the two curves)
-is around about 0.4.
+is around about 0.1.
 
-But when calculating the nLTT statistic, it ignores the stems, resulting
-in an nLTT statistic of zero:
+When calculating the nLTT statistic, one needs to explicitly
+set to take the stems into account:
 
 ```{r}
-testit::assert(nLTT::nLTTstat_exact(p, q, ignore_stem = TRUE) < 0.01)
-testit::assert(nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE) > 0.1)
-print(nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE))
-
-c(-1 * rev(sort(ape::branching.times(p))), 0)
-c(-1 * rev(sort(ape::branching.times(q))), 0) + stem_length
-c(-1 * rev(sort(ape::branching.times(q))), 0)
-
-
+print(nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = FALSE))
 ```
 
+When ignoring the stems, the phylogenies are equal, 
+thus have an nLTT statistic of zero:
 
+```{r}
+print(nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = TRUE))
+```

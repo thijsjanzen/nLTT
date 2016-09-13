@@ -22,18 +22,45 @@ nltt_diff_exact <- function(
 ) {
   #branching times of tree1, including the present time (0)
   b_times <- c(-1 * rev(sort(ape::branching.times(tree1))), 0)
+  if (!ignore_stem) {
+    stem_length1 <- ifelse(is.null(tree1$root.edge), 0.0, tree1$root.edge)
+    b_times <- c(b_times[1] - stem_length1, b_times)
+  }
 
-  #the number of lineages, we assume that the
-  # first branching time indicates the crown age.
-  lineages <- c(2:length(b_times), length(b_times))
+  # the number of lineages per branching time
+  first_n_lineages1 <- ifelse(ignore_stem, 2, 1)
+  n_taxa1 <- length(tree1$tip.label)
+  lineages <- c(first_n_lineages1:n_taxa1, n_taxa1)
+  # Each branching time must have a number of lineages to accompany it
+  testit::assert(length(b_times) == length(lineages))
 
   b_times_N <- 1 - b_times / min(b_times) #normalize branching times
   lineages_N <- lineages / max(lineages)  #normalize lineages
+  # Normalizations must have worked
+  testit::assert(all(b_times_N >= 0 & b_times_N <= 1.0))
+  testit::assert(all(lineages_N >= 0 & lineages_N <= 1.0))
 
+  # Same for other tree
   b_times2 <- c(-1 * rev(sort(ape::branching.times(tree2))), 0)
-  lineages2 <- c(2:length(b_times2), length(b_times2))
+  if (!ignore_stem) {
+    stem_length2 <- ifelse(is.null(tree2$root.edge), 0.0, tree2$root.edge)
+    b_times2 <- c(b_times2[1] - stem_length2, b_times2)
+  }
+
+  # the number of lineages per branching time
+  first_n_lineages2 <- ifelse(ignore_stem, 2, 1)
+  n_taxa2 <- length(tree2$tip.label)
+  lineages2 <- c(first_n_lineages2:n_taxa2, n_taxa2)
+  # Each branching time must have a number of lineages to accompany it
+  testit::assert(length(b_times2) == length(lineages2))
+
   b_times2_N <- 1 - b_times2 / min(b_times2) #normalize branching times
   lineages2_N <- lineages2 / max(lineages2)  #normalize lineages
+  # Normalizations must have worked
+  testit::assert(all(b_times2_N >= 0 & b_times2_N <= 1.0))
+  testit::assert(all(lineages2_N >= 0 & lineages2_N <= 1.0))
+
+
 
   #make a list of all branching times, and remove duplicates
   all_b_times <- unique(sort(c(b_times_N, b_times2_N)))
