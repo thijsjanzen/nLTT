@@ -100,7 +100,7 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
   lineages_N <- lineages / max( lineages) #normalize lineages
 
   #method = constant ensures a step function
-  ltt1       <- approxfun( b_times_N, lineages_N, method = "constant")
+  ltt1       <- stats::approxfun( b_times_N, lineages_N, method = "constant")
 
   #branching times of tree2, including the present time (0)
   b_times2    <- c(-1 * rev( sort( ape::branching.times( tree2))), 0)
@@ -112,7 +112,7 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
   b_times2_N  <- 1 - b_times2 / min( b_times2) #normalize branching times
   lineages2_N <- lineages2 / max( lineages2)  #normalize lineages
   #method = constant ensures a step function
-  ltt2        <- approxfun( b_times2_N, lineages2_N, method = "constant")
+  ltt2        <- stats::approxfun( b_times2_N, lineages2_N, method = "constant")
 
   #function f is the absolute difference in time t: 0 <= t < 1
   f <- function( t, x, p) {

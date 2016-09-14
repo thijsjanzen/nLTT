@@ -43,7 +43,7 @@ nltt_plot <- function( phy, xlab = "Normalized Time",
   xy[, 1] <- xy[, 1] + abs( min( xy[, 1])) #make sure time runs from 0..T
   xy[, 1] <- xy[, 1] / max( xy[, 1])      #normalize time
 
-  plot.default(xy, xlab = xlab, ylab = ylab, xaxs = "r", yaxs = "r",
+  graphics::plot.default(xy, xlab = xlab, ylab = ylab, xaxs = "r", yaxs = "r",
     type = "S", ...) #type = "S" ensures a stepwise function
 }
 
@@ -82,5 +82,5 @@ nltt_lines <- function(phy, ...) {
 
   xy[, 1] <- xy[, 1] + abs( min( xy[, 1])) #make sure time runs from 0..T
   xy[, 1] <- xy[, 1] / max( xy[, 1])      #normalize time
-  lines(xy, type = "S", ...)
+  graphics::lines(xy, type = "S", ...)
 }
