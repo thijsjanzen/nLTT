@@ -35,7 +35,7 @@ nLTT::stretch_nltt_matrix(
 
 # ------------------------------------------------------------------------
 nLTT::stretch_nltt_matrix(
-  nLTT::get_phylogeny_nltt_matrix(phylogeny2), 
+  nLTT::get_phylogeny_nltt_matrix(phylogeny2),
   dt = 0.20,
   step_type = "upper"
 )
@@ -83,7 +83,7 @@ nLTT::stretch_nltt_matrix(
 
 # ------------------------------------------------------------------------
 nLTT::stretch_nltt_matrix(
-  nLTT::get_phylogeny_nltt_matrix(phylogeny2), 
+  nLTT::get_phylogeny_nltt_matrix(phylogeny2),
   dt = 0.20,
   step_type = "upper"
 )
@@ -93,7 +93,7 @@ nLTT::get_average_nltt_matrix(c(phylogeny1, phylogeny2), dt = 0.20)
 
 # ------------------------------------------------------------------------
 nLTT::get_average_nltt(
-  c(phylogeny1, phylogeny2), 
+  c(phylogeny1, phylogeny2),
   dt = 0.20,
   plot_nltts = TRUE
 )

@@ -143,7 +143,7 @@ df <- nLTT::get_nltt_values(c(phylogeny1, phylogeny2), dt = 0.01)
 
 # ------------------------------------------------------------------------
 qplot(
-  t, nltt, data = df, geom = "point", ylim = c(0, 1), 
+  t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
 ) +
   stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
@@ -169,7 +169,7 @@ t <- nLTT::get_nltt_values(phylogenies, dt = 0.2)
 knitr::kable(t)
 
 # ------------------------------------------------------------------------
-qplot(t, nltt, data = df, geom = "point", ylim = c(0, 1), 
+qplot(t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
 ) +
   stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")

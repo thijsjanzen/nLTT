@@ -662,7 +662,7 @@ knitr::<span class="kw">kable</span>(t)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>nLTT::<span class="kw">get_nltt_values</span>(<span class="kw">c</span>(phylogeny1, phylogeny2), <span class="dt">dt =</span> <span class="fl">0.01</span>)</code></pre></div>
 <p>Here we see an averaged nLTT plot, where the original nLTT values are still visible:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(
-  t, nltt, <span class="dt">data =</span> df, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), 
+  t, nltt, <span class="dt">data =</span> df, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),
   <span class="dt">main =</span> <span class="st">&quot;Average nLTT plot of phylogenies&quot;</span>, <span class="dt">color =</span> id, <span class="dt">size =</span> <span class="kw">I</span>(<span class="fl">0.1</span>)
 ) +
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">geom =</span> <span class="st">&quot;smooth&quot;</span>)</code></pre></div>
@@ -910,7 +910,7 @@ knitr::<span class="kw">kable</span>(t)</code></pre></div>
 </tbody>
 </table>
 <p>Here we see an averaged nLTT plot, where the original nLTT values are still visible:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(t, nltt, <span class="dt">data =</span> df, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(t, nltt, <span class="dt">data =</span> df, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),
   <span class="dt">main =</span> <span class="st">&quot;Average nLTT plot of phylogenies&quot;</span>, <span class="dt">color =</span> id, <span class="dt">size =</span> <span class="kw">I</span>(<span class="fl">0.1</span>)
 ) +
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">geom =</span> <span class="st">&quot;smooth&quot;</span>)</code></pre></div>
