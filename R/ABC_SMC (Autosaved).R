@@ -296,7 +296,7 @@ mcmc_nltt <- function(phy, likelihood_function,
   	 "initial parameter values have to be above zero\n",
   	 "but mu was ",parameters[2]," instead")
   }
-
+  
   # pre-compute current posterior probability
   pp <- likelihood_function(parameters, phy)
 
