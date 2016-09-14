@@ -4,9 +4,9 @@ test_that("mcmc_nltt use", {
   skip("@ThijsJanzen will fix this :-)")
 
   set.seed(1) #just to be safe
-  tree1 <- TESS::tess.sim.taxa(n=1, nTaxa=100, max = 100, lambda = 1.0, mu = 0.0)[[1]]
-  tree2 <- TESS::tess.sim.taxa(n=1, nTaxa=100, max = 100, lambda = 1.0, mu = 0.0)[[1]]
-  
+  tree1 <- TESS::tess.sim.taxa(n = 1, nTaxa = 100, max = 100, lambda = 1.0, mu = 0.0)[[1]]
+  tree2 <- TESS::tess.sim.taxa(n = 1, nTaxa = 100, max = 100, lambda = 1.0, mu = 0.0)[[1]]
+
   LL_BD <- function(params, phy) {
     lnl <- TESS::tess.likelihood(ape::branching.times(phy), lambda = params[1], mu = params[2],
 								  samplingProbability = 1, log = TRUE)
@@ -27,18 +27,18 @@ test_that("mcmc_nltt use", {
     tolerance = 0.01
   )
 
-	expect_equal(
-		colMeans( mcmc_nltt( q, LL_BD, c(1,0.01), c(TRUE,TRUE),
-		  iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5))[[1]],
-		ML2[[1]],
-		tolerance = 0.001
-	)
+  expect_equal(
+    colMeans( mcmc_nltt( q, LL_BD, c(1,0.01), c(TRUE,TRUE),
+	iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5))[[1]],
+	ML2[[1]],
+	tolerance = 0.001
+  )
 
-	expect_equal( #compare jumps in log space with jumps in normal space, should yield similar results
-		colMeans( mcmc_nltt( q, LL_BD, c(1, 0.01), c(TRUE,TRUE), iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5))[[1]],
-		colMeans( mcmc_nltt( q, LL_BD, c(1, 0.01), c(FALSE,FALSE), iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.01))[[1]],
-		tolerance = 0.001
-	)
+  expect_equal( #compare jumps in log space with jumps in normal space, should yield similar results
+    colMeans( mcmc_nltt( q, LL_BD, c(1, 0.01), c(TRUE,TRUE), iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5))[[1]],
+    colMeans( mcmc_nltt( q, LL_BD, c(1, 0.01), c(FALSE,FALSE), iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.01))[[1]],
+    tolerance = 0.001
+  )
 })
 
 test_that("mcmc_nltt abuse", {

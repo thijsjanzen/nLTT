@@ -337,8 +337,8 @@ mcmc_nltt <- function(phy, likelihood_function,
         #calculate the Hastings ratio
         hr            <- 0.0 #
         parameters[j] <- new_val
-        
-        if (parameters[j] >= 0 & parameters[1] > 0) { 
+
+        if (parameters[j] >= 0 & parameters[1] > 0) {
           new_pp        <- likelihood_function(parameters, phy)
 
           #accept or reject

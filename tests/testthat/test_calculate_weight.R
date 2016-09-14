@@ -14,13 +14,15 @@ test_that("calculate_weight use", {
   }
 
   expect_equal(
+    #log(5) - log(10) == -1 * (log(20) - log(10))
     calculate_weight(weights, particles,
-      current = c(5, 5), sigma, prior_density_function), #log(5) - log(10) == -1 * (log(20) - log(10))
+      current = c(5, 5), sigma, prior_density_function), 
+    #so these should be equal, because jumping densities are symmetric (dnorm)
     calculate_weight(weights, particles,
-      current = c(20, 20), sigma, prior_density_function), #so these should be equal, because jumping densities are symmetric (dnorm)
+      current = c(20, 20), sigma, prior_density_function), 
     tolerance = 0.0001
   )
-  
+
   expect_equal(
     calculate_weight(weights, particles,
       current = c(5, 5), sigma, prior_density_function),
