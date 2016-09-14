@@ -1,6 +1,7 @@
 context("mcmc_nltt")
 
 test_that("mcmc_nltt use", {
+	set.seed(1) #just to be safe
 	p <- TESS::tess.sim.taxa(n=1,nTaxa=50,max=100,lambda=1.0,mu=0.0)[[1]]
 	q <- TESS::tess.sim.taxa(n=1,nTaxa=50,max=100,lambda=1.0,mu=0.0)[[1]]
 	
@@ -12,6 +13,8 @@ test_that("mcmc_nltt use", {
 	 	return(lnl + prior1 + prior2)
 	}
 	
+	#calculate Maximum Likelihood estimates
+	#these should match our MCMC results
 	ML1 <- DDD::bd_ML(p[[1]])
 	ML2 <- DDD::bd_ML(q[[1]])
 	
@@ -27,7 +30,7 @@ test_that("mcmc_nltt use", {
 		tolerance = 0.001
 	)
 	
-	expect_equal(
+	expect_equal( #compare jumps in log space with jumps in normal space, should yield similar results
 		colMeans(mcmc_nltt(q,LL_BD,c(1,0.01),c(TRUE,TRUE),iterations=10000,burnin=1000,thinning=1,sigma=0.5))[[1]],
 		colMeans(mcmc_nltt(q,LL_BD,c(1,0.01),c(FALSE,FALSE),iterations=10000,burnin=1000,thinning=1,sigma=0.01))[[1]],
 		tolerance = 0.001
@@ -35,6 +38,7 @@ test_that("mcmc_nltt use", {
 })
 
 test_that("mcmc_nltt abuse", {
+	set.seed(1) #just to be safe
 	p <- TESS::tess.sim.taxa(n=1,nTaxa=50,max=100,lambda=1.0,mu=0.0)[[1]]
 	q <- TESS::tess.sim.taxa(n=1,nTaxa=50,max=100,lambda=1.0,mu=0.0)[[1]]
 	
@@ -46,16 +50,13 @@ test_that("mcmc_nltt abuse", {
 	 	return(lnl + prior1 + prior2)
 	}
 	
-	ML1 <- DDD::bd_ML(p[[1]])
-	ML2 <- DDD::bd_ML(q[[1]])
-
 	expect_error(
-		v <- mcmc_nltt(q,LL_BD,c(1,0.0),c(TRUE,TRUE),iterations=10000,burnin=1000,thinning=1,sigma=0.5),
+		mcmc_nltt(q,LL_BD,c(1,0.0),c(TRUE,TRUE),iterations=10000,burnin=1000,thinning=1,sigma=0.5),
 		"Cannot propose new value for a parameter with value 0.0."
 	)
 	
 	expect_error(
-		v <- mcmc_nltt(42,LL_BD,c(1,0.01),c(TRUE,TRUE),iterations=10000,burnin=1000,thinning=1,sigma=0.5),
+		mcmc_nltt(42,LL_BD,c(1,0.01),c(TRUE,TRUE),iterations=10000,burnin=1000,thinning=1,sigma=0.5),
 		"mcmc_nltt: phy must be of class 'phylo'"
 	)
 	
