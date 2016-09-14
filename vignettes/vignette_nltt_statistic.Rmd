@@ -22,7 +22,7 @@ In this vignette:
 Load all libraries:
 
 ```{r}
-library(nLTT)
+library(nLTT) # nolint
 ```
 
 Use the heigest warning level:

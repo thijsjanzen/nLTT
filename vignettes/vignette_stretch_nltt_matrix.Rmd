@@ -20,7 +20,7 @@ For all examples, the following R code must be run:
 
 ```{r}
 library(ape)
-library(nLTT)
+library(nLTT) # nolint
 library(testit)
 ```
 

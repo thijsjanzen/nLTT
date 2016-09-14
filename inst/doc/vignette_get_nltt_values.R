@@ -1,7 +1,7 @@
 ## ------------------------------------------------------------------------
 library(ape)
 library(Hmisc)
-library(nLTT)
+library(nLTT) # nolint
 library(ggplot2)
 library(testit)
 
