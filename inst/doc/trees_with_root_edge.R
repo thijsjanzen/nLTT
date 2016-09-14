@@ -9,11 +9,11 @@ tree2$root.edge <- 1
 
 ## ----fig.width = 3, fig.height = 3---------------------------------------
 ape::plot.phylo(tree1, root.edge = TRUE)
-ape::add.scale.bar()
+ape::add.scale.bar() #nolint
 
 ## ----fig.width = 3, fig.height = 3---------------------------------------
 ape::plot.phylo(tree2, root.edge = TRUE)
-ape::add.scale.bar()
+ape::add.scale.bar() #nolint
 
 ## ----fig.width = 7, fig.height = 7---------------------------------------
 nLTT::nltt_plot(tree1, xlim = c(0, 1), ylim = c(0, 1))

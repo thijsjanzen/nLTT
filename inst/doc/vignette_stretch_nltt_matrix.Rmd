@@ -32,7 +32,7 @@ Create an easy tree:
 newick <- "((A:1,B:1):1,C:2);"
 phylogeny <- ape::read.tree(text = newick)
 plot(phylogeny)
-add.scale.bar()
+add.scale.bar() #nolint
 ```
 
 From this tree, we can create an nLTT plot:
@@ -53,14 +53,16 @@ The timepoints are plotted in red over the nLTT plot:
 
 ```{r}
 nltt_plot(phylogeny)
-points(nltt, pch = 19, col="red")
+points(nltt, pch = 19, col = "red")
 ```
 
 The function `stretch_nltt_matrix` inserts timepoints, as shown in this table:
 
 ```{r}
 nltt <- nLTT::get_phylogeny_nltt_matrix(phylogeny)
-stretch_matrix <- nLTT::stretch_nltt_matrix(nltt, dt = 0.25, step_type = "upper")
+stretch_matrix <- nLTT::stretch_nltt_matrix(
+  nltt, dt = 0.25, step_type = "upper"
+)
 print(stretch_matrix)
 ```
 
@@ -68,8 +70,8 @@ Plotting these as blue points between the red points:
 
 ```{r}
 nltt_plot(phylogeny)
-points(nltt, pch = 19, col="red")
-points(stretch_matrix, pch = 19, col="blue")
+points(nltt, pch = 19, col = "red")
+points(stretch_matrix, pch = 19, col = "blue")
 ```
 
 A good result is when all blue points fall on the line.
@@ -82,7 +84,7 @@ Create an easy tree:
 newick <- "((A:1,B:1):1,(C:1,D:1):1);"
 phylogeny <- ape::read.tree(text = newick)
 plot(phylogeny)
-add.scale.bar()
+add.scale.bar() #nolint
 ```
 
 From this tree, we can create an nLTT plot:
@@ -104,14 +106,16 @@ in red over the nLTT plot:
 
 ```{r}
 nltt_plot(phylogeny)
-points(nltt, pch = 19, col="red")
+points(nltt, pch = 19, col = "red")
 ```
 
 The function `stretch_nltt_matrix` inserts timepoints, as shown in this table:
 
 ```{r}
 nltt <- nLTT::get_phylogeny_nltt_matrix(phylogeny)
-stretch_matrix <- nLTT::stretch_nltt_matrix(nltt, dt = 0.25, step_type = "upper")
+stretch_matrix <- nLTT::stretch_nltt_matrix(
+  nltt, dt = 0.25, step_type = "upper"
+)
 print(stretch_matrix)
 ```
 
@@ -120,8 +124,8 @@ Plotting these as blue points between the red points:
 
 ```{r}
 nltt_plot(phylogeny)
-points(nltt, pch = 19, col="red")
-points(stretch_matrix, pch = 19, col="blue")
+points(nltt, pch = 19, col = "red")
+points(stretch_matrix, pch = 19, col = "blue")
 ```
 
 A good result is when all blue points fall on the line.
@@ -132,10 +136,12 @@ Create a complex tree:
 
 
 ```{r}
-newick <- "((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):4,((AE:1,BE:1):1,(WD:1,YD:1):1):5);"
+newick <- paste0("((((XD:1,ZD:1):1,CE:2):1,(FE:2,EE:2):1):4,((AE:1,BE:1):1,",
+  "(WD:1,YD:1):1):5);"
+)
 phylogeny <- ape::read.tree(text = newick)
 plot(phylogeny)
-add.scale.bar()
+add.scale.bar() #nolint
 ```
 
 From this tree, we can create an nLTT plot:
@@ -157,7 +163,7 @@ in red over the nLTT plot:
 
 ```{r}
 nltt_plot(phylogeny)
-points(nltt, pch = 19, col="red")
+points(nltt, pch = 19, col = "red")
 ```
 
 The function `stretch_nltt_matrix` inserts blue points between these
@@ -166,9 +172,11 @@ red points:
 ```{r}
 nltt <- nLTT::get_phylogeny_nltt_matrix(phylogeny)
 nltt_plot(phylogeny)
-stretch_matrix <- nLTT::stretch_nltt_matrix(nltt, dt = 0.05, step_type = "upper")
-points(nltt, pch = 19, col="red")
-points(stretch_matrix, pch = 19, col="blue")
+stretch_matrix <- nLTT::stretch_nltt_matrix(
+  nltt, dt = 0.05, step_type = "upper"
+)
+points(nltt, pch = 19, col = "red")
+points(stretch_matrix, pch = 19, col = "blue")
 ```
 
 A good result is when all blue points fall on the line.

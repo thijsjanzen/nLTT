@@ -115,8 +115,8 @@ ape::<span class="kw">add.scale.bar</span>() <span class="co">#nolint</span></co
 <p>It is constructed from stretched nLTT matrices.</p>
 <p>Here is the nLTT matrix of the first phylogeny:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nLTT::<span class="kw">stretch_nltt_matrix</span>(
-  nLTT::<span class="kw">get_phylogeny_nltt_matrix</span>(phylogeny1), 
-  <span class="dt">dt =</span> <span class="fl">0.20</span>, 
+  nLTT::<span class="kw">get_phylogeny_nltt_matrix</span>(phylogeny1),
+  <span class="dt">dt =</span> <span class="fl">0.20</span>,
   <span class="dt">step_type =</span> <span class="st">&quot;upper&quot;</span>
 )</code></pre></div>
 <pre><code>##      [,1]      [,2]
@@ -129,7 +129,7 @@ ape::<span class="kw">add.scale.bar</span>() <span class="co">#nolint</span></co
 <p>Here is the nLTT matrix of the second phylogeny:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nLTT::<span class="kw">stretch_nltt_matrix</span>(
   nLTT::<span class="kw">get_phylogeny_nltt_matrix</span>(phylogeny2), 
-  <span class="dt">dt =</span> <span class="fl">0.20</span>, 
+  <span class="dt">dt =</span> <span class="fl">0.20</span>,
   <span class="dt">step_type =</span> <span class="st">&quot;upper&quot;</span>
 )</code></pre></div>
 <pre><code>##      [,1]      [,2]
@@ -204,8 +204,8 @@ ape::<span class="kw">add.scale.bar</span>() <span class="co">#nolint</span></co
 <p>It is constructed from stretched nLTT matrices.</p>
 <p>Here is the nLTT matrix of the first phylogeny:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nLTT::<span class="kw">stretch_nltt_matrix</span>(
-  nLTT::<span class="kw">get_phylogeny_nltt_matrix</span>(phylogeny1), 
-  <span class="dt">dt =</span> <span class="fl">0.20</span>, 
+  nLTT::<span class="kw">get_phylogeny_nltt_matrix</span>(phylogeny1),
+  <span class="dt">dt =</span> <span class="fl">0.20</span>,
   <span class="dt">step_type =</span> <span class="st">&quot;upper&quot;</span>
 )</code></pre></div>
 <pre><code>##      [,1] [,2]
@@ -218,7 +218,7 @@ ape::<span class="kw">add.scale.bar</span>() <span class="co">#nolint</span></co
 <p>Here is the nLTT matrix of the second phylogeny:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nLTT::<span class="kw">stretch_nltt_matrix</span>(
   nLTT::<span class="kw">get_phylogeny_nltt_matrix</span>(phylogeny2), 
-  <span class="dt">dt =</span> <span class="fl">0.20</span>, 
+  <span class="dt">dt =</span> <span class="fl">0.20</span>,
   <span class="dt">step_type =</span> <span class="st">&quot;upper&quot;</span>
 )</code></pre></div>
 <pre><code>##      [,1]      [,2]
@@ -241,7 +241,7 @@ ape::<span class="kw">add.scale.bar</span>() <span class="co">#nolint</span></co
 <p>The same, now shown as a plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nLTT::<span class="kw">get_average_nltt</span>(
   <span class="kw">c</span>(phylogeny1, phylogeny2), 
-  <span class="dt">dt =</span> <span class="fl">0.20</span>, 
+  <span class="dt">dt =</span> <span class="fl">0.20</span>,
   <span class="dt">plot_nltts =</span> <span class="ot">TRUE</span>
 )</code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
