@@ -21,8 +21,8 @@ calculate_weight <- function(weights, particles,
   for ( i in seq_along( particles)) {
     diff1 <- log(current[1]) - log(particles[[i]][1])
     diff2 <- log(current[2]) - log(particles[[i]][2])
-    vals[i] <- weights[i] * dnorm(diff1, mean = 0, sd = sigma) *
-      dnorm(diff2, mean = 0, sd = sigma)
+    vals[i] <- weights[i] * stats::dnorm(diff1, mean = 0, sd = sigma) *
+      stats::dnorm(diff2, mean = 0, sd = sigma)
   }
 
   numerator <- prior_density_function(current)
@@ -142,7 +142,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
     cat("\nGenerating Particles for iteration\t", i, "\n")
     cat("0--------25--------50--------75--------100\n")
     cat("*")
-    flush.console()
+    utils::flush.console()
 
     print_frequency <- 20
     tried <- 0
@@ -177,7 +177,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
 
         # perturb the parameter a little bit,
         #on log scale, so parameter doesn't go < 0.
-        eta <- log(parameters[to_change]) + rnorm(1, 0, sigma)
+        eta <- log(parameters[to_change]) + stats::rnorm(1, 0, sigma)
         parameters[to_change] <- exp(eta)
      }
 
@@ -218,7 +218,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
           if ( (number_accepted) %%
             (number_of_particles / print_frequency) == 0) {
              cat("**")
-             flush.console()
+             utils::flush.console()
           }
         }
       }
@@ -287,7 +287,7 @@ mcmc_nltt <- function(phy, likelihood_function,
   cat("\nGenerating Particles for iteration\t", i, "\n")
   cat("0--------25--------50--------75--------100\n")
   cat("*")
-  flush.console()
+  utils::flush.console()
   print_frequency <- 20
 
   for (i in seq_len(burnin + iterations)) {
@@ -299,7 +299,7 @@ mcmc_nltt <- function(phy, likelihood_function,
         }
 
         eta           <- log(parameters[j])
-        new_eta       <- eta + rnorm(1, 0, sigma)
+        new_eta       <- eta + stats::rnorm(1, 0, sigma)
         new_val       <- exp(new_eta)
         # calculate the Hastings ratio
         hr            <- log(new_val / parameters[j])
@@ -309,7 +309,7 @@ mcmc_nltt <- function(phy, likelihood_function,
         #accept or reject
         if ( is.finite(new_pp) &&
           is.finite(hr) &&
-          new_pp - pp + hr > log( runif(1, 0, 1)) ) {
+          new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
           pp <- new_pp
         } else {
           parameters[j] <- exp(eta)
@@ -317,7 +317,7 @@ mcmc_nltt <- function(phy, likelihood_function,
       } else {
 
         eta           <- parameters[j]
-        new_val       <- eta + rnorm(1, 0, sigma)
+        new_val       <- eta + stats::rnorm(1, 0, sigma)
         #calculate the Hastings ratio
         hr            <- 0.0 #
         parameters[j] <- new_val
@@ -326,7 +326,7 @@ mcmc_nltt <- function(phy, likelihood_function,
         #accept or reject
         if ( is.finite(new_pp) &&
           is.finite(hr) &&
-          new_pp - pp + hr > log(runif(1, 0, 1)) ) {
+          new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
           pp <- new_pp
         } else {
           parameters[j] <- eta
@@ -339,7 +339,7 @@ mcmc_nltt <- function(phy, likelihood_function,
     if (i >= burnin) {
       if ( (i) %% ( (iterations - burnin) / print_frequency) == 0) {
         cat("**")
-        flush.console()
+        utils::flush.console()
       }
       if ( (i - burnin) %% thinning == 0 ) {
         chain[ (i - burnin) / thinning + 1, ] <- parameters

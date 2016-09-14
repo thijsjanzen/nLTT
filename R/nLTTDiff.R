@@ -1,19 +1,11 @@
-################################################################################
-#
-# @brief Calculates the exact, difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
-#
-# @date Last modified: 2016-05-20
-# @author Thijs Janzen
-# @since 2016-05-20, version 1.2.1
-#
-# @param    tree1                  phylo      First phylogenetic tree
-# @param    tree2                  phylo      Second phylogenetic tree
-# @param    distance_method        string     absolute, or squared distance?
-# @param    ignore_stem            logical    Should the phylogeny its stem be ignored?
-# @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
-#
-################################################################################
-
+#' Calculates the exact, difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
+#' @author Thijs Janzen
+#' @param tree1 (phylo) First phylogenetic tree
+#' @param tree2 (phylo) Second phylogenetic tree
+#' @param distance_method (string) absolute, or squared distance?
+#' @param ignore_stem (logical) Should the phylogeny its stem be ignored?
+#' @return (scalar) normalized Lineage-Through-Time difference between tree1 & tree2
+#' @export
 nltt_diff_exact <- function(
   tree1,
   tree2,
@@ -89,21 +81,14 @@ nltt_diff_exact <- function(
   }
   return ( diff)
 }
-################################################################################
-#
-# @brief Calculates the exact difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
-#
-# @date Last modified: 2016-05-20
-# @author Thijs Janzen
-# @since 2016-05-20, version 1.2.1
-#
-# @param    tree1                  phylo      First phylogenetic tree
-# @param    tree2                  phylo      Second phylogenetic tree
-# @param    distance_method        string     absolute, or squared distance?
-# @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
-#
-################################################################################
 
+#' Calculates the exact difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
+#' @author Thijs Janzen
+#' @param tree1 (phylo) First phylogenetic tree
+#' @param tree2 (phylo) Second phylogenetic tree
+#' @param distance_method (string) absolute, or squared distance?
+#' @return (scalar) normalized Lineage-Through-Time difference between tree1 & tree2
+#' @export
 nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
   #branching times of tree1, including the present time (0)
   b_times    <- c(-1 * rev( sort( ape::branching.times( tree1))), 0)
@@ -115,7 +100,7 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
   lineages_N <- lineages / max( lineages) #normalize lineages
 
   #method = constant ensures a step function
-  ltt1       <- approxfun( b_times_N, lineages_N, method = "constant")
+  ltt1       <- stats::approxfun( b_times_N, lineages_N, method = "constant")
 
   #branching times of tree2, including the present time (0)
   b_times2    <- c(-1 * rev( sort( ape::branching.times( tree2))), 0)
@@ -127,7 +112,7 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
   b_times2_N  <- 1 - b_times2 / min( b_times2) #normalize branching times
   lineages2_N <- lineages2 / max( lineages2)  #normalize lineages
   #method = constant ensures a step function
-  ltt2        <- approxfun( b_times2_N, lineages2_N, method = "constant")
+  ltt2        <- stats::approxfun( b_times2_N, lineages2_N, method = "constant")
 
   #function f is the absolute difference in time t: 0 <= t < 1
   f <- function( t, x, p) {
@@ -164,7 +149,22 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
 # @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
 #
 ################################################################################
-
+#' This function takes two ultrametric phylogenetic trees, calculates the normalized Lineage-Through-Time statistic for both trees and then calculates the difference between the two statistics.
+#' @title Calculate the difference between two normalized Lineage-Through-Time curves, given two phylogenetic trees.
+#' @usage nLTTstat(tree1, tree2, distance_method = "abs")
+#' @param tree1 an object of class \code{"phylo"};
+#' @param tree2 an object of class \code{"phylo"};
+#' @param distance_method Chosen measurement of distance between the two nLTT curves, options are (case sensitive):\cr
+#'   - "abs": use the absolute distance\cr
+#'   - "squ": use the squared distance;\cr
+#' @return The difference between the two nLTT statistics
+#' @author Thijs Janzen
+#' @examples
+#'   data(exampleTrees)
+#'   nltt_plot(exampleTrees[[1]])
+#'   nltt_lines(exampleTrees[[2]], lty=2)
+#'   nLTTstat(exampleTrees[[1]], exampleTrees[[2]], distance_method = "abs")
+#' @export
 nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep function name non-all-lowercase, due to backwards compatibility
   if (!inherits(tree1, "phylo")) {
     # Just checking
@@ -201,7 +201,6 @@ nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep fun
 # @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
 #
 ################################################################################
-
 #' Calculate the exact difference between two normalized Lineage-Through-Time curves, given two phylogenetic trees.
 #' @description This function takes two ultrametric phylogenetic trees, calculates the normalized Lineage-Through-Time statistic for both trees and then calculates the exact difference between the two statistics. Whereas the function \code{nLTTstat} uses an approximation to calculate the difference (which is faster for large trees), the function \code{nLTTstat_exact} calculates the exact difference, and should generally be preferred. Although the estimates are highly similar, \code{nLTTstat_exact} tends to return slightly higher values.
 #' @usage
@@ -225,6 +224,7 @@ nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep fun
 #'     distance_method = "abs",
 #'     ignore_stem = TRUE
 #'   )
+#' @export
 nLTTstat_exact <- function( # nolint keep function name non-all-lowercase, due to backwards compatibility
   tree1,
   tree2,
