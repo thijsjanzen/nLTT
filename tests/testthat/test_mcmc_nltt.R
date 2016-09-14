@@ -71,7 +71,7 @@ test_that("mcmc_nltt abuse", {
   )
 
   expect_error(
-    mcmc_nltt( tree1, LL_BD,c(1, -1), c(TRUE, TRUE),
+    mcmc_nltt( tree1, LL_BD, c(1, -1), c(TRUE, TRUE),
                iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5),
     "mcmc_nltt: initial parameter values have to be above zero"
   )
