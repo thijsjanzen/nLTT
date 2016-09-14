@@ -1,6 +1,3 @@
-source("/Users/janzen/GitHub/nLTT/R/ABC_SMC.R")
-
-
 context("mcmc_nltt")
 
 test_that("mcmc_nltt use", {
