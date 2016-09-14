@@ -277,9 +277,25 @@ mcmc_nltt <- function(phy, likelihood_function,
   parameters, logtransforms, iterations,
   burnin = round(iterations / 3), thinning = 1, sigma = 1) {
 
+  #check data type of phy 
+  if (!inherits(phy, "phylo")) {
+    # Just checking
+    stop("mcmc_nltt: ",
+      "phy must be of class 'phylo', ",
+      "but was of type '", class(phy), "' instead")
+  }
+  
   # create a list for the samples & reserve memory for the chain
   chain <- array(dim = c( floor( iterations / thinning) + 1,
     length(parameters)))
+
+
+  if(parameters[2] < 0) {
+  	#Just checking
+  	stop("mcmc_nltt: ", 
+  	 "initial parameter values have to be above zero\n",
+  	 "but mu was ",parameters[2]," instead")
+  }
 
   # pre-compute current posterior probability
   pp <- likelihood_function(parameters, phy)
@@ -321,16 +337,21 @@ mcmc_nltt <- function(phy, likelihood_function,
         #calculate the Hastings ratio
         hr            <- 0.0 #
         parameters[j] <- new_val
-        new_pp        <- likelihood_function(parameters, phy)
-
-        #accept or reject
-        if ( is.finite(new_pp) &&
-          is.finite(hr) &&
-          new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
-          pp <- new_pp
-        } else {
-          parameters[j] <- eta
-        }
+        
+        if(parameters[j] >= 0 & parameters[1] > 0) {        
+	        new_pp        <- likelihood_function(parameters, phy)
+	
+	        #accept or reject
+	        if ( is.finite(new_pp) &&
+	          is.finite(hr) &&
+	          new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
+	          pp <- new_pp
+	        } else {
+	          parameters[j] <- eta
+	        }
+	    } else {
+	    		parameters[j] <- eta
+	    }
       }
 
     }
@@ -346,7 +367,7 @@ mcmc_nltt <- function(phy, likelihood_function,
       }
     }
   }
-  cat("Finished MCMC.\n")
+  cat("\nFinished MCMC.\n")
   #return a mcmc object, used by coda to plot
   return( coda::as.mcmc(chain) )
 }
