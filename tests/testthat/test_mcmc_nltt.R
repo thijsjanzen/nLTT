@@ -15,28 +15,29 @@ test_that("mcmc_nltt use", {
     return(lnl + prior1 + prior2)
   }
 
-  toFit <- function(params) {
-    if(params[1] <= 0) return(1e6)
-    if(params[2] < 0) return(1e6)
-    if(params[1] > 100) return(1e6)
-    if(params[2] > 100) return(1e6)
-    return(-1 * LL_BD( params, tree1) )
+  tofit <- function(params) {
+    if (params[1] <= 0) return(1e6)
+    if (params[2] < 0) return(1e6)
+    if (params[1] > 100) return(1e6)
+    if (params[2] > 100) return(1e6)
+    return(-1 * LL_BD(params, tree1) )
   }
-  
-  ML <- optim(par = c(1, 0.001),fn = toFit)
+
+  ML <- optim(par = c(1, 0.001), fn = tofit)
 
   expect_equal(
     colMeans( mcmc_nltt( tree1, LL_BD, c(1, 0.001), c(TRUE, TRUE),
-      iterations = 10000, burnin = 1000, thinning = 1, sigma = 1))[[1]],
+                         iterations = 10000, burnin = 1000, 
+                         thinning = 1, sigma = 1))[[1]],
     ML$par[[1]],
     tolerance = 0.05
   )
 
-  expect_equal( #compare jumps in log space with jumps in normal space, should yield similar results
-    colMeans(mcmc_nltt(tree1, LL_BD, c(1, 0.01), c(TRUE, TRUE),
+  expect_equal(
+    colMeans( mcmc_nltt( tree1, LL_BD, c(1, 0.01), c(TRUE, TRUE),
                          iterations = 10000,
                          burnin = 1000, thinning = 1, sigma = 0.5))[[1]],
-    colMeans(mcmc_nltt(tree1, LL_BD, c(1, 0.01), c(FALSE, FALSE),
+    colMeans( mcmc_nltt( tree1, LL_BD, c(1, 0.01), c(FALSE, FALSE),
                          iterations = 10000,
                          burnin = 1000, thinning = 1, sigma = 0.5))[[1]],
     tolerance = 0.05
@@ -46,7 +47,7 @@ test_that("mcmc_nltt use", {
 test_that("mcmc_nltt abuse", {
   set.seed(1) #just to be safe
   tree1 <- TESS::tess.sim.taxa(n = 1, nTaxa = 50,
-                               max = 100, lambda = 2.0, mu = 0.0)[[1]]
+                               max = 100, lambda = 1.0, mu = 0.0)[[1]]
   
   LL_BD <- function(params, phy) {
     lnl <- TESS::tess.likelihood(ape::branching.times(phy),
