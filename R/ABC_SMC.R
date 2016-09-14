@@ -66,7 +66,7 @@ calculate_weight <- function(weights, particles,
 #' @param prior_density_function Function to calculate the prior probability of a set of parameters.
 #' @param number_of_particles Number of particles to be used per iteration of the ABC-SMC algorithm.
 #' @param sigma Standard deviation of the perturbance distribution (perturbance distribution is a gaussian with mean 0).
-#' @param stop_rate 	If the acceptance rate drops below \code{stopRate}, stop the ABC-SMC algorithm  and assume convergence.
+#' @param stop_rate   If the acceptance rate drops below \code{stopRate}, stop the ABC-SMC algorithm  and assume convergence.
 #' @return A matrix with \code{n} columns, where \code{n} is the number of parameters you are trying to estimate.
 #' @references  Toni, T., Welch, D., Strelkowa, N., Ipsen, A., & Stumpf, M.P.H. (2009). Approximate Bayesian computation scheme for parameter inference and model selection in dynamical systems. Journal of the Royal Society Interface, 6(31), 187-202.
 #' @export
@@ -291,10 +291,10 @@ mcmc_nltt <- function(phy, likelihood_function,
 
 
   if(parameters[2] < 0) {
-  	#Just checking
-  	stop("mcmc_nltt: ", 
-  	 "initial parameter values have to be above zero\n",
-  	 "but mu was ",parameters[2]," instead")
+    #Just checking
+    stop("mcmc_nltt: ", 
+     "initial parameter values have to be above zero\n",
+     "but mu was ",parameters[2]," instead")
   }
 
   # pre-compute current posterior probability
@@ -339,19 +339,19 @@ mcmc_nltt <- function(phy, likelihood_function,
         parameters[j] <- new_val
         
         if(parameters[j] >= 0 & parameters[1] > 0) {        
-	        new_pp        <- likelihood_function(parameters, phy)
-	
-	        #accept or reject
-	        if ( is.finite(new_pp) &&
-	          is.finite(hr) &&
-	          new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
-	          pp <- new_pp
-	        } else {
-	          parameters[j] <- eta
-	        }
-	    } else {
-	    		parameters[j] <- eta
-	    }
+          new_pp        <- likelihood_function(parameters, phy)
+  
+          #accept or reject
+          if ( is.finite(new_pp) &&
+            is.finite(hr) &&
+            new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
+            pp <- new_pp
+          } else {
+            parameters[j] <- eta
+          }
+      } else {
+          parameters[j] <- eta
+      }
       }
 
     }
