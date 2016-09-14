@@ -16,4 +16,3 @@ vignettes/*.pdf
 .Rproj.user
 # Added by Richel
 tests/testthat/Rplots.pdf
-inst/doc
