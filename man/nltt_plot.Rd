@@ -23,6 +23,7 @@ This function uses a modified version of the ltt.plot function from \code{"ape"}
 \examples{
   data(exampleTrees)
   nltt_plot(exampleTrees[[1]])
+ @export
 }
 \author{
 Thijs Janzen
