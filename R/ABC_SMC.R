@@ -105,14 +105,14 @@ calculate_weight <- function(weights, particles,
 #'   )
 #'
 #'   } # end of dontrun
-abc_smc_nltt <- function(tree, 
-                         statistics, 
+abc_smc_nltt <- function(tree,
+                         statistics,
                          simulation_function,
-                         init_epsilon_values, 
-                         prior_generating_function, 
+                         init_epsilon_values,
+                         prior_generating_function,
                          prior_density_function,
-                         number_of_particles = 1000, 
-                         sigma = 0.05, 
+                         number_of_particles = 1000,
+                         sigma = 0.05,
                          stop_rate = 1e-5) {
 
   if (!inherits(tree, "phylo")) {
@@ -123,7 +123,7 @@ abc_smc_nltt <- function(tree,
   }
 
   #statistics has to be a vector of functions
-  if(!inherits(statistics,"list")) {
+  if (!inherits(statistics, "list")) {
     stop("abc_smc_nltt: ",
          "the statistics function has to be given in vector style, ",
          "e.g.: c(statisticsfunction), instead of statisticsfunction")
@@ -148,7 +148,7 @@ abc_smc_nltt <- function(tree,
     if (init_epsilon_values[j] < 0) {
       stop("abc_smc_nltt: ",
            "epsilon values have to be positive,",
-           "but were instead: ",init_epsilon_values[j])
+           "but were instead: ", init_epsilon_values[j])
     }
 
     for (i in 1:50) {
@@ -238,7 +238,7 @@ abc_smc_nltt <- function(tree,
           #calculate the weight
           if (i > 1) {
             accepted_weight <- calculate_weight(previous_weights,
-                                                previous_params, parameters, 
+                                                previous_params, parameters,
                                                 sigma, prior_density_function)
           }
           new_weights[number_accepted] <- accepted_weight
@@ -367,7 +367,7 @@ mcmc_nltt <- function(phy, likelihood_function,
 
         if (parameters[j] >= 0 & parameters[1] > 0) {
           new_pp        <- likelihood_function(parameters, phy)
-          
+
           #accept or reject
           if ( is.finite(new_pp) &&
                is.finite(hr) &&

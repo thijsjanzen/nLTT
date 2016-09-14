@@ -5,7 +5,7 @@ test_that("abc_smc_nltt use", {
        which makes it really hard to make good usage tests")
   treesim <- function(params) {
     t <- TESS::tess.sim.taxa(n = 1,
-                             lambda = params[1], 
+                             lambda = params[1],
                              mu = params[2], nTaxa = 1000, max = 100000)[[1]]
     return (t)
   }
@@ -23,7 +23,7 @@ test_that("abc_smc_nltt use", {
   }
 
   set.seed(1)
-  obs <- treesim(c(20,0))
+  obs <- treesim(c(20, 0))
 
   LL_BD <- function(params, phy) {
     lnl <- TESS::tess.likelihood(ape::branching.times(phy),
@@ -101,20 +101,19 @@ test_that("abc_smc_nltt abuse", {
 
   obs <- treesim(c(1, 0))
   expect_error(
-    abc_smc_nltt(obs, c(statwrapper), treeSim, init_epsilon_values = -0.5,
+    abc_smc_nltt(obs, c(statwrapper), treesim, init_epsilon_values = -0.5,
       prior_generating_function = prior_gen,
       prior_density_function = prior_dens,
       number_of_particles = 100, sigma = 1, stop_rate = 0.1),
     "abc_smc_nltt: epsilon values have to be positive"
   )
 
-  skip("this next test runs fine locally, but not on Travis")
+  #skip("this next test runs fine locally, but not on Travis")
   expect_error(
-    abc_smc_nltt(obs, statWrapper, treeSim, init_epsilon_values = -0.5,
+    abc_smc_nltt(obs, statwrapper, treesim, init_epsilon_values = -0.5,
                  prior_generating_function = prior_gen,
                  prior_density_function = prior_dens,
                  number_of_particles = 100, sigma = 1, stop_rate = 0.1),
     "abc_smc_nltt: the statistics function has to be given in vector style,"
   )
 })
-
