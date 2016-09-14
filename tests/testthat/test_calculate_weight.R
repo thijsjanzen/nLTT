@@ -10,16 +10,14 @@ test_that("calculate_weight use", {
   sigma <- 1;
   prior_density_function <- function(x) {
     dunif(x[1], min = 0, max = 1000) *
-    dunif(x[2], min = 0, max = 1000) 
+    dunif(x[2], min = 0, max = 1000)
   }
 
   expect_equal(
-    #log(5) - log(10) == -1 * (log(20) - log(10))
     calculate_weight(weights, particles,
-      current = c(5, 5), sigma, prior_density_function), 
-    #so these should be equal, because jumping densities are symmetric (dnorm)
+      current = c(5, 5), sigma, prior_density_function),
     calculate_weight(weights, particles,
-      current = c(20, 20), sigma, prior_density_function), 
+      current = c(20, 20), sigma, prior_density_function),
     tolerance = 0.0001
   )
 

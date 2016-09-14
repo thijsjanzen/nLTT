@@ -349,9 +349,9 @@ mcmc_nltt <- function(phy, likelihood_function,
           } else {
             parameters[j] <- eta
           }
-      } else {
-          parameters[j] <- eta
-      }
+        } else {
+            parameters[j] <- eta
+        }
       }
 
     }
