@@ -18,7 +18,6 @@ This is a modified version of the \code{ape} function ltt.lines: add the normali
   data(exampleTrees)
   nltt_plot(exampleTrees[[1]])
   nltt_lines(exampleTrees[[2]], lty=2)
- @export
 }
 \author{
 Thijs Janzen

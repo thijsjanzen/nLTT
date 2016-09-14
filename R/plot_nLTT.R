@@ -25,7 +25,7 @@
 #' @examples
 #'   data(exampleTrees)
 #'   nltt_plot(exampleTrees[[1]])
-#'  @export
+#' @export
 nltt_plot <- function( phy, xlab = "Normalized Time",
   ylab = "Normalized Lineages", ...) {
 
@@ -68,7 +68,7 @@ nltt_plot <- function( phy, xlab = "Normalized Time",
 #'   data(exampleTrees)
 #'   nltt_plot(exampleTrees[[1]])
 #'   nltt_lines(exampleTrees[[2]], lty=2)
-#'  @export
+#' @export
 nltt_lines <- function(phy, ...) {
 
   if (!inherits(phy, "phylo")) {
