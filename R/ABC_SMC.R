@@ -176,7 +176,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
         to_change <- sample(seq_along(parameters), 1)
 
         # perturb the parameter a little bit,
-        #on log scale, so parameter doesn't go < 0.
+        #on log scale, so parameter doesn't go < 0
         eta <- log(parameters[to_change]) + stats::rnorm(1, 0, sigma)
         parameters[to_change] <- exp(eta)
      }
@@ -228,9 +228,9 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
       if (tried > (1 / stop_rate)) {
         if ( (number_accepted / tried) < stop_rate) {
           output <- c()
-          for (k in seq_along(parameters)) {
+          for (k in seq_along(previous_params)) {
             add <- c()
-            for (m in seq_along( previous_params[[k]])) {
+            for (m in seq_along( parameters)) {
               add <- c( add, previous_params[[k]][m])
             }
             output <- rbind(output, add)
@@ -242,10 +242,10 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
   }
 
   output <- c()
-  for (k in seq_along(parameters)) {
+  for (k in seq_along(previous_params)) {
     add <- c()
-    for (m in seq_along(previous_params[[k]])) {
-      add <- c(add, previous_params[[k]][m])
+    for (m in seq_along( parameters)) {
+       add <- c( add, previous_params[[k]][m])
     }
     output <- rbind(output, add)
   }
@@ -277,30 +277,30 @@ mcmc_nltt <- function(phy, likelihood_function,
   parameters, logtransforms, iterations,
   burnin = round(iterations / 3), thinning = 1, sigma = 1) {
 
-  #check data type of phy 
+  #check data type of phy
   if (!inherits(phy, "phylo")) {
     # Just checking
     stop("mcmc_nltt: ",
       "phy must be of class 'phylo', ",
       "but was of type '", class(phy), "' instead")
   }
-  
+
   # create a list for the samples & reserve memory for the chain
   chain <- array(dim = c( floor( iterations / thinning) + 1,
     length(parameters)))
 
 
-  if(parameters[2] < 0) {
+  if (parameters[2] < 0) {
     #Just checking
-    stop("mcmc_nltt: ", 
+    stop("mcmc_nltt: ",
      "initial parameter values have to be above zero\n",
-     "but mu was ",parameters[2]," instead")
+     "but mu was ", parameters[2], " instead")
   }
 
   # pre-compute current posterior probability
   pp <- likelihood_function(parameters, phy)
 
-  cat("\nGenerating Particles for iteration\t", i, "\n")
+  cat("\nGenerating Chain\n")
   cat("0--------25--------50--------75--------100\n")
   cat("*")
   utils::flush.console()
@@ -338,9 +338,9 @@ mcmc_nltt <- function(phy, likelihood_function,
         hr            <- 0.0 #
         parameters[j] <- new_val
         
-        if(parameters[j] >= 0 & parameters[1] > 0) {        
+        if (parameters[j] >= 0 & parameters[1] > 0) { 
           new_pp        <- likelihood_function(parameters, phy)
-  
+
           #accept or reject
           if ( is.finite(new_pp) &&
             is.finite(hr) &&
