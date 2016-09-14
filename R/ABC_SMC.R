@@ -19,7 +19,7 @@ calculate_weight <- function(weights, particles,
   current, sigma, prior_density_function) {
   sum <- 0
   vals <- c()
-  for ( i in 1:length( particles)) {
+  for ( i in seq_along( particles)) {
     diff1 <- log(current[1]) - log(particles[[i]][1])
     diff2 <- log(current[2]) - log(particles[[i]][2])
     vals[i] <- weights[i] * dnorm(diff1, mean = 0, sd = sigma) *
@@ -115,7 +115,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
 
   # compute the observed statistics
   obs_statistics <- c()
-  for (i in 1:length(statistics)) {
+  for (i in seq_along(statistics)) {
     obs_statistics[i] <- statistics[[i]](tree)
   }
 
@@ -124,7 +124,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
   #generate a matrix with epsilon values
   #we assume that the SMC algorithm converges within 50 iterations
   epsilon <- matrix(nrow = 50, ncol = length(init_epsilon_values))
-  for (j in 1:length(init_epsilon_values)) {
+  for (j in seq_along(init_epsilon_values)) {
     for (i in 1:50) {
       epsilon[i, j] <- init_epsilon_values[j] * exp(-0.5 * (i - 1))
     }
@@ -132,13 +132,13 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
 
   #store weights
   new_weights <- c()
-  new_params <- list( c( 1:length(parameters)))
+  new_params <- list( c( seq_along(parameters)))
   previous_weights <- c()
-  previous_params  <- list( c( 1:length(parameters)))
+  previous_params  <- list( c( seq_along(parameters)))
   indices <- 1:number_of_particles
 
   #convergence is expected within 50 iterations
-  #usually convergence occurs within 10 iterations
+  #usually convergence occurs within 20 iterations
   for (i in 1:50 ) {
     cat("\nGenerating Particles for iteration\t", i, "\n")
     cat("0--------25--------50--------75--------100\n")
@@ -155,7 +155,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
       previous_weights <- new_weights / sum(new_weights)
       new_weights <- c() #remove all currently stored weights
       previous_params <- new_params #store found params
-      new_params <- list( c( 1:length(parameters))) #clear new params
+      new_params <- list( c( seq_along(parameters))) #clear new params
     }
 
     while (number_accepted < number_of_particles) {
@@ -168,13 +168,13 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
         index <- sample(x = indices, size = 1,
           replace = TRUE, prob = previous_weights)
 
-        for (p_index in 1:length(parameters)) {
+        for (p_index in seq_along(parameters)) {
           parameters[p_index] <- previous_params[[index]][p_index]
         }
 
         #only perturb one parameter, to avoid extremely
         #low acceptance rates due to simultaneous perturbation
-        to_change <- sample(1:length(parameters), 1)
+        to_change <- sample(seq_along(parameters), 1)
 
         # perturb the parameter a little bit,
         #on log scale, so parameter doesn't go < 0.
@@ -189,14 +189,14 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
         accept <- TRUE
 
         #calculate the summary statistics for the simulated tree
-        for (k in 1:length(statistics)) {
+        for (k in seq_along(statistics)) {
           stats[k] <- statistics[[k]](new_tree)
           if (is.na(stats[k])) stats[k] <- Inf
         }
 
         #check if the summary statistics are sufficiently
         #close to the observed summary statistics
-        for (k in 1:length(statistics)) {
+        for (k in seq_along(statistics)) {
           if ( abs(stats[k] - obs_statistics[k]) > epsilon[i, k] ) {
             accept <- FALSE
             #the first step always accepts
@@ -229,9 +229,9 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
       if (tried > (1 / stop_rate)) {
         if ( (number_accepted / tried) < stop_rate) {
           output <- c()
-          for (k in 1:length(parameters)) {
+          for (k in seq_along(parameters)) {
             add <- c()
-            for (m in 1:length( previous_params[[k]])) {
+            for (m in seq_along( previous_params[[k]])) {
               add <- c( add, previous_params[[k]][m])
             }
             output <- rbind(output, add)
@@ -243,9 +243,9 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
   }
 
   output <- c()
-  for (k in 1:length(parameters)) {
+  for (k in seq_along(parameters)) {
     add <- c()
-    for (m in 1:length(previous_params[[k]])) {
+    for (m in seq_along(previous_params[[k]])) {
       add <- c(add, previous_params[[k]][m])
     }
     output <- rbind(output, add)
@@ -291,9 +291,9 @@ mcmc_nltt <- function(phy, likelihood_function,
   flush.console()
   print_frequency <- 20
 
-  for (i in 1:(burnin + iterations)) {
+  for (i in seq_len(burnin + iterations)) {
     #propose new values
-    for ( j in 1:length(parameters) ) {
+    for ( j in seq_along(parameters) ) {
       if ( logtransforms[j] == TRUE ) {
         if (parameters[j] == 0) {
           stop("Cannot propose new value for a parameter with value 0.0.")
