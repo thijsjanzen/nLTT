@@ -310,7 +310,7 @@ mcmc_nltt <- function(phy, likelihood_function,
     #propose new values
     for ( j in seq_along(parameters) ) {
       if ( logtransforms[j] == TRUE ) {
-        if (parameters[j] == 0) {
+        if ( parameters[j] == 0) {
           stop("Cannot propose new value for a parameter with value 0.0.")
         }
 
@@ -335,7 +335,7 @@ mcmc_nltt <- function(phy, likelihood_function,
         eta           <- parameters[j]
         new_val       <- eta + stats::rnorm(1, 0, sigma)
         #calculate the Hastings ratio
-        hr            <- 0.0 #
+        hr            <- 0.0
         parameters[j] <- new_val
 
         if (parameters[j] >= 0 & parameters[1] > 0) {
