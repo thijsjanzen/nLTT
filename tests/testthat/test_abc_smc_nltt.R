@@ -113,7 +113,7 @@ test_that("abc_smc_nltt abuse", {
                  prior_generating_function = prior_gen,
                  prior_density_function = prior_dens,
                  number_of_particles = 100, sigma = 1, stop_rate = 0.1),
-    "abc_smc_nltt: the statistics function has to be given in vector style"
+    "abc_smc_nltt: the statistics function has to be given in vector style,"
   )
 })
 

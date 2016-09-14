@@ -126,7 +126,7 @@ abc_smc_nltt <- function(tree,
   if(!inherits(statistics,"list")) {
     stop("abc_smc_nltt: ",
          "the statistics function has to be given in vector style, ",
-         "e.g.: c(statFunction)")
+         "e.g.: c(statisticsfunction), instead of statisticsfunction")
   }
 
 
