@@ -32,7 +32,7 @@ Here is how the stemless phylogeny looks like:
 
 ```{r fig.width = 3, fig.height = 3}
 ape::plot.phylo(tree1, root.edge = TRUE)
-ape::add.scale.bar()
+ape::add.scale.bar() #nolint
 ```
 
 I set `root.edge` to `TRUE`, just show it is absent.
@@ -41,7 +41,7 @@ Here is how the phylogeny with stem looks like:
 
 ```{r fig.width = 3, fig.height = 3}
 ape::plot.phylo(tree2, root.edge = TRUE)
-ape::add.scale.bar()
+ape::add.scale.bar() #nolint
 ```
 
 When overlaying their nLTT plots, one can expect two things:

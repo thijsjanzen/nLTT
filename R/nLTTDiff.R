@@ -58,7 +58,7 @@ nltt_diff_exact <- function(
   all_b_times <- unique(sort(c(b_times_N, b_times2_N)))
   diff <- 0
   #iterate through all branching times
-  for (k in 2:length( all_b_times)) {
+  for (k in 2:length(all_b_times)) {
       tim <- all_b_times[k]
       #find the index of the first branching time
       #that is up to the focal branching time
