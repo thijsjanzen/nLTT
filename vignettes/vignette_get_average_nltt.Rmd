@@ -89,7 +89,7 @@ Here is the nLTT matrix of the second phylogeny:
 
 ```{r}
 nLTT::stretch_nltt_matrix(
-  nLTT::get_phylogeny_nltt_matrix(phylogeny2), 
+  nLTT::get_phylogeny_nltt_matrix(phylogeny2),
   dt = 0.20,
   step_type = "upper"
 )
@@ -180,7 +180,7 @@ Here is the nLTT matrix of the second phylogeny:
 
 ```{r}
 nLTT::stretch_nltt_matrix(
-  nLTT::get_phylogeny_nltt_matrix(phylogeny2), 
+  nLTT::get_phylogeny_nltt_matrix(phylogeny2),
   dt = 0.20,
   step_type = "upper"
 )
@@ -198,7 +198,7 @@ The same, now shown as a plot:
 
 ```{r}
 nLTT::get_average_nltt(
-  c(phylogeny1, phylogeny2), 
+  c(phylogeny1, phylogeny2),
   dt = 0.20,
   plot_nltts = TRUE
 )
