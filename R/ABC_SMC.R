@@ -16,7 +16,7 @@
 ################################################################################
 
 calculate_weight <- function(weights, particles,
-  current, sigma, prior_density_function) {
+                             current, sigma, prior_density_function) {
   vals <- c()
   for ( i in seq_along( particles)) {
     diff1 <- log(current[1]) - log(particles[[i]][1])
@@ -24,9 +24,9 @@ calculate_weight <- function(weights, particles,
     vals[i] <- weights[i] * stats::dnorm(diff1, mean = 0, sd = sigma) *
       stats::dnorm(diff2, mean = 0, sd = sigma)
   }
-
+  
   numerator <- prior_density_function(current)
-
+  
   return (numerator / sum( vals))
 }
 
@@ -106,36 +106,50 @@ calculate_weight <- function(weights, particles,
 #'
 #'   } # end of dontrun
 abc_smc_nltt <- function(tree, statistics, simulation_function,
-  init_epsilon_values, prior_generating_function, prior_density_function,
-  number_of_particles = 1000, sigma = 0.05, stop_rate = 1e-5) {
-
+                         init_epsilon_values, prior_generating_function, prior_density_function,
+                         number_of_particles = 1000, sigma = 0.05, stop_rate = 1e-5) {
+  
+  
+  if (!inherits(tree, "phylo")) {
+    # Just checking
+    stop("abc_smc_nltt: ",
+         "tree must be of class 'phylo', ",
+         "but was of type '", class(tree), "' instead")
+  }
+  
   #just to get the number of parameters to be estimated.
   parameters <- prior_generating_function()
-
+  
   # compute the observed statistics
   obs_statistics <- c()
   for (i in seq_along(statistics)) {
     obs_statistics[i] <- statistics[[i]](tree)
   }
-
+  
   stats <- c()
-
+  
   #generate a matrix with epsilon values
   #we assume that the SMC algorithm converges within 50 iterations
   epsilon <- matrix(nrow = 50, ncol = length(init_epsilon_values))
   for (j in seq_along(init_epsilon_values)) {
+    if(init_epsilon_values[j] < 0) {
+      stop("abc_smc_nltt: ",
+           "epsilon values have to be positive,",
+           "but were instead: ",init_epsilon_values[j])
+    }
+    
     for (i in 1:50) {
       epsilon[i, j] <- init_epsilon_values[j] * exp(-0.5 * (i - 1))
     }
   }
-
+  
   #store weights
   new_weights <- c()
   new_params <- list( c( seq_along(parameters)))
   previous_weights <- c()
   previous_params  <- list( c( seq_along(parameters)))
   indices <- 1:number_of_particles
-
+  
   #convergence is expected within 50 iterations
   #usually convergence occurs within 20 iterations
   for (i in 1:50 ) {
@@ -143,11 +157,11 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
     cat("0--------25--------50--------75--------100\n")
     cat("*")
     utils::flush.console()
-
+    
     print_frequency <- 20
     tried <- 0
     number_accepted <- 0
-
+    
     #replace all vectors
     if (i > 1) {
       #normalize the weights and store them as previous weights.
@@ -156,7 +170,7 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
       previous_params <- new_params #store found params
       new_params <- list( c( seq_along(parameters))) #clear new params
     }
-
+    
     while (number_accepted < number_of_particles) {
       #in this initial step, generate parameters from the prior
       if (i == 1) {
@@ -165,34 +179,34 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
         #if not in the initial step, generate parameters
         #from the weighted previous distribution:
         index <- sample(x = indices, size = 1,
-          replace = TRUE, prob = previous_weights)
-
+                        replace = TRUE, prob = previous_weights)
+        
         for (p_index in seq_along(parameters)) {
           parameters[p_index] <- previous_params[[index]][p_index]
         }
-
+        
         #only perturb one parameter, to avoid extremely
         #low acceptance rates due to simultaneous perturbation
         to_change <- sample(seq_along(parameters), 1)
-
+        
         # perturb the parameter a little bit,
         #on log scale, so parameter doesn't go < 0
         eta <- log(parameters[to_change]) + stats::rnorm(1, 0, sigma)
         parameters[to_change] <- exp(eta)
-     }
-
-     #reject if outside the prior
-     if (prior_density_function(parameters) > 0) {
+      }
+      
+      #reject if outside the prior
+      if (prior_density_function(parameters) > 0) {
         #simulate a new tree, given the proposed parameters
         new_tree <- simulation_function(parameters)
         accept <- TRUE
-
+        
         #calculate the summary statistics for the simulated tree
         for (k in seq_along(statistics)) {
           stats[k] <- statistics[[k]](new_tree)
           if (is.na(stats[k])) stats[k] <- Inf
         }
-
+        
         #check if the summary statistics are sufficiently
         #close to the observed summary statistics
         for (k in seq_along(statistics)) {
@@ -203,26 +217,26 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
             break
           }
         }
-
+        
         if ( accept ) {
           number_accepted <- number_accepted + 1
           new_params[[number_accepted]] <- parameters
           accepted_weight <- 1
           #calculate the weight
           if (i > 1) {
-             accepted_weight <- calculate_weight(previous_weights,
-             previous_params, parameters, sigma, prior_density_function)
+            accepted_weight <- calculate_weight(previous_weights,
+                                                previous_params, parameters, sigma, prior_density_function)
           }
           new_weights[number_accepted] <- accepted_weight
-
+          
           if ( (number_accepted) %%
-            (number_of_particles / print_frequency) == 0) {
-             cat("**")
-             utils::flush.console()
+               (number_of_particles / print_frequency) == 0) {
+            cat("**")
+            utils::flush.console()
           }
         }
       }
-
+      
       #convergence if the acceptance rate gets too low
       tried <- tried + 1
       if (tried > (1 / stop_rate)) {
@@ -240,12 +254,12 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
       }
     }
   }
-
+  
   output <- c()
   for (k in seq_along(previous_params)) {
     add <- c()
     for (m in seq_along( parameters)) {
-       add <- c( add, previous_params[[k]][m])
+      add <- c( add, previous_params[[k]][m])
     }
     output <- rbind(output, add)
   }
@@ -274,38 +288,38 @@ abc_smc_nltt <- function(tree, statistics, simulation_function,
 ################################################################################
 
 mcmc_nltt <- function(phy, likelihood_function,
-  parameters, logtransforms, iterations,
-  burnin = round(iterations / 3), thinning = 1, sigma = 1) {
-
+                      parameters, logtransforms, iterations,
+                      burnin = round(iterations / 3), thinning = 1, sigma = 1) {
+  
   #check data type of phy
   if (!inherits(phy, "phylo")) {
     # Just checking
     stop("mcmc_nltt: ",
-      "phy must be of class 'phylo', ",
-      "but was of type '", class(phy), "' instead")
+         "phy must be of class 'phylo', ",
+         "but was of type '", class(phy), "' instead")
   }
-
+  
   # create a list for the samples & reserve memory for the chain
   chain <- array(dim = c( floor( iterations / thinning) + 1,
-    length(parameters)))
-
-
+                          length(parameters)))
+  
+  
   if (parameters[2] < 0) {
     #Just checking
     stop("mcmc_nltt: ",
-     "initial parameter values have to be above zero\n",
-     "but mu was ", parameters[2], " instead")
+         "initial parameter values have to be above zero\n",
+         "but mu was ", parameters[2], " instead")
   }
-
+  
   # pre-compute current posterior probability
   pp <- likelihood_function(parameters, phy)
-
+  
   cat("\nGenerating Chain\n")
   cat("0--------25--------50--------75--------100\n")
   cat("*")
   utils::flush.console()
   print_frequency <- 20
-
+  
   for (i in seq_len(burnin + iterations)) {
     #propose new values
     for ( j in seq_along(parameters) ) {
@@ -313,7 +327,7 @@ mcmc_nltt <- function(phy, likelihood_function,
         if ( parameters[j] == 0) {
           stop("Cannot propose new value for a parameter with value 0.0.")
         }
-
+        
         eta           <- log(parameters[j])
         new_eta       <- eta + stats::rnorm(1, 0, sigma)
         new_val       <- exp(new_eta)
@@ -321,41 +335,41 @@ mcmc_nltt <- function(phy, likelihood_function,
         hr            <- log(new_val / parameters[j])
         parameters[j] <- new_val
         new_pp        <- likelihood_function(parameters, phy)
-
+        
         #accept or reject
         if ( is.finite(new_pp) &&
-          is.finite(hr) &&
-          new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
+             is.finite(hr) &&
+             new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
           pp <- new_pp
         } else {
           parameters[j] <- exp(eta)
         }
       } else {
-
+        
         eta           <- parameters[j]
         new_val       <- eta + stats::rnorm(1, 0, sigma)
         #calculate the Hastings ratio
         hr            <- 0.0
         parameters[j] <- new_val
-
+        
         if (parameters[j] >= 0 & parameters[1] > 0) {
           new_pp        <- likelihood_function(parameters, phy)
-
+          
           #accept or reject
           if ( is.finite(new_pp) &&
-            is.finite(hr) &&
-            new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
+               is.finite(hr) &&
+               new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
             pp <- new_pp
           } else {
             parameters[j] <- eta
           }
         } else {
-            parameters[j] <- eta
+          parameters[j] <- eta
         }
       }
-
+      
     }
-
+    
     # sample the parameter
     if (i >= burnin) {
       if ( (i) %% ( (iterations - burnin) / print_frequency) == 0) {
