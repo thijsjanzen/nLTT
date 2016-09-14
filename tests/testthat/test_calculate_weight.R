@@ -20,7 +20,7 @@ test_that("calculate_weight use", {
 	
 	expect_equal(
 		calculate_weight(weights, particles, current=c(5, 5), sigma, prior_density_function), 
-		calculate_weight(weights, particles, current=c(5.0, 5.0), sigma,p rior_density_function),
+		calculate_weight(weights, particles, current=c(5.0, 5.0), sigma, prior_density_function),
 		tolerance = 0.0001
 	)
 	
