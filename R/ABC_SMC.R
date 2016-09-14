@@ -51,8 +51,6 @@ calculate_weight <- function(weights, particles,
 # @return                                 matrix      A matrix with n columns, where n is the number of parameters you are trying to estimate.
 #
 ################################################################################
-#' @name abc_smc_nltt
-#' @aliases abc_smc_nltt
 #' A function to perform Approximate Bayesian Computation within an Sequential Markov Chain (ABC-SMC), for diversification analysis of phylogenetic trees.
 #' @description This function performs ABC-SMC as described in Toni 2009 for given diversification model, provided a phylogenetic tree. ABC-SMC is not limited to only using the normalized LTT as statistic.
 #' @usage
@@ -75,7 +73,7 @@ calculate_weight <- function(weights, particles,
 #' @export
 #' @author Thijs Janzen
 #' @examples
-#'   ## dontrun
+#'   \dontrun{
 #'
 #'   prior_gen <- function() {
 #'     return ( rexp(n=2, rate=0.1) );
@@ -106,6 +104,8 @@ calculate_weight <- function(weights, particles,
 #'     prior_density_function = prior_dens,
 #'     number_of_particles = 1000, sigma = 0.05, stop_rate = 1e-5
 #'   )
+#'
+#'   } # end of dontrun
 abc_smc_nltt <- function(tree, statistics, simulation_function,
   init_epsilon_values, prior_generating_function, prior_density_function,
   number_of_particles = 1000, sigma = 0.05, stop_rate = 1e-5) {
