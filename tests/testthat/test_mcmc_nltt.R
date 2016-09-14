@@ -27,7 +27,7 @@ test_that("mcmc_nltt use", {
 
   expect_equal(
     colMeans( mcmc_nltt( tree1, LL_BD, c(1, 0.001), c(TRUE, TRUE),
-                         iterations = 10000, burnin = 1000, 
+                         iterations = 10000, burnin = 1000,
                          thinning = 1, sigma = 1))[[1]],
     ML$par[[1]],
     tolerance = 0.05
@@ -48,7 +48,7 @@ test_that("mcmc_nltt abuse", {
   set.seed(1) #just to be safe
   tree1 <- TESS::tess.sim.taxa(n = 1, nTaxa = 50,
                                max = 100, lambda = 1.0, mu = 0.0)[[1]]
-  
+
   LL_BD <- function(params, phy) {
     lnl <- TESS::tess.likelihood(ape::branching.times(phy),
                                  lambda = params[1], mu = params[2],
@@ -62,17 +62,17 @@ test_that("mcmc_nltt abuse", {
     mcmc_nltt( tree1, LL_BD, c(1, 0.0), c(TRUE, TRUE),
                iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5),
     "Cannot propose new value for a parameter with value 0.0."
-	)
+  )
 
-	expect_error(
+  expect_error(
     mcmc_nltt( 42, LL_BD, c(1, 0.01), c(TRUE, TRUE),
                iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5),
     "mcmc_nltt: phy must be of class 'phylo'"
-	)
+  )
 
-	expect_error(
-	  mcmc_nltt( tree1, LL_BD,c(1, -1), c(TRUE, TRUE),
-	             iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5),
-	  "mcmc_nltt: initial parameter values have to be above zero"
+  expect_error(
+    mcmc_nltt( tree1, LL_BD,c(1, -1), c(TRUE, TRUE),
+               iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5),
+    "mcmc_nltt: initial parameter values have to be above zero"
   )
 })

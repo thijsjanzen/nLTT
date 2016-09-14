@@ -152,8 +152,8 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
 #' This function takes two ultrametric phylogenetic trees, calculates the normalized Lineage-Through-Time statistic for both trees and then calculates the difference between the two statistics.
 #' @title Calculate the difference between two normalized Lineage-Through-Time curves, given two phylogenetic trees.
 #' @usage nLTTstat(tree1, tree2, distance_method = "abs")
-#' @param tree1 an object of class \code{"phylo"};
-#' @param tree2 an object of class \code{"phylo"};
+#' @param tree1 an object of class \code{"phylo"}
+#' @param tree2 an object of class \code{"phylo"}
 #' @param distance_method Chosen measurement of distance between the two nLTT curves, options are (case sensitive):\cr
 #'   - "abs": use the absolute distance\cr
 #'   - "squ": use the squared distance;\cr

@@ -2,12 +2,12 @@ context("calculate_weight")
 
 
 test_that("calculate_weight use", {
-  weights <- rep(1, 2);
-  particles <- list();
+  weights <- rep(1, 2)
+  particles <- list()
   for (i in 1:2) {
     particles[[i]] <- c(10, 10)
   }
-  sigma <- 1;
+  sigma <- 1
   prior_density_function <- function(x) {
     dunif(x[1], min = 0, max = 1000) *
     dunif(x[2], min = 0, max = 1000)
