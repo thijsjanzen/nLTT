@@ -1,19 +1,11 @@
-################################################################################
-#
-# @brief Calculates the exact, difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
-#
-# @date Last modified: 2016-05-20
-# @author Thijs Janzen
-# @since 2016-05-20, version 1.2.1
-#
-# @param    tree1                  phylo      First phylogenetic tree
-# @param    tree2                  phylo      Second phylogenetic tree
-# @param    distance_method        string     absolute, or squared distance?
-# @param    ignore_stem            logical    Should the phylogeny its stem be ignored?
-# @return                          scalar     normalized Lineage-Through-Time difference between tree1 & tree2
-#
-################################################################################
-
+#' Calculates the exact, difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
+#' @author Thijs Janzen
+#' @param tree1 (phylo) First phylogenetic tree
+#' @param tree2 (phylo) Second phylogenetic tree
+#' @param distance_method (string) absolute, or squared distance?
+#' @param ignore_stem (logical) Should the phylogeny its stem be ignored?
+#' @return (scalar) normalized Lineage-Through-Time difference between tree1 & tree2
+#' @export
 nltt_diff_exact <- function(
   tree1,
   tree2,
