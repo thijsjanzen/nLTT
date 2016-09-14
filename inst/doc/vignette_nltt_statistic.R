@@ -18,9 +18,9 @@ par(mfrow = c(1, 1))
 
 # ------------------------------------------------------------------------
 posteriors <- c(
-  ape::rcoal(n = 10), 
-  ape::rcoal(n = 10), 
-  species_tree, 
+  ape::rcoal(n = 10),
+  ape::rcoal(n = 10),
+  species_tree,
   ape::rcoal(n = 10)
 )
 
@@ -59,31 +59,30 @@ for (p in posteriors) {
 # ------------------------------------------------------------------------
 nltt_stats <- data.frame(
   id = seq(1, length(nltt_stats_exact)),
-  nltt_stat_exact = nltt_stats_exact, 
+  nltt_stat_exact = nltt_stats_exact,
   nltt_stat_approx = nltt_stats_approx
 )
 knitr::kable(nltt_stats)
 
 # ------------------------------------------------------------------------
 df <- reshape2::melt(
-  nltt_stats, 
-  id.vars = c("id"), 
+  nltt_stats,
+  id.vars = c("id"),
   measure.vars = c( "nltt_stat_exact", "nltt_stat_approx")
 )
 names(df) <- c("id", "method", "nltt_stat")
 df$id <- as.factor(df$id)
 df$method <- plyr::revalue(
-  df$method, 
+  df$method,
   c("nltt_stat_exact" = "exact", "nltt_stat_approx" = "approx")
 )
 
 # ------------------------------------------------------------------------
 ggplot2::ggplot(
-  data = df, 
+  data = df,
   ggplot2::aes(x = df$method, y = df$nltt_stat)
 ) + ggplot2::geom_boxplot(
 ) + ggplot2::geom_point(color = df$id
 ) + ggplot2::scale_y_continuous(name = "nLTT statistic"
 ) + ggplot2::scale_x_discrete(name = "Method"
 ) + ggplot2::ggtitle("Posterior nLTT statistic distribution")
-

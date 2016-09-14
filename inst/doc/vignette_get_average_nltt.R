@@ -97,4 +97,3 @@ nLTT::get_average_nltt(
   dt = 0.20,
   plot_nltts = TRUE
 )
-

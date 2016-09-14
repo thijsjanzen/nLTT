@@ -149,7 +149,9 @@ qplot(
   stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
 
 # ------------------------------------------------------------------------
-qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1), main = "Average nLTT plot of phylogenies") + 
+qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
+  main = "Average nLTT plot of phylogenies"
+) +
   stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
 
 # ------------------------------------------------------------------------
@@ -161,7 +163,7 @@ phylogeny4 <- rcoal(40)
 phylogeny5 <- rcoal(50)
 phylogeny6 <- rcoal(60)
 phylogeny7 <- rcoal(70)
-phylogenies <- c(phylogeny1, phylogeny2, phylogeny3, 
+phylogenies <- c(phylogeny1, phylogeny2, phylogeny3,
   phylogeny4, phylogeny5, phylogeny6, phylogeny7)
 
 # ------------------------------------------------------------------------
@@ -175,6 +177,7 @@ qplot(t, nltt, data = df, geom = "point", ylim = c(0, 1),
   stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
 
 # ------------------------------------------------------------------------
-qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1), main = "Average nLTT plot of phylogenies") + 
+qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
+  main = "Average nLTT plot of phylogenies"
+) +
   stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
-
