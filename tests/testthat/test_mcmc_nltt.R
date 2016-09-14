@@ -4,7 +4,7 @@ test_that("mcmc_nltt use", {
 
   set.seed(1)
   tree1 <- TESS::tess.sim.taxa(n = 1, nTaxa = 50,
-                               max = 100, lambda = 2.0, mu = 0.0)[[1]]
+                               max = 100, lambda = 1.0, mu = 0.0)[[1]]
 
   LL_BD <- function(params, phy) {
     lnl <- TESS::tess.likelihood(ape::branching.times(phy),
@@ -26,7 +26,7 @@ test_that("mcmc_nltt use", {
   ML <- optim(par = c(1, 0.001),fn = toFit)
 
   expect_equal(
-    colMeans( mcmc_nltt( tree1, LL_BD, c(10, 0.001), c(TRUE, TRUE),
+    colMeans( mcmc_nltt( tree1, LL_BD, c(1, 0.001), c(TRUE, TRUE),
       iterations = 10000, burnin = 1000, thinning = 1, sigma = 1))[[1]],
     ML$par[[1]],
     tolerance = 0.05
