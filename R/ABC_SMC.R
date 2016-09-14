@@ -17,7 +17,6 @@
 
 calculate_weight <- function(weights, particles,
   current, sigma, prior_density_function) {
-  sum <- 0
   vals <- c()
   for ( i in seq_along( particles)) {
     diff1 <- log(current[1]) - log(particles[[i]][1])
