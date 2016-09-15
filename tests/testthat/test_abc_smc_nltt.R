@@ -45,7 +45,7 @@ test_that("abc_smc_nltt use", {
   ML <- optim(par = c(1, 0.001), fn = tofit)
 
   statwrapper <- function(tree1) {
-    return(nLTTstat(tree1, obs, "abs"))
+    return(nLTTstat(tree1, obs, "abs")) # nolint nLTTstat has uppercase due to backwards compatibility
   }
 
   v1 <-  abc_smc_nltt(
@@ -87,7 +87,7 @@ test_that("abc_smc_nltt abuse", {
   }
 
   statwrapper <- function(tree1) {
-    return( nLTTstat(tree1, obs, "abs"))
+    return(nLTTstat(tree1, obs, "abs"))  # nolint nLTTstat has uppercase due to backwards compatibility
   }
 
   expect_error(
@@ -108,7 +108,6 @@ test_that("abc_smc_nltt abuse", {
     "abc_smc_nltt: epsilon values have to be positive"
   )
 
-  #skip("this next test runs fine locally, but not on Travis")
   expect_error(
     abc_smc_nltt(obs, statwrapper, treesim, init_epsilon_values = -0.5,
                  prior_generating_function = prior_gen,
