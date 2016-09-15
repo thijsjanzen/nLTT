@@ -183,6 +183,8 @@ abc_smc_nltt <- function(tree,
       previous_params <- new_params #store found params
       new_params <- list( c( seq_along(parameters))) #clear new params
     }
+    
+	stoprate_reached <- FALSE
 
     while (number_accepted < number_of_particles) {
       #in this initial step, generate parameters from the prior
@@ -255,9 +257,14 @@ abc_smc_nltt <- function(tree,
       tried <- tried + 1
       if (tried > (1 / stop_rate)) {
         if ( (number_accepted / tried) < stop_rate) {
+        	  stoprate_reached <- TRUE
           break
         }
       }
+    }
+
+    if (stoprate_reached) {
+    		break;
     }
   }
 
