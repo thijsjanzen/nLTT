@@ -4,7 +4,7 @@ test_that("abc_smc_nltt use", {
   treesim <- function(params) {
     t <- TESS::tess.sim.taxa(n = 1,
                              lambda = params[1],
-                             mu = 0.0, nTaxa = 100, max = 10)[[1]]
+                             mu = 0.0, nTaxa = 100, max = 100)[[1]]
     return (t)
   }
 
@@ -33,7 +33,7 @@ test_that("abc_smc_nltt use", {
     return(-1 * LL_BD(params, obs))
   }
 
-  ML <- stats::optimize(f=tofit,interval=c(0,1))
+  ML <- optimize(f=tofit,interval=c(0,1))
 
   statwrapper <- function(tree1) {
     return(nLTTstat_exact(tree1, obs, "abs")) # nolint nLTTstat has uppercase due to backwards compatibility
@@ -52,7 +52,7 @@ test_that("abc_smc_nltt use", {
   expect_equal(
     mean(A),
     ML$minimum[[1]],
-    tolerance = 0.05
+    tolerance = 0.1
   )
 })
 
