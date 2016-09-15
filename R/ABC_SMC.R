@@ -183,7 +183,7 @@ abc_smc_nltt <- function(tree,
       previous_params <- new_params #store found params
       new_params <- list( c( seq_along(parameters))) #clear new params
     }
-    
+
     stoprate_reached <- FALSE
 
     while (number_accepted < number_of_particles) {
@@ -316,13 +316,14 @@ mcmc_nltt <- function(phy, likelihood_function,
   chain <- array(dim = c( floor( iterations / thinning) + 1,
                           length(parameters)))
 
-  if (parameters[2] < 0) {
-    #Just checking
-    stop("mcmc_nltt: ",
-         "initial parameter values have to be above zero\n",
-         "but mu was ", parameters[2], " instead")
+  for(j in seq_along(parameters)) {
+    if (parameters[j] < 0) {
+      #Just checking
+      stop("mcmc_nltt: ",
+           "initial parameter values have to be above zero\n",
+           "but one was ", parameters[j], " instead")
+    }
   }
-
   # pre-compute current posterior probability
   pp <- likelihood_function(parameters, phy)
 
