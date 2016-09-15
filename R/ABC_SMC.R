@@ -22,7 +22,7 @@ calculate_weight <- function(weights, particles,
     vals[i] <- weights[i]
     for (j in seq_along( current)) {
       diff <- log(current[j]) - log(particles[[i]][j])
-      vals[i] = vals[i] * stats::dnorm(diff, mean = 0, sd = sigma)
+      vals[i] <- vals[i] * stats::dnorm(diff, mean = 0, sd = sigma)
     }
   }
 
