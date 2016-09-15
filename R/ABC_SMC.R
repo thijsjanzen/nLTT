@@ -19,10 +19,11 @@ calculate_weight <- function(weights, particles,
                              current, sigma, prior_density_function) {
   vals <- c()
   for ( i in seq_along( particles)) {
-    diff1 <- log(current[1]) - log(particles[[i]][1])
-    diff2 <- log(current[2]) - log(particles[[i]][2])
-    vals[i] <- weights[i] * stats::dnorm(diff1, mean = 0, sd = sigma) *
-      stats::dnorm(diff2, mean = 0, sd = sigma)
+    vals[i] <- weights[i]
+    for (j in seq_along( current)) {
+      diff <- log(current[j] - log(particles[[i]][j]))
+      vals[i] = vals[i] * stats::dnorm(diff, mean = 0, sd = sigma)
+    }
   }
 
   numerator <- prior_density_function(current)
@@ -128,7 +129,6 @@ abc_smc_nltt <- function(tree,
          "the statistics function has to be given in vector style, ",
          "e.g.: c(statisticsfunction), instead of statisticsfunction")
   }
-
 
   #just to get the number of parameters to be estimated.
   parameters <- prior_generating_function()
