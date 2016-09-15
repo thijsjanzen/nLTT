@@ -255,15 +255,7 @@ abc_smc_nltt <- function(tree,
       tried <- tried + 1
       if (tried > (1 / stop_rate)) {
         if ( (number_accepted / tried) < stop_rate) {
-          output <- c()
-          for (k in seq_along(previous_params)) {
-            add <- c()
-            for (m in seq_along( parameters)) {
-              add <- c( add, previous_params[[k]][m])
-            }
-            output <- rbind(output, add)
-          }
-          return (output)
+          break
         }
       }
     }
