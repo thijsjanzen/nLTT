@@ -47,10 +47,12 @@ test_that("abc_smc_nltt use", {
 
   cat("\n",mean(A),ML$minimum,"\n")
 
+  cat("This is a test\n")
+  
   expect_equal(
     mean(A),
     ML$minimum[[1]],
-    tolerance = 0.05
+    tolerance = 0.1
   )
 })
 
