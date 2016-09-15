@@ -18,7 +18,7 @@ Janzen, Thijs, Sebastian Höhna, and Rampal S. Etienne. "Approximate Bayesian co
 
 ## What else does the package do?
 Apart from providing functions that calculate the nLTT statistic, the nLTT package for R also provides functions to:
-- plot the normalized Lineages-Through-Time plot for a single, or multiple, trees
+- plot the normalized Lineages-Through-Time plot for a single, or for multiple, trees
 - calculate and plot the average Lineages-Through-Time plot for multiple trees
-- estimate the parameters of a model for which the likelihood is known (for comparison), using MCMC (as used in the MEE paper)
-- estimate the parameters of a model for which no likelihood is available, using ABC-SMC (as used in the MEE paper)
+- estimate the parameters of a model for which the likelihood is known (for comparison), using MCMC (as used in the paper)
+- estimate the parameters of a model for which no likelihood is available, using ABC-SMC (as used in the paper)
