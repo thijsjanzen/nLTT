@@ -7,9 +7,9 @@
 nLTTstat(tree1, tree2, distance_method = "abs")
 }
 \arguments{
-\item{tree1}{an object of class \code{"phylo"};}
+\item{tree1}{an object of class \code{"phylo"}}
 
-\item{tree2}{an object of class \code{"phylo"};}
+\item{tree2}{an object of class \code{"phylo"}}
 
 \item{distance_method}{Chosen measurement of distance between the two nLTT curves, options are (case sensitive):\cr
 - "abs": use the absolute distance\cr

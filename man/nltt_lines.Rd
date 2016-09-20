@@ -7,7 +7,7 @@
 nltt_lines(phy, ...)
 }
 \arguments{
-\item{phy}{an object of class \code{"phylo"};}
+\item{phy}{an object of class \code{"phylo"}}
 
 \item{\dots}{further graphical arguments that can be passed to \code{lines()}}
 }

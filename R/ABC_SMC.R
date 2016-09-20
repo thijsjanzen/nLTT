@@ -299,7 +299,7 @@ abc_smc_nltt <- function(tree,
 # @return                         mcmc        An MCMC object, as used by the package "coda".
 #
 ################################################################################
-
+#' @export
 mcmc_nltt <- function(phy, likelihood_function,
                       parameters, logtransforms, iterations,
                       burnin = round(iterations / 3), thinning = 1, sigma = 1) {
@@ -316,7 +316,7 @@ mcmc_nltt <- function(phy, likelihood_function,
   chain <- array(dim = c( floor( iterations / thinning) + 1,
                           length(parameters)))
 
-  for(j in seq_along(parameters)) {
+  for (j in seq_along(parameters)) {
     if (parameters[j] < 0) {
       #Just checking
       stop("mcmc_nltt: ",

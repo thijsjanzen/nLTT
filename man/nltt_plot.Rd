@@ -7,7 +7,7 @@
 nltt_plot(phy, xlab = "Normalized Time", ylab = "Normalized Lineages", ...)
 }
 \arguments{
-\item{phy}{an object of class \code{"phylo"};}
+\item{phy}{an object of class \code{"phylo"}}
 
 \item{xlab}{a character string (or a variable of mode character)
 giving the label for the \eqn{x}-axis (default is "Normalized Time").}

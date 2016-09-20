@@ -39,11 +39,11 @@ This function performs ABC-SMC as described in Toni 2009 for given diversificati
   \dontrun{
 
   prior_gen <- function() {
-    return ( rexp(n=2, rate=0.1) );
+    return ( rexp(n=2, rate=0.1) )
   }
 
   prior_dens <- function(val) {
-    return ( dexp( val[1], rate = 0.1) * dexp( val[2], rate = 0.1) );
+    return ( dexp( val[1], rate = 0.1) * dexp( val[2], rate = 0.1) )
   }
 
   require(TESS)
