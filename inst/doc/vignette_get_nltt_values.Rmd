@@ -133,7 +133,7 @@ Observe how the numbers get averaged.
 The same, now shown as a plot:
 
 ```{r}
-nLTT::get_average_nltt(phylogenies, dt = 0.20, plot_nltts = TRUE)
+nLTT::nltts_plot(phylogenies, dt = 0.20, plot_nltts = TRUE)
 ```
 
 Here a demo how the new function works:

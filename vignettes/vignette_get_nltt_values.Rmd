@@ -1,23 +1,28 @@
 ---
-title: "How to get the average nLTT plot"
+title: "How to visualize nLTT values distributions"
 author: "Richel Bilderbeek"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{How to get the average nLTT plot}
+  %\VignetteIndexEntry{How to visualize nLTT values distributions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 Calculating the average nLTT plot of multiple phylogenies
-is not a trivial tasks. The function `get_nltt_values`
-does exactly this.
+is not a trivial tasks. 
+
+The function `get_nltt_values`
+collects the nLTT values of a collection of
+phylogenies as tidy data.
+
+This allows for a good interplay with ggplot2.
 
 ## Examples
 
 For all examples, the following R code must be run:
 
-```{r}
+```{r message = FALSE}
 library(ape)
 library(Hmisc)
 library(nLTT) # nolint
@@ -133,7 +138,7 @@ Observe how the numbers get averaged.
 The same, now shown as a plot:
 
 ```{r}
-nLTT::get_average_nltt(phylogenies, dt = 0.20, plot_nltts = TRUE)
+nLTT::nltts_plot(phylogenies, dt = 0.20, plot_nltts = TRUE)
 ```
 
 Here a demo how the new function works:
@@ -151,7 +156,7 @@ df <- nLTT::get_nltt_values(c(phylogeny1, phylogeny2), dt = 0.01)
 
 Here we see an averaged nLTT plot, where the original nLTT values are still visible:
 
-```{r}
+```{r fig.width = 7, fig.height = 7}
 qplot(
   t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
@@ -270,7 +275,7 @@ df <- nLTT::get_nltt_values(c(phylogeny1, phylogeny2), dt = 0.01)
 
 Here we see an averaged nLTT plot, where the original nLTT values are still visible:
 
-```{r}
+```{r fig.width = 7, fig.height = 7}
 qplot(
   t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
@@ -281,7 +286,7 @@ qplot(
 Here we see an averaged nLTT plot, with the original nLTT values omitted:
 
 
-```{r}
+```{r fig.width = 7, fig.height = 7}
 qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
 ) +
@@ -301,8 +306,10 @@ phylogeny4 <- rcoal(40)
 phylogeny5 <- rcoal(50)
 phylogeny6 <- rcoal(60)
 phylogeny7 <- rcoal(70)
-phylogenies <- c(phylogeny1, phylogeny2, phylogeny3,
-  phylogeny4, phylogeny5, phylogeny6, phylogeny7)
+phylogenies <- c(
+  phylogeny1, phylogeny2, phylogeny3,
+  phylogeny4, phylogeny5, phylogeny6, phylogeny7
+)
 ```
 
 Here a demo how the new function works:
@@ -315,7 +322,7 @@ knitr::kable(t)
 
 Here we see an averaged nLTT plot, where the original nLTT values are still visible:
 
-```{r}
+```{r fig.width = 7, fig.height = 7}
 qplot(t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
 ) +
@@ -324,7 +331,7 @@ qplot(t, nltt, data = df, geom = "point", ylim = c(0, 1),
 
 Here we see an averaged nLTT plot, with the original nLTT values omitted:
 
-```{r}
+```{r fig.width = 7, fig.height = 7}
 qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
 ) +

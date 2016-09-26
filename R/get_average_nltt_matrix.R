@@ -4,7 +4,7 @@
 #' @param dt The timestep resolution, where 1/dt is the number of points evaluated
 #' @return A matrix of timepoints with the average number of (normalized) lineages through (normalized) time
 #' @examples
-#'   get_average_nltt(c(ape::rcoal(10), ape::rcoal(20)))
+#'   get_average_nltt_matrix(c(ape::rcoal(10), ape::rcoal(20)))
 #'
 #' @author Richel Bilderbeek
 #' @export
@@ -25,24 +25,17 @@ get_average_nltt_matrix <- function(
 #' @export
 get_average_nltt_matrix_impl_1 <- function(phylogenies, dt) {
   if (length(phylogenies) < 1) {
-    stop("get_average_nltt_matrix: ",
-         "there must be at least one phylogeny supplied")
+    stop("there must be at least one phylogeny supplied")
   }
   if (class(phylogenies) != "multiPhylo" && class(phylogenies) != "list") {
-    stop("get_average_nltt_matrix: ",
-      "phylogenies must be of class 'multiPhylo' or 'list', ",
-      "used '", class(phylogenies), "' instead")
+    stop("phylogenies must be of class 'multiPhylo' or 'list'")
   }
   if (!inherits(phylogenies[[1]], "phylo")) {
     # Stop imposed by ape::ltt.plot.coords
-    stop("get_average_nltt_matrix: ",
-      "phylogenies must be of type phylo, ",
-      "instead of '", class(phylogenies[[1]]), "'")
+    stop("phylogenies must be of type phylo")
   }
   if (dt <= 0.0 || dt >= 1.0) {
-    stop("get_average_nltt_matrix: ",
-      "dt must be between (not including) zero and one, ",
-      "dt was ", dt, " instead")
+    stop("dt must be between (not including) zero and one")
   }
 
   sz <- length(phylogenies)

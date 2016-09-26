@@ -9,12 +9,12 @@
 #' @param ... Plotting options
 #' @return Nothing
 #' @examples
-#'   get_average_nltt(c(ape::rcoal(10), ape::rcoal(10)))
-#'   get_average_nltt(c(ape::rcoal(10), ape::rcoal(20)), dt = 0.1)
+#'   nltts_plot(c(ape::rcoal(10), ape::rcoal(10)))
+#'   nltts_plot(c(ape::rcoal(10), ape::rcoal(20)), dt = 0.1)
 #'
 #' @author Richel Bilderbeek
 #' @export
-get_average_nltt <- function(
+nltts_plot <- function(
   phylogenies,
   dt = 0.001,
   plot_nltts = FALSE,
@@ -24,28 +24,24 @@ get_average_nltt <- function(
   ...
 ) {
   if (length(phylogenies) < 1) {
-    stop("get_average_nltt_matrix: ",
-         "there must be at least one phylogeny supplied")
+    stop("there must be at least one phylogeny supplied")
   }
   if (class(phylogenies) != "multiPhylo" && class(phylogenies) != "list") {
-    stop("get_average_nltt_matrix: ",
-      "phylogenies must be of class 'multiPhylo' or 'list', ",
-      "used '", class(phylogenies), "' instead")
+    stop("phylogenies must be of class 'multiPhylo' or 'list'")
   }
   if (!inherits(phylogenies[[1]], "phylo")) {
     # Stop imposed by ape::ltt.plot.coords
-    stop("get_average_nltt_matrix: ",
-      "phylogenies must be of type phylo, ",
-      "instead of '", class(phylogenies[[1]]), "'")
+    stop("phylogenies must be of type phylo")
   }
   if (dt <= 0.0 || dt >= 1.0) {
-    stop("get_average_nltt: ",
-      "dt must be between (not including) zero and one, ",
-      "dt was ", dt, " instead")
+    stop("dt must be between (not including) zero and one")
   }
 
 
-  xy <- nLTT::get_average_nltt_matrix(phylogenies = phylogenies, dt = dt)
+  xy <- nLTT::get_average_nltt_matrix(
+    phylogenies = phylogenies,
+    dt = dt
+  )
 
   # Set the shape of the plot
   if (replot == FALSE) {

@@ -10,7 +10,7 @@ vignette: >
 ---
 
 Calculating the average nLTT plot of multiple phylogenies
-is not a trivial tasks. The function `get_average_nltt`
+is not a trivial tasks. The function `nltts_plot`
 does exactly this.
 
 
