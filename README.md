@@ -22,3 +22,11 @@ Apart from providing functions that calculate the nLTT statistic, the nLTT packa
 - calculate and plot the average Lineages-Through-Time plot for multiple trees
 - estimate the parameters of a model for which the likelihood is known (for comparison), using MCMC (as used in the paper)
 - estimate the parameters of a model for which no likelihood is available, using ABC-SMC (as used in the paper)
+
+## Papers using the nLTT statistic
+McCloskey, Rosemary M., Richard H. Liang, and Art FY Poon. "Reconstructing contact network parameters from viral phylogenies." bioRxiv (2016): 050435. [link](http://biorxiv.org/content/early/2016/04/26/050435.abstract)
+
+Giardina, F., Romero-Severson, E. O., Albert, J., Britton, T., & Leitner, T. K. (2016). Inference of transmission network structure from HIV phylogenetic trees. bioRxiv, 059865. [link](http://biorxiv.org/content/early/2016/06/25/059865)
+
+Janzen, Thijs, Sebastian Höhna, and Rampal S. Etienne. "Approximate Bayesian computation of diversification rates from molecular phylogenies: introducing a new efficient summary statistic, the nLTT." Methods in Ecology and Evolution 6.5 (2015): 566-575. [link](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12350/full)
+
