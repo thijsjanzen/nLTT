@@ -4,3 +4,5 @@
 ^LICENSE$
 ^clean_package.sh$
 ^clean_vignettes.sh$
+^README.md
+^Rhistory

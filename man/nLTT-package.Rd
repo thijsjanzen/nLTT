@@ -10,6 +10,10 @@
 \cr
 \cr
 Updates:\cr
+Version 1.3.1: Added walkthrough vignette, and updated several typos in the manual \cr
+Version 1.3: Version 1.3 adds a lot of extended functionality: firstly, we have added functions to calculate, and plot, the average nLTT across a number of phylogenies. Furthermore, we have added vignettes, and we have added a GitHub repository. On the GitHub repository the vignettes are separately accessible through the wiki. Lastly we have added an extra option to the nLTT functions, where the user can specify if the used trees are rooted, or not. Under de hood, some changes have been made as well, the majority of the code is now conforming to the lintR code conventions, and we have written formalized tests that check correctness of all code (code coverage 100%).
+\cr
+
 Version 1.2.1: updated comments and coding style to adhere to the general coding rules. Backwards compatibility has been favoured for the nLTT stat functions. ABC related functions are no longer backwards compatible (variable names have been changed to adhere to coding style). \cr
 Version 1.2: added an "exact" nLTT function. This function is faster for small trees, and provides an exact measurement of the nLTT function. Comparison between "old" and "exact" estimates show that these are highly correlated, although the "exact" values are slightly higher than the "old" values. The "exact" function should generally be preferred, unless dealing with extremely large trees (500+ tips) in which case the old function is much faster. \cr\cr 
 Version 1.2: updated the example for the ABC_SMC_nLTT function, prior generating and prior density functions are now more realistic
@@ -24,8 +28,8 @@ Version 1.1: Updated references in the manual \cr
 \tabular{ll}{
 Package: \tab nLTT\cr
 Type: \tab Package\cr
-Version: \tab 1.2.1\cr
-Date: \tab 2016-04-25\cr
+Version: \tab 1.3.1 \cr
+Date: \tab 2016-10-06\cr
 License: GPL 2.0
 }
 
