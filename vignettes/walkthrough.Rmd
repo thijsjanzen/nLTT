@@ -12,7 +12,7 @@ vignette: >
 knitr::opts_chunk$set(fig.width=7, fig.height = 7)
 ```
 ## nLTT statistic & nLTT plot
-In order to provide some worked examples, we first generate two random phylogenetic trees, with similar parameter settings. Using the [TESS package](https://cran.r-project.org/web/packages/TESS/index.html) we simulate one tree with lambda = 0.4, and one tree with lambda = 0.25, both for 10 million years.
+In order to provide some worked examples, we first generate two random phylogenetic trees, with similar parameter settings. Using the [TESS package](https://CRAN.R-project.org/package=TESS) we simulate one tree with lambda = 0.4, and one tree with lambda = 0.25, both for 10 million years.
 
 ```{r}
     library(nLTT)
