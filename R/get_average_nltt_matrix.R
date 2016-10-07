@@ -11,19 +11,6 @@
 get_average_nltt_matrix <- function(
   phylogenies,
   dt = 0.001) {
-  nLTT::get_average_nltt_matrix_impl_1(phylogenies = phylogenies, dt = dt)
-}
-
-
-
-#' Internal function. First implementation of get_average_nltt_matrix.
-#'
-#' @param phylogenies the phylogenies, supplied as either a list or a multiPhylo object, where the phylogenies are of type 'phylo'
-#' @param dt The timestep resolution, where 1/dt is the number of points evaluated
-#' @return A matrix of timepoints with the average number of (normalized) lineages through (normalized) time
-#' @author Richel Bilderbeek
-#' @export
-get_average_nltt_matrix_impl_1 <- function(phylogenies, dt) {
   if (length(phylogenies) < 1) {
     stop("there must be at least one phylogeny supplied")
   }
@@ -61,19 +48,5 @@ get_average_nltt_matrix_impl_1 <- function(phylogenies, dt) {
   }
   xy <- (xy / sz)
 
-  xy
-}
-
-#' Internal function. Second implementation of get_average_nltt_matrix. A stub now.
-#'
-#' @param phylogenies the phylogenies, supplied as either a list or a multiPhylo object, where the phylogenies are of type 'phylo'
-#' @param dt The timestep resolution, where 1/dt is the number of points evaluated
-#' @return A matrix of timepoints with the average number of (normalized) lineages through (normalized) time
-#' @author Richel Bilderbeek
-#' @export
-get_average_nltt_matrix_impl_2 <- function(phylogenies, dt) {
-  xy <- nLTT::get_average_nltt_matrix_impl_1(
-    phylogenies = phylogenies, dt = dt
-  )
   xy
 }
