@@ -1,6 +1,7 @@
 # ---- include = FALSE----------------------------------------------------
 # Set high warning levels
 options(warn = 2)
+library(nLTT)
 
 # ------------------------------------------------------------------------
 newick1 <- "((A:1,B:1):2,C:3);"
@@ -186,3 +187,4 @@ ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
 ) + ggplot2::stat_summary(
   fun.data = "mean_cl_boot", color = "red", geom = "smooth"
 )
+

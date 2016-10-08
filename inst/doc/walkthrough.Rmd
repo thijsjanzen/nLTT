@@ -9,18 +9,18 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.width=7, fig.height = 7)
+knitr::opts_chunk$set(fig.width = 7, fig.height = 7)
 ```
 ## nLTT statistic & nLTT plot
 In order to provide some worked examples, we first generate two random phylogenetic trees, with similar parameter settings. Using the [TESS package](https://CRAN.R-project.org/package=TESS) we simulate one tree with lambda = 0.4, and one tree with lambda = 0.25, both for 10 million years.
 
 ```{r}
-    library(nLTT)
+    library(nLTT) #nolint
     set.seed(42)
     tree1 <- TESS::tess.sim.age(n = 1, age = 10, lambda = 0.4, mu = 0)[[1]]
     tree2 <- TESS::tess.sim.age(n = 1, age = 10, lambda = 0.25, mu = 0)[[1]]
-    par(mfrow=c(1, 2))
-    par(mar=c(2, 2, 2, 2))
+    par(mfrow = c(1, 2))
+    par(mar = c(2, 2, 2, 2))
     plot(tree1) 
     plot(tree2)
 ```
@@ -36,8 +36,8 @@ This becomes even more obvious when we plot their normalized Lineage Through Tim
 
 Furthermore, we can now calculate the difference between the two nLTT lines using nLTTstat, and it's more precise counterpart nLTTstat_exact:
 ```{r}
-nLTTstat(tree1, tree2)
-nLTTstat_exact(tree1, tree2)
+nLTTstat(tree1, tree2) #nolint
+nLTTstat_exact(tree1, tree2) #nolint
 ```
 
 Which yields almost identical results. The function nLTTstat constructs two approximate step functions, from which it calculates the difference and integrates this difference from 0 to 1. The function nLTTstat_exact iterates through all the (normalized) branching times and for each time point calculates the difference and multiplies it with the time since the previous timepoint (e.g. manual integration). Typically results for nLTTstat and nLTTstat_exact are highly similar. For smaller trees nLTTstat_exact is preferred, as it has higher accuracy, and is faster. For extremely large trees (+500 tips) nLTTstat is faster, and the sacrifice in accuracy is minimal.
@@ -54,8 +54,10 @@ trees2 <- TESS::tess.sim.age(n = 100, age = 10, lambda=0.25, mu = 0)
 Using the function nltts_plot we can now plot the normalized Lineages Through Time for all replicates, and on top of that plot the average normalized Lineages Through Time. The replicates are all plotted in grey, and the average lines are plotted in red and blue respectively:
 ```{r}
 par(mfrow=c(1,2))
-nltts_plot(trees1, dt = 0.001, plot_nltts = TRUE, col = "red", main = "lambda = 0.4")
-nltts_plot(trees2, dt = 0.001, plot_nltts = TRUE, col = "blue", main = "lambda = 0.25")
+nltts_plot(trees1, dt = 0.001, plot_nltts = TRUE, 
+           col = "red", main = "lambda = 0.4")
+nltts_plot(trees2, dt = 0.001, plot_nltts = TRUE, 
+           col = "blue", main = "lambda = 0.25")
 ```
 
 Instead of plotting the average normalized Lineages Through Time, we can also calculate them, and store them in a matrix:
@@ -67,10 +69,11 @@ This allows us to do further analysis, and also allows us to plot the two averag
 ```{r}
 m1 <- get_average_nltt_matrix(trees1, dt = 0.001)
 m2 <- get_average_nltt_matrix(trees2, dt = 0.001)
-plot(m1, type="s", col = "red", lwd = 2, xlim = c(0,1), ylim = c(0, 1), 
+plot(m1, type = "s", col = "red", lwd = 2, xlim = c(0, 1), ylim = c(0, 1), 
      xlab = "Normalized Time", ylab = "Normalized number of lineages")
 lines(m2, type = "s", col = "blue", lwd = 2)
-legend("topleft", c("trees1", "trees2"), col = c("red", "blue"), lty = 1, lwd = 2)
+legend("topleft", c("trees1", "trees2"), col = c("red", "blue"), 
+       lty = 1, lwd = 2)
 ```
 
 ## Using nLTT within an ABC-SMC framework
@@ -97,7 +100,7 @@ As simulation function we make use of the TESS package again, this time simulati
   }
   
   statwrapper <- function(tree1) {
-    return(nLTTstat_exact(tree1, obs, "abs")) 
+    return(nLTTstat_exact(tree1, obs, "abs"))  #nolint
   }
 ```
 As prior generating function, we choose an exponential distribution with mean 0.1. Similarly, as prior density function we choose the same distribution. Lastly, we define a function that takes a tree as argument, and compares it with the observed tree. Indeed this means that we will have to define our observed tree as a starting point:
@@ -133,7 +136,7 @@ LL_B <- function(params, phy) {
 We can now first, to get a general idea, use maximum likelihood in order to find the value of lambda for which the likelihood is maximized:
 ```{r}
   fun <- function(x) {
-    return(-1 * LL_B(x,obs))
+    return(-1 * LL_B(x, obs))
   }
   ML <- stats::optimize(f = fun, interval = c(0, 1))
   ML
@@ -143,7 +146,7 @@ We can now first, to get a general idea, use maximum likelihood in order to find
   legend("topright", c("ABC-SMC", "ML", "True"),
          pch = c(15, NA, NA),
          lty = c(NA, 2, 2), 
-         col = c("grey", "green", "blue"), lwd=2)
+         col = c("grey", "green", "blue"), lwd = 2)
 ```
 
 The maximum likelihood method shows that the actual maximum of the tree is a bit lower than the value that we simulated with (0.42), which in turn is exactly where the highest posterior density of our ABC method is! Awesome isn't it?
@@ -163,19 +166,16 @@ plot(B.mcmc)
 
 When we compare estimates obtained using the nLTT statistic within an ABC framework, and estimates obtained using the traditional likelihood within an MCMC framework, we find that both methods perform on par. Both methods recover the parameter value with highest likelihood, which in turn is not necessarily the true value. 
 ```{r}
-  par(mfrow=c(1, 2))
-  hist(A, breaks = seq(0, 1, by = 0.05), col = "grey", main = "Lambda, ABC", xlab = "")
+  par(mfrow = c(1, 2))
+  hist(A, breaks = seq(0, 1, by = 0.05), col = "grey", 
+       main = "Lambda, ABC", xlab = "")
   abline(v = 0.5, lty = 2, col = "blue", lwd = 2)
   abline(v = ML$minimum, lty = 2, col = "green", lwd = 2)
   legend("right", c("ML", "True"),
          lty = c(2, 2), 
          col = c("green", "blue"), lwd=2)
-  hist(B, breaks = seq(0, 1, by = 0.05), col = "grey", main = "Lambda, MCMC", xlab="")
+  hist(B, breaks = seq(0, 1, by = 0.05), col = "grey", 
+       main = "Lambda, MCMC", xlab = "")
   abline(v = 0.5, lty = 2, col = "blue", lwd = 2)
   abline(v = ML$minimum, lty = 2, col = "green", lwd = 2)
-  
-  
 ```
-
-
-

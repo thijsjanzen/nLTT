@@ -24,3 +24,4 @@ print(nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = FALSE))
 
 # ------------------------------------------------------------------------
 print(nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = TRUE))
+
