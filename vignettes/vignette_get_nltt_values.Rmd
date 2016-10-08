@@ -9,6 +9,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include = FALSE}
+# Set high warning levels
+options(warn = 2)
+```
+
 Calculating the average nLTT plot of multiple phylogenies
 is not a trivial tasks. 
 
@@ -17,18 +22,6 @@ collects the nLTT values of a collection of
 phylogenies as tidy data.
 
 This allows for a good interplay with ggplot2.
-
-## Examples
-
-For all examples, the following R code must be run:
-
-```{r message = FALSE}
-library(ape)
-library(Hmisc)
-library(nLTT) # nolint
-library(ggplot2)
-library(testit)
-```
 
 ### Example: Easy trees
 
@@ -45,14 +38,14 @@ phylogenies <- c(phylogeny1, phylogeny2)
 There are very similar. `phylogeny1` has short tips:
 
 ```{r}
-plot(phylogeny1)
-add.scale.bar() #nolint
+ape::plot.phylo(phylogeny1)
+ape::add.scale.bar() #nolint
 ```
 
 This can be observed in the nLTT plot:
 
 ```{r}
-nltt_plot(phylogeny1, ylim = c(0, 1))
+nLTT::nltt_plot(phylogeny1, ylim = c(0, 1))
 ```
 
 As a collection of timepoints:
@@ -66,7 +59,7 @@ Plotting those timepoints:
 
 ```{r}
 df <- as.data.frame(nLTT::get_phylogeny_nltt_matrix(phylogeny1))
-qplot(
+ggplot2::qplot(
   time, N, data = df, geom = "step", ylim = c(0, 1), direction = "vh",
   main = "NLTT plot of phylogeny 1"
 )
@@ -76,14 +69,14 @@ qplot(
 `phylogeny2` has longer tips:
 
 ```{r}
-plot(phylogeny2)
-add.scale.bar() #nolint
+ape::plot.phylo(phylogeny2)
+ape::add.scale.bar() #nolint
 ```
 
 Also this can be observed in the nLTT plot:
 
 ```{r}
-nltt_plot(phylogeny2, ylim = c(0, 1))
+nLTT::nltt_plot(phylogeny2, ylim = c(0, 1))
 ```
 
 As a collection of timepoints:
@@ -97,7 +90,7 @@ Plotting those timepoints:
 
 ```{r}
 df <- as.data.frame(nLTT::get_phylogeny_nltt_matrix(phylogeny2))
-qplot(
+ggplot2::qplot(
   time, N, data = df, geom = "step", ylim = c(0, 1), direction = "vh",
   main = "NLTT plot of phylogeny 2"
 )
@@ -157,20 +150,20 @@ df <- nLTT::get_nltt_values(c(phylogeny1, phylogeny2), dt = 0.01)
 Here we see an averaged nLTT plot, where the original nLTT values are still visible:
 
 ```{r fig.width = 7, fig.height = 7}
-qplot(
+ggplot2::qplot(
   t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
 ) +
-  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
 ```
 
 Here we see an averaged nLTT plot, with the original nLTT values omitted:
 
 ```{r}
-qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
+ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
 ) +
-  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
 ```
 
 
@@ -191,14 +184,14 @@ phylogenies <- c(phylogeny1, phylogeny2)
 There are different. `phylogeny1` is relatively simple, with two branching events happening at the same time:
 
 ```{r}
-plot(phylogeny1)
-add.scale.bar() #nolint
+ape::plot.phylo(phylogeny1)
+ape::add.scale.bar() #nolint
 ```
 
 This can be observed in the nLTT plot:
 
 ```{r}
-nltt_plot(phylogeny1, ylim = c(0, 1))
+nLTT::nltt_plot(phylogeny1, ylim = c(0, 1))
 ```
 
 As a collection of timepoints:
@@ -211,14 +204,14 @@ knitr::kable(t)
 `phylogeny2` is more elaborate:
 
 ```{r}
-plot(phylogeny2)
-add.scale.bar() #nolint
+ape::plot.phylo(phylogeny2)
+ape::add.scale.bar() #nolint
 ```
 
 Also this can be observed in the nLTT plot:
 
 ```{r}
-nltt_plot(phylogeny2, ylim = c(0, 1))
+nLTT::nltt_plot(phylogeny2, ylim = c(0, 1))
 ```
 
 As a collection of timepoints:
@@ -276,21 +269,21 @@ df <- nLTT::get_nltt_values(c(phylogeny1, phylogeny2), dt = 0.01)
 Here we see an averaged nLTT plot, where the original nLTT values are still visible:
 
 ```{r fig.width = 7, fig.height = 7}
-qplot(
+ggplot2::qplot(
   t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
 ) +
-  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
 ```
 
 Here we see an averaged nLTT plot, with the original nLTT values omitted:
 
 
 ```{r fig.width = 7, fig.height = 7}
-qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
+ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
 ) +
-  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
 ```
 
 ### Example: Five random trees
@@ -299,13 +292,13 @@ Create three random trees:
 
 ```{r}
 set.seed(42)
-phylogeny1 <- rcoal(10)
-phylogeny2 <- rcoal(20)
-phylogeny3 <- rcoal(30)
-phylogeny4 <- rcoal(40)
-phylogeny5 <- rcoal(50)
-phylogeny6 <- rcoal(60)
-phylogeny7 <- rcoal(70)
+phylogeny1 <- ape::rcoal(10)
+phylogeny2 <- ape::rcoal(20)
+phylogeny3 <- ape::rcoal(30)
+phylogeny4 <- ape::rcoal(40)
+phylogeny5 <- ape::rcoal(50)
+phylogeny6 <- ape::rcoal(60)
+phylogeny7 <- ape::rcoal(70)
 phylogenies <- c(
   phylogeny1, phylogeny2, phylogeny3,
   phylogeny4, phylogeny5, phylogeny6, phylogeny7
@@ -323,17 +316,17 @@ knitr::kable(t)
 Here we see an averaged nLTT plot, where the original nLTT values are still visible:
 
 ```{r fig.width = 7, fig.height = 7}
-qplot(t, nltt, data = df, geom = "point", ylim = c(0, 1),
+ggplot2::qplot(t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
 ) +
-  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
 ```
 
 Here we see an averaged nLTT plot, with the original nLTT values omitted:
 
 ```{r fig.width = 7, fig.height = 7}
-qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
+ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
 ) +
-  stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
 ```
