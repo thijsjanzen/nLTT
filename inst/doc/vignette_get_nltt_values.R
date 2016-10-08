@@ -75,14 +75,16 @@ df <- nLTT::get_nltt_values(c(phylogeny1, phylogeny2), dt = 0.01)
 ggplot2::qplot(
   t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 
 # ------------------------------------------------------------------------
 ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 
 # ------------------------------------------------------------------------
 newick1 <- "((A:1,B:1):1,(C:1,D:1):1);"
@@ -142,14 +144,16 @@ df <- nLTT::get_nltt_values(c(phylogeny1, phylogeny2), dt = 0.01)
 ggplot2::qplot(
   t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 
 # ----fig.width = 7, fig.height = 7---------------------------------------
 ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 
 # ------------------------------------------------------------------------
 set.seed(42)
@@ -172,11 +176,13 @@ knitr::kable(t)
 # ----fig.width = 7, fig.height = 7---------------------------------------
 ggplot2::qplot(t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 
 # ----fig.width = 7, fig.height = 7---------------------------------------
 ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)

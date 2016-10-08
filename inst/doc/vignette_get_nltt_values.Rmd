@@ -153,8 +153,9 @@ Here we see an averaged nLTT plot, where the original nLTT values are still visi
 ggplot2::qplot(
   t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 ```
 
 Here we see an averaged nLTT plot, with the original nLTT values omitted:
@@ -162,8 +163,9 @@ Here we see an averaged nLTT plot, with the original nLTT values omitted:
 ```{r}
 ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 ```
 
 
@@ -272,8 +274,9 @@ Here we see an averaged nLTT plot, where the original nLTT values are still visi
 ggplot2::qplot(
   t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 ```
 
 Here we see an averaged nLTT plot, with the original nLTT values omitted:
@@ -282,8 +285,9 @@ Here we see an averaged nLTT plot, with the original nLTT values omitted:
 ```{r fig.width = 7, fig.height = 7}
 ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 ```
 
 ### Example: Five random trees
@@ -318,8 +322,9 @@ Here we see an averaged nLTT plot, where the original nLTT values are still visi
 ```{r fig.width = 7, fig.height = 7}
 ggplot2::qplot(t, nltt, data = df, geom = "point", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies", color = id, size = I(0.1)
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 ```
 
 Here we see an averaged nLTT plot, with the original nLTT values omitted:
@@ -327,6 +332,7 @@ Here we see an averaged nLTT plot, with the original nLTT values omitted:
 ```{r fig.width = 7, fig.height = 7}
 ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
   main = "Average nLTT plot of phylogenies"
-) +
-  ggplot2::stat_summary(fun.data = "mean_cl_boot", color = "red", geom = "smooth")
+) + ggplot2::stat_summary(
+  fun.data = "mean_cl_boot", color = "red", geom = "smooth"
+)
 ```
