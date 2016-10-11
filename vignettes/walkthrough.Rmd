@@ -136,7 +136,7 @@ LL_B <- function(params, phy) {
 We can now first, to get a general idea, use maximum likelihood in order to find the value of lambda for which the likelihood is maximized:
 ```{r}
   fun <- function(x) {
-    return(-1 * LL_B(x, obs))
+    return(-1 * LL_B(x, obs)) # nolint
   }
   ML <- stats::optimize(f = fun, interval = c(0, 1))
   ML

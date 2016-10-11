@@ -193,7 +193,7 @@ obs &lt;-<span class="st"> </span><span class="kw">treesim</span>(<span class="k
 }</code></pre></div>
 <p>We can now first, to get a general idea, use maximum likelihood in order to find the value of lambda for which the likelihood is maximized:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  fun &lt;-<span class="st"> </span>function(x) {
-    <span class="kw">return</span>(-<span class="dv">1</span> *<span class="st"> </span><span class="kw">LL_B</span>(x, obs))
+    <span class="kw">return</span>(-<span class="dv">1</span> *<span class="st"> </span><span class="kw">LL_B</span>(x, obs)) <span class="co"># nolint</span>
   }
   ML &lt;-<span class="st"> </span>stats::<span class="kw">optimize</span>(<span class="dt">f =</span> fun, <span class="dt">interval =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))
   ML</code></pre></div>
