@@ -48,12 +48,12 @@ Sometimes, it might be more interesting to look at the average nLTT plot across 
 Let us first generate 100 random trees:
 ```{r}
 set.seed(42)
-trees1 <- TESS::tess.sim.age(n = 100, age = 10, lambda=0.4, mu = 0)
-trees2 <- TESS::tess.sim.age(n = 100, age = 10, lambda=0.25, mu = 0)
+trees1 <- TESS::tess.sim.age(n = 100, age = 10, lambda = 0.4, mu = 0)
+trees2 <- TESS::tess.sim.age(n = 100, age = 10, lambda = 0.25, mu = 0)
 ```
 Using the function nltts_plot we can now plot the normalized Lineages Through Time for all replicates, and on top of that plot the average normalized Lineages Through Time. The replicates are all plotted in grey, and the average lines are plotted in red and blue respectively:
 ```{r}
-par(mfrow=c(1,2))
+par(mfrow = c(1,2))
 nltts_plot(trees1, dt = 0.001, plot_nltts = TRUE, 
            col = "red", main = "lambda = 0.4")
 nltts_plot(trees2, dt = 0.001, plot_nltts = TRUE, 

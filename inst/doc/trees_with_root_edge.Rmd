@@ -8,6 +8,10 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+```{r, include = FALSE}
+# Set high warning levels
+options(warn = 2)
+```
 
 This document intends to display a feature of the nLTT package:
 if a stem is added to a phylogeny, the begin of that stem

@@ -22,11 +22,11 @@ nLTTstat_exact(tree1, tree2) #nolint
 
 # ------------------------------------------------------------------------
 set.seed(42)
-trees1 <- TESS::tess.sim.age(n = 100, age = 10, lambda=0.4, mu = 0)
-trees2 <- TESS::tess.sim.age(n = 100, age = 10, lambda=0.25, mu = 0)
+trees1 <- TESS::tess.sim.age(n = 100, age = 10, lambda = 0.4, mu = 0)
+trees2 <- TESS::tess.sim.age(n = 100, age = 10, lambda = 0.25, mu = 0)
 
 # ------------------------------------------------------------------------
-par(mfrow=c(1,2))
+par(mfrow = c(1,2))
 nltts_plot(trees1, dt = 0.001, plot_nltts = TRUE,
            col = "red", main = "lambda = 0.4")
 nltts_plot(trees2, dt = 0.001, plot_nltts = TRUE,
