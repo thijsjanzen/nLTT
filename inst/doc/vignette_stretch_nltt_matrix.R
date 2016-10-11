@@ -88,4 +88,3 @@ stretch_matrix <- nLTT::stretch_nltt_matrix(
 )
 points(nltt, pch = 19, col = "red")
 points(stretch_matrix, pch = 19, col = "blue")
-

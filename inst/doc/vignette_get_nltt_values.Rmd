@@ -12,7 +12,7 @@ vignette: >
 ```{r, include = FALSE}
 # Set high warning levels
 options(warn = 2)
-library(nLTT)
+library(nLTT) #nolint
 ```
 
 Calculating the average nLTT plot of multiple phylogenies
