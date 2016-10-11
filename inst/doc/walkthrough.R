@@ -26,7 +26,7 @@ trees1 <- TESS::tess.sim.age(n = 100, age = 10, lambda = 0.4, mu = 0)
 trees2 <- TESS::tess.sim.age(n = 100, age = 10, lambda = 0.25, mu = 0)
 
 # ------------------------------------------------------------------------
-par(mfrow = c(1,2))
+par(mfrow = c(1, 2))
 nltts_plot(trees1, dt = 0.001, plot_nltts = TRUE,
            col = "red", main = "lambda = 0.4")
 nltts_plot(trees2, dt = 0.001, plot_nltts = TRUE,
@@ -86,7 +86,7 @@ LL_B <- function(params, phy) {
     lnl <- TESS::tess.likelihood(ape::branching.times(phy),
                                  lambda = params[1], mu = 0.0,
                                  samplingProbability = 1, log = TRUE)
-    prior1  <- log(prior_dens(params))
+    prior1  <- log(prior_dens(params)) # nolint
     return(lnl + prior1)
 }
 
@@ -122,7 +122,7 @@ plot(B.mcmc)
   abline(v = ML$minimum, lty = 2, col = "green", lwd = 2)
   legend("right", c("ML", "True"),
          lty = c(2, 2),
-         col = c("green", "blue"), lwd=2)
+         col = c("green", "blue"), lwd = 2)
   hist(B, breaks = seq(0, 1, by = 0.05), col = "grey",
        main = "Lambda, MCMC", xlab = "")
   abline(v = 0.5, lty = 2, col = "blue", lwd = 2)
