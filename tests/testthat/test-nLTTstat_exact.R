@@ -2,6 +2,7 @@ context("nLTTstat_exact")
 
 test_that("nLTTstat_exact use", {
 
+  set.seed(42)
   p <- ape::rcoal(10)
   q <- ape::rcoal(10)
 
@@ -14,8 +15,9 @@ test_that("nLTTstat_exact use", {
     tolerance = 0.0001
   )
 
-  expect_true(
-    0.0 < nLTTstat_exact(tree1 = p, tree2 = q, distance_method = "abs"), # nolint nLTTstat_exact should be all lowercase, left in for backwards compatibility
+  expect_equal(
+    0.1108467, nLTTstat_exact(tree1 = p, tree2 = q, distance_method = "abs"), # nolint nLTTstat_exact should be all lowercase, left in for backwards compatibility
+    tolerance = 0.0001
   )
 
   expect_equal(

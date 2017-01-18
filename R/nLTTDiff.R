@@ -1,4 +1,5 @@
-#' Calculates the exact, difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
+#' Calculates the exact, difference between the lineage through time
+#' curves of tree1 & tree2 (normalized in time and for the number of lineages)
 #' @author Thijs Janzen
 #' @param tree1 (phylo) First phylogenetic tree
 #' @param tree2 (phylo) Second phylogenetic tree
