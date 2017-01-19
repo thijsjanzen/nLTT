@@ -15,7 +15,7 @@ test_that("nLTTstat use", {
     tolerance = 0.0001
   )
 
-  expect_true(
+  expect_equal(
     0.1380347, nLTTstat(tree1 = p, tree2 = q, distance_method = "abs"), # nolint nLTTstat should be all lowercase, left in for backwards compatibility
     tolerance = 0.0001
   )
