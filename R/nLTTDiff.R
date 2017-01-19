@@ -53,8 +53,24 @@ nltt_diff_exact <- function(
   testit::assert(all(b_times2_N >= 0 & b_times2_N <= 1.0))
   testit::assert(all(lineages2_N >= 0 & lineages2_N <= 1.0))
 
+  return (nltt_diff_exact_from_brts(b_times_N, b_times2_N))
+}
 
+#' Calculates the exact difference between the lineage through time
+#' curves of two trees' branching times (normalized in time and
+#' for the number of lineages)
+#' @author Thijs Janzen
+#' @param b_times_N branching times
+#' @param b_times2_N branching times
+#' @param distance_method (string) absolute, or squared distance?
+#' @param ignore_stem (logical) Should the phylogeny its stem be ignored?
+#' @return (scalar) normalized Lineage-Through-Time difference between tree1 & tree2
+#' @export
 
+nltt_diff_exact_from_brts <- function(
+  b_times_N,
+  b_times2_N
+) {
   #make a list of all branching times, and remove duplicates
   all_b_times <- unique(sort(c(b_times_N, b_times2_N)))
   diff <- 0
@@ -80,7 +96,7 @@ nltt_diff_exact <- function(
         diff <- diff + dt * ( lins1 - lins2) * ( lins1 - lins2)
       }
   }
-  return ( diff)
+  return (diff)
 }
 
 #' Calculates the exact difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
