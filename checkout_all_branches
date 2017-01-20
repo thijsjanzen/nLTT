@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Script to checkout all the branches
+git checkout -b develop origin/develop

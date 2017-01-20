@@ -20,25 +20,18 @@ nltt_diff_exact <- function(
     b_times <- c(b_times[1] - stem_length1, b_times)
   }
 
-  # the number of lineages per branching time
-  first_n_lineages1 <- ifelse(ignore_stem, 2, 1)
-  n_taxa1 <- length(tree1$tip.label)
-  lineages <- c(first_n_lineages1:n_taxa1, n_taxa1)
-  # Each branching time must have a number of lineages to accompany it
-  testit::assert(length(b_times) == length(lineages))
-
-  b_times_N <- 1 - b_times / min(b_times) #normalize branching times
-  lineages_N <- lineages / max(lineages)  #normalize lineages
-  # Normalizations must have worked
-  testit::assert(all(b_times_N >= 0 & b_times_N <= 1.0))
-  testit::assert(all(lineages_N >= 0 & lineages_N <= 1.0))
-
   # Same for other tree
   b_times2 <- c(-1 * rev(sort(ape::branching.times(tree2))), 0)
   if (!ignore_stem) {
     stem_length2 <- ifelse(is.null(tree2$root.edge), 0.0, tree2$root.edge)
     b_times2 <- c(b_times2[1] - stem_length2, b_times2)
   }
+  # the number of lineages per branching time
+  first_n_lineages1 <- ifelse(ignore_stem, 2, 1)
+  n_taxa1 <- length(tree1$tip.label)
+  lineages <- c(first_n_lineages1:n_taxa1, n_taxa1)
+  # Each branching time must have a number of lineages to accompany it
+  testit::assert(length(b_times) == length(lineages))
 
   # the number of lineages per branching time
   first_n_lineages2 <- ifelse(ignore_stem, 2, 1)
@@ -47,13 +40,48 @@ nltt_diff_exact <- function(
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times2) == length(lineages2))
 
+  return (
+    nltt_diff_exact_brts(
+      b_times = b_times,
+      lineages = lineages,
+      b_times2 = b_times2,
+      lineages2 = lineages2,
+      distance_method = distance_method
+    )
+  )
+}
+
+#' Calculates the exact difference between the nLTT
+#' curves of the branching times
+#' @author Thijs Janzen
+#' @param b_times branching times of the first phylogeny
+#' @param lineages the number of lineages, usually one to the number of lineages
+#' @param b_times_2 branching times of the first phylogeny
+#' @param lineages_2 the number of lineages, usually one to the number of lineages
+#' @param distance_method (string) absolute, or squared distance?
+#' @export
+nltt_diff_exact_brts <- function(
+  b_times,
+  lineages,
+  b_times2,
+  lineages2,
+  distance_method)
+{
+  # Each branching time must have a number of lineages to accompany it
+  testit::assert(length(b_times) == length(lineages))
+  testit::assert(length(b_times2) == length(lineages2))
+
+  b_times_N <- 1 - b_times / min(b_times) #normalize branching times
+  lineages_N <- lineages / max(lineages)  #normalize lineages
+  # Normalizations must have worked
+  testit::assert(all(b_times_N >= 0 & b_times_N <= 1.0))
+  testit::assert(all(lineages_N >= 0 & lineages_N <= 1.0))
+
   b_times2_N <- 1 - b_times2 / min(b_times2) #normalize branching times
   lineages2_N <- lineages2 / max(lineages2)  #normalize lineages
   # Normalizations must have worked
   testit::assert(all(b_times2_N >= 0 & b_times2_N <= 1.0))
   testit::assert(all(lineages2_N >= 0 & lineages2_N <= 1.0))
-
-
 
   #make a list of all branching times, and remove duplicates
   all_b_times <- unique(sort(c(b_times_N, b_times2_N)))
