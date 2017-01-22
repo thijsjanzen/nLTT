@@ -56,8 +56,8 @@ nltt_diff_exact <- function(
 #' @author Thijs Janzen
 #' @param b_times branching times of the first phylogeny
 #' @param lineages the number of lineages, usually one to the number of lineages
-#' @param b_times_2 branching times of the first phylogeny
-#' @param lineages_2 the number of lineages, usually one to the number of lineages
+#' @param b_times2 branching times of the first phylogeny
+#' @param lineages2 the number of lineages, usually one to the number of lineages
 #' @param distance_method (string) absolute, or squared distance?
 #' @export
 nltt_diff_exact_brts <- function(
