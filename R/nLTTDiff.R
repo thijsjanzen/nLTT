@@ -18,7 +18,7 @@ nltt_diff_exact <- function(
   if (!ignore_stem) {
     stem_length1 <- ifelse(is.null(tree1$root.edge), 0.0, tree1$root.edge)
     b_times <- c(b_times[1] - stem_length1, b_times)
-    testit::assert(all(b_times >= 0.0))
+    testit::assert(all(b_times <= 0.0))
   }
 
   # Same for other tree
@@ -26,7 +26,7 @@ nltt_diff_exact <- function(
   if (!ignore_stem) {
     stem_length2 <- ifelse(is.null(tree2$root.edge), 0.0, tree2$root.edge)
     b_times2 <- c(b_times2[1] - stem_length2, b_times2)
-    testit::assert(all(b_times2 >= 0.0))
+    testit::assert(all(b_times2 <= 0.0))
   }
   # the number of lineages per branching time
   first_n_lineages1 <- ifelse(ignore_stem, 2, 1)
@@ -56,7 +56,7 @@ nltt_diff_exact <- function(
 #' Calculates the exact difference between the nLTT
 #' curves of the branching times
 #' @author Thijs Janzen
-#' @param b_times branching times of the first phylogeny
+#' @param b_times branching times of the first phylogeny,
 #' @param lineages the number of lineages, usually one to the number of lineages
 #' @param b_times2 branching times of the first phylogeny
 #' @param lineages2 the number of lineages, usually one to the number of lineages
@@ -72,9 +72,9 @@ nltt_diff_exact_brts <- function(
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times) == length(lineages))
   testit::assert(length(b_times2) == length(lineages2))
-  testit::assert(all(b_times >= 0.0))
+  testit::assert(all(b_times <= 0.0))
   testit::assert(all(lineages >= 0.0))
-  testit::assert(all(b_times2 >= 0.0))
+  testit::assert(all(b_times2 <= 0.0))
   testit::assert(all(lineages2 >= 0.0))
 
 
