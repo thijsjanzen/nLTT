@@ -14,10 +14,11 @@ nltt_diff_exact <- function(
   ignore_stem = TRUE
 ) {
   #branching times of tree1, including the present time (0)
-  b_times <- c(-1 * rev(sort(ape::branching.times(tree1))), 0)
+  b_times <- c(-1.0 * rev(sort(ape::branching.times(tree1))), 0)
   if (!ignore_stem) {
     stem_length1 <- ifelse(is.null(tree1$root.edge), 0.0, tree1$root.edge)
     b_times <- c(b_times[1] - stem_length1, b_times)
+    testit::assert(all(b_times >= 0.0))
   }
 
   # Same for other tree
@@ -25,6 +26,7 @@ nltt_diff_exact <- function(
   if (!ignore_stem) {
     stem_length2 <- ifelse(is.null(tree2$root.edge), 0.0, tree2$root.edge)
     b_times2 <- c(b_times2[1] - stem_length2, b_times2)
+    testit::assert(all(b_times2 >= 0.0))
   }
   # the number of lineages per branching time
   first_n_lineages1 <- ifelse(ignore_stem, 2, 1)
@@ -70,17 +72,17 @@ nltt_diff_exact_brts <- function(
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times) == length(lineages))
   testit::assert(length(b_times2) == length(lineages2))
-  testit::assert(all(b_times >= 0))
-  testit::assert(all(lineages >= 0))
-  testit::assert(all(b_times2 >= 0))
-  testit::assert(all(lineages2 >= 0))
+  testit::assert(all(b_times >= 0.0))
+  testit::assert(all(lineages >= 0.0))
+  testit::assert(all(b_times2 >= 0.0))
+  testit::assert(all(lineages2 >= 0.0))
 
 
-  b_times_N <- 1 - b_times / min(b_times) #normalize branching times
+  b_times_N <- 1.0 - b_times / min(b_times) #normalize branching times
   lineages_N <- lineages / max(lineages)  #normalize lineages
   # Normalizations must have worked
-  testit::assert(all(b_times_N >= 0 & b_times_N <= 1.0))
-  testit::assert(all(lineages_N >= 0 & lineages_N <= 1.0))
+  testit::assert(all(b_times_N >= 0.0 & b_times_N <= 1.0))
+  testit::assert(all(lineages_N >= 0.0 & lineages_N <= 1.0))
 
   b_times2_N <- 1 - b_times2 / min(b_times2) #normalize branching times
   lineages2_N <- lineages2 / max(lineages2)  #normalize lineages
@@ -115,14 +117,14 @@ nltt_diff_exact_norm_brts <- function(
 {
   testit::assert(length(b_times_N) == length(lineages_N))
   testit::assert(length(b_times2_N) == length(lineages2_N))
-  testit::assert(all(b_times_N >= 0 & b_times_N <= 1.0))
-  testit::assert(all(lineages_N >= 0 & lineages_N <= 1.0))
-  testit::assert(all(b_times2_N >= 0 & b_times2_N <= 1.0))
-  testit::assert(all(lineages2_N >= 0 & lineages2_N <= 1.0))
+  testit::assert(all(b_times_N >= 0.0 & b_times_N <= 1.0))
+  testit::assert(all(lineages_N >= 0.0 & lineages_N <= 1.0))
+  testit::assert(all(b_times2_N >= 0.0 & b_times2_N <= 1.0))
+  testit::assert(all(lineages2_N >= 0.0 & lineages2_N <= 1.0))
 
   #make a list of all branching times, and remove duplicates
   all_b_times <- unique(sort(c(b_times_N, b_times2_N)))
-  diff <- 0
+  diff <- 0.0
   #iterate through all branching times
   for (k in 2:length(all_b_times)) {
       tim <- all_b_times[k]
