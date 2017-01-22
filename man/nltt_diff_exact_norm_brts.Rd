@@ -15,9 +15,9 @@ nltt_diff_exact_norm_brts(b_times_N, lineages_N, b_times2_N, lineages2_N,
 
 \item{lineages}{the number of lineages, usually one to the number of lineages}
 
-\item{b_times_2}{branching times of the first phylogeny}
+\item{b_times2}{branching times of the first phylogeny}
 
-\item{lineages_2}{the number of lineages, usually one to the number of lineages}
+\item{lineages2}{the number of lineages, usually one to the number of lineages}
 }
 \description{
 Calculates the exact difference between the nLTT
