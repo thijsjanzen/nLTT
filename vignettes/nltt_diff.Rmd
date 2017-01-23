@@ -12,22 +12,25 @@ vignette: >
 In ASCII art, I show two simple LTT plots:
 
 ```{r}
-# Create a simple nLTT. Datapoints created are marked 'X'
-# 
+# normalized number of lineages 
+#
 #  1.0 +   X---X
 #      |   |
 #  0.5 X---+
 #      |
 #      +---+---+
-#         0.5 1.0
-# Create a simple nLTT. Datapoints created are marked 'X'
-# 
+#         0.5 1.0   normalized time
+#
+#
+#
+# normalized number of lineages 
+#
 #  1.0  +       X
 #  0.75 |   X---+
 #  0.5  |   |
 #  0.25 X---+
 #       +---+---+
-#         0.5 1.0
+#         0.5 1.0   normalized time
 ```
 
 The nLTT statistic (simply the difference between the two) will be around 0.25.
@@ -91,6 +94,55 @@ print(nltt_stat)
 
 
 ## Two LTT plots
+
+These are the original nLTTs:
+
+```{r}
+# normalized number of lineages 
+#
+#  1.0 +   X---X
+#      |   |
+#  0.5 X---+
+#      |
+#      +---+---+
+#         0.5 1.0   normalized time
+#
+#
+#
+# normalized number of lineages 
+#
+#  1.0  +       X
+#  0.75 |   X---+
+#  0.5  |   |
+#  0.25 X---+
+#       +---+---+
+#         0.5 1.0   normalized time
+```
+
+These are the LTTs:
+
+```{r}
+# number of lineages 
+#
+#    2 +   X---X
+#      |   |
+#    1 X---+
+#      |
+#      +---+---+
+#         0.5 1.0   normalized time
+#
+#
+#
+# normalized number of lineages 
+#
+#  1.0  +       X
+#  0.75 |   X---+
+#  0.5  |   |
+#  0.25 X---+
+#       +---+---+
+#         0.5 1.0   normalized time
+```
+
 
 
 
