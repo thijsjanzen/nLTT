@@ -1,0 +1,88 @@
+---
+title: "nltt_diff functions"
+author: "Richel Bilderbeek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{nltt_diff functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+In ASCII art, I show two simple LTT plots:
+
+```{r}
+# Create a simple nLTT. Datapoints created are marked 'X'
+# 
+#  1.0 +   X---X
+#      |   |
+#  0.5 X---+
+#      |
+#      +---+---+
+#         0.5 1.0
+# Create a simple nLTT. Datapoints created are marked 'X'
+# 
+#  1.0  +       X
+#  0.75 |   X---+
+#  0.5  |   |
+#  0.25 X---+
+#       +---+---+
+#         0.5 1.0
+```
+
+The nLTT statistic (simply the difference between the two) will be around 0.25.
+
+This vignette shows how to measure this, from:
+ * two phylogenies
+ * two LTT plots
+ * two nLTT plots
+
+The two phylogenies
+
+```{r}
+#
+#          +---+ a
+#      +---+
+#          +---+ b
+#
+#      +---+---+
+#     -2  -1   0 time (million years)
+#
+#
+#               
+#           +---+ a
+#       +---+---+ b
+#           +---+ c
+#               + d
+#
+#       +---+---+
+#      -2  -1   0 time (million years)
+#
+```
+
+First create those phylogenies:
+
+```{r}
+phylogeny_1 <- ape::read.tree(text = "(a:1,b:1):1;")
+ape::plot.phylo(phylogeny_1, root.edge = TRUE)
+
+phylogeny_2 <- ape::read.tree(text = "((d:0.0000001,c:0.0000001):1,b:1,a:1):1;")
+ape::plot.phylo(phylogeny_2, root.edge = TRUE)
+```
+
+Plot their nLTTs (as gray) (and the average as black):
+
+```{r}
+nLTT::nltts_plot(c(phylogeny_1, phylogeny_2), plot_nltts = TRUE)
+nLTT::nltt_plot(phylogeny_1, ylim = c(0,1)); nLTT::nltt_lines(phylogeny_2)
+```
+
+From this plot it can be estimated that the area between the two gray lines is 0.25. This
+means that the nLTT statistic is 0.25.
+
+```{r}
+nltt_stat <- nLTT::nltt_diff(phylogeny_1, phylogeny_2)
+print(nltt_stat)
+```
+
+
