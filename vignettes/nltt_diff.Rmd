@@ -68,6 +68,10 @@ ape::plot.phylo(phylogeny_1, root.edge = TRUE)
 
 phylogeny_2 <- ape::read.tree(text = "((d:0.0000001,c:0.0000001):1,b:1,a:1):1;")
 ape::plot.phylo(phylogeny_2, root.edge = TRUE)
+
+phylogeny_3 <- ape::read.tree(text = "(((d:0.0000001,c:0.0000001):1,b:1):0.0000001,a:1.0):1;")
+ape::plot.phylo(phylogeny_3, root.edge = TRUE)
+
 ```
 
 Plot their nLTTs (as gray) (and the average as black):
@@ -81,8 +85,11 @@ From this plot it can be estimated that the area between the two gray lines is 0
 means that the nLTT statistic is 0.25.
 
 ```{r}
-nltt_stat <- nLTT::nltt_diff(phylogeny_1, phylogeny_2)
-print(nltt_stat)
+nltt_stat_12 <- nLTT::nltt_diff(phylogeny_1, phylogeny_2)
+nltt_stat_13 <- nLTT::nltt_diff(phylogeny_1, phylogeny_3)
+print(nltt_stat_12)
+print(nltt_stat_13)
+
 ```
 
 
