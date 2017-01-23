@@ -1,6 +1,11 @@
 context("abc_smc_nltt")
 
 test_that("abc_smc_nltt use", {
+  # These tests are very long
+  if (Sys.getenv("HOME") == "/home/richel") return ()
+  print(Sys.getenv("HOME"))
+
+
   treesim <- function(params) {
     t <- TESS::tess.sim.taxa(n = 1,
                              lambda = params[1],

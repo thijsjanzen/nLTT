@@ -1,6 +1,9 @@
 context("mcmc_nltt")
 
 test_that("mcmc_nltt use", {
+  # These tests are very long
+  if (Sys.getenv("HOME") == "/home/richel") return ()
+  print(Sys.getenv("HOME"))
 
   set.seed(1)
   tree1 <- TESS::tess.sim.taxa(n = 1, nTaxa = 50,
