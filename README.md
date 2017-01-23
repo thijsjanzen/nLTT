@@ -32,3 +32,12 @@ Giardina, F., Romero-Severson, E. O., Albert, J., Britton, T., & Leitner, T. K. 
 
 Janzen, Thijs, Sebastian Höhna, and Rampal S. Etienne. "Approximate Bayesian computation of diversification rates from molecular phylogenies: introducing a new efficient summary statistic, the nLTT." Methods in Ecology and Evolution 6.5 (2015): 566-575. [link](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12350/full)
 
+## I want to contribute!
+
+Great!
+
+Development is done on the `develop` branch. To download and checkout the `develop` branch, do:
+
+```
+git checkout -b develop origin/develop
+```
