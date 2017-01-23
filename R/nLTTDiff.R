@@ -102,10 +102,10 @@ nltt_diff_exact_brts <- function(
 #' Calculates the exact difference between the nLTT
 #' curves of the branching times
 #' @author Thijs Janzen
-#' @param b_times branching times of the first phylogeny
-#' @param lineages the number of lineages, usually one to the number of lineages
-#' @param b_times2 branching times of the first phylogeny
-#' @param lineages2 the number of lineages, usually one to the number of lineages
+#' @param b_times_N branching times of the first phylogeny
+#' @param lineages_N the number of lineages, usually one to the number of lineages
+#' @param b_times2_N branching times of the first phylogeny
+#' @param lineages2_N the number of lineages, usually one to the number of lineages
 #' @param distance_method (string) absolute, or squared distance?
 #' @export
 nltt_diff_exact_norm_brts <- function(

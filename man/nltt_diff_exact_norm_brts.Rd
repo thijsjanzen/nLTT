@@ -9,15 +9,15 @@ nltt_diff_exact_norm_brts(b_times_N, lineages_N, b_times2_N, lineages2_N,
   distance_method)
 }
 \arguments{
+\item{b_times_N}{branching times of the first phylogeny}
+
+\item{lineages_N}{the number of lineages, usually one to the number of lineages}
+
+\item{b_times2_N}{branching times of the first phylogeny}
+
+\item{lineages2_N}{the number of lineages, usually one to the number of lineages}
+
 \item{distance_method}{(string) absolute, or squared distance?}
-
-\item{b_times}{branching times of the first phylogeny}
-
-\item{lineages}{the number of lineages, usually one to the number of lineages}
-
-\item{b_times2}{branching times of the first phylogeny}
-
-\item{lineages2}{the number of lineages, usually one to the number of lineages}
 }
 \description{
 Calculates the exact difference between the nLTT

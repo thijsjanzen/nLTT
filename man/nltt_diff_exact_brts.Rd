@@ -8,7 +8,7 @@ curves of the branching times}
 nltt_diff_exact_brts(b_times, lineages, b_times2, lineages2, distance_method)
 }
 \arguments{
-\item{b_times}{branching times of the first phylogeny}
+\item{b_times}{branching times of the first phylogeny,}
 
 \item{lineages}{the number of lineages, usually one to the number of lineages}
 
