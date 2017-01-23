@@ -158,6 +158,11 @@ nltt_diff_exact_norm_brts <- function(
 #' @return (scalar) normalized Lineage-Through-Time difference between tree1 & tree2
 #' @export
 nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
+
+  if (!ape::is.binary(tree1) || !ape::is.binary(tree2)) {
+    stop("phylogenies must both be binary")
+  }
+
   #branching times of tree1, including the present time (0)
   b_times    <- c(-1 * rev( sort( ape::branching.times( tree1))), 0)
 
