@@ -67,8 +67,7 @@ nltt_diff_exact_brts <- function(
   lineages,
   b_times2,
   lineages2,
-  distance_method)
-{
+  distance_method) {
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times) == length(lineages))
   testit::assert(length(b_times2) == length(lineages2))
@@ -113,8 +112,7 @@ nltt_diff_exact_norm_brts <- function(
   lineages_N,
   b_times2_N,
   lineages2_N,
-  distance_method)
-{
+  distance_method) {
   testit::assert(length(b_times_N) == length(lineages_N))
   testit::assert(length(b_times2_N) == length(lineages2_N))
   testit::assert(all(b_times_N >= 0.0 & b_times_N <= 1.0))

@@ -79,7 +79,6 @@ ape::plot.phylo(phylogeny_2, root.edge = TRUE)
 Plot their nLTTs (as gray) (and the average as black):
 
 ```{r}
-nLTT::nltts_plot(c(phylogeny_1, phylogeny_2), plot_nltts = TRUE)
 nLTT::nltt_plot(phylogeny_1, ylim = c(0,1)); nLTT::nltt_lines(phylogeny_2)
 ```
 
@@ -88,7 +87,7 @@ means that the nLTT statistic is 0.25.
 
 ```{r}
 nltt_stat <- nLTT::nltt_diff(phylogeny_1, phylogeny_2)
-print(nltt_stat)
+testthat::expect_equal(nltt_stat, 0.25, tolerance = 0.0001)
 
 ```
 
@@ -128,19 +127,19 @@ These are the LTTs:
 #      |   |
 #    1 X---+
 #      |
-#      +---+---+
-#         0.5 1.0   normalized time
+#    0 +---+---+
+#      0   1   2   time
 #
 #
 #
 # normalized number of lineages 
 #
-#  1.0  +       X
-#  0.75 |   X---+
-#  0.5  |   |
-#  0.25 X---+
-#       +---+---+
-#         0.5 1.0   normalized time
+#    4  +       X
+#    3  |   X---+
+#    2  |   |
+#    1  X---+
+#    0  +---+---+
+#       0   1   2   time
 ```
 
 ## Two nLTT plots
