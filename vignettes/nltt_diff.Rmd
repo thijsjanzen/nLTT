@@ -88,13 +88,10 @@ From this plot it can be estimated that the area between the two gray lines is 0
 means that the nLTT statistic is 0.25.
 
 ```{r}
-#any(ape::branching.times(phylogeny_1) < 0.0) 
-#any(ape::branching.times(phylogeny_2) < 0.0) 
-
 nltt_stat <- nLTT::nltt_diff(phylogeny_1, phylogeny_2)
-nltt_stat <- nLTT::nltt_diff_exact(phylogeny_1, phylogeny_2)
+nltt_stat_exact <- nLTT::nltt_diff_exact(phylogeny_1, phylogeny_2)
 testthat::expect_equal(nltt_stat, 0.25, tolerance = 0.0001)
-
+testthat::expect_equal(nltt_stat_exact, 0.25, tolerance = 0.0001)
 ```
 
 
@@ -151,14 +148,16 @@ These are the LTTs:
 ## Two nLTT plots
 
 ```{r}
-# b_times <- ape::branching.times(phylogeny_1)
-# lineages <- c(1:length(phylogeny_1$tip.label), length(phylogeny_1$tip.label))
-# b_times2 <- ape::branching.times(phylogeny_2)
-# lineages2 <- c(1:length(phylogeny_2$tip.label), length(phylogeny_2$tip.label))
-# nLTT::nltt_diff_exact_brts(
-#   b_times = b_times,
-#   lineages = lineages,
-#   b_times2 = b_times2,
-#   lineages2 = lineages2)
-  
+names(phylogeny_1)
+
+b_times <- nLTT::get_branching_times(
+ 
+lineages <- c(1:length(phylogeny_1$tip.label), length(phylogeny_1$tip.label))
+b_times2 <- ape::branching.times(phylogeny_2)
+lineages2 <- c(1:length(phylogeny_2$tip.label), length(phylogeny_2$tip.label))
+nLTT::nltt_diff_exact_brts(
+  b_times = b_times,
+  lineages = lineages,
+  b_times2 = b_times2,
+  lineages2 = lineages2) 
 ```
