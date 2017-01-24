@@ -36,12 +36,12 @@ test_that("nltt_diff_exact does not work on trees with negative branch lengths",
     nLTT::nltt_diff_exact(tree1 = tree1, tree2 = tree1),
     0.0, tolerance = 0.0001)
 
-  testhat::expect_error(
+  testthat::expect_error(
     nLTT::nltt_diff_exact(tree1 = tree2, tree2 = tree2),
     "tree1 cannot have negative branching times"
     )
 
-  testhat::expect_error(
+  testthat::expect_error(
     nLTT::nltt_diff_exact(tree1 = tree1, tree2 = tree2),
     "tree2 cannot have negative branching times"
     )
