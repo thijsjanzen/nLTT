@@ -6,7 +6,7 @@ test_that("nltt_diff_exact simple use", {
 
   # The tree must not have a trifurcation
   tree2 <- ape::read.tree(
-    text = "(((d:0.000000001,c:0.000000001):1,b:1):0.000000001,a:1.000000001):1;")
+    text = "(((d:0.000000001,c:0.000000001):1,b:1):0.000000001,a:1.000000001):1;") # nolint
   testit::assert(ape::is.binary(tree2))
   testthat::expect_equal(
     nLTT::nltt_diff(tree1 = tree1, tree2 = tree2),
@@ -21,14 +21,14 @@ test_that("nltt_diff_exact simple use", {
 
 })
 
-test_that("nltt_diff_exact does not work on trees with negative branch lengths", {
+test_that("nltt_diff_exact does not work on trees with negative branch lengths", { # nolint
 
   # The tree must not have a trifurcation
   # tree1 is correct, tree2 is incorrect
   tree1 <- ape::read.tree(
-    text = "(((d:0.000000001,c:0.000000001):1,b:1):0.000000001,a:1.000000001):1;")
+    text = "(((d:0.000000001,c:0.000000001):1,b:1):0.000000001,a:1.000000001):1;") # nolint
   tree2 <- ape::read.tree(
-    text = "(((d:0.000000001,c:0.000000001):1,b:1):0.000000001,a:1.0):1;")
+    text = "(((d:0.000000001,c:0.000000001):1,b:1):0.000000001,a:1.0):1;") # nolint
   testit::assert(ape::is.binary(tree1))
   testit::assert(ape::is.binary(tree2))
 

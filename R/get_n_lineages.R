@@ -12,10 +12,8 @@
 #'     all(nLTT::get_n_lineages(phylogeny) == c(1, 2, 3)))
 #' @author Richel Bilderbeek
 #' @export
-get_n_lineages <- function(phylogeny)
-{
-  if (!is.null(phylogeny$root.edge))
-  {
+get_n_lineages <- function(phylogeny) {
+  if (!is.null(phylogeny$root.edge)) {
     return (1:length(phylogeny$tip.label))
   }
   return (2:length(phylogeny$tip.label))

@@ -1,17 +1,17 @@
 context("get_branching_times")
 
 test_that("get_branching_times use", {
-  #
-  #         +---+---+---+ c
-  #         |
-  # +---+---+   +---+---+ b
-  #         |   |
-  #         +---+
-  #             |
-  #             +---+---+ a
-  #
-  #
-  # +---+---+---+---+---+ time (million years ago)
+  #                                                       # nolint
+  #                                                       # nolint
+  #         +---+---+---+ c                               # nolint
+  #         |                                             # nolint
+  # +---+---+   +---+---+ b                               # nolint
+  #         |   |                                         # nolint
+  #         +---+                                         # nolint
+  #             |                                         # nolint
+  #             +---+---+ a                               # nolint
+  #                                                       # nolint
+  # +---+---+---+---+---+ time (million years ago)        # nolint
   # 5   4   3   2   1   0
   phylogeny <- ape::read.tree(text = "((a:2,b:2):1,c:3);"); phylogeny$root.edge <- 2
   #ape::plot.phylo(phylogeny, root.edge = TRUE); ape::add.scale.bar()
