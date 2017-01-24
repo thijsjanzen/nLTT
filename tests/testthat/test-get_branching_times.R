@@ -13,8 +13,8 @@ test_that("get_branching_times use", {
   #                                                       # nolint
   # +---+---+---+---+---+ time (million years ago)        # nolint
   # 5   4   3   2   1   0
-  phylogeny <- ape::read.tree(text = "((a:2,b:2):1,c:3);"); phylogeny$root.edge <- 2
-  #ape::plot.phylo(phylogeny, root.edge = TRUE); ape::add.scale.bar()
+  phylogeny <- ape::read.tree(text = "((a:2,b:2):1,c:3);")
+  phylogeny$root.edge <- 2
 
   # ape ignores the stem
   testthat::expect_true(

@@ -16,4 +16,3 @@ get_branching_times <- function(phylogeny) {
   }
   return (brts)
 }
-
