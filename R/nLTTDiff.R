@@ -94,13 +94,21 @@ nltt_diff_exact_brts <- function(
       stop("branching times must be negative, ",
         "for example -3 time units since the present")
     }
+
   }
   if (time_unit == "ago"){
     if (!all(b_times >= 0.0) || !all(b_times2 >= 0.0)) {
       stop("branching times must be positive, ",
         "for example 3 time units ago")
     }
+   # Conformize te b_times for the classic calculation
+    b_times <- c(-1.0 * rev(sort(b_times)), 0)
+    b_times2 <- c(-1.0 * rev(sort(b_times2)), 0)
   }
+
+  # We calculate with 'since the present' as a time unit
+  testit::assert(all(b_times <= 0.0))
+  testit::assert(all(b_times2 <= 0.0))
   testit::assert(all(lineages >= 0.0))
   testit::assert(all(lineages2 >= 0.0))
 
