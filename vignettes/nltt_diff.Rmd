@@ -152,13 +152,13 @@ is what `ape` does as well.
 ```{r}
 names(phylogeny_1)
 
-# b_times <- nLTT::get_branching_times(phylogeny_1)
-# lineages <- c(1:length(phylogeny_1$tip.label))
-# b_times2 <- nLTT::get_branching_times(phylogeny_2)
-# lineages2 <- c(1:length(phylogeny_2$tip.label))
-# nLTT::nltt_diff_exact_brts(
-#   b_times = b_times,
-#   lineages = lineages,
-#   b_times2 = b_times2,
-#   lineages2 = lineages2) 
+b_times <- nLTT::get_branching_times(phylogeny_1)
+lineages <- c(1:length(phylogeny_1$tip.label))
+b_times2 <- nLTT::get_branching_times(phylogeny_2)
+lineages2 <- c(1:length(phylogeny_2$tip.label))
+nLTT::nltt_diff_exact_brts(
+  b_times = b_times,
+  lineages = lineages,
+  b_times2 = b_times2,
+  lineages2 = lineages2) 
 ```

@@ -5,7 +5,8 @@
 \title{Calculates the exact difference between the nLTT
 curves of the branching times}
 \usage{
-nltt_diff_exact_brts(b_times, lineages, b_times2, lineages2, distance_method)
+nltt_diff_exact_brts(b_times, lineages, b_times2, lineages2, distance_method,
+  time_unit = "since")
 }
 \arguments{
 \item{b_times}{branching times of the first phylogeny,}
@@ -17,12 +18,18 @@ nltt_diff_exact_brts(b_times, lineages, b_times2, lineages2, distance_method)
 \item{lineages2}{the number of lineages, usually one to the number of lineages}
 
 \item{distance_method}{(string) absolute, or squared distance?}
+
+\item{time_unit}{the time unit of the branching times
+\itemize{
+ \item{"ago"}{the branching times are postive, as these are in time units ago}
+ \item{"since"}{the branching times are negative, as these are in time units since present}
+}}
 }
 \description{
 Calculates the exact difference between the nLTT
 curves of the branching times
 }
 \author{
-Thijs Janzen
+Thijs Janzen and Richel Bilderbeek
 }
 

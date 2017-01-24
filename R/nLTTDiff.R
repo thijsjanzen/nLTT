@@ -63,25 +63,45 @@ nltt_diff_exact <- function(
 
 #' Calculates the exact difference between the nLTT
 #' curves of the branching times
-#' @author Thijs Janzen
+#' @author Thijs Janzen and Richel Bilderbeek
 #' @param b_times branching times of the first phylogeny,
 #' @param lineages the number of lineages, usually one to the number of lineages
 #' @param b_times2 branching times of the first phylogeny
 #' @param lineages2 the number of lineages, usually one to the number of lineages
 #' @param distance_method (string) absolute, or squared distance?
+#' @param time_unit the time unit of the branching times
+#' \itemize{
+#'  \item{"ago"}{the branching times are postive, as these are in time units ago}
+#'  \item{"since"}{the branching times are negative, as these are in time units since present}
+#' }
 #' @export
 nltt_diff_exact_brts <- function(
   b_times,
   lineages,
   b_times2,
   lineages2,
-  distance_method) {
+  distance_method,
+  time_unit = "since") {
+  if (time_unit != "since" && time_unit != "ago") {
+    stop("time_unit must be either 'since' or 'ago'")
+  }
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times) == length(lineages))
   testit::assert(length(b_times2) == length(lineages2))
-  testit::assert(all(b_times <= 0.0))
+
+  if (time_unit == "since"){
+    if (!all(b_times <= 0.0) || !all(b_times2 <= 0.0)) {
+      stop("branching times must be negative, ",
+        "for example -3 time units since the present")
+    }
+  }
+  if (time_unit == "ago"){
+    if (!all(b_times >= 0.0) || !all(b_times2 >= 0.0)) {
+      stop("branching times must be positive, ",
+        "for example 3 time units ago")
+    }
+  }
   testit::assert(all(lineages >= 0.0))
-  testit::assert(all(b_times2 <= 0.0))
   testit::assert(all(lineages2 >= 0.0))
 
 
