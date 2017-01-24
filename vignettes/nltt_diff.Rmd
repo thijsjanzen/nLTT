@@ -13,7 +13,7 @@ vignette: >
 
 In ASCII art, I show two simple LTT plots:
 
-```
+```{r fig.width=2,}
 # normalized number of lineages 
 #
 #  1.0 +   X---X
