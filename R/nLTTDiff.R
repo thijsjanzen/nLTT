@@ -13,6 +13,13 @@ nltt_diff_exact <- function(
   distance_method = "abs",
   ignore_stem = TRUE
 ) {
+  if (any(ape::branching.times(tree1) < 0.0)) {
+    stop("tree1 cannot have negative branching times")
+  }
+  if (any(ape::branching.times(tree2) < 0.0)) {
+    stop("tree2 cannot have negative branching times")
+  }
+
   #branching times of tree1, including the present time (0)
   b_times <- c(-1.0 * rev(sort(ape::branching.times(tree1))), 0)
   if (!ignore_stem) {

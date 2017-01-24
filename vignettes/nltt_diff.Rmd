@@ -9,6 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+# Close to polytomies, easier to eyeball
+
 In ASCII art, I show two simple LTT plots:
 
 ```{r}
@@ -70,9 +72,11 @@ First create those phylogenies:
 ```{r}
 phylogeny_1 <- ape::read.tree(text = "(a:1,b:1):1;")
 ape::plot.phylo(phylogeny_1, root.edge = TRUE)
-
 phylogeny_2 <- ape::read.tree(
   text = "(((d:0.000000001,c:0.000000001):1,b:1):0.000000001,a:1.0):1;")
+
+#phylogeny_2 <- ape::read.tree(
+#  text = "(((d:0.000000001,c:0.000000001):1,b:1):0.000000001,a:1.000000001#):1;")
 ape::plot.phylo(phylogeny_2, root.edge = TRUE)
 
 ```
@@ -87,6 +91,9 @@ From this plot it can be estimated that the area between the two gray lines is 0
 means that the nLTT statistic is 0.25.
 
 ```{r}
+#any(ape::branching.times(phylogeny_1) < 0.0) 
+#any(ape::branching.times(phylogeny_2) < 0.0) 
+
 nltt_stat <- nLTT::nltt_diff(phylogeny_1, phylogeny_2)
 nltt_stat <- nLTT::nltt_diff_exact(phylogeny_1, phylogeny_2)
 testthat::expect_equal(nltt_stat, 0.25, tolerance = 0.0001)
