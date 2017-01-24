@@ -143,7 +143,4 @@ These are the LTTs:
 #         0.5 1.0   normalized time
 ```
 
-
-
-
 ## Two nLTT plots
