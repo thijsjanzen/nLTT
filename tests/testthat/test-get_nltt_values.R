@@ -231,5 +231,5 @@ test_that("get_nltt_values: check hard newick, Cer2016 issue 83", {
   phylogeny1 <- ape::read.tree(text = newick1)
   phylogenies <- c(phylogeny1)
   result <- nLTT::get_nltt_values(phylogenies, dt = 0.10)
-  expect_true(tail(result$nltt, n = 1) > 0.7)
+  expect_true(utils::tail(result$nltt, n = 1) > 0.7)
 })

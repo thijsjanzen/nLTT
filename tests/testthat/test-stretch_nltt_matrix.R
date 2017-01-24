@@ -176,5 +176,5 @@ test_that("stretch_nltt_matrix: check hard newick, Cer2016 issue 83", {
   nltt_values <- nLTT::stretch_nltt_matrix(
     m = full_nltt_matrix,  dt = 0.1, step_type = "upper"
   )
-  expect_true(tail(nltt_values[, 2], n = 1) > 0.7)
+  expect_true(utils::tail(nltt_values[, 2], n = 1) > 0.7)
 })

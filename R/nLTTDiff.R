@@ -108,8 +108,8 @@ nltt_diff_exact_brts <- function(
    # Conformize te b_times for the classic calculation
     b_times <- c(-1.0 * rev(sort(b_times)), 0)
     b_times2 <- c(-1.0 * rev(sort(b_times2)), 0)
-    lineages  <- c(lineages , tail(lineages , n = 1))
-    lineages2 <- c(lineages2, tail(lineages2, n = 1))
+    lineages  <- c(lineages , utils::tail(lineages , n = 1))
+    lineages2 <- c(lineages2, utils::tail(lineages2, n = 1))
   }
 
   # Each branching time must have a number of lineages to accompany it

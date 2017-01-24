@@ -13,7 +13,7 @@ vignette: >
 
 In ASCII art, I show two simple LTT plots:
 
-```{r}
+```
 # normalized number of lineages 
 #
 #  1.0 +   X---X
@@ -46,7 +46,7 @@ This vignette shows how to measure this, from:
 
 The two phylogenies
 
-```{r}
+```
 #
 #          +---+ a
 #      +---+
@@ -99,7 +99,7 @@ testthat::expect_equal(nltt_stat_exact, 0.25, tolerance = 0.0001)
 
 These are the original LTTs:
 
-```{r}
+```
 # normalized number of lineages 
 #
 #  1.0 +   X---X
@@ -123,7 +123,7 @@ These are the original LTTs:
 
 These are the LTTs:
 
-```{r}
+```
 # number of lineages 
 #
 #    2 +   X---X
@@ -179,7 +179,7 @@ testthat::expect_equal(nltt_stat_exact, 0.25, tolerance = 0.0001)
 
 These are the original nLTTs:
 
-```{r}
+```
 # normalized number of lineages 
 #
 #  1.0 +   X---X
@@ -213,9 +213,9 @@ lineages <- nLTT::get_n_lineages(phylogeny_1)
 b_times2 <- nLTT::get_branching_times(phylogeny_2)
 lineages2 <- nLTT::get_n_lineages(phylogeny_2)
 b_times_N <- rev(b_times) / b_times[1]
-lineages_N <- lineages / tail(lineages, n = 1)
+lineages_N <- lineages / utils::tail(lineages, n = 1)
 b_times2_N <- rev(b_times2) / b_times2[1]
-lineages2_N <- lineages2 / tail(lineages2, n = 1)
+lineages2_N <- lineages2 / utils::tail(lineages2, n = 1)
 df <- data.frame(b_times_N = b_times_N, lineages_N = lineages_N)
 knitr::kable(df)
 df2 <- data.frame(b_times2_N = b_times2_N, lineages2_N = lineages2_N)
