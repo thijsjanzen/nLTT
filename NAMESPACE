@@ -3,6 +3,7 @@
 export(abc_smc_nltt)
 export(get_average_nltt_matrix)
 export(get_branching_times)
+export(get_n_lineages)
 export(get_nltt_values)
 export(get_phylogeny_nltt_matrix)
 export(mcmc_nltt)
