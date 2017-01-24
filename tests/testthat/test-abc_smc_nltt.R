@@ -42,7 +42,7 @@ test_that("abc_smc_nltt use", {
   ML <- stats::optimize(f = tofit, interval = c(0, 1))
 
   statwrapper <- function(tree1) {
-    return(nLTTstat_exact(tree1, obs, "abs")) # nolint nLTTstat has uppercase due to backwards compatibility
+    return(nLTTstat_exact_classic(tree1, obs, "abs")) # nolint nLTTstat has uppercase due to backwards compatibility
   }
 
   A <- abc_smc_nltt(
@@ -51,7 +51,7 @@ test_that("abc_smc_nltt use", {
     prior_density_function = prior_dens,
     number_of_particles = 100, sigma = 0.05, stop_rate = 0.01)
 
-  expect_equal(
+  testthat::expect_equal(
     mean(A),
     ML$minimum[[1]],
     tolerance = 0.05
