@@ -38,6 +38,7 @@ In ASCII art, I show two simple LTT plots:
 The nLTT statistic (simply the difference between the two) will be around 0.25.
 
 This vignette shows how to measure this, from:
+
  * two phylogenies
  * two LTT plots
  * two nLTT plots
@@ -71,11 +72,10 @@ First create those phylogenies:
 
 ```{r}
 phylogeny_1 <- ape::read.tree(text = "(a:1,b:1):1;")
-ape::plot.phylo(phylogeny_1, root.edge = TRUE)
 phylogeny_2 <- ape::read.tree(
   text = "(((d:0.000000001,c:0.000000001):1,b:1):0.000000001,a:1.000000001):1;")
+ape::plot.phylo(phylogeny_1, root.edge = TRUE)
 ape::plot.phylo(phylogeny_2, root.edge = TRUE)
-
 ```
 
 Plot their nLTTs (as gray) (and the average as black):
@@ -208,14 +208,10 @@ Here we extract the branching times and number of lineages
 from the phylogenies:
 
 ```{r}
-b_times <- nLTT::get_branching_times(phylogeny_1)
-lineages <- nLTT::get_n_lineages(phylogeny_1)
-b_times2 <- nLTT::get_branching_times(phylogeny_2)
-lineages2 <- nLTT::get_n_lineages(phylogeny_2)
-b_times_N <- rev(b_times) / b_times[1]
-lineages_N <- lineages / utils::tail(lineages, n = 1)
-b_times2_N <- rev(b_times2) / b_times2[1]
-lineages2_N <- lineages2 / utils::tail(lineages2, n = 1)
+b_times_N <- nLTT::get_norm_brts(phylogeny_1)
+lineages_N <- nLTT::get_norm_n(phylogeny_1)
+b_times2_N <- nLTT::get_norm_brts(phylogeny_2)
+lineages2_N <- nLTT::get_norm_n(phylogeny_2)
 df <- data.frame(b_times_N = b_times_N, lineages_N = lineages_N)
 knitr::kable(df)
 df2 <- data.frame(b_times2_N = b_times2_N, lineages2_N = lineages2_N)
