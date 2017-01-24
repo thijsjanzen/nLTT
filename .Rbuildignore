@@ -5,5 +5,7 @@
 ^clean_package.sh$
 ^clean_vignettes.sh$
 ^checkout_all_branches$
-^README.md
-^Rhistory
+^README.md$
+^Rhistory$
+^Codecov.png$
+^TravisCI.png$
