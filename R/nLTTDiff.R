@@ -201,9 +201,12 @@ nltt_diff_exact_norm_brts <- function(
 #' @return (scalar) normalized Lineage-Through-Time difference between tree1 & tree2
 #' @export
 nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
-  warning(paste("\nThe function nltt_diff is deprecated and should be avoided.\n",
-                "We recommend using nltt_diff_exact which gives more accurate results",sep =""),immediate. = TRUE)
-  
+  warning(paste("\nThe function nltt_diff is deprecated and 
+                should be avoided.\n",
+                "We recommend using nltt_diff_exact 
+                which gives more accurate results",sep =""),
+          immediate. = TRUE)
+
   if (!ape::is.binary(tree1) || !ape::is.binary(tree2)) {
     stop("phylogenies must both be binary")
   }
