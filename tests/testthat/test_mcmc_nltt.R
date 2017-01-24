@@ -2,7 +2,8 @@ context("mcmc_nltt")
 
 test_that("mcmc_nltt use", {
   # These tests are very long
-  if (Sys.getenv("HOME") == "/home/richel") return ()
+  if (Sys.getenv("HOME") == "/home/richel" ||
+    Sys.getenv("HOME") == "/home/p230198") return ()
   print(Sys.getenv("HOME"))
 
   set.seed(1)
