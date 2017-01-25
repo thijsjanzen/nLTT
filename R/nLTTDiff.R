@@ -157,18 +157,18 @@ nltt_diff_exact_norm_brts <- function(
 #' @return (scalar) normalized Lineage-Through-Time difference between tree1 & tree2
 #' @export
 nltt_diff <- function(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)  {
-  
+
   if (!ape::is.binary(tree1) || !ape::is.binary(tree2)) {
     stop("phylogenies must both be binary")
   }
-  
+
   if (any(ape::branching.times(tree1) < 0.0)) {
     stop("tree1 cannot have negative branching times")
   }
   if (any(ape::branching.times(tree2) < 0.0)) {
     stop("tree2 cannot have negative branching times")
   }
-  
+
   #branching times of tree1, including the present time (0)
   b_times <- c(-1.0 * rev(sort(ape::branching.times(tree1))), 0)
   if (!ignore_stem) {
@@ -176,7 +176,7 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
     b_times <- c(b_times[1] - stem_length1, b_times)
     testit::assert(all(b_times <= 0.0))
   }
-  
+
   # Same for other tree
   b_times2 <- c(-1 * rev(sort(ape::branching.times(tree2))), 0)
   options(scipen = 6)
@@ -191,14 +191,14 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
   lineages <- c(first_n_lineages1:n_taxa1, n_taxa1)
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times) == length(lineages))
-  
+
   # the number of lineages per branching time
   first_n_lineages2 <- ifelse(ignore_stem, 2, 1)
   n_taxa2 <- length(tree2$tip.label)
   lineages2 <- c(first_n_lineages2:n_taxa2, n_taxa2)
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times2) == length(lineages2))
-  
+
   return (
     nltt_diff_exact_brts(
       b_times = b_times,
@@ -239,14 +239,16 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
 #'   data(exampleTrees)
 #'   nltt_plot(exampleTrees[[1]])
 #'   nltt_lines(exampleTrees[[2]], lty=2)
-#'   nLTTstat(exampleTrees[[1]], exampleTrees[[2]], distance_method = "abs")
+#'   nLTTstat(
+#'     exampleTrees[[1]], exampleTrees[[2]],
+#'     distance_method = "abs", ignore_stem = TRUE)
 #' @export
 nLTTstat <- function(  # nolint keep function name non-all-lowercase, due to backwards compatibility
-  tree1, 
-  tree2, 
-  distance_method = "abs", 
+  tree1,
+  tree2,
+  distance_method = "abs",
   ignore_stem = TRUE
-) { 
+) {
   if (!inherits(tree1, "phylo")) {
     # Just checking
     stop("nLTTstat: ",
@@ -263,11 +265,11 @@ nLTTstat <- function(  # nolint keep function name non-all-lowercase, due to bac
   if ( distance_method != "abs" && distance_method != "squ") {
     stop("nLTTstat: distance method unknown")
   }
-  
+
   if (!is.logical(ignore_stem)) {
     stop("nLTTstat: ignore_stem must be logical")
   }
-  
+
   diff <- nLTT::nltt_diff( tree1, tree2, distance_method, ignore_stem)
   return (diff)
 }
