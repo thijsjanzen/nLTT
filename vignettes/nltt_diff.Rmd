@@ -221,12 +221,12 @@ knitr::kable(df2)
 Here we test again if the nLTT statistic is 0.25:
 
 ```{r}
-nltt_stat_exact <- nLTT::nltt_diff_exact_norm_brts(
-  b_times_N = b_times_N,
-  lineages_N = lineages_N,
-  b_times2_N = b_times2_N,
-  lineages2_N = lineages2_N,
-  distance_method = "abs") 
-
-testthat::expect_equal(nltt_stat_exact, 0.25, tolerance = 0.0001)
+# nltt_stat_exact <- nLTT::nltt_diff_exact_norm_brts(
+#   b_times_N = b_times_N,
+#   lineages_N = lineages_N,
+#   b_times2_N = b_times2_N,
+#   lineages2_N = lineages2_N,
+#   distance_method = "abs") 
+# 
+# testthat::expect_equal(nltt_stat_exact, 0.25, tolerance = 0.0001)
 ```
