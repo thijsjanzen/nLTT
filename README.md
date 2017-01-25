@@ -38,10 +38,8 @@ Janzen, Thijs, Sebastian Höhna, and Rampal S. Etienne. "Approximate Bayesian co
 
 ## I want to contribute!
 
-Great!
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Development is done on the `develop` branch. To download and checkout the `develop` branch, do:
+## Code of Conduct
 
-```
-git checkout -b develop origin/develop
-```
+See [code_of_conduct.md](code_of_conduct.md)
