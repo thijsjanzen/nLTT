@@ -13,7 +13,7 @@ nltt_diff_exact <- function(
   distance_method = "abs",
   ignore_stem = TRUE
 ) {
-  return (nltt_diff( tree1, tree2, distance_method, ignore_stem))
+  return (nLTT::nltt_diff( tree1, tree2, distance_method, ignore_stem))
 }
 
 #' Calculates the exact difference between the nLTT
@@ -156,7 +156,8 @@ nltt_diff_exact_norm_brts <- function(
 #' @param ignore_stem logical    Should the phylogeny its stem be ignored?
 #' @return (scalar) normalized Lineage-Through-Time difference between tree1 & tree2
 #' @export
-nltt_diff <- function(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)  {
+nltt_diff <- function(
+ tree1, tree2, distance_method = "abs", ignore_stem = TRUE) {
 
   if (!ape::is.binary(tree1) || !ape::is.binary(tree2)) {
     stop("phylogenies must both be binary")

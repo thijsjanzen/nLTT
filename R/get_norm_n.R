@@ -9,7 +9,7 @@
 #' @author Richel Bilderbeek
 #' @export
 get_norm_n <- function(phylogeny) {
-  ns <- get_n_lineages(phylogeny)
+  ns <- nLTT::get_n_lineages(phylogeny)
   # Repeat the last value to have te ns at the present
   ns <- c(ns, utils::tail(ns, n = 1))
   # Reverse to have 'times ago' (e.g. 4,3,0) -> (0, -1, -4) -> (0,1,4)

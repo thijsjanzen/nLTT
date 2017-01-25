@@ -9,7 +9,7 @@
 #' @author Richel Bilderbeek
 #' @export
 get_norm_brts <- function(phylogeny) {
-  brts <- get_branching_times(phylogeny)
+  brts <- nLTT::get_branching_times(phylogeny)
   # Repeat the last value to have te brts at the present
   brts <- c(brts, utils::tail(brts, n = 1))
   # Reverse to have 'times ago' (e.g. 4,3,0) -> (0, -1, -4) -> (0,1,4)
