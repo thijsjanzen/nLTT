@@ -13,52 +13,7 @@ nltt_diff_exact <- function(
   distance_method = "abs",
   ignore_stem = TRUE
 ) {
-  if (any(ape::branching.times(tree1) < 0.0)) {
-    stop("tree1 cannot have negative branching times")
-  }
-  if (any(ape::branching.times(tree2) < 0.0)) {
-    stop("tree2 cannot have negative branching times")
-  }
-
-  #branching times of tree1, including the present time (0)
-  b_times <- c(-1.0 * rev(sort(ape::branching.times(tree1))), 0)
-  if (!ignore_stem) {
-    stem_length1 <- ifelse(is.null(tree1$root.edge), 0.0, tree1$root.edge)
-    b_times <- c(b_times[1] - stem_length1, b_times)
-    testit::assert(all(b_times <= 0.0))
-  }
-
-  # Same for other tree
-  b_times2 <- c(-1 * rev(sort(ape::branching.times(tree2))), 0)
-  options(scipen = 6)
-  if (!ignore_stem) {
-    stem_length2 <- ifelse(is.null(tree2$root.edge), 0.0, tree2$root.edge)
-    b_times2 <- c(b_times2[1] - stem_length2, b_times2)
-    testit::assert(all(b_times2 <= 0.0))
-  }
-  # the number of lineages per branching time
-  first_n_lineages1 <- ifelse(ignore_stem, 2, 1)
-  n_taxa1 <- length(tree1$tip.label)
-  lineages <- c(first_n_lineages1:n_taxa1, n_taxa1)
-  # Each branching time must have a number of lineages to accompany it
-  testit::assert(length(b_times) == length(lineages))
-
-  # the number of lineages per branching time
-  first_n_lineages2 <- ifelse(ignore_stem, 2, 1)
-  n_taxa2 <- length(tree2$tip.label)
-  lineages2 <- c(first_n_lineages2:n_taxa2, n_taxa2)
-  # Each branching time must have a number of lineages to accompany it
-  testit::assert(length(b_times2) == length(lineages2))
-
-  return (
-    nltt_diff_exact_brts(
-      b_times = b_times,
-      lineages = lineages,
-      b_times2 = b_times2,
-      lineages2 = lineages2,
-      distance_method = distance_method
-    )
-  )
+  return (nltt_diff( tree1, tree2, distance_method, ignore_stem))
 }
 
 #' Calculates the exact difference between the nLTT
@@ -108,7 +63,7 @@ nltt_diff_exact_brts <- function(
    # Conformize te b_times for the classic calculation
     b_times <- c(-1.0 * rev(sort(b_times)), 0)
     b_times2 <- c(-1.0 * rev(sort(b_times2)), 0)
-    lineages  <- c(lineages , utils::tail(lineages, n = 1))
+    lineages  <- c(lineages, utils::tail(lineages, n = 1))
     lineages2 <- c(lineages2, utils::tail(lineages2, n = 1))
   }
 
@@ -198,62 +153,56 @@ nltt_diff_exact_norm_brts <- function(
 #' @param tree1 (phylo) First phylogenetic tree
 #' @param tree2 (phylo) Second phylogenetic tree
 #' @param distance_method (string) absolute, or squared distance?
+#' @param ignore_stem logical    Should the phylogeny its stem be ignored?
 #' @return (scalar) normalized Lineage-Through-Time difference between tree1 & tree2
 #' @export
-nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
-  warning(paste("\nThe function nltt_diff is deprecated and 
-                should be avoided.\n",
-                "We recommend using nltt_diff_exact 
-                which gives more accurate results",sep =""),
-          immediate. = TRUE)
-
-  if (!ape::is.binary(tree1) || !ape::is.binary(tree2)) {
-    stop("phylogenies must both be binary")
+nltt_diff <- function(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)  {
+  if (any(ape::branching.times(tree1) < 0.0)) {
+    stop("tree1 cannot have negative branching times")
   }
-
+  if (any(ape::branching.times(tree2) < 0.0)) {
+    stop("tree2 cannot have negative branching times")
+  }
+  
   #branching times of tree1, including the present time (0)
-  b_times    <- c(-1 * rev( sort( ape::branching.times( tree1))), 0)
-
-  #the number of lineages
-  #we assume that the first branching time indicates the crown age.
-  lineages   <- c( 2:length( b_times), length( b_times))
-  b_times_N  <- 1 - b_times / min( b_times) #normalize branching times
-  lineages_N <- lineages / max( lineages) #normalize lineages
-
-  #method = constant ensures a step function
-  ltt1       <- stats::approxfun( b_times_N, lineages_N, method = "constant")
-
-  #branching times of tree2, including the present time (0)
-  b_times2    <- c(-1 * rev( sort( ape::branching.times( tree2))), 0)
-
-  #the number of lineages
-  #we assume that the first branching time indicates the crown age.
-  lineages2   <- c( 2:length( b_times2), length( b_times2))
-
-  b_times2_N  <- 1 - b_times2 / min( b_times2) #normalize branching times
-  lineages2_N <- lineages2 / max( lineages2)  #normalize lineages
-  #method = constant ensures a step function
-  ltt2        <- stats::approxfun( b_times2_N, lineages2_N, method = "constant")
-
-  #function f is the absolute difference in time t: 0 <= t < 1
-  f <- function( t, x, p) {
-       if ( distance_method == "abs" ) {
-         output <- abs( ltt1(t) - ltt2(t) )
-       }
-       if ( distance_method == "squ" ) {
-         output <- (ltt1(t) - ltt2(t)) * (ltt1(t) - ltt2(t))
-       }
-       return( list( output) )
+  b_times <- c(-1.0 * rev(sort(ape::branching.times(tree1))), 0)
+  if (!ignore_stem) {
+    stem_length1 <- ifelse(is.null(tree1$root.edge), 0.0, tree1$root.edge)
+    b_times <- c(b_times[1] - stem_length1, b_times)
+    testit::assert(all(b_times <= 0.0))
   }
-
-  #evaluation points of the integration function below
-  #more points ensures higher precision.
-  times <- ( 0:100 ) / 100
-  #integrate over t: 0 < t < 1, notice tcrit=0 indicating t
-  #should never be larger than 0:
-  int_1 <- deSolve::lsoda( 0, times, func = f, tcrit = c( 1 ) )
-  total_area <- int_1[length(times), 2]
-  return( total_area[[1]])
+  
+  # Same for other tree
+  b_times2 <- c(-1 * rev(sort(ape::branching.times(tree2))), 0)
+  options(scipen = 6)
+  if (!ignore_stem) {
+    stem_length2 <- ifelse(is.null(tree2$root.edge), 0.0, tree2$root.edge)
+    b_times2 <- c(b_times2[1] - stem_length2, b_times2)
+    testit::assert(all(b_times2 <= 0.0))
+  }
+  # the number of lineages per branching time
+  first_n_lineages1 <- ifelse(ignore_stem, 2, 1)
+  n_taxa1 <- length(tree1$tip.label)
+  lineages <- c(first_n_lineages1:n_taxa1, n_taxa1)
+  # Each branching time must have a number of lineages to accompany it
+  testit::assert(length(b_times) == length(lineages))
+  
+  # the number of lineages per branching time
+  first_n_lineages2 <- ifelse(ignore_stem, 2, 1)
+  n_taxa2 <- length(tree2$tip.label)
+  lineages2 <- c(first_n_lineages2:n_taxa2, n_taxa2)
+  # Each branching time must have a number of lineages to accompany it
+  testit::assert(length(b_times2) == length(lineages2))
+  
+  return (
+    nltt_diff_exact_brts(
+      b_times = b_times,
+      lineages = lineages,
+      b_times2 = b_times2,
+      lineages2 = lineages2,
+      distance_method = distance_method
+    )
+  )
 }
 
 ################################################################################
@@ -278,6 +227,7 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
 #' @param distance_method Chosen measurement of distance between the two nLTT curves, options are (case sensitive):\cr
 #'   - "abs": use the absolute distance\cr
 #'   - "squ": use the squared distance;\cr
+#' @param ignore_stem a boolean whether to ignore the stem length
 #' @return The difference between the two nLTT statistics
 #' @author Thijs Janzen
 #' @examples
@@ -286,7 +236,12 @@ nltt_diff <- function(tree1, tree2, distance_method = "abs")  {
 #'   nltt_lines(exampleTrees[[2]], lty=2)
 #'   nLTTstat(exampleTrees[[1]], exampleTrees[[2]], distance_method = "abs")
 #' @export
-nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep function name non-all-lowercase, due to backwards compatibility
+nLTTstat <- function(  # nolint keep function name non-all-lowercase, due to backwards compatibility
+  tree1, 
+  tree2, 
+  distance_method = "abs", 
+  ignore_stem = TRUE
+) { 
   if (!inherits(tree1, "phylo")) {
     # Just checking
     stop("nLTTstat: ",
@@ -303,7 +258,12 @@ nLTTstat <- function( tree1, tree2, distance_method = "abs") { # nolint keep fun
   if ( distance_method != "abs" && distance_method != "squ") {
     stop("nLTTstat: distance method unknown")
   }
-  diff <- nLTT::nltt_diff( tree1, tree2, distance_method)
+  
+  if (!is.logical(ignore_stem)) {
+    stop("nLTTstat: ignore_stem must be logical")
+  }
+  
+  diff <- nLTT::nltt_diff( tree1, tree2, distance_method, ignore_stem)
   return (diff)
 }
 
