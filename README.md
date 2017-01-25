@@ -26,11 +26,13 @@ Apart from providing functions that calculate the nLTT statistic, the nLTT packa
 - estimate the parameters of a model for which no likelihood is available, using ABC-SMC (as used in the paper)
 
 ## Papers using the nLTT statistic
-Ibeh N., Aris-Brosou S. Estimation of sub-epidemic dynamics by means of Sequential Monte Carlo Approximate Bayesian Computation: an application to the Swiss HIV Cohort Study. bioRxiv (2016): 085993. [link](http://biorxiv.org/content/early/2016/11/07/085993)
+Janzen, Thijs, and Rampal Etienne. "Inferring the role of habitat dynamics in driving diversification: evidence for a species pump in Lake Tanganyika cichlids." bioRxiv (2016): 085431. [link](http://biorxiv.org/content/early/2016/11/03/085431.abstract)
 
-McCloskey, Rosemary M., Richard H. Liang, and Art FY Poon. Reconstructing contact network parameters from viral phylogenies. bioRxiv (2016): 050435. [link](http://biorxiv.org/content/early/2016/04/26/050435.abstract)
+Ibeh, Neke, and Stephane Aris-Brosou. "Estimation of sub-epidemic dynamics by means of Sequential Monte Carlo Approximate Bayesian Computation: an application to the Swiss HIV Cohort Study. bioRxiv (2016): 085993. [link](http://biorxiv.org/content/early/2016/11/07/085993)
 
 Giardina, F., Romero-Severson, E. O., Albert, J., Britton, T., & Leitner, T. K. Inference of transmission network structure from HIV phylogenetic trees. bioRxiv (2016): 059865. [link](http://biorxiv.org/content/early/2016/06/25/059865)
+
+McCloskey, Rosemary M., Richard H. Liang, and Art FY Poon. "Reconstructing contact network parameters from viral phylogenies." Virus evolution 2.2 (2016): vew029. [link](http://ve.oxfordjournals.org/content/2/2/vew029.abstract)
 
 Janzen, Thijs, Sebastian Höhna, and Rampal S. Etienne. "Approximate Bayesian computation of diversification rates from molecular phylogenies: introducing a new efficient summary statistic, the nLTT." Methods in Ecology and Evolution 6.5 (2015): 566-575. [link](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12350/full)
 
