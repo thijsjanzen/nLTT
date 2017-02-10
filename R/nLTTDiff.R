@@ -100,7 +100,7 @@ nltt_diff_exact_brts <- function(
 
 #' Calculates the exact difference between the nLTT
 #' curves of the branching times
-#' @author Thijs Janzen
+#' @author Thijs Janzen and Richel Bilderbeek
 #' @param b_times_N branching times of the first phylogeny
 #' @param lineages_N the number of lineages, usually one to the number of lineages
 #' @param b_times2_N branching times of the first phylogeny
@@ -122,11 +122,11 @@ nltt_diff_exact_norm_brts <- function(
   testit::assert(length(lineages_N) > 0)
   testit::assert(length(b_times2_N) > 0)
   testit::assert(length(lineages2_N) > 0)
-  # Start with zeroes? Nope
-  # testit::assert(b_times_N[1] == 0.0)
-  # testit::assert(lineages_N[1] == 0.0)
-  # testit::assert(b_times2_N[1] == 0.0)
-  # testit::assert(lineages2_N[1] == 0.0)
+  # Start with zeroes? Not necessarily
+  testit::assert(b_times_N[1] >= 0.0)
+  testit::assert(lineages_N[1] >= 0.0)
+  testit::assert(b_times2_N[1] >= 0.0)
+  testit::assert(lineages2_N[1] >= 0.0)
   # Ends with ones
   testit::assert(tail(b_times_N, n = 1) == 1.0)
   testit::assert(tail(lineages_N, n = 1) == 1.0)
@@ -143,8 +143,10 @@ nltt_diff_exact_norm_brts <- function(
   testit::assert(all(sort(b_times2_N) == b_times2_N))
   testit::assert(all(sort(lineages2_N) == lineages2_N))
 
-  #make a list of all branching times, and remove duplicates
+  # Make a list of all branching times, and remove duplicates
+  # TODO: Use more effecient merge, as both ranges are sorted
   all_b_times <- unique(sort(c(b_times_N, b_times2_N)))
+
   diff <- 0.0
   #iterate through all branching times
   for (k in 2:length(all_b_times)) {

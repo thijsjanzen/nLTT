@@ -89,3 +89,23 @@ test_that("nLTTstat_exact may ignore the stem", {
   expect_equal(0.25, nLTT::nLTTstat_exact(tree1, tree2, ignore_stem = FALSE))
   expect_equal(0.25, nLTT::nLTTstat_exact(tree2, tree1, ignore_stem = FALSE))
 })
+
+test_that("nLTTstat_exact on two rcoal trees, do ignore stem", {
+
+  set.seed(42)
+  p <- ape::rcoal(5)
+  p$edge.length <- 0.1
+  q <- ape::rcoal(5)
+  p$edge.length <- 0.2
+  a <- nLTT::nLTTstat_exact(p, q, ignore_stem = TRUE)
+})
+
+test_that("nLTTstat_exact on two rcoal trees, do not ignore stem", {
+
+  set.seed(42)
+  p <- ape::rcoal(5)
+  p$edge.length <- 0.1
+  q <- ape::rcoal(5)
+  p$edge.length <- 0.2
+  a <- nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE)
+})

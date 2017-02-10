@@ -24,6 +24,6 @@ Calculates the exact difference between the nLTT
 curves of the branching times
 }
 \author{
-Thijs Janzen
+Thijs Janzen and Richel Bilderbeek
 }
 
