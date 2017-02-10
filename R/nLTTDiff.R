@@ -113,12 +113,25 @@ nltt_diff_exact_norm_brts <- function(
   b_times2_N,
   lineages2_N,
   distance_method) {
+
+  # Are equally sized?
   testit::assert(length(b_times_N) == length(lineages_N))
   testit::assert(length(b_times2_N) == length(lineages2_N))
+  # Are non-trivial?
+  testit::assert(length(b_times_N) > 0)
+  testit::assert(length(lineages_N) > 0)
+  testit::assert(length(b_times2_N) > 0)
+  testit::assert(length(lineages2_N) > 0)
+  # Are in range?
   testit::assert(all(b_times_N >= 0.0 & b_times_N <= 1.0))
   testit::assert(all(lineages_N >= 0.0 & lineages_N <= 1.0))
   testit::assert(all(b_times2_N >= 0.0 & b_times2_N <= 1.0))
   testit::assert(all(lineages2_N >= 0.0 & lineages2_N <= 1.0))
+  # Are sorted?
+  testit::assert(all(sort(b_times_N) == b_times_N))
+  testit::assert(all(sort(lineages_N) == lineages_N))
+  testit::assert(all(sort(b_times2_N) == b_times2_N))
+  testit::assert(all(sort(lineages2_N) == lineages2_N))
 
   #make a list of all branching times, and remove duplicates
   all_b_times <- unique(sort(c(b_times_N, b_times2_N)))
