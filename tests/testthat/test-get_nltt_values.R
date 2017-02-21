@@ -241,6 +241,6 @@ test_that("get_nltt_values: issue 33", {
   set.seed(42)
   phylogenies <- c(ape::rcoal(3), ape::rcoal(5))
   testthat::expect_silent(nLTT::get_nltt_values(phylogenies = phylogenies, dt = 0.0001))
-  testthat::expect_silent(nLTT::get_nltt_values(phylogenies = phylogenies, dt = 0.00001))
+  testthat::expect_error(nLTT::get_nltt_values(phylogenies = phylogenies, dt = 0.00001), "dt too small")
 
 })

@@ -1,7 +1,7 @@
-#' Stretch matrix 'm' with a timestep resolution of 'dt'
+#' Stretch matrix 'm' with a timestep resolution of 'dt'.
 #'
 #' @param m A matrix of 2 columns and at least 2 rows
-#' @param dt The resultion, a value e <0,1]
+#' @param dt The resultion, a value e [0.0001, 1]. If 'dt' is set to a very small value, this function will stop
 #' @param step_type can be 'lower' or 'upper'
 #' @return The stretched matrix
 #' @examples
@@ -48,10 +48,22 @@ stretch_nltt_matrix <- function(
   }
 
   # Prepare a new matrix called n
-  n_nrow <- 1 + (1 / dt)
-  n_ts <- seq(0.0, 1.0, dt)
+  n_nrow <- 1 + (1.0 / dt)
+  testit::assert(all.equal(1.0 / (n_nrow - 1), dt))
+  n_ts <- seq(0.0, 1.0, length.out = n_nrow)
+
+  # I am unsure why seq cannot fulfill its promise to create an output of length.out
+  # Stop when this happens
+  if (length(n_ts) != n_nrow) {
+    stop("dt too small")
+  }
+  testit::assert(length(n_ts) == n_nrow)
+
   n_ns <- rep(NA, times = n_nrow)
+  testit::assert(length(n_ns) == n_nrow)
   n <- matrix( c(n_ts, n_ns), ncol = 2, nrow = n_nrow)
+
+  testit::assert(nrow(n) == n_nrow)
 
   # Add endtime at the bottom
   m <- rbind(m, c(1e99, 1.0))

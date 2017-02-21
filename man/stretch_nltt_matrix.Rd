@@ -2,14 +2,14 @@
 % Please edit documentation in R/stretch_nltt_matrix.R
 \name{stretch_nltt_matrix}
 \alias{stretch_nltt_matrix}
-\title{Stretch matrix 'm' with a timestep resolution of 'dt'}
+\title{Stretch matrix 'm' with a timestep resolution of 'dt'.}
 \usage{
 stretch_nltt_matrix(m, dt, step_type)
 }
 \arguments{
 \item{m}{A matrix of 2 columns and at least 2 rows}
 
-\item{dt}{The resultion, a value e <0,1]}
+\item{dt}{The resultion, a value e [0.0001, 1]. If 'dt' is set too small, this function will stop}
 
 \item{step_type}{can be 'lower' or 'upper'}
 }
@@ -17,7 +17,7 @@ stretch_nltt_matrix(m, dt, step_type)
 The stretched matrix
 }
 \description{
-Stretch matrix 'm' with a timestep resolution of 'dt'
+Stretch matrix 'm' with a timestep resolution of 'dt'.
 }
 \examples{
   m <- matrix( c(c(0.0, 1.0), c(0.5, 1.0)), ncol = 2, nrow = 2)
