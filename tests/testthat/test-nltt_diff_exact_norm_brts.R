@@ -31,4 +31,3 @@ test_that("nltt_diff_exact_norm_brts: use", {
     )
   }
 })
-
