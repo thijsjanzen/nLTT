@@ -11,6 +11,22 @@ develop|[![Build Status](https://travis-ci.org/richelbilderbeek/nLTT.svg?branch=
 
 Repository for the R nLTT package
 
+## Installing this package
+
+Make sure you have the package `devtools` installed.
+
+Then, from within R do, for the stable version:
+
+```
+devtools::install_github("richelbilderbeek/master")
+```
+
+For the bleeding-edge version:
+
+```
+devtools::install_github("richelbilderbeek/master", ref = "develop")
+```
+
 ## What is the nLTT statistic?
 The nLTT statistic is a likelihood free summary statistic to compare the similarity between two phylogenetic trees.  It calculates the distance between the lineage through time curves of the two trees, after normalizing the lineage through time curves with respect to the maximum number of lineages obtained in each tree, and with respect to the total time between the root and the tips of the tree (see also the wiki).
 
@@ -35,6 +51,10 @@ Giardina, F., Romero-Severson, E. O., Albert, J., Britton, T., & Leitner, T. K. 
 McCloskey, Rosemary M., Richard H. Liang, and Art FY Poon. "Reconstructing contact network parameters from viral phylogenies." Virus evolution 2.2 (2016): vew029. [link](http://ve.oxfordjournals.org/content/2/2/vew029.abstract)
 
 Janzen, Thijs, Sebastian Höhna, and Rampal S. Etienne. "Approximate Bayesian computation of diversification rates from molecular phylogenies: introducing a new efficient summary statistic, the nLTT." Methods in Ecology and Evolution 6.5 (2015): 566-575. [link](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12350/full)
+
+## Acknowledgements
+
+ * @franciscorichter: bug reporting
 
 ## I want to contribute!
 
