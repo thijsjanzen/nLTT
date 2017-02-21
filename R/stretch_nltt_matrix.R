@@ -52,7 +52,8 @@ stretch_nltt_matrix <- function(
   testit::assert(all.equal(1.0 / (n_nrow - 1), dt))
   n_ts <- seq(0.0, 1.0, length.out = n_nrow)
 
-  # I am unsure why seq cannot fulfill its promise to create an output of length.out
+  # I am unsure why seq cannot fulfill its promise to create
+  # an output of length.out.
   # Stop when this happens
   if (length(n_ts) != n_nrow) {
     stop("dt too small")
