@@ -114,3 +114,12 @@ test_that("nLTTstat_exact on two rcoal trees, do not ignore stem", {
     a <- nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE)
   }
 })
+
+test_that("adding a stem causes branch lengths to become NAs", {
+
+  set.seed(42)
+  p <- ape::rcoal(5)
+  testthat::expect_true(!any(is.na(ape::branching.times(p))))
+  p$edge.length <- 0.1
+  testthat::expect_true(!any(is.na(ape::branching.times(p))))
+})
