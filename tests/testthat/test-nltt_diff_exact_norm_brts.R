@@ -6,9 +6,9 @@ test_that("nltt_diff_exact_norm_brts: use", {
   if (1 == 2) {
     set.seed(42)
     p <- ape::rcoal(5)
-    p$edge.length <- 0.1
+    p$root.edge <- 0.1
     q <- ape::rcoal(5)
-    p$edge.length <- 0.2
+    p$root.edge <- 0.2
     nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE)
     nLTT::nLTTstat_exact(p, q, ignore_stem = TRUE)
   }

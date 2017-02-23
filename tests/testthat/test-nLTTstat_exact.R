@@ -95,9 +95,9 @@ test_that("nLTTstat_exact on two rcoal trees, do ignore stem", {
   if (1 == 2) {
     set.seed(42)
     p <- ape::rcoal(5)
-    p$edge.length <- 0.1
+    p$root.edge <- 0.1
     q <- ape::rcoal(5)
-    p$edge.length <- 0.2
+    p$root.edge <- 0.2
     a <- nLTT::nLTTstat_exact(p, q, ignore_stem = TRUE)
   }
 })
@@ -108,9 +108,9 @@ test_that("nLTTstat_exact on two rcoal trees, do not ignore stem", {
   if (1 == 2) {
     set.seed(42)
     p <- ape::rcoal(5)
-    p$edge.length <- 0.1
+    p$root.edge <- 0.1
     q <- ape::rcoal(5)
-    p$edge.length <- 0.2
+    p$root.edge <- 0.2
     a <- nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE)
   }
 })
@@ -120,6 +120,6 @@ test_that("adding a stem causes branch lengths to become NAs", {
   set.seed(42)
   p <- ape::rcoal(5)
   testthat::expect_true(!any(is.na(ape::branching.times(p))))
-  p$edge.length <- 0.1
+  p$root.edge <- 0.1
   testthat::expect_true(!any(is.na(ape::branching.times(p))))
 })
