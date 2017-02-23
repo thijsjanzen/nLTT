@@ -91,24 +91,23 @@ test_that("nLTTstat_exact may ignore the stem", {
 })
 
 test_that("nLTTstat_exact on two rcoal trees, do ignore stem", {
-  # Issue 31
-  set.seed(42)
+
+   set.seed(42)
   p <- ape::rcoal(5)
   p$root.edge <- 0.1
   q <- ape::rcoal(5)
   p$root.edge <- 0.2
-  a <- nLTT::nLTTstat_exact(p, q, ignore_stem = TRUE)
+  testthat::expect_silent(nLTT::nLTTstat_exact(p, q, ignore_stem = TRUE))
 })
 
 test_that("nLTTstat_exact on two rcoal trees, do not ignore stem", {
 
-  # Issue 31
   set.seed(42)
   p <- ape::rcoal(5)
   p$root.edge <- 0.1
   q <- ape::rcoal(5)
   p$root.edge <- 0.2
-  a <- nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE)
+  testthat::expect_silent(nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE))
 })
 
 test_that("adding a stem causes branch lengths to become NAs", {
