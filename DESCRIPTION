@@ -12,7 +12,8 @@ License: GPL-2
 Imports:
     ape,
     coda,
-    deSolve
+    deSolve,
+    testit
 Suggests:
     DDD,
     ggplot2,
@@ -22,7 +23,6 @@ Suggests:
     reshape2,
     rmarkdown,
     TESS,
-    testit,
     testthat,
     TreeSim
 NeedsCompilation: no
