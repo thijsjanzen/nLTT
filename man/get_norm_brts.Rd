@@ -24,4 +24,3 @@ Collect the normalized branching times from the stem age
 \author{
 Richel Bilderbeek
 }
-

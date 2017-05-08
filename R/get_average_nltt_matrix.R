@@ -1,8 +1,11 @@
 #' Get the average nLTT from a collection of phylogenies
 #'
-#' @param phylogenies the phylogenies, supplied as either a list or a multiPhylo object, where the phylogenies are of type 'phylo'
-#' @param dt The timestep resolution, where 1/dt is the number of points evaluated
-#' @return A matrix of timepoints with the average number of (normalized) lineages through (normalized) time
+#' @param phylogenies the phylogenies, supplied as either a list
+#'   or a multiPhylo object, where the phylogenies are of type 'phylo'
+#' @param dt The timestep resolution, where 1/dt is
+#'   the number of points evaluated
+#' @return A matrix of timepoints with the average number of (normalized)
+#'   lineages through (normalized) time
 #' @examples
 #'   get_average_nltt_matrix(c(ape::rcoal(10), ape::rcoal(20)))
 #'

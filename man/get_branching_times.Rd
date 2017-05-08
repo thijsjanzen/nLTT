@@ -24,4 +24,3 @@ Collect the branching times from the stem age
 \author{
 Richel Bilderbeek
 }
-

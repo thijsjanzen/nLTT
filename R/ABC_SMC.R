@@ -18,9 +18,9 @@
 calculate_weight <- function(weights, particles,
                              current, sigma, prior_density_function) {
   vals <- c()
-  for ( i in seq_along( particles)) {
+  for (i in seq_along(particles)) {
     vals[i] <- weights[i]
-    for (j in seq_along( current)) {
+    for (j in seq_along(current)) {
       diff <- log(current[j]) - log(particles[[i]][j])
       vals[i] <- vals[i] * stats::dnorm(diff, mean = 0, sd = sigma)
     }
@@ -28,7 +28,7 @@ calculate_weight <- function(weights, particles,
 
   numerator <- prior_density_function(current)
 
-  return (numerator / sum( vals))
+  return(numerator / sum(vals))
 }
 
 ################################################################################
@@ -51,49 +51,66 @@ calculate_weight <- function(weights, particles,
 # @return                                 matrix      A matrix with n columns, where n is the number of parameters you are trying to estimate.
 #
 ################################################################################
-#' A function to perform Approximate Bayesian Computation within an Sequential Markov Chain (ABC-SMC), for diversification analysis of phylogenetic trees.
-#' @description This function performs ABC-SMC as described in Toni 2009 for given diversification model, provided a phylogenetic tree. ABC-SMC is not limited to only using the normalized LTT as statistic.
+#' A function to perform Approximate Bayesian Computation within a
+#' Sequential Markov Chain (ABC-SMC), for diversification analysis
+#' of phylogenetic trees.
+#' @description This function performs ABC-SMC as described in Toni 2009
+#'   for given diversification model, provided a phylogenetic tree.
+#'   ABC-SMC is not limited to only using the normalized LTT as statistic.
 #' @usage
 #'   abc_smc_nltt(
 #'     tree, statistics, simulation_function, init_epsilon_values,
 #'     prior_generating_function, prior_density_function,
 #'     number_of_particles = 1000, sigma = 0.05, stop_rate = 1e-05
 #'   )
-#' @param tree an object of class \code{"phylo"}; the tree upon which we want to fit our diversification model
-#' @param statistics A vector containing functions that take a tree as an argument and return a single scalar value (the statistic).
-#' @param simulation_function A function that implements the diversification model and returns an object of class \code{"phylo"}.
-#' @param init_epsilon_values A vector containing the initial threshold values for the summary statistics from the vector \code{statistics}.
-#' @param prior_generating_function Function to generate parameters from the prior distribution of these parameters (e.g. a function returning lambda and mu in case of the birth-death model)
-#' @param prior_density_function Function to calculate the prior probability of a set of parameters.
-#' @param number_of_particles Number of particles to be used per iteration of the ABC-SMC algorithm.
-#' @param sigma Standard deviation of the perturbance distribution (perturbance distribution is a gaussian with mean 0).
-#' @param stop_rate   If the acceptance rate drops below \code{stopRate}, stop the ABC-SMC algorithm  and assume convergence.
-#' @return A matrix with \code{n} columns, where \code{n} is the number of parameters you are trying to estimate.
-#' @references  Toni, T., Welch, D., Strelkowa, N., Ipsen, A., & Stumpf, M.P.H. (2009). Approximate Bayesian computation scheme for parameter inference and model selection in dynamical systems. Journal of the Royal Society Interface, 6(31), 187-202.
+#' @param tree an object of class \code{"phylo"}; the tree upon which we want
+#'   to fit our diversification model
+#' @param statistics A vector containing functions that take a tree
+#'   as an argument and return a single scalar value (the statistic).
+#' @param simulation_function A function that implements the
+#'   diversification model and returns an object of class \code{"phylo"}.
+#' @param init_epsilon_values A vector containing the initial threshold values
+#'   for the summary statistics from the vector \code{statistics}.
+#' @param prior_generating_function Function to generate parameters
+#'   from the prior distribution of these parameters (e.g. a function returning lambda and mu in case of the birth-death model)
+#' @param prior_density_function Function to calculate the prior probability
+#'   of a set of parameters.
+#' @param number_of_particles Number of particles to be used
+#'   per iteration of the ABC-SMC algorithm.
+#' @param sigma Standard deviation of the perturbance distribution
+#'   (perturbance distribution is a gaussian with mean 0).
+#' @param stop_rate If the acceptance rate drops below \code{stopRate},
+#'   stop the ABC-SMC algorithm  and assume convergence.
+#' @return A matrix with \code{n} columns,
+#'   where \code{n} is the number of parameters you are trying to estimate.
+#' @references  Toni, T., Welch, D., Strelkowa, N., Ipsen, A.,
+#'   & Stumpf, M.P.H. (2009). Approximate Bayesian computation scheme for
+#'   parameter inference and model selection in dynamical systems.
+#'   Journal of the Royal Society Interface, 6(31), 187-202.
 #' @export
 #' @author Thijs Janzen
 #' @examples
 #'   \dontrun{
 #'
 #'   prior_gen <- function() {
-#'     return ( rexp(n=2, rate=0.1) )
+#'     return( rexp(n=2, rate=0.1) )
 #'   }
 #'
 #'   prior_dens <- function(val) {
-#'     return ( dexp( val[1], rate = 0.1) * dexp( val[2], rate = 0.1) )
+#'     return( dexp( val[1], rate = 0.1) * dexp( val[2], rate = 0.1) )
 #'   }
 #'
 #'   require(TESS)
 #'
 #'   treeSim <- function(params) {
 #'     t <- TESS.sim.age(n=1, lambda = params[1], mu = params[2], age = 10)[[1]]
-#'     return (t)
+#'     return(t)
 #'   }
 #'
 #'   obs <- treeSim(c(0.5,0.1))
 #'
 #'   statWrapper <- function(tree1) {
-#'     return ( nLTTstat_exact(tree1, obs, "abs"))
+#'     return( nLTTstat_exact(tree1, obs, "abs"))
 #'   }
 #'
 #'   stats <- c(statWrapper)
@@ -158,14 +175,14 @@ abc_smc_nltt <- function(tree,
 
   #store weights
   new_weights <- c()
-  new_params <- list( c( seq_along(parameters)))
+  new_params <- list(c(seq_along(parameters)))
   previous_weights <- c()
-  previous_params  <- list( c( seq_along(parameters)))
+  previous_params  <- list(c(seq_along(parameters)))
   indices <- 1:number_of_particles
 
   #convergence is expected within 50 iterations
   #usually convergence occurs within 20 iterations
-  for (i in 1:50 ) {
+  for (i in 1:50) {
     cat("\nGenerating Particles for iteration\t", i, "\n")
     cat("0--------25--------50--------75--------100\n")
     cat("*")
@@ -181,7 +198,7 @@ abc_smc_nltt <- function(tree,
       previous_weights <- new_weights / sum(new_weights)
       new_weights <- c() #remove all currently stored weights
       previous_params <- new_params #store found params
-      new_params <- list( c( seq_along(parameters))) #clear new params
+      new_params <- list(c(seq_along(parameters))) #clear new params
     }
 
     stoprate_reached <- FALSE
@@ -225,7 +242,7 @@ abc_smc_nltt <- function(tree,
         #check if the summary statistics are sufficiently
         #close to the observed summary statistics
         for (k in seq_along(statistics)) {
-          if ( abs(stats[k] - obs_statistics[k]) > epsilon[i, k] ) {
+          if (abs(stats[k] - obs_statistics[k]) > epsilon[i, k]) {
             accept <- FALSE
             #the first step always accepts
             if (i == 1) accept <- TRUE
@@ -233,7 +250,7 @@ abc_smc_nltt <- function(tree,
           }
         }
 
-        if ( accept ) {
+        if (accept) {
           number_accepted <- number_accepted + 1
           new_params[[number_accepted]] <- parameters
           accepted_weight <- 1
@@ -245,7 +262,7 @@ abc_smc_nltt <- function(tree,
           }
           new_weights[number_accepted] <- accepted_weight
 
-          if ( (number_accepted) %%
+          if ((number_accepted) %%
                (number_of_particles / print_frequency) == 0) {
             cat("**")
             utils::flush.console()
@@ -271,12 +288,12 @@ abc_smc_nltt <- function(tree,
   output <- c()
   for (k in seq_along(previous_params)) {
     add <- c()
-    for (m in seq_along( parameters)) {
-      add <- c( add, previous_params[[k]][m])
+    for (m in seq_along(parameters)) {
+      add <- c(add, previous_params[[k]][m])
     }
     output <- rbind(output, add)
   }
-  return (output)
+  return(output)
 }
 
 ################################################################################
@@ -313,7 +330,7 @@ mcmc_nltt <- function(phy, likelihood_function,
   }
 
   # create a list for the samples & reserve memory for the chain
-  chain <- array(dim = c( floor( iterations / thinning) + 1,
+  chain <- array(dim = c(floor(iterations / thinning) + 1,
                           length(parameters)))
 
   for (j in seq_along(parameters)) {
@@ -335,9 +352,9 @@ mcmc_nltt <- function(phy, likelihood_function,
 
   for (i in seq_len(burnin + iterations)) {
     #propose new values
-    for ( j in seq_along(parameters) ) {
-      if ( logtransforms[j] == TRUE ) {
-        if ( parameters[j] == 0) {
+    for (j in seq_along(parameters)) {
+      if (logtransforms[j] == TRUE) {
+        if (parameters[j] == 0) {
           stop("Cannot propose new value for a parameter with value 0.0.")
         }
 
@@ -350,9 +367,9 @@ mcmc_nltt <- function(phy, likelihood_function,
         new_pp        <- likelihood_function(parameters, phy)
 
         #accept or reject
-        if ( is.finite(new_pp) &&
-             is.finite(hr) &&
-             new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
+        if (is.finite(new_pp) &&
+            is.finite(hr) &&
+            new_pp - pp + hr > log(stats::runif(1, 0, 1))) {
           pp <- new_pp
         } else {
           parameters[j] <- exp(eta)
@@ -369,9 +386,9 @@ mcmc_nltt <- function(phy, likelihood_function,
           new_pp        <- likelihood_function(parameters, phy)
 
           #accept or reject
-          if ( is.finite(new_pp) &&
-               is.finite(hr) &&
-               new_pp - pp + hr > log(stats::runif(1, 0, 1)) ) {
+          if (is.finite(new_pp) &&
+              is.finite(hr) &&
+              new_pp - pp + hr > log(stats::runif(1, 0, 1))) {
             pp <- new_pp
           } else {
             parameters[j] <- eta
@@ -384,16 +401,16 @@ mcmc_nltt <- function(phy, likelihood_function,
 
     # sample the parameter
     if (i >= burnin) {
-      if ( (i) %% ( (iterations - burnin) / print_frequency) == 0) {
+      if ((i) %% ((iterations - burnin) / print_frequency) == 0) {
         cat("**")
         utils::flush.console()
       }
-      if ( (i - burnin) %% thinning == 0 ) {
-        chain[ (i - burnin) / thinning + 1, ] <- parameters
+      if ((i - burnin) %% thinning == 0) {
+        chain[(i - burnin) / thinning + 1, ] <- parameters
       }
     }
   }
   cat("\nFinished MCMC.\n")
   #return a mcmc object, used by coda to plot
-  return( coda::as.mcmc(chain) )
+  return(coda::as.mcmc(chain))
 }

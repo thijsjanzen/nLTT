@@ -12,7 +12,9 @@ nltt_lines(phy, ...)
 \item{\dots}{further graphical arguments that can be passed to \code{lines()}}
 }
 \description{
-This is a modified version of the \code{ape} function ltt.lines: add the normalized Lineage-Through-Time statistic of a phylogenetic tree to an already existing plot
+This is a modified version of the \code{ape} function ltt.lines:
+  add the normalized Lineage-Through-Time statistic of a phylogenetic tree
+  to an already existing plot
 }
 \examples{
   data(exampleTrees)
@@ -22,4 +24,3 @@ This is a modified version of the \code{ape} function ltt.lines: add the normali
 \author{
 Thijs Janzen
 }
-

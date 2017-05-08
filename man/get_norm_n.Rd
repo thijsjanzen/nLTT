@@ -24,4 +24,3 @@ Collect the normalized number of lineages from the stem age
 \author{
 Richel Bilderbeek
 }
-

@@ -1,11 +1,13 @@
 #' Get the average nLTT from a collection of phylogenies
 #'
 #' @param phylogenies the phylogenies, where the phylogenies are of type 'phylo'
-#' @param dt The timestep resolution, where 1/dt is the number of points evaluated
+#' @param dt The timestep resolution,
+#'   where 1/dt is the number of points evaluated
 #' @param plot_nltts Also plot each nLLT line
 #' @param xlab Label on the x axis
 #' @param ylab Label on the y axis
-#' @param replot If false, start a clean plot. If true, plot the new data over the current
+#' @param replot If false, start a clean plot. If true,
+#'   plot the new data over the current
 #' @param ... Plotting options
 #' @return Nothing
 #' @examples

@@ -17,5 +17,5 @@ get_norm_n <- function(phylogeny) {
   ns <- -ns
   # Normalize
   ns <- ns / utils::tail(ns, n = 1)
- return (ns)
+  return(ns)
 }

@@ -1,7 +1,8 @@
 #' Stretch matrix 'm' with a timestep resolution of 'dt'.
 #'
 #' @param m A matrix of 2 columns and at least 2 rows
-#' @param dt The resultion, a value e [0.0001, 1]. If 'dt' is set to a very small value, this function will stop
+#' @param dt The resulution, a value e [0.0001, 1].
+#'   If 'dt' is set to a very small value, this function will stop
 #' @param step_type can be 'lower' or 'upper'
 #' @return The stretched matrix
 #' @examples
@@ -44,7 +45,7 @@ stretch_nltt_matrix <- function(
     }
   }
   if (!is.null(rows_to_delete)) {
-    m <- m[ -rows_to_delete, ]
+    m <- m[-rows_to_delete, ]
   }
 
   # Prepare a new matrix called n
@@ -62,7 +63,7 @@ stretch_nltt_matrix <- function(
 
   n_ns <- rep(NA, times = n_nrow)
   testit::assert(length(n_ns) == n_nrow)
-  n <- matrix( c(n_ts, n_ns), ncol = 2, nrow = n_nrow)
+  n <- matrix(c(n_ts, n_ns), ncol = 2, nrow = n_nrow)
 
   testit::assert(nrow(n) == n_nrow)
 

@@ -11,7 +11,8 @@ nltts_plot(phylogenies, dt = 0.001, plot_nltts = FALSE,
 \arguments{
 \item{phylogenies}{the phylogenies, where the phylogenies are of type 'phylo'}
 
-\item{dt}{The timestep resolution, where 1/dt is the number of points evaluated}
+\item{dt}{The timestep resolution,
+where 1/dt is the number of points evaluated}
 
 \item{plot_nltts}{Also plot each nLLT line}
 
@@ -19,7 +20,8 @@ nltts_plot(phylogenies, dt = 0.001, plot_nltts = FALSE,
 
 \item{ylab}{Label on the y axis}
 
-\item{replot}{If false, start a clean plot. If true, plot the new data over the current}
+\item{replot}{If false, start a clean plot. If true,
+plot the new data over the current}
 
 \item{...}{Plotting options}
 }
@@ -37,4 +39,3 @@ Get the average nLTT from a collection of phylogenies
 \author{
 Richel Bilderbeek
 }
-

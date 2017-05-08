@@ -7,12 +7,15 @@
 get_average_nltt_matrix(phylogenies, dt = 0.001)
 }
 \arguments{
-\item{phylogenies}{the phylogenies, supplied as either a list or a multiPhylo object, where the phylogenies are of type 'phylo'}
+\item{phylogenies}{the phylogenies, supplied as either a list
+or a multiPhylo object, where the phylogenies are of type 'phylo'}
 
-\item{dt}{The timestep resolution, where 1/dt is the number of points evaluated}
+\item{dt}{The timestep resolution, where 1/dt is
+the number of points evaluated}
 }
 \value{
-A matrix of timepoints with the average number of (normalized) lineages through (normalized) time
+A matrix of timepoints with the average number of (normalized)
+  lineages through (normalized) time
 }
 \description{
 Get the average nLTT from a collection of phylogenies
@@ -24,4 +27,3 @@ Get the average nLTT from a collection of phylogenies
 \author{
 Richel Bilderbeek
 }
-

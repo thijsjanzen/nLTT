@@ -11,11 +11,13 @@ nltt_diff_exact_brts(b_times, lineages, b_times2, lineages2,
 \arguments{
 \item{b_times}{branching times of the first phylogeny,}
 
-\item{lineages}{the number of lineages, usually one to the number of lineages}
+\item{lineages}{the number of lineages,
+usually one to the number of lineages}
 
 \item{b_times2}{branching times of the first phylogeny}
 
-\item{lineages2}{the number of lineages, usually one to the number of lineages}
+\item{lineages2}{the number of lineages,
+usually one to the number of lineages}
 
 \item{distance_method}{how the difference between the two nLTTs is summed
 \itemize{
@@ -25,8 +27,10 @@ nltt_diff_exact_brts(b_times, lineages, b_times2, lineages2,
 
 \item{time_unit}{the time unit of the branching times
 \itemize{
- \item{"ago: "}{the branching times are postive, as these are in time units ago}
- \item{"since: "}{the branching times are negative, as these are in time units since present}
+ \item{"ago: "}{the branching times are postive,
+   as these are in time units ago}
+ \item{"since: "}{the branching times are negative,
+   as these are in time units since present}
 }}
 }
 \description{
@@ -36,4 +40,3 @@ curves of the branching times
 \author{
 Thijs Janzen and Richel Bilderbeek
 }
-

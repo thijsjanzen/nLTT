@@ -1,8 +1,11 @@
 #' Collects the nLTT values of all phylogenies in the melted/uncast/long form
 #'
-#' @param phylogenies the phylogenies, supplied as either a list or a multiPhylo object, where the phylogenies are of type 'phylo'
-#' @param dt The timestep resolution, where 1/dt is the number of points evaluated
-#' @return A dataframe of timepoints with the nLTT value of each phylogeny in time
+#' @param phylogenies the phylogenies, supplied as either
+#'   a list or a multiPhylo object, where the phylogenies are of type 'phylo'
+#' @param dt The timestep resolution,
+#'   where 1/dt is the number of points evaluated
+#' @return A dataframe of timepoints with the nLTT value
+#'   of each phylogeny in time
 #' @examples
 #'   library(ape)
 #'   library(ggplot2)

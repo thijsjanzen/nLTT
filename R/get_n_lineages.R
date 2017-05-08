@@ -14,7 +14,7 @@
 #' @export
 get_n_lineages <- function(phylogeny) {
   if (!is.null(phylogeny$root.edge)) {
-    return (1:length(phylogeny$tip.label))
+    return(1:length(phylogeny$tip.label))
   }
-  return (2:length(phylogeny$tip.label))
+  return(2:length(phylogeny$tip.label))
 }

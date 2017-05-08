@@ -28,4 +28,3 @@ Collect the number of lineages from the stem age
 \author{
 Richel Bilderbeek
 }
-

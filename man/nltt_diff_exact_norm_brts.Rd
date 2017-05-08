@@ -11,11 +11,13 @@ nltt_diff_exact_norm_brts(b_times_N, lineages_N, b_times2_N, lineages2_N,
 \arguments{
 \item{b_times_N}{branching times of the first phylogeny}
 
-\item{lineages_N}{the number of lineages, usually one to the number of lineages}
+\item{lineages_N}{the number of lineages,
+usually one to the number of lineages}
 
 \item{b_times2_N}{branching times of the first phylogeny}
 
-\item{lineages2_N}{the number of lineages, usually one to the number of lineages}
+\item{lineages2_N}{the number of lineages,
+usually one to the number of lineages}
 
 \item{distance_method}{(string) absolute, or squared distance?}
 }
@@ -26,4 +28,3 @@ curves of the branching times
 \author{
 Thijs Janzen and Richel Bilderbeek
 }
-

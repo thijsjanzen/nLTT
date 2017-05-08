@@ -3,22 +3,22 @@ context("abc_smc_nltt")
 test_that("abc_smc_nltt use", {
   # These tests are very long
   if (Sys.getenv("HOME") == "/home/richel" ||
-   Sys.getenv("HOME") == "/home/p230198") return ()
+   Sys.getenv("HOME") == "/home/p230198") return()
   print(Sys.getenv("HOME"))
 
   treesim <- function(params) {
     t <- TESS::tess.sim.taxa(n = 1,
                              lambda = params[1],
                              mu = 0.0, nTaxa = 100, max = 10)[[1]]
-    return (t)
+    return(t)
   }
 
   prior_gen <- function() {
-    return ( rexp(n = 1, rate = 10) )
+    return(rexp(n = 1, rate = 10))
   }
 
   prior_dens <- function(val) {
-   return( dexp( val[1], rate = 10) )
+   return(dexp(val[1], rate = 10))
   }
 
   set.seed(42)
@@ -63,19 +63,19 @@ test_that("abc_smc_nltt abuse", {
     t <- TESS::tess.sim.taxa(n = 1,
                              lambda = params[1],
                              mu = params[2], nTaxa = 1000, max = 100000)[[1]]
-    return (t)
+    return(t)
   }
 
   prior_gen <- function() {
-    return( rexp(n = 2, rate = 1) )
+    return(rexp(n = 2, rate = 1))
   }
 
   prior_dens <- function(val) {
     if (val[2] > val[1]) {
       return(-1)
     }
-    return ( dexp( val[1], rate = 1) *
-               dexp( val[2], rate = 1) )
+    return(dexp(val[1], rate = 1) *
+               dexp(val[2], rate = 1))
   }
 
   statwrapper <- function(tree1) {

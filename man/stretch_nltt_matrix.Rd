@@ -9,7 +9,8 @@ stretch_nltt_matrix(m, dt, step_type)
 \arguments{
 \item{m}{A matrix of 2 columns and at least 2 rows}
 
-\item{dt}{The resultion, a value e [0.0001, 1]. If 'dt' is set too small, this function will stop}
+\item{dt}{The resulution, a value e [0.0001, 1].
+If 'dt' is set to a very small value, this function will stop}
 
 \item{step_type}{can be 'lower' or 'upper'}
 }
@@ -35,4 +36,3 @@ Stretch matrix 'm' with a timestep resolution of 'dt'.
 \author{
 Richel Bilderbeek
 }
-

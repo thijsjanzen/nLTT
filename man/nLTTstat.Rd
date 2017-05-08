@@ -2,7 +2,8 @@
 % Please edit documentation in R/nLTTDiff.R
 \name{nLTTstat}
 \alias{nLTTstat}
-\title{Calculate the difference between two normalized Lineage-Through-Time curves, given two phylogenetic trees.}
+\title{Calculate the difference between two normalized
+  Lineage-Through-Time curves, given two phylogenetic trees.}
 \usage{
 nLTTstat(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
 }
@@ -11,7 +12,8 @@ nLTTstat(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
 
 \item{tree2}{an object of class \code{"phylo"}}
 
-\item{distance_method}{Chosen measurement of distance between the two nLTT curves, options are (case sensitive):\cr
+\item{distance_method}{Chosen measurement of distance between
+the two nLTT curves, options are (case sensitive):\cr
 - "abs": use the absolute distance\cr
 - "squ": use the squared distance;\cr}
 
@@ -21,7 +23,9 @@ nLTTstat(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
 The difference between the two nLTT statistics
 }
 \description{
-This function takes two ultrametric phylogenetic trees, calculates the normalized Lineage-Through-Time statistic for both trees and then calculates the difference between the two statistics.
+This function takes two ultrametric phylogenetic trees,
+  calculates the normalized Lineage-Through-Time statistic for both trees
+  and then calculates the difference between the two statistics.
 }
 \examples{
   data(exampleTrees)
@@ -34,4 +38,3 @@ This function takes two ultrametric phylogenetic trees, calculates the normalize
 \author{
 Thijs Janzen
 }
-

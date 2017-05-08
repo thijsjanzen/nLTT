@@ -4,7 +4,8 @@
 \alias{nltt_plot}
 \title{Normalized version of the ape function ltt.plot}
 \usage{
-nltt_plot(phy, xlab = "Normalized Time", ylab = "Normalized Lineages", ...)
+nltt_plot(
+  phy, xlab = "Normalized Time", ylab = "Normalized Lineages", ...)
 }
 \arguments{
 \item{phy}{an object of class \code{"phylo"}}
@@ -18,7 +19,13 @@ giving the label for the \eqn{y}-axis (default is "Normalized Lineages").}
 \item{\dots}{further graphical arguments that can be passed to \code{plot()}}
 }
 \description{
-This function uses a modified version of the ltt.plot function from \code{"ape"} to plot the normalized number of lineages through normalized time, where the number of lineages is normalized by dividing by the number of tips of the tree, and the time is normalized by the total time between the most common recent ancestor and the present, such that t(MRCA) = 0 & t(present) = 1.
+This function uses a modified version of the ltt.plot function
+  from \code{"ape"} to plot the normalized number of lineages
+  through normalized time, where the number of lineages is normalized
+  by dividing by the number of tips of the tree,
+  and the time is normalized by the total time between
+  the most common recent ancestor and the present,
+  such that t(MRCA) = 0 & t(present) = 1.
 }
 \examples{
   data(exampleTrees)
@@ -27,4 +34,3 @@ This function uses a modified version of the ltt.plot function from \code{"ape"}
 \author{
 Thijs Janzen
 }
-

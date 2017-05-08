@@ -12,7 +12,7 @@ get_branching_times <- function(phylogeny) {
   brts <- ape::branching.times(phylogeny)
   if (!is.null(phylogeny$root.edge)) {
     # Put the stem age first
-    return (c(brts[1] + phylogeny$root.edge, brts))
+    return(c(brts[1] + phylogeny$root.edge, brts))
   }
-  return (brts)
+  return(brts)
 }

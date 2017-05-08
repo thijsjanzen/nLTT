@@ -27,7 +27,7 @@ Suggests:
     TreeSim
 NeedsCompilation: no
 Packaged: 2016-10-09 07:46:57 UTC; janzen
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/nLTT
 BugReports: https://github.com/richelbilderbeek/nLTT/issues

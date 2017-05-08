@@ -7,12 +7,15 @@
 get_nltt_values(phylogenies, dt)
 }
 \arguments{
-\item{phylogenies}{the phylogenies, supplied as either a list or a multiPhylo object, where the phylogenies are of type 'phylo'}
+\item{phylogenies}{the phylogenies, supplied as either
+a list or a multiPhylo object, where the phylogenies are of type 'phylo'}
 
-\item{dt}{The timestep resolution, where 1/dt is the number of points evaluated}
+\item{dt}{The timestep resolution,
+where 1/dt is the number of points evaluated}
 }
 \value{
-A dataframe of timepoints with the nLTT value of each phylogeny in time
+A dataframe of timepoints with the nLTT value
+  of each phylogeny in time
 }
 \description{
 Collects the nLTT values of all phylogenies in the melted/uncast/long form
@@ -65,4 +68,3 @@ Collects the nLTT values of all phylogenies in the melted/uncast/long form
 \author{
 Richel Bilderbeek
 }
-
