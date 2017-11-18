@@ -42,11 +42,11 @@ Apart from providing functions that calculate the nLTT statistic, the nLTT packa
 - estimate the parameters of a model for which no likelihood is available, using ABC-SMC (as used in the paper)
 
 ## Papers using the nLTT statistic
-Janzen, Thijs, and Rampal Etienne. "Inferring the role of habitat dynamics in driving diversification: evidence for a species pump in Lake Tanganyika cichlids." bioRxiv (2016): 085431. [link](http://biorxiv.org/content/early/2016/11/03/085431.abstract)
+Janzen, Thijs, and Rampal Etienne. "Inferring the role of habitat dynamics in driving diversification: evidence for a species pump in Lake Tanganyika cichlids." bioRxiv (2017): 085431. [link](https://www.biorxiv.org/content/early/2017/06/07/085431)
 
 Ibeh, Neke, and Stephane Aris-Brosou. "Estimation of sub-epidemic dynamics by means of Sequential Monte Carlo Approximate Bayesian Computation: an application to the Swiss HIV Cohort Study. bioRxiv (2016): 085993. [link](http://biorxiv.org/content/early/2016/11/07/085993)
 
-Giardina, F., Romero-Severson, E. O., Albert, J., Britton, T., & Leitner, T. K. Inference of transmission network structure from HIV phylogenetic trees. bioRxiv (2016): 059865. [link](http://biorxiv.org/content/early/2016/06/25/059865)
+Giardina F, Romero-Severson EO, Albert J, Britton T, Leitner T (2017) Inference of Transmission Network Structure from HIV Phylogenetic Trees. PLOS Computational Biology 13(1): e1005316. [link](https://doi.org/10.1371/journal.pcbi.1005316)
 
 McCloskey, Rosemary M., Richard H. Liang, and Art FY Poon. "Reconstructing contact network parameters from viral phylogenies." Virus evolution 2.2 (2016): vew029. [link](http://ve.oxfordjournals.org/content/2/2/vew029.abstract)
 
