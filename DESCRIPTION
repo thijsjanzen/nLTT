@@ -17,6 +17,7 @@ Imports:
 Suggests:
     DDD,
     ggplot2,
+    Hmisc,
     knitr,
     microbenchmark,
     plyr,
