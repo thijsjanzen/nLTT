@@ -14,7 +14,7 @@ nltt_diff_exact <- function(
   distance_method = "abs",
   ignore_stem = TRUE
 ) {
-  return(nLTT::nltt_diff(tree1, tree2, distance_method, ignore_stem))
+  nLTT::nltt_diff(tree1, tree2, distance_method, ignore_stem)
 }
 
 #' Calculates the exact difference between the nLTT
@@ -92,12 +92,12 @@ nltt_diff_exact_brts <- function(
   lineages2_N <- lineages2 / max(lineages2)  #normalize lineages
   # Normalizations must have worked
 
-  return(nltt_diff_exact_norm_brts(
+  nltt_diff_exact_norm_brts(
     b_times_N = b_times_N,
     lineages_N = lineages_N,
     b_times2_N = b_times2_N,
     lineages2_N = lineages2_N,
-    distance_method = distance_method)
+    distance_method = distance_method
   )
 }
 
@@ -177,7 +177,7 @@ nltt_diff_exact_norm_brts <- function(
         diff <- diff + dt * (lins1 - lins2) * (lins1 - lins2)
       }
   }
-  return(diff)
+  diff
 }
 
 #' Calculates the exact difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
@@ -233,14 +233,12 @@ nltt_diff <- function(
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times2) == length(lineages2))
 
-  return(
-    nltt_diff_exact_brts(
-      b_times = b_times,
-      lineages = lineages,
-      b_times2 = b_times2,
-      lineages2 = lineages2,
-      distance_method = distance_method
-    )
+  nltt_diff_exact_brts(
+    b_times = b_times,
+    lineages = lineages,
+    b_times2 = b_times2,
+    lineages2 = lineages2,
+    distance_method = distance_method
   )
 }
 
@@ -308,8 +306,7 @@ nLTTstat <- function(  # nolint keep function name non-all-lowercase, due to bac
     stop("nLTTstat: ignore_stem must be logical")
   }
 
-  diff <- nLTT::nltt_diff(tree1, tree2, distance_method, ignore_stem)
-  return(diff)
+  nLTT::nltt_diff(tree1, tree2, distance_method, ignore_stem)
 }
 
 ################################################################################
@@ -384,6 +381,5 @@ nLTTstat_exact <- function( # nolint keep function name non-all-lowercase, due t
   if (!is.logical(ignore_stem)) {
     stop("nLTTstat_exact: ignore_stem must be logical")
   }
-  diff <- nLTT::nltt_diff_exact(tree1, tree2, distance_method, ignore_stem)
-  return(diff)
+  nLTT::nltt_diff_exact(tree1, tree2, distance_method, ignore_stem)
 }
