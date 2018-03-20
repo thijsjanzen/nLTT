@@ -383,3 +383,41 @@ nLTTstat_exact <- function( # nolint keep function name non-all-lowercase, due t
   }
   nLTT::nltt_diff_exact(tree1, tree2, distance_method, ignore_stem)
 }
+
+#' Calculates the exact difference between the lineage through time
+#' curves of a specified tree and a collection of trees
+#' @inheritParams nltt_diff_exact
+#' @param tree A phylogenetic tree
+#' @param trees One or more phylogenetic trees
+#' @author Richel J.C. Bilderbeek
+#' @export
+nltts_diff <- function(
+  tree,
+  trees,
+  distance_method = "abs",
+  ignore_stem = TRUE
+) {
+  if (class(tree) != "phylo") {
+    stop("'tree' must be of type 'phylo'")
+  }
+  if (class(trees) != "multiPhylo") {
+    stop("'trees' must be of type 'multiPhylo'")
+  }
+  if (!distance_method %in% c("abs", "squ")) {
+    stop("'distance_method' must be either 'abs' or 'squ'")
+  }
+  if (!ignore_stem %in% c(TRUE, FALSE)) {
+    stop("'ignore_stem' must be either TRUE or FALSE")
+  }
+
+  nltts <- rep(NULL, length(trees))
+  for (i in seq_along(trees)) {
+    nltts[i] <- nltt_diff(
+      tree1 = tree,
+      tree2 = trees[[i]],
+      distance_method = distance_method,
+      ignore_stem = ignore_stem
+    )
+  }
+  nltts
+}
