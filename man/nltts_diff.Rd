@@ -2,23 +2,37 @@
 % Please edit documentation in R/nLTTDiff.R
 \name{nltts_diff}
 \alias{nltts_diff}
-\title{Calculates the exact difference between the lineage through time
-curves of a specified tree and a collection of trees}
+\title{Calculates the nLTT statistic between each phylogeny in
+a collection compared to a same focal/reference tree}
 \usage{
 nltts_diff(tree, trees, distance_method = "abs", ignore_stem = TRUE)
 }
 \arguments{
-\item{tree}{A phylogenetic tree}
+\item{tree}{One phylogenetic tree}
 
-\item{trees}{One or more phylogenetic trees}
+\item{trees}{A collection of one or more phylogenetic trees}
 
 \item{distance_method}{(string) absolute, or squared distance?}
 
 \item{ignore_stem}{(logical) Should the phylogeny its stem be ignored?}
 }
+\value{
+the nLTT statistic values, as a numeric vector of
+  the same length as \code{trees}
+}
 \description{
-Calculates the exact difference between the lineage through time
-curves of a specified tree and a collection of trees
+Calculates the nLTT statistic between each phylogeny in
+a collection compared to a same focal/reference tree
+}
+\examples{
+  tree <- ape::rcoal(4)
+  trees <- c(ape::rcoal(4), ape::rcoal(4))
+  nltts <- nltts_diff(tree, trees)
+  testit::assert(all(nltts >= 0.0 && nltts <= 1.0))
+}
+\seealso{
+use \code{\link{nltt_diff}} to compare two
+  phylogenies
 }
 \author{
 Richel J.C. Bilderbeek

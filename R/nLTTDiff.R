@@ -188,6 +188,8 @@ nltt_diff_exact_norm_brts <- function(
 #' @param ignore_stem logical    Should the phylogeny its stem be ignored?
 #' @return (scalar) normalized Lineage-Through-Time difference
 #'   between tree1 & tree2
+#' @seealso use \code{\link{nltts_diff}} to compare a collection of
+#'   phylogenies to one focal/reference tree
 #' @export
 nltt_diff <- function(
  tree1, tree2, distance_method = "abs", ignore_stem = TRUE) {
@@ -384,11 +386,20 @@ nLTTstat_exact <- function( # nolint keep function name non-all-lowercase, due t
   nLTT::nltt_diff_exact(tree1, tree2, distance_method, ignore_stem)
 }
 
-#' Calculates the exact difference between the lineage through time
-#' curves of a specified tree and a collection of trees
+#' Calculates the nLTT statistic between each phylogeny in
+#' a collection compared to a same focal/reference tree
 #' @inheritParams nltt_diff_exact
-#' @param tree A phylogenetic tree
-#' @param trees One or more phylogenetic trees
+#' @param tree One phylogenetic tree
+#' @param trees A collection of one or more phylogenetic trees
+#' @return the nLTT statistic values, as a numeric vector of
+#'   the same length as \code{trees}
+#' @seealso use \code{\link{nltt_diff}} to compare two
+#'   phylogenies
+#' @examples
+#'   tree <- ape::rcoal(4)
+#'   trees <- c(ape::rcoal(4), ape::rcoal(4))
+#'   nltts <- nltts_diff(tree, trees)
+#'   testit::assert(all(nltts >= 0.0 && nltts <= 1.0))
 #' @author Richel J.C. Bilderbeek
 #' @export
 nltts_diff <- function(

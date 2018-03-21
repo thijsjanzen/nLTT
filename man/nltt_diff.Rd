@@ -22,6 +22,10 @@ nltt_diff(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
 \description{
 Calculates the exact difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
 }
+\seealso{
+use \code{\link{nltts_diff}} to compare a collection of
+  phylogenies to one focal/reference tree
+}
 \author{
 Thijs Janzen
 }
