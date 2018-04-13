@@ -135,10 +135,10 @@ nltt_diff_exact_norm_brts <- function(
   testit::assert(b_times2_N[1] >= 0.0)
   testit::assert(lineages2_N[1] >= 0.0)
   # Ends with ones
-  testit::assert(tail(b_times_N, n = 1) == 1.0)
-  testit::assert(tail(lineages_N, n = 1) == 1.0)
-  testit::assert(tail(b_times2_N, n = 1) == 1.0)
-  testit::assert(tail(lineages2_N, n = 1) == 1.0)
+  testit::assert(utils::tail(b_times_N, n = 1) == 1.0)
+  testit::assert(utils::tail(lineages_N, n = 1) == 1.0)
+  testit::assert(utils::tail(b_times2_N, n = 1) == 1.0)
+  testit::assert(utils::tail(lineages2_N, n = 1) == 1.0)
   # Are in range?
   testit::assert(all(b_times_N >= 0.0 & b_times_N <= 1.0))
   testit::assert(all(lineages_N >= 0.0 & lineages_N <= 1.0))
