@@ -38,9 +38,10 @@ nltt_plot <- function( phy, xlab = "Normalized Time",
 
   if (!inherits(phy, "phylo")) {
     # Stop imposed by ape::ltt.plot.coords
-    stop("nltt_plot: ",
+    stop(
       "phylogeny must be of class 'phylo', ",
-      "but was of type '", class(phy), "' instead")
+      "but was of type '", class(phy), "' instead"
+    )
   }
 
   #we use the ltt.plot.coords function from the package ape
@@ -82,9 +83,10 @@ nltt_lines <- function(phy, ...) {
 
   if (!inherits(phy, "phylo")) {
     # Stop imposed by ape::ltt.plot.coords
-    stop("nltt_lines: ",
+    stop(
       "phylogeny must be of class 'phylo', ",
-      "but was of type '", class(phy), "' instead")
+      "but was of type '", class(phy), "' instead"
+    )
   }
   xy <- ape::ltt.plot.coords(phy, backward = TRUE, tol = 1e-6)
   xy[, 2] <- xy[, 2] / max(xy[, 2]) #normalize number lineages
