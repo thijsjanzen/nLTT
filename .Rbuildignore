@@ -7,7 +7,7 @@
 ^checkout_all_branches$
 ^README.md$
 ^Rhistory$
-^pics/$
+^pics$
 ^CONTRIBUTING.md$
 ^code_of_conduct.md$
 ^appveyor\.yml$
