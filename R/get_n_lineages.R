@@ -7,14 +7,14 @@
 #'   phylogeny <- ape::read.tree(text = "((a:2,b:2):1,c:3);")
 #'   testthat::expect_true(
 #'     all(nLTT::get_n_lineages(phylogeny) == c(2, 3)))
-#'   phylogeny$root.edge <- 2
+#'   phylogeny$root.edge <- 2 # nolint ape variable name
 #'   testthat::expect_true(
 #'     all(nLTT::get_n_lineages(phylogeny) == c(1, 2, 3)))
 #' @author Richel Bilderbeek
 #' @export
 get_n_lineages <- function(phylogeny) {
-  if (!is.null(phylogeny$root.edge)) {
+  if (!is.null(phylogeny$root.edge)) { # nolint ape variable name
     return(1:length(phylogeny$tip.label))
   }
-  return(2:length(phylogeny$tip.label))
+  2:length(phylogeny$tip.label)
 }

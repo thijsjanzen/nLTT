@@ -1,5 +1,15 @@
 context("nltts_plot")
 
+test_that("can get the average of one phylogeny", {
+
+  n_trees <- 2
+  n_tips <- 3
+  set.seed(41)
+  single_phylogeny <- ape::rmtree(N = 1, n = n_tips)
+  testthat::expect_silent(nltts_plot(single_phylogeny))
+})
+
+
 test_that("nltts_plot: create some plots", {
   # The inner workings of nltts_plot are done by get_average_nltt_matrix
   newick1 <- "((A:1,B:1):1,(C:1,D:1):1);"
@@ -46,7 +56,7 @@ test_that("nltts_plot: check data types", {
 
 
 
-test_that("nltts_plot: stop on incorrect input", {
+test_that("stop on incorrect input", {
 
   n_trees <- 2
   n_tips <- 3
@@ -61,9 +71,6 @@ test_that("nltts_plot: stop on incorrect input", {
   #  dt must be from 0.0 to and including 1.0
   expect_error(nltts_plot(ape_phylogenies, dt = -0.1))
   expect_error(nltts_plot(ape_phylogenies, dt = 1.1))
-
-  # must supply at least two trees
-  expect_error(nltts_plot(single_phylogeny))
 
   # must supply a phylogeny
   expect_error(nltts_plot(c(1, 2, 3)))

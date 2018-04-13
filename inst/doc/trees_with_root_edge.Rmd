@@ -22,14 +22,14 @@ Here I create a random phylogeny:
 ```{r}
 set.seed(42)
 tree1 <- ape::rcoal(2)
-tree1$edge.length <- tree1$edge.length / tree1$edge.length[1]
+tree1$edge.length <- tree1$edge.length / tree1$edge.length[1] # nolint ape variable name
 ```
 
 I copy that same phylogeny and add a stem:
 
 ```{r}
 tree2 <- tree1
-tree2$root.edge <- 1
+tree2$root.edge <- 1 # nolint ape variable name
 ```
 
 Here is how the stemless phylogeny looks like:

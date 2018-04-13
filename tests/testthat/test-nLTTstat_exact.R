@@ -65,10 +65,10 @@ test_that("nLTTstat_exact may ignore the stem", {
 
   # Create a stemless phylogeny with two branches of length 1.0
   tree1 <- ape::rcoal(2)
-  tree1$edge.length <- tree1$edge.length / tree1$edge.length[1]
+  tree1$edge.length <- tree1$edge.length / tree1$edge.length[1] # nolint ape variable name
   # Create a phylogeny with two branches of length 1.0 and a stem length of 1
   tree2 <- tree1
-  tree2$root.edge <- 1
+  tree2$root.edge <- 1 # nolint ape variable name
 
   # Without taking the stem into account, the nLTT statistic between
   # identical  trees is zero
@@ -94,9 +94,9 @@ test_that("nLTTstat_exact on two rcoal trees, do ignore stem", {
 
    set.seed(42)
   p <- ape::rcoal(5)
-  p$root.edge <- 0.1
+  p$root.edge <- 0.1 # nolint ape variable name
   q <- ape::rcoal(5)
-  p$root.edge <- 0.2
+  p$root.edge <- 0.2 # nolint ape variable name
   testthat::expect_silent(nLTT::nLTTstat_exact(p, q, ignore_stem = TRUE))
 })
 
@@ -104,9 +104,9 @@ test_that("nLTTstat_exact on two rcoal trees, do not ignore stem", {
 
   set.seed(42)
   p <- ape::rcoal(5)
-  p$root.edge <- 0.1
+  p$root.edge <- 0.1 # nolint ape variable name
   q <- ape::rcoal(5)
-  p$root.edge <- 0.2
+  p$root.edge <- 0.2 # nolint ape variable name
   testthat::expect_silent(nLTT::nLTTstat_exact(p, q, ignore_stem = FALSE))
 })
 
@@ -115,6 +115,6 @@ test_that("adding a stem causes branch lengths to become NAs", {
   set.seed(42)
   p <- ape::rcoal(5)
   testthat::expect_true(!any(is.na(ape::branching.times(p))))
-  p$root.edge <- 0.1
+  p$root.edge <- 0.1 # nolint ape variable name
   testthat::expect_true(!any(is.na(ape::branching.times(p))))
 })

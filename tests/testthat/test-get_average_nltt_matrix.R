@@ -1,5 +1,14 @@
 context("get_average_nltt_matrix")
 
+test_that("can get the average nLTT stats from one phylogeny", {
+
+  n_trees <- 2
+  n_tips <- 3
+  set.seed(41)
+  single_phylogeny <- ape::rmtree(N = 1, n = n_tips)
+  testthat::expect_silent(get_average_nltt_matrix(single_phylogeny))
+})
+
 test_that(paste(
   "How to stretch an nLTT timepoints matrix: ",
   "Example: Easy tree", sep = ""), {
@@ -163,8 +172,6 @@ test_that("stop on incorrect input", {
   expect_error(get_average_nltt_matrix(ape_phylogenies, dt = -0.1))
   expect_error(get_average_nltt_matrix(ape_phylogenies, dt = 1.1))
 
-  # must supply at least two trees
-  expect_error(get_average_nltt_matrix(single_phylogeny))
 
   # must supply a phylogeny
   expect_error(get_average_nltt_matrix(c(1, 2, 3)))
