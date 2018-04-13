@@ -82,21 +82,21 @@ nltt_diff_exact_brts <- function(
   testit::assert(all(lineages2 >= 0.0))
 
 
-  b_times_N <- 1.0 - b_times / min(b_times) #normalize branching times
-  lineages_N <- lineages / max(lineages)  #normalize lineages
+  b_times_n <- 1.0 - b_times / min(b_times) #normalize branching times
+  lineages_n <- lineages / max(lineages)  #normalize lineages
   # Normalizations must have worked
-  testit::assert(all(b_times_N >= 0.0 & b_times_N <= 1.0))
-  testit::assert(all(lineages_N >= 0.0 & lineages_N <= 1.0))
+  testit::assert(all(b_times_n >= 0.0 & b_times_n <= 1.0))
+  testit::assert(all(lineages_n >= 0.0 & lineages_n <= 1.0))
 
-  b_times2_N <- 1 - b_times2 / min(b_times2) #normalize branching times
-  lineages2_N <- lineages2 / max(lineages2)  #normalize lineages
+  b_times2_n <- 1 - b_times2 / min(b_times2) #normalize branching times
+  lineages2_n <- lineages2 / max(lineages2)  #normalize lineages
   # Normalizations must have worked
 
   nltt_diff_exact_norm_brts(
-    b_times_N = b_times_N,
-    lineages_N = lineages_N,
-    b_times2_N = b_times2_N,
-    lineages2_N = lineages2_N,
+    b_times_n = b_times_n,
+    lineages_n = lineages_n,
+    b_times2_n = b_times2_n,
+    lineages2_n = lineages2_n,
     distance_method = distance_method
   )
 }
@@ -106,53 +106,53 @@ nltt_diff_exact_brts <- function(
 #' Calculates the exact difference between the nLTT
 #' curves of the branching times
 #' @author Thijs Janzen and Richel Bilderbeek
-#' @param b_times_N branching times of the first phylogeny
-#' @param lineages_N the number of lineages,
+#' @param b_times_n branching times of the first phylogeny
+#' @param lineages_n the number of lineages,
 #'   usually one to the number of lineages
-#' @param b_times2_N branching times of the first phylogeny
-#' @param lineages2_N the number of lineages,
+#' @param b_times2_n branching times of the first phylogeny
+#' @param lineages2_n the number of lineages,
 #'   usually one to the number of lineages
 #' @param distance_method (string) absolute, or squared distance?
 #' @export
 nltt_diff_exact_norm_brts <- function(
-  b_times_N,
-  lineages_N,
-  b_times2_N,
-  lineages2_N,
+  b_times_n,
+  lineages_n,
+  b_times2_n,
+  lineages2_n,
   distance_method) {
 
   # Are equally sized?
-  testit::assert(length(b_times_N) == length(lineages_N))
-  testit::assert(length(b_times2_N) == length(lineages2_N))
+  testit::assert(length(b_times_n) == length(lineages_n))
+  testit::assert(length(b_times2_n) == length(lineages2_n))
   # Are non-trivial?
-  testit::assert(length(b_times_N) > 0)
-  testit::assert(length(lineages_N) > 0)
-  testit::assert(length(b_times2_N) > 0)
-  testit::assert(length(lineages2_N) > 0)
+  testit::assert(length(b_times_n) > 0)
+  testit::assert(length(lineages_n) > 0)
+  testit::assert(length(b_times2_n) > 0)
+  testit::assert(length(lineages2_n) > 0)
   # Start with zeroes? Not necessarily
-  testit::assert(b_times_N[1] >= 0.0)
-  testit::assert(lineages_N[1] >= 0.0)
-  testit::assert(b_times2_N[1] >= 0.0)
-  testit::assert(lineages2_N[1] >= 0.0)
+  testit::assert(b_times_n[1] >= 0.0)
+  testit::assert(lineages_n[1] >= 0.0)
+  testit::assert(b_times2_n[1] >= 0.0)
+  testit::assert(lineages2_n[1] >= 0.0)
   # Ends with ones
-  testit::assert(utils::tail(b_times_N, n = 1) == 1.0)
-  testit::assert(utils::tail(lineages_N, n = 1) == 1.0)
-  testit::assert(utils::tail(b_times2_N, n = 1) == 1.0)
-  testit::assert(utils::tail(lineages2_N, n = 1) == 1.0)
+  testit::assert(utils::tail(b_times_n, n = 1) == 1.0)
+  testit::assert(utils::tail(lineages_n, n = 1) == 1.0)
+  testit::assert(utils::tail(b_times2_n, n = 1) == 1.0)
+  testit::assert(utils::tail(lineages2_n, n = 1) == 1.0)
   # Are in range?
-  testit::assert(all(b_times_N >= 0.0 & b_times_N <= 1.0))
-  testit::assert(all(lineages_N >= 0.0 & lineages_N <= 1.0))
-  testit::assert(all(b_times2_N >= 0.0 & b_times2_N <= 1.0))
-  testit::assert(all(lineages2_N >= 0.0 & lineages2_N <= 1.0))
+  testit::assert(all(b_times_n >= 0.0 & b_times_n <= 1.0))
+  testit::assert(all(lineages_n >= 0.0 & lineages_n <= 1.0))
+  testit::assert(all(b_times2_n >= 0.0 & b_times2_n <= 1.0))
+  testit::assert(all(lineages2_n >= 0.0 & lineages2_n <= 1.0))
   # Are sorted?
-  testit::assert(all(sort(b_times_N) == b_times_N))
-  testit::assert(all(sort(lineages_N) == lineages_N))
-  testit::assert(all(sort(b_times2_N) == b_times2_N))
-  testit::assert(all(sort(lineages2_N) == lineages2_N))
+  testit::assert(all(sort(b_times_n) == b_times_n))
+  testit::assert(all(sort(lineages_n) == lineages_n))
+  testit::assert(all(sort(b_times2_n) == b_times2_n))
+  testit::assert(all(sort(lineages2_n) == lineages2_n))
 
   # Make a list of all branching times, and remove duplicates
   # TODO: Use more effecient merge, as both ranges are sorted
-  all_b_times <- unique(sort(c(b_times_N, b_times2_N)))
+  all_b_times <- unique(sort(c(b_times_n, b_times2_n)))
 
   diff <- 0.0
   #iterate through all branching times
@@ -160,13 +160,13 @@ nltt_diff_exact_norm_brts <- function(
       tim <- all_b_times[k]
       #find the index of the first branching time
       #that is up to the focal branching time
-      index1 <- max(which(b_times_N < tim))
-      index2 <- max(which(b_times2_N < tim))  #same for the other tree
+      index1 <- max(which(b_times_n < tim))
+      index2 <- max(which(b_times2_n < tim))  #same for the other tree
 
       #find the number of lineages at time "tim" for tree 1
-      lins1 <- lineages_N[max(index1, 1)]
+      lins1 <- lineages_n[max(index1, 1)]
       #find the number of lineages at time "tim" for tree 2
-      lins2 <- lineages2_N[max(index2, 1)]
+      lins2 <- lineages2_n[max(index2, 1)]
 
       #the amount of time that this difference persisted
       dt <- all_b_times[k] - all_b_times[k - 1]

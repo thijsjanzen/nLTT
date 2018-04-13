@@ -5,18 +5,18 @@
 \title{Calculates the exact difference between the nLTT
 curves of the branching times}
 \usage{
-nltt_diff_exact_norm_brts(b_times_N, lineages_N, b_times2_N, lineages2_N,
+nltt_diff_exact_norm_brts(b_times_n, lineages_n, b_times2_n, lineages2_n,
   distance_method)
 }
 \arguments{
-\item{b_times_N}{branching times of the first phylogeny}
+\item{b_times_n}{branching times of the first phylogeny}
 
-\item{lineages_N}{the number of lineages,
+\item{lineages_n}{the number of lineages,
 usually one to the number of lineages}
 
-\item{b_times2_N}{branching times of the first phylogeny}
+\item{b_times2_n}{branching times of the first phylogeny}
 
-\item{lineages2_N}{the number of lineages,
+\item{lineages2_n}{the number of lineages,
 usually one to the number of lineages}
 
 \item{distance_method}{(string) absolute, or squared distance?}

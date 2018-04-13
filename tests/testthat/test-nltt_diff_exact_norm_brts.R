@@ -17,16 +17,16 @@ test_that("nltt_diff_exact_norm_brts: use", {
 
   if (2 == 3) {
     n <- 10
-    b_times_N <- (seq(1, n) / n)
-    lineages_N <- b_times_N
-    b_times2_N <- b_times_N * b_times_N
-    lineages2_N <- b_times2_N
+    b_times_n <- (seq(1, n) / n)
+    lineages_n <- b_times_n
+    b_times2_n <- b_times_n * b_times_n
+    lineages2_n <- b_times2_n
 
     measured <- nLTT::nltt_diff_exact_norm_brts(
-      b_times_N = b_times_N,
-      lineages_N = lineages_N,
-      b_times2_N = b_times2_N,
-      lineages2_N = lineages2_N,
+      b_times_n = b_times_n,
+      lineages_n = lineages_n,
+      b_times2_n = b_times2_n,
+      lineages2_n = lineages2_n,
       distance_method = "abs"
     )
   }
