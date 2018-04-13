@@ -1,6 +1,6 @@
 context("get_average_nltt_matrix")
 
-test_that(paste("get_average_nltt_matrix: ",
+test_that(paste(
   "How to stretch an nLTT timepoints matrix: ",
   "Example: Easy tree", sep = ""), {
 
@@ -66,7 +66,7 @@ test_that(paste("get_average_nltt_matrix: ",
 
 
 
-test_that(paste("get_average_nltt_matrix: ",
+test_that(paste(
   "How to stretch an nLTT timepoints matrix: ",
   "Example: Harder trees", sep = ""), {
 
@@ -122,7 +122,7 @@ test_that(paste("get_average_nltt_matrix: ",
   expect_equal(all.equal(result, expected), TRUE)
 })
 
-test_that("get_average_nltt_matrix: data types", {
+test_that("data types", {
   # Create a list or multiPhylo of phylogenies (of type phylo)
   # and run it through the get_average_nltt_matrix function
 
@@ -148,7 +148,7 @@ test_that("get_average_nltt_matrix: data types", {
   expect_equal(TRUE, TRUE)
 })
 
-test_that("get_average_nltt_matrix: stop on incorrect input", {
+test_that("stop on incorrect input", {
 
   n_trees <- 2
   n_tips <- 3

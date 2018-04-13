@@ -46,8 +46,10 @@ get_average_nltt_matrix <- function(
   testit::assert(length(stretch_matrices) == length(nltts))
 
   xy <- stretch_matrices[[1]]
-  for (i in seq(2, sz)) {
-    xy <- (xy + stretch_matrices[[i]])
+  if (sz > 1) {
+    for (i in seq(2, sz)) {
+      xy <- (xy + stretch_matrices[[i]])
+    }
   }
   xy <- (xy / sz)
 
