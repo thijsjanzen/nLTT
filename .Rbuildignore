@@ -7,7 +7,7 @@
 ^checkout_all_branches$
 ^README.md$
 ^Rhistory$
-^Codecov.png$
-^TravisCI.png$
+^pics/$
 ^CONTRIBUTING.md$
 ^code_of_conduct.md$
+^appveyor\.yml$
