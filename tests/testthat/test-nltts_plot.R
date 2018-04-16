@@ -8,6 +8,12 @@ test_that("use", {
   testthat::expect_silent(nltts_plot(phylos))
 })
 
+test_that("use", {
+  skip("Issue #38")
+  phylos <- readRDS(system.file(package = "nLTT", "extdata", "issue_38.RDa"))
+  testthat::expect_silent(nltts_plot(phylos))
+})
+
 test_that("abuse", {
 
   testthat::expect_error(
