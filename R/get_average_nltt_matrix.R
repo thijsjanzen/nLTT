@@ -32,6 +32,7 @@ get_average_nltt_matrix <- function(
 
   nltts <- NULL
   for (phylogeny in phylogenies) {
+    testit::assert(length(phylogeny$tip.label) > 0)
     nltts <- c(nltts, list(nLTT::get_phylogeny_nltt_matrix(phylogeny)))
   }
   testit::assert(length(nltts) == length(phylogenies))
@@ -39,7 +40,7 @@ get_average_nltt_matrix <- function(
   stretch_matrices <- NULL
   for (nltt in nltts) {
     stretch_matrix <- nLTT::stretch_nltt_matrix(
-      nltt, dt = dt, step_type = "upper"
+      m = nltt, dt = dt, step_type = "upper"
     )
     stretch_matrices <- c(stretch_matrices, list(stretch_matrix))
   }

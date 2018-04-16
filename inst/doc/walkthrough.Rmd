@@ -92,15 +92,15 @@ Firstly, we have to define some prerequisites. We need a function that simulates
 As simulation function we make use of the TESS package again, this time simulating trees conditional on the number of taxa. For the sake of simplicity, we only fit lambda, and keep mu on 0. 
 ```{r}
   prior_gen <- function() {
-    return(rexp(n = 1, rate = 10) )
+    rexp(n = 1, rate = 10)
   }
 
   prior_dens <- function(val) {
-   return(dexp(val[1], rate = 10) )
+    dexp(val[1], rate = 10)
   }
   
   statwrapper <- function(tree1) {
-    return(nLTTstat_exact(tree1, obs, "abs"))  #nolint
+    nLTTstat_exact(tree1, obs, "abs")  #nolint
   }
 ```
 As prior generating function, we choose an exponential distribution with mean 0.1. Similarly, as prior density function we choose the same distribution. Lastly, we define a function that takes a tree as argument, and compares it with the observed tree. Indeed this means that we will have to define our observed tree as a starting point:

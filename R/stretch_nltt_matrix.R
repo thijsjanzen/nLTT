@@ -40,6 +40,7 @@ stretch_nltt_matrix <- function(
   # Remove rows with same t's, take the first
   rows_to_delete <- NULL
   for (i in seq(1, nrow(m) - 1)) { # -1 because in the body i+1 will be used # nolint
+
     if (m[i, 1] == m[i + 1, 1]) {
       rows_to_delete <- c(rows_to_delete, i + 1)
     }
