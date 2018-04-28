@@ -27,7 +27,7 @@ Suggests:
     testthat,
     TreeSim
 NeedsCompilation: no
-Packaged: 2018-04-17 10:46:57 UTC; janzen
+Packaged: 2018-04-18 10:46:57 UTC; janzen
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/nLTT
