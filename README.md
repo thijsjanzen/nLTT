@@ -4,7 +4,7 @@
 [![](http://cranlogs.r-pkg.org/badges/grand-total/nLTT)]( https://CRAN.R-project.org/package=nLTT)
 [![](http://cranlogs.r-pkg.org/badges/nLTT)](https://CRAN.R-project.org/package=nLTT)
 
-Branch|[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)|[![AppVeyor logo](pics/AppVeyor.png)](https://www.appveyor.com)|[![Codecov logo]([pics/Codecov.png)](https://www.codecov.io)
+Branch|[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)|[![AppVeyor logo](pics/AppVeyor.png)](https://www.appveyor.com)|[![Codecov logo](pics/Codecov.png)](https://www.codecov.io)
 ---|---|---|---
 master|[![Build Status](https://travis-ci.org/richelbilderbeek/nLTT.svg?branch=master)](https://travis-ci.org/richelbilderbeek/nLTT)|[![Build status](https://ci.appveyor.com/api/projects/status/8seg4oj4bj68piff/branch/master?svg=true)](https://ci.appveyor.com/project/richelbilderbeek/nLTT/branch/master)|[![codecov.io](https://codecov.io/github/richelbilderbeek/nLTT/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/nLTT/branch/master)
 develop|[![Build Status](https://travis-ci.org/richelbilderbeek/nLTT.svg?branch=develop)](https://travis-ci.org/richelbilderbeek/nLTT)|[![Build status](https://ci.appveyor.com/api/projects/status/8seg4oj4bj68piff/branch/develop?svg=true)](https://ci.appveyor.com/project/richelbilderbeek/nLTT/branch/develop)|[![codecov.io](https://codecov.io/github/richelbilderbeek/nLTT/coverage.svg?branch=develop)](https://codecov.io/github/richelbilderbeek/nLTT/branch/develop)
