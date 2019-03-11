@@ -21,6 +21,11 @@ test_that("abc_smc_nltt use", {
    return(dexp(val[1], rate = 10))
   }
 
+  # temporary fix to keep R-devel happy.
+  # should be updated upon release of version 3.6
+
+  suppressWarnings(RNGversion("3.5.0"))
+
   set.seed(42)
   obs <- treesim(c(0.50, 0))
 

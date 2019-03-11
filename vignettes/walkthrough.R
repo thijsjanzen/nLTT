@@ -3,12 +3,17 @@ knitr::opts_chunk$set(fig.width = 7, fig.height = 7)
 
 ## ------------------------------------------------------------------------
     library(nLTT) #nolint
+    # temporary fix to keep R-devel happy.
+    # should be updated upon release of version 3.6
+
+    suppressWarnings(RNGversion("3.5.0"))
+
     set.seed(42)
     tree1 <- TESS::tess.sim.age(n = 1, age = 10, lambda = 0.4, mu = 0)[[1]]
     tree2 <- TESS::tess.sim.age(n = 1, age = 10, lambda = 0.25, mu = 0)[[1]]
     par(mfrow = c(1, 2))
     par(mar = c(2, 2, 2, 2))
-    plot(tree1) 
+    plot(tree1)
     plot(tree2)
 
 ## ------------------------------------------------------------------------
@@ -27,9 +32,9 @@ trees2 <- TESS::tess.sim.age(n = 100, age = 10, lambda = 0.25, mu = 0)
 
 ## ------------------------------------------------------------------------
 par(mfrow = c(1, 2))
-nltts_plot(trees1, dt = 0.001, plot_nltts = TRUE, 
+nltts_plot(trees1, dt = 0.001, plot_nltts = TRUE,
            col = "red", main = "lambda = 0.4")
-nltts_plot(trees2, dt = 0.001, plot_nltts = TRUE, 
+nltts_plot(trees2, dt = 0.001, plot_nltts = TRUE,
            col = "blue", main = "lambda = 0.25")
 
 ## ------------------------------------------------------------------------
@@ -39,10 +44,10 @@ m2 <- get_average_nltt_matrix(trees2, dt = 0.001)
 ## ------------------------------------------------------------------------
 m1 <- get_average_nltt_matrix(trees1, dt = 0.001)
 m2 <- get_average_nltt_matrix(trees2, dt = 0.001)
-plot(m1, type = "s", col = "red", lwd = 2, xlim = c(0, 1), ylim = c(0, 1), 
+plot(m1, type = "s", col = "red", lwd = 2, xlim = c(0, 1), ylim = c(0, 1),
      xlab = "Normalized Time", ylab = "Normalized number of lineages")
 lines(m2, type = "s", col = "blue", lwd = 2)
-legend("topleft", c("trees1", "trees2"), col = c("red", "blue"), 
+legend("topleft", c("trees1", "trees2"), col = c("red", "blue"),
        lty = 1, lwd = 2)
 
 ## ------------------------------------------------------------------------
@@ -61,7 +66,7 @@ legend("topleft", c("trees1", "trees2"), col = c("red", "blue"),
   prior_dens <- function(val) {
     dexp(val[1], rate = 10)
   }
-  
+
   statwrapper <- function(tree1) {
     nLTTstat_exact(tree1, obs, "abs")  #nolint
   }
@@ -101,11 +106,11 @@ LL_B <- function(params, phy) {
   abline(v = ML$minimum, lty = 2, col = "green", lwd = 2)
   legend("topright", c("ABC-SMC", "ML", "True"),
          pch = c(15, NA, NA),
-         lty = c(NA, 2, 2), 
+         lty = c(NA, 2, 2),
          col = c("grey", "green", "blue"), lwd = 2)
 
 ## ------------------------------------------------------------------------
-B <- mcmc_nltt(obs, LL_B, parameters = c(0.5), 
+B <- mcmc_nltt(obs, LL_B, parameters = c(0.5),
                          logtransforms = c(TRUE),
                          iterations = 10000, burnin = 1000,
                          thinning = 1, sigma = 1)
@@ -116,14 +121,14 @@ plot(B.mcmc)
 
 ## ------------------------------------------------------------------------
   par(mfrow = c(1, 2))
-  hist(A, breaks = seq(0, 1, by = 0.05), col = "grey", 
+  hist(A, breaks = seq(0, 1, by = 0.05), col = "grey",
        main = "Lambda, ABC", xlab = "")
   abline(v = 0.5, lty = 2, col = "blue", lwd = 2)
   abline(v = ML$minimum, lty = 2, col = "green", lwd = 2)
   legend("right", c("ML", "True"),
-         lty = c(2, 2), 
+         lty = c(2, 2),
          col = c("green", "blue"), lwd = 2)
-  hist(B, breaks = seq(0, 1, by = 0.05), col = "grey", 
+  hist(B, breaks = seq(0, 1, by = 0.05), col = "grey",
        main = "Lambda, MCMC", xlab = "")
   abline(v = 0.5, lty = 2, col = "blue", lwd = 2)
   abline(v = ML$minimum, lty = 2, col = "green", lwd = 2)

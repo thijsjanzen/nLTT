@@ -155,6 +155,11 @@ ggplot2::qplot(t, nltt, data = df, geom = "blank", ylim = c(0, 1),
 )
 
 ## ------------------------------------------------------------------------
+# temporary fix to keep R-devel happy.
+# should be updated upon release of version 3.6
+
+suppressWarnings(RNGversion("3.5.0"))
+
 set.seed(42)
 phylogeny1 <- ape::rcoal(10)
 phylogeny2 <- ape::rcoal(20)

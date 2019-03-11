@@ -3,6 +3,12 @@
 options(warn = 2)
 
 ## ------------------------------------------------------------------------
+# temporary fix to keep R-devel happy.
+# should be updated upon release of version 3.6
+
+suppressWarnings(RNGversion("3.5.0"))
+
+
 set.seed(42)
 tree1 <- ape::rcoal(2)
 tree1$edge.length <- tree1$edge.length / tree1$edge.length[1] # nolint ape variable name

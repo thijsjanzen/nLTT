@@ -1,6 +1,10 @@
 context("nLTTstat_exact")
 
 test_that("nLTTstat_exact use", {
+  # temporary fix to keep R-devel happy.
+  # should be updated upon release of version 3.6
+
+  suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(42)
   p <- ape::rcoal(10)
@@ -91,6 +95,10 @@ test_that("nLTTstat_exact may ignore the stem", {
 })
 
 test_that("nLTTstat_exact on two rcoal trees, do ignore stem", {
+  # temporary fix to keep R-devel happy.
+  # should be updated upon release of version 3.6
+
+  suppressWarnings(RNGversion("3.5.0"))
 
    set.seed(42)
   p <- ape::rcoal(5)
@@ -101,6 +109,10 @@ test_that("nLTTstat_exact on two rcoal trees, do ignore stem", {
 })
 
 test_that("nLTTstat_exact on two rcoal trees, do not ignore stem", {
+  # temporary fix to keep R-devel happy.
+  # should be updated upon release of version 3.6
+
+  suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(42)
   p <- ape::rcoal(5)
@@ -111,6 +123,10 @@ test_that("nLTTstat_exact on two rcoal trees, do not ignore stem", {
 })
 
 test_that("adding a stem causes branch lengths to become NAs", {
+  # temporary fix to keep R-devel happy.
+  # should be updated upon release of version 3.6
+
+  suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(42)
   p <- ape::rcoal(5)
