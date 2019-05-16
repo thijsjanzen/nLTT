@@ -1,6 +1,10 @@
 context("nLTTstat")
 
 test_that("Identical trees have an nLTTstat of zero", {
+  # temporary fix to keep R-devel happy.
+  # should be updated upon release of version 3.6
+
+  suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(314)
   p <- ape::rcoal(10)
@@ -19,6 +23,10 @@ test_that("Identical trees have an nLTTstat of zero", {
 
 
 test_that("abs nLTTstat on known tree", {
+  # temporary fix to keep R-devel happy.
+  # should be updated upon release of version 3.6
+
+  suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(314)
   p <- ape::rcoal(10)
@@ -31,6 +39,10 @@ test_that("abs nLTTstat on known tree", {
 })
 
 test_that("squ nLTTstat on known tree", {
+  # temporary fix to keep R-devel happy.
+  # should be updated upon release of version 3.6
+
+  suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(314)
   p <- ape::rcoal(10)

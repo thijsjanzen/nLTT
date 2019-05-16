@@ -11,6 +11,11 @@ vignette: >
 
 ```{r, include = FALSE}
 library(nLTT) #nolint
+# temporary fix to keep R-devel happy.
+  # should be updated upon release of version 3.6
+
+suppressWarnings(RNGversion("3.5.0"))
+
 ```
 
 Calculating the average nLTT plot of multiple phylogenies
