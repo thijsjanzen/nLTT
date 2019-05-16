@@ -1,11 +1,6 @@
 context("get_nltt_values")
 
 test_that("input data type", {
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
-
   n_trees <- 2
   n_tips <- 3
   set.seed(41)
@@ -241,12 +236,6 @@ test_that("get_nltt_values: check hard newick, Cer2016 issue 83", {
 # From https://github.com/richelbilderbeek/nLTT/issues/33
 # Thanks to @franciscorichter for finding this bug
 test_that("get_nltt_values: issue 33", {
-
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
-
   set.seed(42)
   phylogenies <- c(ape::rcoal(3), ape::rcoal(5))
   testthat::expect_silent(

@@ -5,11 +5,6 @@ test_that("can get the average nLTT stats from one phylogeny", {
   n_trees <- 2
   n_tips <- 3
 
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
-
   set.seed(41)
   single_phylogeny <- ape::rmtree(N = 1, n = n_tips)
   testthat::expect_silent(get_average_nltt_matrix(single_phylogeny))
@@ -144,21 +139,11 @@ test_that("data types", {
   n_trees <- 2
   n_tips <- 3
 
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
-
   set.seed(41)
   ape_phylogenies <- ape::rmtree(N = n_trees, n = n_tips)
   m <- get_average_nltt_matrix(ape_phylogenies)
   expect_equal(ncol(m), 2)
   expect_equal(nrow(m), 1001)
-
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(41)
   treesim_phylogenies <- TreeSim::sim.bd.age(
@@ -178,11 +163,6 @@ test_that("stop on incorrect input", {
 
   n_trees <- 2
   n_tips <- 3
-
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(41)
   ape_phylogenies <- ape::rmtree(N = n_trees, n = n_tips)

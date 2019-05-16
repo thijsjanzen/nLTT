@@ -7,8 +7,7 @@ test_that("can get the average of one phylogeny", {
 
   # temporary fix to keep R-devel happy.
   # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
+  # suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(41)
   single_phylogeny <- ape::rmtree(N = 1, n = n_tips)
@@ -39,8 +38,7 @@ test_that("nltts_plot: check data types", {
 
   # temporary fix to keep R-devel happy.
   # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
+  # suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(41)
   ape_phylogenies <- ape::rmtree(N = n_trees, n = n_tips)

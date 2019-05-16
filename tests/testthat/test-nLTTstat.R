@@ -1,11 +1,6 @@
 context("nLTTstat")
 
 test_that("Identical trees have an nLTTstat of zero", {
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
-
   set.seed(314)
   p <- ape::rcoal(10)
   q <- ape::rcoal(10)
@@ -23,32 +18,22 @@ test_that("Identical trees have an nLTTstat of zero", {
 
 
 test_that("abs nLTTstat on known tree", {
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
-
   set.seed(314)
   p <- ape::rcoal(10)
   q <- ape::rcoal(10)
 
-  expect_equal(
+  testthat::expect_equal(
     0.1380347, nLTTstat(tree1 = p, tree2 = q, distance_method = "abs"), # nolint nLTTstat should be all lowercase, left in for backwards compatibility
     tolerance = 0.0001
   )
 })
 
 test_that("squ nLTTstat on known tree", {
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
-
   set.seed(314)
   p <- ape::rcoal(10)
   q <- ape::rcoal(10)
 
-  expect_equal(
+  testthat::expect_equal(
     0.02407742, nLTTstat(tree1 = p, tree2 = q, distance_method = "squ"), # nolint nLTTstat should be all lowercase, left in for backwards compatibility
     tolerance = 0.0001
   )

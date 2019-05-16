@@ -1,15 +1,11 @@
 context("mcmc_nltt")
 
 test_that("mcmc_nltt use", {
+  skip_on_cran()
   # These tests are very long
   if (Sys.getenv("HOME") == "/home/richel" ||
     Sys.getenv("HOME") == "/home/p230198") return()
   print(Sys.getenv("HOME"))
-
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(1)
   tree1 <- TESS::tess.sim.taxa(n = 1, nTaxa = 50,
@@ -54,11 +50,6 @@ test_that("mcmc_nltt use", {
 })
 
 test_that("mcmc_nltt abuse", {
-
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(1) #just to be safe
   tree1 <- TESS::tess.sim.taxa(n = 1, nTaxa = 50,

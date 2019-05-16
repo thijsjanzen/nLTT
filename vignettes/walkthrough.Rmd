@@ -83,9 +83,10 @@ Firstly, we have to define some prerequisites. We need a function that simulates
 
 ```{r}
  treesim <- function(params) {
-    t <- TESS::tess.sim.taxa(n = 1,
-                             lambda = params[1],
-                             mu = 0.0, nTaxa = 100, max = 10)[[1]]
+    t <- TreeSim::sim.bd.taxa.age(n = 100, 
+                              numbsim = 1,
+                              lambda = params[1],
+                              mu = 0, age = 10)[[1]]
     return(t)
  }
 ```

@@ -2,14 +2,17 @@ context("abc_smc_nltt")
 
 test_that("abc_smc_nltt use", {
   # These tests are very long
+  skip_on_cran()
   if (Sys.getenv("HOME") == "/home/richel" ||
    Sys.getenv("HOME") == "/home/p230198") return()
   print(Sys.getenv("HOME"))
 
   treesim <- function(params) {
-    t <- TESS::tess.sim.taxa(n = 1,
-                             lambda = params[1],
-                             mu = 0.0, nTaxa = 100, max = 10)[[1]]
+    t <- TreeSim::sim.bd.taxa.age(n = 100,
+                                  numbsim = 1,
+                                  lambda = params[1],
+                                  mu = 0.0,
+                                  age = 10)[[1]]
     return(t)
   }
 
@@ -24,7 +27,7 @@ test_that("abc_smc_nltt use", {
   # temporary fix to keep R-devel happy.
   # should be updated upon release of version 3.6
 
-  suppressWarnings(RNGversion("3.5.0"))
+  # suppressWarnings(RNGversion("3.5.0"))
 
   set.seed(42)
   obs <- treesim(c(0.50, 0))
@@ -58,16 +61,21 @@ test_that("abc_smc_nltt use", {
   testthat::expect_equal(
     mean(A),
     ML$minimum[[1]],
-    tolerance = 0.052
+    tolerance = 0.06
   )
 })
 
 test_that("abc_smc_nltt abuse", {
 
   treesim <- function(params) {
-    t <- TESS::tess.sim.taxa(n = 1,
-                             lambda = params[1],
-                             mu = params[2], nTaxa = 1000, max = 100000)[[1]]
+    t <- TreeSim::sim.bd.taxa(n = 1000,
+                                  numbsim = 1,
+                                  lambda = params[1],
+                                  mu = params[2])[[1]]
+
+    #t <- TESS::tess.sim.taxa(n = 1,
+    #                         lambda = params[1],
+    #                         mu = params[2], nTaxa = 1000, max = 100000)[[1]]
     return(t)
   }
 
