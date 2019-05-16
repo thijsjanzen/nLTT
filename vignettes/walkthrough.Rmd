@@ -34,7 +34,7 @@ This becomes even more obvious when we plot their normalized Lineage Through Tim
     legend("topleft", c("tree1", "tree2"), col = c("red", "blue"), lty = 1)
 ```
 
-Furthermore, we can now calculate the difference between the two nLTT lines using nLTTstat, and it's more precise counterpart nLTTstat_exact:
+Furthermore, we can now calculate the difference between the two nLTT lines using nLTTstat, and its more precise counterpart nLTTstat_exact:
 ```{r}
 nLTTstat(tree1, tree2) #nolint
 nLTTstat_exact(tree1, tree2) #nolint
