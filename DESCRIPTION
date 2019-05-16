@@ -29,6 +29,7 @@ Suggests:
 NeedsCompilation: no
 Packaged: 2018-04-18 10:46:57 UTC; janzen
 RoxygenNote: 6.1.1
+Encoding: UTF-8
 VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/nLTT
 BugReports: https://github.com/richelbilderbeek/nLTT/issues

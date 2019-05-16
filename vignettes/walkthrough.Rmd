@@ -34,7 +34,7 @@ This becomes even more obvious when we plot their normalized Lineage Through Tim
     legend("topleft", c("tree1", "tree2"), col = c("red", "blue"), lty = 1)
 ```
 
-Furthermore, we can now calculate the difference between the two nLTT lines using nLTTstat, and it's more precise counterpart nLTTstat_exact:
+Furthermore, we can now calculate the difference between the two nLTT lines using nLTTstat, and its more precise counterpart nLTTstat_exact:
 ```{r}
 nLTTstat(tree1, tree2) #nolint
 nLTTstat_exact(tree1, tree2) #nolint
@@ -82,6 +82,10 @@ In our paper introducing the nLTT statistic, we have shown how the nLTT can be u
 Firstly, we have to define some prerequisites. We need a function that simulates a phylogenetic tree, given parameters. We need a prior generating distribution and a prior density function. 
 
 ```{r}
+fixed_issue <- FALSE
+```
+
+```{r}
  treesim <- function(params) {
     t <- TreeSim::sim.bd.taxa.age(n = 100, 
                               numbsim = 1,
@@ -111,16 +115,20 @@ obs <- treesim(c(0.50, 0)) #lambda = 0.5, mu = 0.0
 ```
 We are now all set to do our ABC-SMC analysis! We choose a small number of particles for the sake of example, for higher accuracy one should pick a higher number of particles (at the cost of increased computation time). Similarly, better results can be obtained using a lower stop rate. We let the epsilon values decrease exponentially with each iteration of the ABC-SMC, with starting value of 0.2.
 ```{r}
-A <- abc_smc_nltt(
-    obs, c(statwrapper), treesim, init_epsilon_values = 0.2,
-    prior_generating_function = prior_gen,
-    prior_density_function = prior_dens,
-    number_of_particles = 100, sigma = 0.05, stop_rate = 0.01)
+if (fixed_issue) {
+  A <- abc_smc_nltt(
+      obs, c(statwrapper), treesim, init_epsilon_values = 0.2,
+      prior_generating_function = prior_gen,
+      prior_density_function = prior_dens,
+      number_of_particles = 100, sigma = 0.05, stop_rate = 0.01)
+}
 ```
 The ABC-SMC algorithm runs until the 7th iteration. At the 7th iteration, the acceptance rate has dropped below 0.01, and the algorithm stops. We can visualize our output:
 ```{r}
-hist(A, breaks = seq(0, 1, by = 0.05), col = "grey", main = "Lambda")
-abline(v = 0.5, lty = 2, col = "blue", lwd = 2)
+if (fixed_issue) {
+  hist(A, breaks = seq(0, 1, by = 0.05), col = "grey", main = "Lambda")
+  abline(v = 0.5, lty = 2, col = "blue", lwd = 2)
+}
 ```
 
 We see that although the peak of the posterior distribution does not lie on the simulated value (blue dotted line), generally the distribution does encompass the simulated value well. Perhaps using more particles would've given a better estimate.
@@ -136,6 +144,7 @@ LL_B <- function(params, phy) {
 ```
 We can now first, to get a general idea, use maximum likelihood in order to find the value of lambda for which the likelihood is maximized:
 ```{r}
+if (fixed_issue) {
   fun <- function(x) {
     return(-1 * LL_B(x, obs)) # nolint
   }
@@ -148,25 +157,31 @@ We can now first, to get a general idea, use maximum likelihood in order to find
          pch = c(15, NA, NA),
          lty = c(NA, 2, 2), 
          col = c("grey", "green", "blue"), lwd = 2)
+}
 ```
 
 The maximum likelihood method shows that the actual maximum of the tree is a bit lower than the value that we simulated with (0.42), which in turn is exactly where the highest posterior density of our ABC method is! Awesome isn't it?
 Maximum likelihood, although a neat comparison, is a bit of an unfair comparison as it does not use the Bayesian framework, as the ABC-SMC method does. Alternatively, we can therefore also use a Metropolis-Hastings MCMC framework to estimate the posterior density, given a likelihood. The nLTT package provides a readily made function for that as well.
 ```{r}
-B <- mcmc_nltt(obs, LL_B, parameters = c(0.5), 
-                         logtransforms = c(TRUE),
-                         iterations = 10000, burnin = 1000,
-                         thinning = 1, sigma = 1)
+if (fixed_issue) {
+  B <- mcmc_nltt(obs, LL_B, parameters = c(0.5), 
+                           logtransforms = c(TRUE),
+                           iterations = 10000, burnin = 1000,
+                           thinning = 1, sigma = 1)
+}
 ```
 We have to provide the initialvalue (parameters = 0.5), set a flag whether we want to make jumps in log space, to avoid values below zero (logtransforms = c(TRUE)), and we set a limited number of iterations, in order to avoid long computation times. Lastly, we define burnin as 10% of the chain, do not thin the chain, and set the jumping distance relatively large at 1. 
 The MCMC chain appears to have performed well, the chain shows good mixing and doesn't get stuck in local minima. 
 ```{r}
-B.mcmc <- coda::as.mcmc(B)
-plot(B.mcmc)
+if (fixed_issue) {
+  B.mcmc <- coda::as.mcmc(B)
+  plot(B.mcmc)
+}
 ```
 
 When we compare estimates obtained using the nLTT statistic within an ABC framework, and estimates obtained using the traditional likelihood within an MCMC framework, we find that both methods perform on par. Both methods recover the parameter value with highest likelihood, which in turn is not necessarily the true value. 
 ```{r}
+if (fixed_issue) {
   par(mfrow = c(1, 2))
   hist(A, breaks = seq(0, 1, by = 0.05), col = "grey", 
        main = "Lambda, ABC", xlab = "")
@@ -179,4 +194,5 @@ When we compare estimates obtained using the nLTT statistic within an ABC framew
        main = "Lambda, MCMC", xlab = "")
   abline(v = 0.5, lty = 2, col = "blue", lwd = 2)
   abline(v = ML$minimum, lty = 2, col = "green", lwd = 2)
+}
 ```

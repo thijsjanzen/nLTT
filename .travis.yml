@@ -1,5 +1,15 @@
 language: r
+dist: xenial
 cache: packages
+
+matrix:
+  include:
+  - r: release
+    os: linux
+  - r: devel
+    os: linux
+  - r: release
+    os: osx
 
 r_github_packages:
   - jimhester/lintr
