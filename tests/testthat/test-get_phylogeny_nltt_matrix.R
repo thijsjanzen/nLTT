@@ -69,13 +69,6 @@ test_that("get_phylogeny_nltt_matrix #2", {
   expected <- matrix(c(c(0.0, 0.5, 0.5, 1.0),
     c(0.25, 0.5, 0.75, 1.0)), ncol = 2, nrow = 4)
   colnames(expected) <- c("time", "N")
-  if (!identical(result, expected)) {
-    print("ERROR")
-    print("expected:")
-    print(expected)
-    print("result:")
-    print(result)
-  }
   expect_equal(identical(result, expected), TRUE)
 })
 
