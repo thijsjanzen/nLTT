@@ -4,7 +4,8 @@
 \alias{nltt_diff}
 \title{Calculates the exact difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)}
 \usage{
-nltt_diff(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
+nltt_diff(tree1, tree2, distance_method = "abs", ignore_stem = TRUE,
+  log_transform = FALSE)
 }
 \arguments{
 \item{tree1}{(phylo) First phylogenetic tree}
@@ -14,6 +15,9 @@ nltt_diff(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
 \item{distance_method}{(string) absolute, or squared distance?}
 
 \item{ignore_stem}{logical    Should the phylogeny its stem be ignored?}
+
+\item{log_transform}{(logical) Should the number of lineages be
+log-transformed before normalization?}
 }
 \value{
 (scalar) normalized Lineage-Through-Time difference

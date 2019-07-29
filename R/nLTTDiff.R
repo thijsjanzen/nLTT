@@ -5,6 +5,8 @@
 #' @param tree2 (phylo) Second phylogenetic tree
 #' @param distance_method (string) absolute, or squared distance?
 #' @param ignore_stem (logical) Should the phylogeny its stem be ignored?
+#' @param log_transform (logical) Should the number of lineages be
+#' log-transformed before normalization?
 #' @return (scalar) normalized Lineage-Through-Time difference
 #'   between tree1 & tree2
 #' @export
@@ -12,9 +14,10 @@ nltt_diff_exact <- function(
   tree1,
   tree2,
   distance_method = "abs",
-  ignore_stem = TRUE
+  ignore_stem = TRUE,
+  log_transform = FALSE
 ) {
-  nLTT::nltt_diff(tree1, tree2, distance_method, ignore_stem)
+  nLTT::nltt_diff(tree1, tree2, distance_method, ignore_stem, log_transform)
 }
 
 #' Calculates the exact difference between the nLTT
@@ -186,13 +189,16 @@ nltt_diff_exact_norm_brts <- function(
 #' @param tree2 (phylo) Second phylogenetic tree
 #' @param distance_method (string) absolute, or squared distance?
 #' @param ignore_stem logical    Should the phylogeny its stem be ignored?
+#' @param log_transform (logical) Should the number of lineages be
+#' log-transformed before normalization?
 #' @return (scalar) normalized Lineage-Through-Time difference
 #'   between tree1 & tree2
 #' @seealso use \code{\link{nltts_diff}} to compare a collection of
 #'   phylogenies to one focal/reference tree
 #' @export
 nltt_diff <- function(
- tree1, tree2, distance_method = "abs", ignore_stem = TRUE) {
+ tree1, tree2, distance_method = "abs", ignore_stem = TRUE,
+ log_transform = FALSE) {
 
   if (!ape::is.binary(tree1) || !ape::is.binary(tree2)) {
     stop("phylogenies must both be binary")
@@ -221,17 +227,28 @@ nltt_diff <- function(
     b_times2 <- c(b_times2[1] - stem_length2, b_times2)
     testit::assert(all(b_times2 <= 0.0))
   }
+
   # the number of lineages per branching time
   first_n_lineages1 <- ifelse(ignore_stem, 2, 1)
   n_taxa1 <- length(tree1$tip.label)
   lineages <- c(first_n_lineages1:n_taxa1, n_taxa1)
+  if (log_transform == TRUE) {
+    testit::assert(min(lineages) > 0)
+    lineages <- log(lineages)
+  }
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times) == length(lineages))
+
+
 
   # the number of lineages per branching time
   first_n_lineages2 <- ifelse(ignore_stem, 2, 1)
   n_taxa2 <- length(tree2$tip.label)
   lineages2 <- c(first_n_lineages2:n_taxa2, n_taxa2)
+  if (log_transform == TRUE) {
+    testit::assert(min(lineages2) > 0)
+    lineages2 <- log(lineages2)
+  }
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times2) == length(lineages2))
 
@@ -263,7 +280,7 @@ nltt_diff <- function(
 #'   and then calculates the difference between the two statistics.
 #' @title Calculate the difference between two normalized
 #'   Lineage-Through-Time curves, given two phylogenetic trees.
-#' @usage nLTTstat(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
+#' @usage nLTTstat(tree1, tree2, distance_method = "abs", ignore_stem = TRUE, log_transform = FALSE)
 #' @param tree1 an object of class \code{"phylo"}
 #' @param tree2 an object of class \code{"phylo"}
 #' @param distance_method Chosen measurement of distance between
@@ -271,6 +288,8 @@ nltt_diff <- function(
 #'   - "abs": use the absolute distance\cr
 #'   - "squ": use the squared distance;\cr
 #' @param ignore_stem a boolean whether to ignore the stem length
+#' @param log_transform a boolean wether to log-transform the number of
+#'    lineages before normalization
 #' @return The difference between the two nLTT statistics
 #' @author Thijs Janzen
 #' @examples
@@ -285,7 +304,8 @@ nLTTstat <- function(  # nolint keep function name non-all-lowercase, due to bac
   tree1,
   tree2,
   distance_method = "abs",
-  ignore_stem = TRUE
+  ignore_stem = TRUE,
+  log_transform = FALSE
 ) {
   if (!inherits(tree1, "phylo")) {
     # Just checking
@@ -308,7 +328,7 @@ nLTTstat <- function(  # nolint keep function name non-all-lowercase, due to bac
     stop("nLTTstat: ignore_stem must be logical")
   }
 
-  nLTT::nltt_diff(tree1, tree2, distance_method, ignore_stem)
+  nLTT::nltt_diff(tree1, tree2, distance_method, ignore_stem, log_transform)
 }
 
 ################################################################################
@@ -339,7 +359,8 @@ nLTTstat <- function(  # nolint keep function name non-all-lowercase, due to bac
 #'   Although the estimates are highly similar,
 #'   \code{nLTTstat_exact} tends to return slightly higher values.
 #' @usage
-#'   nLTTstat_exact(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
+#'   nLTTstat_exact(tree1, tree2, distance_method = "abs",
+#'                  ignore_stem = TRUE, log_transform = FALSE)
 #' @param tree1 an object of class \code{"phylo"}
 #' @param tree2 an object of class \code{"phylo"}
 #' @param distance_method
@@ -348,6 +369,8 @@ nLTTstat <- function(  # nolint keep function name non-all-lowercase, due to bac
 #'   - "abs": use the absolute distance.\cr
 #'   - "squ": use the squared distance
 #' @param ignore_stem a boolean whether to ignore the stem length
+#' @param log_transform a boolean wether to log-transform the number of
+#'    lineages before normalization
 #' @return The exact difference between the two nLTT statistics
 #' @author Thijs Janzen
 #' @examples
@@ -365,7 +388,8 @@ nLTTstat_exact <- function( # nolint keep function name non-all-lowercase, due t
   tree1,
   tree2,
   distance_method = "abs",
-  ignore_stem = TRUE
+  ignore_stem = TRUE,
+  log_transform = FALSE
 ) {
   if (!inherits(tree1, "phylo")) {
     # Just checking
@@ -383,7 +407,8 @@ nLTTstat_exact <- function( # nolint keep function name non-all-lowercase, due t
   if (!is.logical(ignore_stem)) {
     stop("nLTTstat_exact: ignore_stem must be logical")
   }
-  nLTT::nltt_diff_exact(tree1, tree2, distance_method, ignore_stem)
+  nLTT::nltt_diff_exact(tree1, tree2, distance_method, ignore_stem,
+                        log_transform)
 }
 
 #' Calculates the nLTT statistic between each phylogeny in
@@ -406,7 +431,8 @@ nltts_diff <- function(
   tree,
   trees,
   distance_method = "abs",
-  ignore_stem = TRUE
+  ignore_stem = TRUE,
+  log_transform = FALSE
 ) {
   if (class(tree) != "phylo") {
     stop("'tree' must be of type 'phylo'")
@@ -427,7 +453,8 @@ nltts_diff <- function(
       tree1 = tree,
       tree2 = trees[[i]],
       distance_method = distance_method,
-      ignore_stem = ignore_stem
+      ignore_stem = ignore_stem,
+      log_transform = log_transform
     )
   }
   nltts
