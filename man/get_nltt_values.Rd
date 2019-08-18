@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_nltt_values.R
 \name{get_nltt_values}
 \alias{get_nltt_values}
-\title{Collects the nLTT values of all phylogenies in the melted/uncast/long form}
+\title{Get the nLTT values in time}
 \usage{
 get_nltt_values(phylogenies, dt)
 }
@@ -18,7 +18,8 @@ A dataframe of timepoints with the nLTT value
   of each phylogeny in time
 }
 \description{
-Collects the nLTT values of all phylogenies in the melted/uncast/long form
+Collect the nLTT values in time
+over all phylogenies in the long form.
 }
 \examples{
   library(ape)
@@ -64,6 +65,10 @@ Collects the nLTT values of all phylogenies in the melted/uncast/long form
   ) + stat_summary(
     fun.data = "mean_cl_boot", color = "red", geom = "smooth"
   )
+}
+\seealso{
+Use\link{nltts_diff} to compare nLTT statistic between one focal
+tree and a set of one or more other trees
 }
 \author{
 Richel Bilderbeek

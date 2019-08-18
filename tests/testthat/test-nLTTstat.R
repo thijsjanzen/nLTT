@@ -65,7 +65,6 @@ test_that("squ nLTTstat on known tree", {
   )
 })
 
-
 test_that("nLTTstat abuse", {
 
   phylo <- ape::rcoal(10)

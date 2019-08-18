@@ -7,12 +7,12 @@ test_that("Identical trees have an nLTTstat of zero,
   set.seed(314) # Same seed to generate the same tree
   q <- ape::rcoal(10)
 
-  testthat::expect_equal(
+  expect_equal(
     0.0, nLTTstat(tree1 = p, tree2 = p, distance_method = "abs",
                   log_transform = TRUE), # nolint nLTTstat should be all lowercase, left in for backwards compatibility
     tolerance = 0.0001
   )
-  testthat::expect_equal(
+  expect_equal(
     0.0, nLTTstat(tree1 = p, tree2 = p, distance_method = "squ",
                   log_transform = TRUE), # nolint nLTTstat should be all lowercase, left in for backwards compatibility
     tolerance = 0.0001
@@ -35,9 +35,7 @@ test_that("compare with non-log transformed", {
 
   # for some reason, log transforming richness leads to LOWER
   # nLTT values
-  testthat::expect_lt(stat_1, stat_2)
+  expect_lt(stat_1, stat_2)
 })
 
 # this function might benefit from additional tests.
-
-

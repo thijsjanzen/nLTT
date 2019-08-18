@@ -1,11 +1,15 @@
-#' Collects the nLTT values of all phylogenies in the melted/uncast/long form
+#' Get the nLTT values in time
 #'
+#' Collect the nLTT values in time
+#' over all phylogenies in the long form.
 #' @param phylogenies the phylogenies, supplied as either
 #'   a list or a multiPhylo object, where the phylogenies are of type 'phylo'
 #' @param dt The timestep resolution,
 #'   where 1/dt is the number of points evaluated
 #' @return A dataframe of timepoints with the nLTT value
 #'   of each phylogeny in time
+#' @seealso  Use\link{nltts_diff} to compare nLTT statistic between one focal
+#' tree and a set of one or more other trees
 #' @examples
 #'   library(ape)
 #'   library(ggplot2)
@@ -66,6 +70,7 @@ get_nltt_values <- function(phylogenies, dt) {
   if (dt <= 0.0 || dt >= 1.0) {
     stop("dt must be between (not including) zero and one")
   }
+  # Use nltt_diff_exact
 
   n_cols <- 3 # ID, t, nLTT(t)
   n_rows_per_phylogeny <- (1.0 / dt) + 1
