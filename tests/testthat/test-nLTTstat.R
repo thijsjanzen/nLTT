@@ -17,7 +17,6 @@ test_that("Identical trees have an nLTTstat of zero", {
 })
 
 
-
 test_that("abs nLTTstat on known tree", {
 
   #
