@@ -5,7 +5,8 @@
 \title{Calculate the exact difference between
   two normalized Lineage-Through-Time curves, given two phylogenetic trees.}
 \usage{
-nLTTstat_exact(tree1, tree2, distance_method = "abs", ignore_stem = TRUE)
+nLTTstat_exact(tree1, tree2, distance_method = "abs",
+                 ignore_stem = TRUE, log_transform = FALSE)
 }
 \arguments{
 \item{tree1}{an object of class \code{"phylo"}}
@@ -18,6 +19,9 @@ options are (case sensitive):\cr
 - "squ": use the squared distance}
 
 \item{ignore_stem}{a boolean whether to ignore the stem length}
+
+\item{log_transform}{a boolean wether to log-transform the number of
+lineages before normalization}
 }
 \value{
 The exact difference between the two nLTT statistics
