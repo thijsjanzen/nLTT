@@ -26,7 +26,7 @@ a Pull Request.
 To get started working on `nLTT` do:
 
 ```
-git clone https://github.com/richelbilderbeek/nLTT
+git clone https://github.com/richelbilderbeek/nLTT.git
 ```
 
 Development is done on the `develop` branch. 
@@ -34,7 +34,7 @@ To download and checkout the `develop` branch,
 first go into the `nLTT` folder (`cd nLTT`), then do:
 
 ```
-git checkout -b develop origin/develop
+git checkout develop
 ```
 
 Then the workflow is the common `git` workflow:
