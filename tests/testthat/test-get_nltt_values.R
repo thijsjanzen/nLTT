@@ -30,20 +30,6 @@ test_that("input data type", {
     ),
     "dt must be between \\(not including\\) zero and one"
   )
-
-  # must supply at least two trees
-  expect_error(
-    get_nltt_values(
-      phylogenies = single_phylogeny,
-      dt = 0.1
-    )
-  )
-
-  # must supply a phylogeny
-  expect_error(get_nltt_values(c(1, 2, 3)))
-
-  # must supply only phylogenies
-  expect_error(get_nltt_values(list(c(1, 2), single_phylogeny)))
 })
 
 
