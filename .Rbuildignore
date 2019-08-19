@@ -8,6 +8,7 @@
 ^README.md$
 ^Rhistory$
 ^pics$
+^scripts$
 ^CONTRIBUTING.md$
 ^code_of_conduct.md$
 ^appveyor\.yml$
