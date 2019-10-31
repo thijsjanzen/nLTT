@@ -94,22 +94,22 @@ nltt_diff_exact_calc_notnorm <- function(
 
   # Are equally sized?
   testit::assert(length(event_times) == length(species_number))
-  testit::assert(length(event_times2) == length(species_number))
+  testit::assert(length(event_times2) == length(species_number2))
   # Are non-trivial?
   testit::assert(length(event_times) > 0)
   testit::assert(length(species_number) > 0)
   testit::assert(length(event_times2) > 0)
   testit::assert(length(species_number) > 0)
   # Start with zeroes? Not necessarily
-  testit::assert(event_times[1] >= 0.0)
-  testit::assert(species_number[1] >= 0.0)
-  testit::assert(event_times2[1] >= 0.0)
-  testit::assert(species_number[1] >= 0.0)
+  # testit::assert(event_times[1] >= 0.0)
+  # testit::assert(species_number[1] >= 0.0)
+  # testit::assert(event_times2[1] >= 0.0)
+  # testit::assert(species_number[1] >= 0.0)
   # Are in range?
-  testit::assert(all(event_times >= 0.0 & event_times <= 1.0))
-  testit::assert(all(species_number >= 0.0 & species_number <= 1.0))
-  testit::assert(all(event_times2 >= 0.0 & event_times2 <= 1.0))
-  testit::assert(all(species_number >= 0.0 & species_number <= 1.0))
+  # testit::assert(all(event_times >= 0.0 & event_times <= 1.0))
+  # testit::assert(all(species_number >= 0.0 & species_number <= 1.0))
+  # testit::assert(all(event_times2 >= 0.0 & event_times2 <= 1.0))
+  # testit::assert(all(species_number >= 0.0 & species_number <= 1.0))
   # Are sorted?
   testit::assert(all(sort(event_times) == event_times))
   testit::assert(all(sort(species_number) == species_number))
@@ -132,7 +132,7 @@ nltt_diff_exact_calc_notnorm <- function(
     #find the number of lineages at time "tim" for tree 1
     lins1 <- species_number[max(index1, 1)]
     #find the number of lineages at time "tim" for tree 2
-    lins2 <- species_number[max(index2, 1)]
+    lins2 <- species_number2[max(index2, 1)]
 
     #the amount of time that this difference persisted
     dt <- all_event_times[k] - all_event_times[k - 1]
