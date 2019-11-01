@@ -48,6 +48,42 @@ test_that("nltt_diff_exact_notnorm: abuse", {
     "event times should be a numeric vector of event times, not a
        phylogeny. Use nltt_diff_exact_norm_brts for phylo objects instead."
   )
+
+  # Stop if weird time unit with informative error
+  expect_error(
+    measured <- nLTT::nltt_diff_exact_notnorm(
+      event_times = b_times_n,
+      species_number  = lineages_n,
+      event_times2 = b_times2_n,
+      species_number2 = lineages2_n,
+      time_unit = "nonsense",
+      distance_method = "abs"
+    ),
+    "time_unit must be either 'since' or 'ago'"
+  )
+
+  # Stop if time unit inconsistent with data and throw informative error
+  expect_error(
+    measured <- nLTT::nltt_diff_exact_notnorm(
+      event_times = b_times_n,
+      species_number  = lineages_n,
+      event_times2 = b_times2_n,
+      species_number2 = lineages2_n,
+      time_unit = "since",
+      distance_method = "abs"
+    ),
+    "event times must be negative, for example -3 time units since the present"
+  )
+
+  expect_error(
+    measured <- nLTT::nltt_diff_exact_notnorm(
+      event_times = b_times_n * -1,
+      species_number  = lineages_n,
+      event_times2 = b_times2_n * -1,
+      species_number2 = lineages2_n,
+      time_unit = "ago",
+      distance_method = "abs"
+    ),
+    "event times must be positive, for example 3 time units ago"
+  )
 })
-
-
