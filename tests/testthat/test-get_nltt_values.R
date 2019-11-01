@@ -30,7 +30,25 @@ test_that("input data type", {
     ),
     "dt must be between \\(not including\\) zero and one"
   )
+
+  expect_error(
+    get_nltt_values(
+      phylogenies = "nonsense",
+      dt = 0.2
+    ),
+    "phylogenies must be of class 'multiPhylo' or 'list'"
+  )
+  expect_error(
+    get_nltt_values(
+      phylogenies = list(ape_phylogenies, ape_phylogenies),
+      dt = 0.2
+    ),
+    "phylogenies must be of type phylo"
+  )
 })
+
+
+
 
 
 test_that("return data type", {
