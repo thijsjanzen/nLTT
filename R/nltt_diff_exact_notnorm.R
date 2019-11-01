@@ -124,9 +124,9 @@ nltt_diff_exact_calc_notnorm <- function(
   # testit::assert(all(species_number >= 0.0 & species_number <= 1.0))
   # Are sorted?
   testit::assert(all(sort(event_times) == event_times))
-  testit::assert(all(sort(species_number) == species_number))
+  # testit::assert(all(sort(species_number) == species_number)) Allow full trees
   testit::assert(all(sort(event_times2) == event_times2))
-  testit::assert(all(sort(species_number) == species_number))
+  # testit::assert(all(sort(species_number) == species_number)) Allow full trees
 
   # Make a list of all branching times, and remove duplicates
   # TODO: Use more effecient merge, as both ranges are sorted
@@ -138,9 +138,12 @@ nltt_diff_exact_calc_notnorm <- function(
     tim <- all_event_times[k]
     #find the index of the first branching time
     #that is up to the focal branching time
-    index1 <- max(which(event_times < tim))
-    index2 <- max(which(event_times2 < tim))  #same for the other tree
-
+    suppressWarnings(
+      index1 <- max(which(event_times < tim))
+    )
+    suppressWarnings(
+      index2 <- max(which(event_times2 < tim))  #same for the other tree
+    )
     #find the number of lineages at time "tim" for tree 1
     lins1 <- species_number[max(index1, 1)]
     #find the number of lineages at time "tim" for tree 2
