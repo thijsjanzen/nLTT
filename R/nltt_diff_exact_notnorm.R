@@ -1,5 +1,7 @@
 #' Calculates the exact difference between the nLTT
 #' curves of the event times. This includes extinction events.
+#' @description Takes branching times such as (for example) as returned by a
+#' \code{\link[DAISIE]{DAISIE_sim}} simulation.
 #' @author Thijs Janzen and Richel Bilderbeek and Pedro Neves
 #' @param event_times event times of the first phylogeny
 #' @param species_number the number of species at each evet time of the first
@@ -30,6 +32,14 @@ nltt_diff_exact_notnorm <- function(
   if (time_unit != "since" && time_unit != "ago") {
     stop("time_unit must be either 'since' or 'ago'")
   }
+
+  # This function doesn't handle phylo objects
+  if (class(event_times) == "phylo" || class(event_times) == "multiPhylo" ||
+      class(event_times2) == "phylo" || class(event_times2) == "multiPhylo") {
+    stop("event times should be a numeric vector of event times, not a
+       phylogeny. Use nltt_diff_exact_norm_brts for phylo objects instead.")
+  }
+
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(event_times) == length(species_number))
   testit::assert(length(event_times2) == length(species_number2))
@@ -39,13 +49,15 @@ nltt_diff_exact_notnorm <- function(
       stop("event times must be negative, ",
            "for example -3 time units since the present")
     }
-
   }
+
   if (time_unit == "ago"){
     if (!all(event_times >= 0.0) || !all(event_times2 >= 0.0)) {
       stop("event times must be positive, ",
            "for example 3 time units ago")
     }
+
+
     # Conformize te b_times for the classic calculation
     event_times <- c(-1.0 * rev(sort(event_times)), 0)
     event_times2 <- c(-1.0 * rev(sort(event_times2)), 0)
