@@ -42,15 +42,18 @@ Apart from providing functions that calculate the nLTT statistic, the nLTT packa
 - estimate the parameters of a model for which no likelihood is available, using ABC-SMC (as used in the paper)
 
 ## Papers using the nLTT statistic
+
+Bilderbeek, Richèl J.C., Laudanno, Giovanni and Rampal S. Etienne. "Quantifying the importance of an inference model in Bayesian phylogenetics" bioRxiv (2019): 879098; [link](https://doi.org/10.1101/2019.12.17.879098)
+
+Giardina F, Romero-Severson EO, Albert J, Britton T, Leitner T  "Inference of Transmission Network Structure from HIV Phylogenetic Trees". PLOS Computational Biology (2017) 13(1): e1005316. [link](https://doi.org/10.1371/journal.pcbi.1005316)
+
 Janzen, Thijs, and Rampal Etienne. "Inferring the role of habitat dynamics in driving diversification: evidence for a species pump in Lake Tanganyika cichlids." bioRxiv (2017): 085431. [link](https://www.biorxiv.org/content/early/2017/06/07/085431)
 
-Ibeh, Neke, and Stephane Aris-Brosou. "Estimation of sub-epidemic dynamics by means of Sequential Monte Carlo Approximate Bayesian Computation: an application to the Swiss HIV Cohort Study. bioRxiv (2016): 085993. [link](http://biorxiv.org/content/early/2016/11/07/085993)
-
-Giardina F, Romero-Severson EO, Albert J, Britton T, Leitner T (2017) Inference of Transmission Network Structure from HIV Phylogenetic Trees. PLOS Computational Biology 13(1): e1005316. [link](https://doi.org/10.1371/journal.pcbi.1005316)
+Ibeh, Neke, and Stephane Aris-Brosou. "Estimation of sub-epidemic dynamics by means of Sequential Monte Carlo Approximate Bayesian Computation: an application to the Swiss HIV Cohort Study." bioRxiv (2016): 085993. [link](http://biorxiv.org/content/early/2016/11/07/085993)
 
 McCloskey, Rosemary M., Richard H. Liang, and Art FY Poon. "Reconstructing contact network parameters from viral phylogenies." Virus evolution 2.2 (2016): vew029. [link](http://ve.oxfordjournals.org/content/2/2/vew029.abstract)
 
-Janzen, Thijs, Sebastian Höhna, and Rampal S. Etienne. "Approximate Bayesian computation of diversification rates from molecular phylogenies: introducing a new efficient summary statistic, the nLTT." Methods in Ecology and Evolution 6.5 (2015): 566-575. [link](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12350/full)
+Janzen, Thijs, Sebastian Höhna, and Rampal S. Etienne. "Approximate Bayesian computation of diversification rates from molecular phylogenies: introducing a new efficient summary statistic, the nLTT." Methods in Ecology and Evolution (2015): 566-575. [link](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12350/full)
 
 ## Acknowledgements
 
