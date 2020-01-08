@@ -31,5 +31,5 @@ Packaged: 2019-05-18 10:46:57 UTC; janzen
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 VignetteBuilder: knitr
-URL: https://github.com/richelbilderbeek/nLTT
-BugReports: https://github.com/richelbilderbeek/nLTT/issues
+URL: https://github.com/thijsjanzen/nLTT
+BugReports: https://github.com/thijsjanzen/nLTT/issues
