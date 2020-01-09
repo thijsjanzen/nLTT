@@ -18,13 +18,13 @@ Make sure you have the package `devtools` installed.
 Then, from within R do, for the stable version:
 
 ```
-devtools::install_github("richelbilderbeek/nLTT")
+devtools::install_github("thijsjanzen/nLTT")
 ```
 
 For the bleeding-edge version:
 
 ```
-devtools::install_github("richelbilderbeek/nLTT", ref = "develop")
+devtools::install_github("thijsjanzen/nLTT", ref = "develop")
 ```
 
 ## What is the nLTT statistic?
