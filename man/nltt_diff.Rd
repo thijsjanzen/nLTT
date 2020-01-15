@@ -4,8 +4,13 @@
 \alias{nltt_diff}
 \title{Calculates the exact difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)}
 \usage{
-nltt_diff(tree1, tree2, distance_method = "abs", ignore_stem = TRUE,
-  log_transform = FALSE)
+nltt_diff(
+  tree1,
+  tree2,
+  distance_method = "abs",
+  ignore_stem = TRUE,
+  log_transform = FALSE
+)
 }
 \arguments{
 \item{tree1}{(phylo) First phylogenetic tree}

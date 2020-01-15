@@ -3,6 +3,7 @@
 #' @description Takes branching times such as (for example) as returned by a
 #' \code{\link[DAISIE]{DAISIE_sim}} simulation.
 #' @author Thijs Janzen and Richel Bilderbeek and Pedro Neves
+#'
 #' @param event_times event times of the first phylogeny
 #' @param species_number the number of species at each evet time of the first
 #' phylogeny
@@ -21,14 +22,16 @@
 #'  \item{"since: "}{the branching times are negative,
 #'    as these are in time units since present}
 #' }
+#' @param normalize should the output be normalized? Default is TRUE.
 #' @export
-nltt_diff_exact_notnorm <- function(
+nltt_diff_exact_extinct <- function(
   event_times,
   species_number,
   event_times2,
   species_number2,
   distance_method = "abs",
-  time_unit = "since") {
+  time_unit = "since",
+  normalize = TRUE) {
   if (time_unit != "since" && time_unit != "ago") {
     stop("time_unit must be either 'since' or 'ago'")
   }
@@ -74,15 +77,32 @@ nltt_diff_exact_notnorm <- function(
   testit::assert(all(species_number >= 0.0))
   testit::assert(all(species_number2 >= 0.0))
 
+  if (normalize) {
+    event_times_n <- 1.0 - event_times / min(event_times) #normalize event times
+    species_number_n <- species_number / max(species_number)  #normalize lineages
+    # Normalizations must have worked
+    testit::assert(all(event_times_n >= 0.0 & event_times_n <= 1.0))
+    testit::assert(all(species_number_n >= 0.0 & species_number_n <= 1.0))
 
+    event_times2_n <- 1 - event_times2 / min(event_times2) #normalize branching times
+    species_number2_n <- species_number2 / max(species_number2)  #normalize lineages
 
-  nltt_diff_exact_calc_notnorm(
-    event_times = event_times,
-    species_number = species_number,
-    event_times2 = event_times2,
-    species_number2 = species_number2,
-    distance_method = distance_method
-  )
+    nltt_diff_exact_calc_notnorm(
+      event_times = event_times_n,
+      species_number = species_number_n,
+      event_times2 = event_times2_n,
+      species_number2 = species_number2_n,
+      distance_method = distance_method
+    )
+  } else {
+    nltt_diff_exact_calc_notnorm(
+      event_times = event_times,
+      species_number = species_number,
+      event_times2 = event_times2,
+      species_number2 = species_number2,
+      distance_method = distance_method
+    )
+  }
 }
 
 
@@ -160,3 +180,6 @@ nltt_diff_exact_calc_notnorm <- function(
   }
   diff
 }
+
+
+

@@ -4,9 +4,15 @@
 \alias{nltts_plot}
 \title{Get the average nLTT from a collection of phylogenies}
 \usage{
-nltts_plot(phylogenies, dt = 0.001, plot_nltts = FALSE,
-  xlab = "Normalized Time", ylab = "Normalized Lineages",
-  replot = FALSE, ...)
+nltts_plot(
+  phylogenies,
+  dt = 0.001,
+  plot_nltts = FALSE,
+  xlab = "Normalized Time",
+  ylab = "Normalized Lineages",
+  replot = FALSE,
+  ...
+)
 }
 \arguments{
 \item{phylogenies}{the phylogenies, where the phylogenies are of type 'phylo'}
