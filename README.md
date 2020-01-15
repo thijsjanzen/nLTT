@@ -19,7 +19,6 @@ master|[![Build Status](https://travis-ci.org/Neves-P/nLTT.svg?branch=master)](h
 develop|[![Build Status](https://travis-ci.org/Neves-P/nLTT.svg?branch=develop)](https://travis-ci.org/Neves-P/nLTT)|[![Build status](https://ci.appveyor.com/api/projects/status/vbfdeue9o7bapece/branch/develop?svg=true)](https://ci.appveyor.com/project/Neves-P/nLTT/branch/develop)|[![codecov.io](https://codecov.io/github/Neves-P/nLTT/coverage.svg?branch=develop)](https://codecov.io/github/Neves-P/nLTT/branch/develop)
 pedro|[![Build Status](https://travis-ci.org/Neves-P/nLTT.svg?branch=pedro)](https://travis-ci.org/Neves-P/nLTT)|[![Build status](https://ci.appveyor.com/api/projects/status/vbfdeue9o7bapece/branch/pedro?svg=true)](https://ci.appveyor.com/project/Neves-P/nLTT/branch/pedro)|[![codecov.io](https://codecov.io/github/Neves-P/nLTT/coverage.svg?branch=pedro)](https://codecov.io/github/Neves-P/nLTT/branch/pedro)
 
-
 Repository for the R nLTT package
 
 ## Installing this package
