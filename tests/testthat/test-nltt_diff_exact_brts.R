@@ -50,5 +50,17 @@ test_that("nltt_diff_exact_brts abuse", {
     ),
     regexp = "branching times must be positive, for example 3 time units ago"
   )
+
+  expect_error(
+    nLTT::nltt_diff_exact_brts(
+      b_times = - b_times,
+      lineages = lineages,
+      b_times2 = - b_times2,
+      lineages2 = lineages2,
+      distance_method = "abs",
+      time_unit = "nonsense"
+    ),
+    regexp = "time_unit must be either 'since' or 'ago'"
+  )
 })
 
