@@ -12,7 +12,6 @@ License: GPL-2
 Imports:
     ape,
     coda,
-    deSolve,
     testit
 Suggests:
     DDD,
