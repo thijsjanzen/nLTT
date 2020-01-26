@@ -2,15 +2,15 @@ language: r
 dist: bionic
 cache: packages
 
-# attempt to re-enable Mac OSX build
+# Temporarily remove macOS build
 matrix:
   include:
   - r: release
     os: linux
   - r: devel
     os: linux
-  - r: release
-    os: osx
+#  - r: release
+#   os: osx
 
 r_github_packages:
   - jimhester/lintr
