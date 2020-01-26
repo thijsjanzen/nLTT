@@ -31,6 +31,8 @@ test_that("nltt_diff_exact_extinct: use don't normalize", {
   lineages1[11:15] <- 9:5
   lineages2[133:154] <- 133:112
 
+  # Distance method "abs"
+
   stored <- 677.391755469143
   expect_equal(
     measured <- nLTT::nltt_diff_exact_extinct(
@@ -44,7 +46,23 @@ test_that("nltt_diff_exact_extinct: use don't normalize", {
     ),
     stored,
   )
+
+  # Distance method "squ"
+  stored <- 62770.448642959818
+  expect_equal(
+    measured <- nLTT::nltt_diff_exact_extinct(
+      event_times = event_times,
+      species_number  = lineages1,
+      event_times2 = event_times2,
+      species_number2 = lineages2,
+      time_unit = "ago",
+      distance_method = "squ",
+      normalize = FALSE
+    ),
+    stored,
+  )
 })
+
 
 test_that("nltt_diff_exact_extinct: use normalize", {
   n <- 10
