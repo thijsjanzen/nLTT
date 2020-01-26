@@ -87,7 +87,7 @@ nltt_diff_exact_extinct <- function(
     event_times2_n <- 1 - event_times2 / min(event_times2) #normalize branching times
     species_number2_n <- species_number2 / max(species_number2)  #normalize lineages
 
-    nltt_diff_exact_calc_notnorm(
+    nltt_diff_exact_calc_extinct(
       event_times = event_times_n,
       species_number = species_number_n,
       event_times2 = event_times2_n,
@@ -95,7 +95,7 @@ nltt_diff_exact_extinct <- function(
       distance_method = distance_method
     )
   } else {
-    nltt_diff_exact_calc_notnorm(
+    nltt_diff_exact_calc_extinct(
       event_times = event_times,
       species_number = species_number,
       event_times2 = event_times2,
@@ -117,7 +117,7 @@ nltt_diff_exact_extinct <- function(
 #' phylogeny
 #' @param distance_method (string) absolute, or squared distance?
 #' @export
-nltt_diff_exact_calc_notnorm <- function(
+nltt_diff_exact_calc_extinct <- function(
   event_times,
   species_number,
   event_times2,
