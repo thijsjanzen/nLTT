@@ -44,7 +44,27 @@ phylogeny}
 }
 \description{
 Takes branching times such as (for example) as returned by a
-\code{\link[DAISIE]{DAISIE_sim}} simulation.
+\code{\link[DAISIE]{DAISIE_sim()}} simulation.
+}
+\examples{
+
+# Generate data
+n <- 10
+b_times_n <- (seq(1, n) / n)
+lineages_n <- b_times_n
+b_times2_n <- b_times_n * b_times_n
+lineages2_n <- b_times2_n
+
+# Calculate nLTT
+out <- nLTT::nltt_diff_exact_extinct(
+  event_times = b_times_n,
+  species_number  = lineages_n,
+  event_times2 = b_times2_n,
+  species_number2 = lineages2_n,
+  time_unit = "ago",
+  distance_method = "abs"
+)
+
 }
 \author{
 Thijs Janzen and Richel Bilderbeek and Pedro Neves

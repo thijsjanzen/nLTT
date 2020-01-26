@@ -30,6 +30,25 @@ phylogeny}
 Calculates the exact difference between the nLTT
 curves of the event times. This includes extinction events.
 }
+\examples{
+
+# Generate data
+n <- 10
+b_times_n <- (seq(1, n) / n)
+lineages_n <- b_times_n
+b_times2_n <- b_times_n * b_times_n
+lineages2_n <- b_times2_n
+
+# Calculate nLTT
+out <- nLTT::nltt_diff_exact_calc_extinct(
+  event_times = b_times_n,
+  species_number  = lineages_n,
+  event_times2 = b_times2_n,
+  species_number2 = lineages2_n,
+  distance_method = "abs"
+)
+#'
+}
 \author{
 Thijs Janzen and Richel Bilderbeek and Pedro Neves
 }

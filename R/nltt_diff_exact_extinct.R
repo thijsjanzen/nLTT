@@ -1,7 +1,7 @@
 #' Calculates the exact difference between the nLTT
 #' curves of the event times. This includes extinction events.
 #' @description Takes branching times such as (for example) as returned by a
-#' \code{\link[DAISIE]{DAISIE_sim}} simulation.
+#' \code{\link[DAISIE]{DAISIE_sim()}} simulation.
 #' @author Thijs Janzen and Richel Bilderbeek and Pedro Neves
 #'
 #' @param event_times event times of the first phylogeny
@@ -23,6 +23,26 @@
 #'    as these are in time units since present}
 #' }
 #' @param normalize should the output be normalized? Default is TRUE.
+#'
+#' @examples
+#'
+#' # Generate data
+#' n <- 10
+#' b_times_n <- (seq(1, n) / n)
+#' lineages_n <- b_times_n
+#' b_times2_n <- b_times_n * b_times_n
+#' lineages2_n <- b_times2_n
+#'
+#' # Calculate nLTT
+#' out <- nLTT::nltt_diff_exact_extinct(
+#'   event_times = b_times_n,
+#'   species_number  = lineages_n,
+#'   event_times2 = b_times2_n,
+#'   species_number2 = lineages2_n,
+#'   time_unit = "ago",
+#'   distance_method = "abs"
+#' )
+#'
 #' @export
 nltt_diff_exact_extinct <- function(
   event_times,
@@ -116,6 +136,25 @@ nltt_diff_exact_extinct <- function(
 #' @param species_number2 the number of species at each evet time of the second
 #' phylogeny
 #' @param distance_method (string) absolute, or squared distance?
+#'
+#' @examples
+#'
+#' # Generate data
+#' n <- 10
+#' b_times_n <- (seq(1, n) / n)
+#' lineages_n <- b_times_n
+#' b_times2_n <- b_times_n * b_times_n
+#' lineages2_n <- b_times2_n
+#'
+#' # Calculate nLTT
+#' out <- nLTT::nltt_diff_exact_calc_extinct(
+#'   event_times = b_times_n,
+#'   species_number  = lineages_n,
+#'   event_times2 = b_times2_n,
+#'   species_number2 = lineages2_n,
+#'   distance_method = "abs"
+#' )
+#' #'
 #' @export
 nltt_diff_exact_calc_extinct <- function(
   event_times,
