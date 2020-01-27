@@ -4,20 +4,10 @@
 [![](http://cranlogs.r-pkg.org/badges/grand-total/nLTT)]( https://CRAN.R-project.org/package=nLTT)
 [![](http://cranlogs.r-pkg.org/badges/nLTT)](https://CRAN.R-project.org/package=nLTT)
 
-
-## Original repo @thijsjanzen
 Branch|[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)|[![AppVeyor logo](pics/AppVeyor.png)](https://www.appveyor.com)|[![Codecov logo](pics/Codecov.png)](https://www.codecov.io)
 ---|---|---|---
 master|[![Build Status](https://travis-ci.org/thijsjanzen/nLTT.svg?branch=master)](https://travis-ci.org/thijsjanzen/nLTT)|[![Build status](https://ci.appveyor.com/api/projects/status/8seg4oj4bj68piff/branch/master?svg=true)](https://ci.appveyor.com/project/thijsjanzen/nLTT/branch/master)|[![codecov.io](https://codecov.io/github/thijsjanzen/nLTT/coverage.svg?branch=master)](https://codecov.io/github/thijsjanzen/nLTT/branch/master)
 develop|[![Build Status](https://travis-ci.org/thijsjanzen/nLTT.svg?branch=develop)](https://travis-ci.org/thijsjanzen/nLTT)|[![Build status](https://ci.appveyor.com/api/projects/status/8seg4oj4bj68piff/branch/develop?svg=true)](https://ci.appveyor.com/project/thijsjanzen/nLTT/branch/develop)|[![codecov.io](https://codecov.io/github/thijsjanzen/nLTT/coverage.svg?branch=develop)](https://codecov.io/github/thijsjanzen/nLTT/branch/develop)
-
-
-## Pedro's forked repo
-Branch|[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)|[![AppVeyor logo](pics/AppVeyor.png)](https://www.appveyor.com)|[![Codecov logo](pics/Codecov.png)](https://www.codecov.io)
----|---|---|---
-master|[![Build Status](https://travis-ci.org/Neves-P/nLTT.svg?branch=master)](https://travis-ci.org/Neves-P/nLTT)|[![Build status](https://ci.appveyor.com/api/projects/status/vbfdeue9o7bapece/branch/master?svg=true)](https://ci.appveyor.com/project/Neves-P/nLTT/branch/master)|[![codecov.io](https://codecov.io/github/Neves-P/nLTT/coverage.svg?branch=master)](https://codecov.io/github/Neves-P/nLTT/branch/master)
-develop|[![Build Status](https://travis-ci.org/Neves-P/nLTT.svg?branch=develop)](https://travis-ci.org/Neves-P/nLTT)|[![Build status](https://ci.appveyor.com/api/projects/status/vbfdeue9o7bapece/branch/develop?svg=true)](https://ci.appveyor.com/project/Neves-P/nLTT/branch/develop)|[![codecov.io](https://codecov.io/github/Neves-P/nLTT/coverage.svg?branch=develop)](https://codecov.io/github/Neves-P/nLTT/branch/develop)
-pedro|[![Build Status](https://travis-ci.org/Neves-P/nLTT.svg?branch=pedro)](https://travis-ci.org/Neves-P/nLTT)|[![Build status](https://ci.appveyor.com/api/projects/status/vbfdeue9o7bapece/branch/pedro?svg=true)](https://ci.appveyor.com/project/Neves-P/nLTT/branch/pedro)|[![codecov.io](https://codecov.io/github/Neves-P/nLTT/coverage.svg?branch=pedro)](https://codecov.io/github/Neves-P/nLTT/branch/pedro)
 
 Repository for the R nLTT package
 

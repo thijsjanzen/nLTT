@@ -26,7 +26,7 @@ a Pull Request.
 To get started working on `nLTT` do:
 
 ```
-git clone https://github.com/richelbilderbeek/nLTT.git
+git clone https://github.com/thijsjanzen/nLTT.git
 ```
 
 Development is done on the `develop` branch. 
