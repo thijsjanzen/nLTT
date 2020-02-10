@@ -10,5 +10,6 @@
 ^pics$
 ^scripts$
 ^CONTRIBUTING.md$
+^NEWS.md$
 ^code_of_conduct.md$
 ^appveyor\.yml$
