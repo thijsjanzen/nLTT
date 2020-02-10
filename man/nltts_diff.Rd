@@ -5,8 +5,13 @@
 \title{Calculates the nLTT statistic between each phylogeny in
 a collection compared to a same focal/reference tree}
 \usage{
-nltts_diff(tree, trees, distance_method = "abs", ignore_stem = TRUE,
-  log_transform = FALSE)
+nltts_diff(
+  tree,
+  trees,
+  distance_method = "abs",
+  ignore_stem = TRUE,
+  log_transform = FALSE
+)
 }
 \arguments{
 \item{tree}{One phylogenetic tree}

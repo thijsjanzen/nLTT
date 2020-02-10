@@ -5,8 +5,14 @@
 \title{Calculates the exact difference between the nLTT
 curves of the branching times}
 \usage{
-nltt_diff_exact_brts(b_times, lineages, b_times2, lineages2,
-  distance_method = "abs", time_unit = "since")
+nltt_diff_exact_brts(
+  b_times,
+  lineages,
+  b_times2,
+  lineages2,
+  distance_method = "abs",
+  time_unit = "since"
+)
 }
 \arguments{
 \item{b_times}{branching times of the first phylogeny,}

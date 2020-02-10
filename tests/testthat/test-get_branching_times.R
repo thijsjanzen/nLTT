@@ -23,4 +23,15 @@ test_that("get_branching_times use", {
   # get_branching_times adds the stem
   testthat::expect_true(
     all(nLTT::get_branching_times(phylogeny) == c(5, 3, 2)))
+
+  # get_branching_times returns no stem age if it doesn't exist (acts like ape)
+  phylogeny$root.edge <- NULL # nolint ape variable name
+
+  testthat::expect_true(
+    all(nLTT::get_branching_times(phylogeny) == c(3, 2))
+  )
+
+  testthat::expect_true(
+    all(nLTT::get_branching_times(phylogeny) == ape::branching.times(phylogeny))
+  )
 })
