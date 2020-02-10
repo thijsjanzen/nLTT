@@ -83,4 +83,13 @@ test_that("nLTTstat abuse", {
     "nLTTstat: distance method unknown"
   )
 
+  expect_error(
+    nLTTstat(
+      tree1 = phylo,
+      tree2 = phylo,
+      distance_method = "abs",
+      ignore_stem = "nonsense"
+    ), regexp = "nLTTstat: ignore_stem must be logical"
+  )
+
 })

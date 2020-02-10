@@ -12,7 +12,6 @@ License: GPL-2
 Imports:
     ape,
     coda,
-    deSolve,
     testit
 Suggests:
     DDD,
@@ -24,11 +23,11 @@ Suggests:
     reshape2,
     rmarkdown,
     TESS,
-    testthat,
+    testthat (>= 2.1.0),
     TreeSim
 NeedsCompilation: no
 Packaged: 2019-05-18 10:46:57 UTC; janzen
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Encoding: UTF-8
 VignetteBuilder: knitr
 URL: https://github.com/thijsjanzen/nLTT
