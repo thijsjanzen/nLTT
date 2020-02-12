@@ -67,14 +67,14 @@ nltt_diff_exact_extinct <- function(
   testit::assert(length(event_times) == length(species_number))
   testit::assert(length(event_times2) == length(species_number2))
 
-  if (time_unit == "since"){
+  if (time_unit == "since") {
     if (!all(event_times <= 0.0) || !all(event_times2 <= 0.0)) {
       stop("event times must be negative, ",
            "for example -3 time units since the present")
     }
   }
 
-  if (time_unit == "ago"){
+  if (time_unit == "ago") {
     if (!all(event_times >= 0.0) || !all(event_times2 >= 0.0)) {
       stop("event times must be positive, ",
            "for example 3 time units ago")
@@ -98,14 +98,19 @@ nltt_diff_exact_extinct <- function(
   testit::assert(all(species_number2 >= 0.0))
 
   if (normalize) {
-    event_times_n <- 1.0 - event_times / min(event_times) #normalize event times
-    species_number_n <- species_number / max(species_number)  #normalize lineages
+    #normalize event times
+    event_times_n <- 1.0 - event_times / min(event_times)
+
+    #normalize lineages
+    species_number_n <- species_number / max(species_number)
     # Normalizations must have worked
     testit::assert(all(event_times_n >= 0.0 & event_times_n <= 1.0))
     testit::assert(all(species_number_n >= 0.0 & species_number_n <= 1.0))
 
-    event_times2_n <- 1 - event_times2 / min(event_times2) #normalize branching times
-    species_number2_n <- species_number2 / max(species_number2)  #normalize lineages
+    #normalize branching times
+    event_times2_n <- 1 - event_times2 / min(event_times2)
+    #normalize lineages
+    species_number2_n <- species_number2 / max(species_number2)
 
     nltt_diff_exact_calc_extinct(
       event_times = event_times_n,
@@ -171,21 +176,10 @@ nltt_diff_exact_calc_extinct <- function(
   testit::assert(length(species_number) > 0)
   testit::assert(length(event_times2) > 0)
   testit::assert(length(species_number) > 0)
-  # Start with zeroes? Not necessarily
-  # testit::assert(event_times[1] >= 0.0)
-  # testit::assert(species_number[1] >= 0.0)
-  # testit::assert(event_times2[1] >= 0.0)
-  # testit::assert(species_number[1] >= 0.0)
-  # Are in range?
-  # testit::assert(all(event_times >= 0.0 & event_times <= 1.0))
-  # testit::assert(all(species_number >= 0.0 & species_number <= 1.0))
-  # testit::assert(all(event_times2 >= 0.0 & event_times2 <= 1.0))
-  # testit::assert(all(species_number >= 0.0 & species_number <= 1.0))
+
   # Are sorted?
   testit::assert(all(sort(event_times) == event_times))
-  # testit::assert(all(sort(species_number) == species_number)) Allow full trees
   testit::assert(all(sort(event_times2) == event_times2))
-  # testit::assert(all(sort(species_number) == species_number)) Allow full trees
 
   # Make a list of all branching times, and remove duplicates
   # TODO: Use more effecient merge, as both ranges are sorted
@@ -219,6 +213,3 @@ nltt_diff_exact_calc_extinct <- function(
   }
   diff
 }
-
-
-

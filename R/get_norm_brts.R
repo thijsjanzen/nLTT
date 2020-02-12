@@ -19,4 +19,3 @@ get_norm_brts <- function(phylogeny) {
   brts <- brts / utils::tail(brts, n = 1)
   return(brts)
 }
-

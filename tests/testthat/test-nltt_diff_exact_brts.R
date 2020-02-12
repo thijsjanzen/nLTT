@@ -37,7 +37,8 @@ test_that("nltt_diff_exact_brts abuse", {
       distance_method = "abs",
       time_unit = "since"
     ),
-    regexp = "branching times must be negative, for example -3 time units since the present"
+    regexp = "branching times must be negative,
+              for example -3 time units since the present"
   )
   expect_error(
     nLTT::nltt_diff_exact_brts(
@@ -63,4 +64,3 @@ test_that("nltt_diff_exact_brts abuse", {
     regexp = "time_unit must be either 'since' or 'ago'"
   )
 })
-

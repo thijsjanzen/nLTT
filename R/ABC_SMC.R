@@ -195,7 +195,7 @@ abc_smc_nltt <- function(tree,
            "but were instead: ", init_epsilon_values[j])
     }
 
-    for (i in 1:50) {
+    for (i in seq_len(50)) {
       epsilon[i, j] <- init_epsilon_values[j] * exp(-0.5 * (i - 1))
     }
   }
