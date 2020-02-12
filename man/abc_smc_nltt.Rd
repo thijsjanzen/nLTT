@@ -26,7 +26,8 @@ diversification model and returns an object of class \code{"phylo"}.}
 for the summary statistics from the vector \code{statistics}.}
 
 \item{prior_generating_function}{Function to generate parameters
-from the prior distribution of these parameters (e.g. a function returning lambda and mu in case of the birth-death model)}
+from the prior distribution of these parameters (e.g. a function returning
+lambda and mu in case of the birth-death model)}
 
 \item{prior_density_function}{Function to calculate the prior probability
 of a set of parameters.}

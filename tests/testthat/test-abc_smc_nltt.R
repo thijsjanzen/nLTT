@@ -24,15 +24,10 @@ test_that("abc_smc_nltt use", {
    return(dexp(val[1], rate = 10))
   }
 
-  # temporary fix to keep R-devel happy.
-  # should be updated upon release of version 3.6
-
-  # suppressWarnings(RNGversion("3.5.0"))
-
   set.seed(42)
   obs <- treesim(c(0.50, 0))
 
-  LL_BD <- function(params, phy) {
+  ll_bd <- function(params, phy) {
     lnl <- TESS::tess.likelihood(ape::branching.times(phy),
                                  lambda = params[1], mu = 0.0,
                                  samplingProbability = 1, log = TRUE)
@@ -43,24 +38,24 @@ test_that("abc_smc_nltt use", {
   tofit <- function(params) {
     if (params[1] <= 0) return(1e6)
     if (params[1] > 100) return(1e6)
-    return(-1 * LL_BD(params, obs))
+    return(-1 * ll_bd(params, obs))
   }
 
-  ML <- stats::optimize(f = tofit, interval = c(0, 1))
+  max_lik <- stats::optimize(f = tofit, interval = c(0, 1))
 
   statwrapper <- function(tree1) {
     return(nLTTstat_exact(tree1, obs, "abs")) # nolint nLTTstat has uppercase due to backwards compatibility
   }
 
-  A <- abc_smc_nltt(
+  results <- abc_smc_nltt(
     obs, c(statwrapper), treesim, init_epsilon_values = 0.2,
     prior_generating_function = prior_gen,
     prior_density_function = prior_dens,
     number_of_particles = 100, sigma = 0.05, stop_rate = 0.01)
 
   testthat::expect_equal(
-    mean(A),
-    ML$minimum[[1]],
+    mean(results),
+    max_lik$minimum[[1]],
     tolerance = 0.06
   )
 })

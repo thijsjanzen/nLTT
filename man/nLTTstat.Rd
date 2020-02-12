@@ -5,7 +5,8 @@
 \title{Calculate the difference between two normalized
   Lineage-Through-Time curves, given two phylogenetic trees.}
 \usage{
-nLTTstat(tree1, tree2, distance_method = "abs", ignore_stem = TRUE, log_transform = FALSE)
+nLTTstat(tree1, tree2, distance_method = "abs", ignore_stem = TRUE,
+               log_transform = FALSE)
 }
 \arguments{
 \item{tree1}{an object of class \code{"phylo"}}

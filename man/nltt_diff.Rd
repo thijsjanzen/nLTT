@@ -2,7 +2,8 @@
 % Please edit documentation in R/nLTTDiff.R
 \name{nltt_diff}
 \alias{nltt_diff}
-\title{Calculates the exact difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)}
+\title{Calculates the exact difference between the lineage through time curves of
+tree1 & tree2 (normalized in time and for the number of lineages)}
 \usage{
 nltt_diff(
   tree1,
@@ -29,7 +30,8 @@ log-transformed before normalization?}
   between tree1 & tree2
 }
 \description{
-Calculates the exact difference between the lineage through time curves of tree1 & tree2 (normalized in time and for the number of lineages)
+Calculates the exact difference between the lineage through time curves of
+tree1 & tree2 (normalized in time and for the number of lineages)
 }
 \seealso{
 use \code{\link{nltts_diff}} to compare a collection of

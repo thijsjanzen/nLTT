@@ -8,9 +8,14 @@
 #
 # @param    weights                 vector       Vector of weights
 # @param    particles               list         List of parameter combinations
-# @param    current                 vector       Current parameter combination for which we are determining the weight
-# @param    sigma                   scalar       standard deviation of the perturbation
-# @param    prior_density_function  function     Function to calculate the prior probability of a set of parameters
+# @param    current                 vector       Current parameter combination
+#                                                for which we are determining
+#                                                the weight
+# @param    sigma                   scalar       standard deviation of
+#                                                the perturbation
+# @param    prior_density_function  function     Function to calculate the prior
+#                                                probability of a set of
+#                                                parameters
 # @return                           scalar       Estimated weight
 #
 ################################################################################
@@ -33,22 +38,43 @@ calculate_weight <- function(weights, particles,
 
 ################################################################################
 #
-# @brief apply the ABC routine used in our Methods in Ecology and Evolution Paper
+# @brief apply the ABC routine used in our Methods in Ecology and
+#        Evolution Paper
 #
 # @date Last modified: 2016-03-07
 # @author Thijs Janzen
 # @since 2014-20-09, version 1.0
 #
 # @param    tree                          phylo       Phylogenetic tree
-# @param    statistics                    vector      A vector containing functions that take a tree as an argument and return a single scalar value (the statistic).
-# @param    simulation_function           vector      A function that implements the diversification model and returns an object of class phylo
-# @param    init_epsilon_values           vector      A vector containing the initial threshold values for the summary statistics from the vector statistics.
-# @param    prior_generating_function     function    Function to generate parameters from the prior distribution of these parameters (e.g. a function returning lambda and mu in case of the birth-death model)
-# @param    prior_density_function        function    Function to calculate the prior probability of a set of parameters (should match prior_generating_function in shape)
-# @param    number_of_particles           scalar      Number of particles to be used per iteration of the ABC-SMC algorithm.
-# @param    sigma                         scalar      Standard deviation of the perturbance distribution (perturbance distribution is a gaussian with mean 0).
-# @param    stop_rate                     scalar      If the acceptance rate drops below \code{stopRate}, stop the ABC-SMC algorithm  and assume convergence.
-# @return                                 matrix      A matrix with n columns, where n is the number of parameters you are trying to estimate.
+# @param    statistics                    vector      A vector containing
+#                                 functions that take a tree as an argument and
+#                                 return a single scalar value (the statistic).
+# @param    simulation_function           vector      A function that implements
+#                                 the diversification model and returns an
+#                                 object of class phylo
+# @param    init_epsilon_values           vector      A vector containing the
+#                                 initial threshold values for the summary
+#                                 statistics from the vector statistics.
+# @param    prior_generating_function     function    Function to generate
+#                                 parameters from the prior distribution of
+#                                 these parameters (e.g. a function returning
+#                                 lambda and mu in case of the
+#                                 birth-death model)
+# @param    prior_density_function        function    Function to calculate the
+#                                 prior probability of a set of parameters
+#                                 (should match prior_generating_function in
+#                                 shape)
+# @param    number_of_particles           scalar      Number of particles to be
+#                                 used per iteration of the ABC-SMC algorithm.
+# @param    sigma                         scalar      Standard deviation of the
+#                                 perturbance distribution (perturbance
+#                                 distribution is a gaussian with mean 0).
+# @param    stop_rate                     scalar      If the acceptance rate
+#                                 drops below \code{stopRate}, stop the ABC-SMC
+#                                 algorithm  and assume convergence.
+# @return                                 matrix      A matrix with n columns,
+#                                 where n is the number of parameters you are
+#                                 trying to estimate.
 #
 ################################################################################
 #' A function to perform Approximate Bayesian Computation within a
@@ -72,7 +98,8 @@ calculate_weight <- function(weights, particles,
 #' @param init_epsilon_values A vector containing the initial threshold values
 #'   for the summary statistics from the vector \code{statistics}.
 #' @param prior_generating_function Function to generate parameters
-#'   from the prior distribution of these parameters (e.g. a function returning lambda and mu in case of the birth-death model)
+#'   from the prior distribution of these parameters (e.g. a function returning
+#'   lambda and mu in case of the birth-death model)
 #' @param prior_density_function Function to calculate the prior probability
 #'   of a set of parameters.
 #' @param number_of_particles Number of particles to be used
@@ -273,7 +300,7 @@ abc_smc_nltt <- function(tree,
       #convergence if the acceptance rate gets too low
       tried <- tried + 1
       if (tried > (1 / stop_rate)) {
-        if ( (number_accepted / tried) < stop_rate) {
+        if ((number_accepted / tried) < stop_rate) {
           stoprate_reached <- TRUE
           break
         }
@@ -298,23 +325,34 @@ abc_smc_nltt <- function(tree,
 
 ################################################################################
 #
-# @brief Estimate the likelihood of a given tree, provided a likelihood function, using a Monte Carlo Markov Chain
-#
+# @brief Estimate the likelihood of a given tree, provided a likelihood
+#'        function, using a Monte Carlo Markov Chain
+#'
 # @date Last modified: 2014-20-09
 # @author Thijs Janzen
 # @since 2014-20-09, version 1.0
-#
-# @param    phy                   phylo       Vector of weights
-# @param    likelihood_function   function    Function that calculates the likelihood of our diversification model, given the tree.
-#                                             function should be of the format function(parameters, phy).
-# @param    parameters            vector      Initial parameters to start the chain.
-# @param    logtransforms         scalar      Whether to perform jumps on logtransformed parameters (TRUE) or not (FALSE)
-# @param    iterations            scalar      Length of the chain
-# @param    burnin                scalar      Length of the burnin, default is 30% of iterations
-# @param    thinning              scalar      Size of thinning, default = 1
-# @param    sigma                 scalar      Standard deviation of the jumping distribution, which is N(0, sigma).
-# @return                         mcmc        An MCMC object, as used by the package "coda".
-#
+#'
+#' @param    phy                   phylo       Vector of weights
+#' @param    likelihood_function   function    Function that calculates the
+#'                                             likelihood of our diversification
+#'                                             model, given the tree.
+#'                                             function should be of the format
+#'                                             function(parameters, phy).
+#' @param    parameters            vector      Initial parameters to start
+#'                                             the chain.
+#' @param    logtransforms         scalar      Whether to perform jumps on
+#'                                             logtransformed parameters (TRUE)
+#'                                             or not (FALSE)
+#' @param    iterations            scalar      Length of the chain
+#' @param    burnin                scalar      Length of the burnin, default is
+#'                                             30% of iterations
+#' @param    thinning              scalar      Size of thinning, default = 1
+#' @param    sigma                 scalar      Standard deviation of the jumping
+#'                                             distribution, which is
+#'                                             N(0, sigma).
+#' @return                         mcmc        An MCMC object, as used by the
+#'                                             package "coda".
+#'
 ################################################################################
 #' @export
 mcmc_nltt <- function(phy, likelihood_function,

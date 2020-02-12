@@ -33,7 +33,7 @@
 #'   data(exampleTrees)
 #'   nltt_plot(exampleTrees[[1]])
 #' @export
-nltt_plot <- function( phy, xlab = "Normalized Time",
+nltt_plot <- function(phy, xlab = "Normalized Time",
   ylab = "Normalized Lineages", ...) {
 
   if (!inherits(phy, "phylo")) {
@@ -48,8 +48,8 @@ nltt_plot <- function( phy, xlab = "Normalized Time",
   xy <- ape::ltt.plot.coords(phy, backward = TRUE, tol = 1e-6)
   xy[, 2] <- xy[, 2] / max(xy[, 2]) #normalize number lineages
 
-  xy[, 1] <- xy[, 1] + abs( min( xy[, 1])) #make sure time runs from 0..T
-  xy[, 1] <- xy[, 1] / max( xy[, 1])      #normalize time
+  xy[, 1] <- xy[, 1] + abs(min(xy[, 1])) #make sure time runs from 0..T
+  xy[, 1] <- xy[, 1] / max(xy[, 1])      #normalize time
 
   graphics::plot.default(xy, xlab = xlab, ylab = ylab, xaxs = "r", yaxs = "r",
     type = "S", ...) #type = "S" ensures a stepwise function
@@ -91,7 +91,7 @@ nltt_lines <- function(phy, ...) {
   xy <- ape::ltt.plot.coords(phy, backward = TRUE, tol = 1e-6)
   xy[, 2] <- xy[, 2] / max(xy[, 2]) #normalize number lineages
 
-  xy[, 1] <- xy[, 1] + abs(min( xy[, 1])) #make sure time runs from 0..T
+  xy[, 1] <- xy[, 1] + abs(min(xy[, 1])) #make sure time runs from 0..T
   xy[, 1] <- xy[, 1] / max(xy[, 1])      #normalize time
   graphics::lines(xy, type = "S", ...)
 }
