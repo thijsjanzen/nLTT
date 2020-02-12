@@ -14,7 +14,7 @@
 #' @export
 get_n_lineages <- function(phylogeny) {
   if (!is.null(phylogeny$root.edge)) { # nolint ape variable name
-    return(seq_len(phylogeny$tip.label))
+    return(seq_along(phylogeny$tip.label))
   }
   2:length(phylogeny$tip.label)
 }
