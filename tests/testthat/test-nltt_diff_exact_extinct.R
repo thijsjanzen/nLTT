@@ -26,8 +26,8 @@ test_that("nltt_diff_exact_extinct: use don't normalize", {
   event_times2 <- sort(runif(154, 0, 10))
 
   # Test of non-increasing lineages
-  lineages1 <- seq_len(event_times)
-  lineages2 <- seq_len(event_times2)
+  lineages1 <- seq_along(event_times)
+  lineages2 <- seq_along(event_times2)
   lineages1[11:15] <- 9:5
   lineages2[133:154] <- 133:112
 
@@ -92,13 +92,13 @@ test_that("nltt_diff_exact_extinct: use normalize", {
   event_times2 <- sort(runif(154, 0, 10))
 
   # Test of non-increasing lineages
-  lineages1 <- seq_len(event_times)
-  lineages2 <- seq_len(event_times2)
+  lineages1 <- seq_along(event_times)
+  lineages2 <- seq_along(event_times2)
   lineages1[11:15] <- 9:5
   lineages2[133:154] <- 133:112
 
   stored <- 0.21989107217693629
-  expect_equal(
+  testthat::expect_equal(
     measured <- nLTT::nltt_diff_exact_extinct(
       event_times = event_times,
       species_number  = lineages1,
