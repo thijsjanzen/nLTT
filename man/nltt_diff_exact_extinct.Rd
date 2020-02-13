@@ -18,7 +18,7 @@ nltt_diff_exact_extinct(
 \arguments{
 \item{event_times}{event times of the first phylogeny}
 
-\item{species_number}{the number of species at each evet time of the first
+\item{species_number}{the number of species at each event time of the first
 phylogeny}
 
 \item{event_times2}{event times of the second phylogeny}
@@ -44,7 +44,7 @@ phylogeny}
 }
 \description{
 Takes branching times such as (for example) as returned by a
-\code{\link[DAISIE]{DAISIE_sim()}} simulation.
+\code{\link[DAISIE]{DAISIE_sim}} simulation.
 }
 \examples{
 
@@ -67,5 +67,5 @@ out <- nLTT::nltt_diff_exact_extinct(
 
 }
 \author{
-Thijs Janzen and Richel Bilderbeek and Pedro Neves
+Pedro Neves and Richel Bilderbeek and Thijs Janzen
 }
