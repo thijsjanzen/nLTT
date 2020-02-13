@@ -23,6 +23,10 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y libmagick++-dev; fi
 
 after_success:
-  - Rscript -e 'lintr::lint_package()'
-  - Rscript -e 'library(covr); codecov()'
-  - Rscript -e 'library(goodpractice); gp()'
+  # Lint
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then Rscript -e 'lintr::lint_package()'; fi
+  # Codecov
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "devel" ]; then travis_wait 20 Rscript -e 'covr::codecov()'; fi
+  # Goodpractice
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then Rscript -e 'library(goodpractice); gp()'; fi
+
