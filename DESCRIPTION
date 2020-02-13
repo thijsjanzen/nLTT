@@ -1,7 +1,7 @@
 Package: nLTT
 Type: Package
 Title: Calculate the NLTT Statistic
-Version: 1.4.3
+Version: 1.4.4
 Authors@R: c(person("Thijs","Janzen", email = "thijsjanzen@gmail.com",role=c("aut","cre")),
              person("Richel","Bilderbeek",email="richel@richelbilderbeek.nl", role=c("aut")))
 Description: Provides functions to calculate the normalised Lineage-Through-
@@ -26,7 +26,7 @@ Suggests:
     testthat (>= 2.1.0),
     TreeSim
 NeedsCompilation: no
-Packaged: 2019-05-18 10:46:57 UTC; janzen
+Packaged: 2020-02-13 10:46:57 UTC; janzen
 RoxygenNote: 7.0.2
 Encoding: UTF-8
 VignetteBuilder: knitr
