@@ -2,7 +2,7 @@
 #' curves of the event times. This includes extinction events.
 #' @description Takes branching times such as (for example) as returned by a
 #' \code{\link[DAISIE]{DAISIE_sim()}} simulation.
-#' @author Thijs Janzen and Richel Bilderbeek and Pedro Neves
+#' @author Pedro Neves and Richel Bilderbeek and Thijs Janzen
 #'
 #' @param event_times event times of the first phylogeny
 #' @param species_number the number of species at each evet time of the first
@@ -129,7 +129,6 @@ nltt_diff_exact_extinct <- function(
     )
   }
 }
-
 
 #' Calculates the exact difference between the nLTT
 #' curves of the event times. This includes extinction events.

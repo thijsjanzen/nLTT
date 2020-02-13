@@ -263,7 +263,6 @@ abc_smc_nltt <- function(tree,
         #calculate the summary statistics for the simulated tree
         for (k in seq_along(statistics)) {
           stats[k] <- statistics[[k]](new_tree)
-          if (is.na(stats[k])) stats[k] <- Inf
         }
 
         #check if the summary statistics are sufficiently
