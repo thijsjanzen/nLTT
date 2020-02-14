@@ -9,11 +9,13 @@
 #' @examples
 #'   get_average_nltt_matrix(c(ape::rcoal(10), ape::rcoal(20)))
 #'
-#' @author Richel Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 get_average_nltt_matrix <- function(
   phylogenies,
-  dt = 0.001) {
+  dt = 0.001
+) {
+
   if (length(phylogenies) < 1) {
     stop("there must be at least one phylogeny supplied")
   }

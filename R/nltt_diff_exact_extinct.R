@@ -52,9 +52,7 @@ nltt_diff_exact_extinct <- function(
   distance_method = "abs",
   time_unit = "since",
   normalize = TRUE) {
-  if (time_unit != "since" && time_unit != "ago") {
-    stop("time_unit must be either 'since' or 'ago'")
-  }
+  nLTT::check_time_unit(time_unit)
 
   # This function doesn't handle phylo objects
   if (class(event_times) == "phylo" || class(event_times) == "multiPhylo" ||

@@ -67,5 +67,5 @@ out <- nLTT::nltt_diff_exact_extinct(
 
 }
 \author{
-Thijs Janzen and Richel Bilderbeek and Pedro Neves
+Pedro Neves and Richel Bilderbeek and Thijs Janzen
 }

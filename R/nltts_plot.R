@@ -14,7 +14,7 @@
 #'   nltts_plot(c(ape::rcoal(10), ape::rcoal(10)))
 #'   nltts_plot(c(ape::rcoal(10), ape::rcoal(20)), dt = 0.1)
 #'
-#' @author Richel Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 nltts_plot <- function(
   phylogenies,

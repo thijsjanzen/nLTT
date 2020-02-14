@@ -34,5 +34,5 @@ Stretch matrix 'm' with a timestep resolution of 'dt'.
 
 }
 \author{
-Richel Bilderbeek
+Richèl J.C. Bilderbeek
 }
