@@ -20,7 +20,6 @@
 #' @noRd
 check_input_event_times <- function(event_times, event_times2, time_unit) {
 
-
   # This function doesn't handle phylo objects
   if (!is.numeric(event_times) || !is.numeric(event_times2)) {
     stop("event times should be a numeric vector of event times, not a
@@ -36,20 +35,19 @@ check_input_event_times <- function(event_times, event_times2, time_unit) {
     stop("event times must be positive, ",
          "for example 3 time units ago")
   }
-
 }
 
 #' Calculates the exact difference between the nLTT
 #' curves of the event times. This includes extinction events.
-#' @description Takes branching times such as (for example) as returned by a
-#' \code{\link[DAISIE]{DAISIE_sim}} simulation.
+#' @description Takes branching times such as (for example) as returned by the
+#'   DDD package.
 #' @author Pedro Neves and Richel Bilderbeek and Thijs Janzen
 #'
 #' @param event_times event times of the first phylogeny
 #' @param species_number the number of species at each event time of the first
 #' phylogeny
 #' @param event_times2 event times of the second phylogeny
-#' @param species_number2 the number of species at each evet time of the second
+#' @param species_number2 the number of species at each event time of the second
 #' phylogeny
 #' @param distance_method how the difference between the two nLTTs is summed
 #' \itemize{
@@ -159,10 +157,10 @@ nltt_diff_exact_extinct <- function(
 #' curves of the event times. This includes extinction events.
 #' @author Thijs Janzen and Richel Bilderbeek and Pedro Neves
 #' @param event_times event times of the first phylogeny
-#' @param species_number the number of species at each evet time of the first
+#' @param species_number the number of species at each event time of the first
 #' phylogeny
 #' @param event_times2 event times of the second phylogeny
-#' @param species_number2 the number of species at each evet time of the second
+#' @param species_number2 the number of species at each event time of the second
 #' phylogeny
 #' @param distance_method (string) absolute, or squared distance?
 #'
