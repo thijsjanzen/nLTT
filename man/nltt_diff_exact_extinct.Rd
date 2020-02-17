@@ -23,7 +23,7 @@ phylogeny}
 
 \item{event_times2}{event times of the second phylogeny}
 
-\item{species_number2}{the number of species at each evet time of the second
+\item{species_number2}{the number of species at each event time of the second
 phylogeny}
 
 \item{distance_method}{how the difference between the two nLTTs is summed
@@ -43,8 +43,8 @@ phylogeny}
 \item{normalize}{should the output be normalized? Default is TRUE.}
 }
 \description{
-Takes branching times such as (for example) as returned by a
-\code{\link[DAISIE]{DAISIE_sim}} simulation.
+Takes branching times such as (for example) as returned by the
+  DDD package.
 }
 \examples{
 

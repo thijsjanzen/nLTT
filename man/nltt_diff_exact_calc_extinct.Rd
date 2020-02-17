@@ -16,12 +16,12 @@ nltt_diff_exact_calc_extinct(
 \arguments{
 \item{event_times}{event times of the first phylogeny}
 
-\item{species_number}{the number of species at each evet time of the first
+\item{species_number}{the number of species at each event time of the first
 phylogeny}
 
 \item{event_times2}{event times of the second phylogeny}
 
-\item{species_number2}{the number of species at each evet time of the second
+\item{species_number2}{the number of species at each event time of the second
 phylogeny}
 
 \item{distance_method}{(string) absolute, or squared distance?}
