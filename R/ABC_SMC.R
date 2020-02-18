@@ -150,16 +150,17 @@ calculate_weight <- function(weights, particles,
 #'   )
 #'
 #'   } # end of dontrun
-abc_smc_nltt <- function(tree,
-                         statistics,
-                         simulation_function,
-                         init_epsilon_values,
-                         prior_generating_function,
-                         prior_density_function,
-                         number_of_particles = 1000,
-                         sigma = 0.05,
-                         stop_rate = 1e-5) {
-
+abc_smc_nltt <- function( # nolint indeed a complex function
+  tree,
+  statistics,
+  simulation_function,
+  init_epsilon_values,
+  prior_generating_function,
+  prior_density_function,
+  number_of_particles = 1000,
+  sigma = 0.05,
+  stop_rate = 1e-5
+) {
   if (!inherits(tree, "phylo")) {
     # Just checking
     stop("abc_smc_nltt: ",
@@ -354,9 +355,11 @@ abc_smc_nltt <- function(tree,
 #'
 ################################################################################
 #' @export
-mcmc_nltt <- function(phy, likelihood_function,
-                      parameters, logtransforms, iterations,
-                      burnin = round(iterations / 3), thinning = 1, sigma = 1) {
+mcmc_nltt <- function( # nolint indeed a complex function
+  phy, likelihood_function,
+  parameters, logtransforms, iterations,
+  burnin = round(iterations / 3), thinning = 1, sigma = 1
+) {
 
   #check data type of phy
   if (!inherits(phy, "phylo")) {
