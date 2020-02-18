@@ -1,8 +1,6 @@
 #' Get the average nLTT from a collection of phylogenies
 #'
-#' @param phylogenies the phylogenies, where the phylogenies are of type 'phylo'
-#' @param dt The timestep resolution,
-#'   where 1/dt is the number of points evaluated
+#' @inheritParams default_params_doc
 #' @param plot_nltts Also plot each nLLT line
 #' @param xlab Label on the x axis
 #' @param ylab Label on the y axis
@@ -13,7 +11,6 @@
 #' @examples
 #'   nltts_plot(c(ape::rcoal(10), ape::rcoal(10)))
 #'   nltts_plot(c(ape::rcoal(10), ape::rcoal(20)), dt = 0.1)
-#'
 #' @author Richèl J.C. Bilderbeek
 #' @export
 nltts_plot <- function(

@@ -6,6 +6,15 @@
 \usage{
 check_time_unit(time_unit)
 }
+\arguments{
+\item{time_unit}{the time unit of the branching times
+\itemize{
+ \item{"ago: "}{the branching times are postive,
+   as these are in time units ago}
+ \item{"since: "}{the branching times are negative,
+   as these are in time units since present}
+}}
+}
 \description{
 Will \link{stop} if not
 }

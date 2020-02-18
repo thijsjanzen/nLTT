@@ -344,7 +344,7 @@ abc_smc_nltt <- function(tree,
 #'                                             or not (FALSE)
 #' @param    iterations            scalar      Length of the chain
 #' @param    burnin                scalar      Length of the burnin, default is
-#'                                             30% of iterations
+#'                                             30\% of iterations
 #' @param    thinning              scalar      Size of thinning, default = 1
 #' @param    sigma                 scalar      Standard deviation of the jumping
 #'                                             distribution, which is

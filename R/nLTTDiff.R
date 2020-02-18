@@ -22,6 +22,7 @@ nltt_diff_exact <- function(
 
 #' Calculates the exact difference between the nLTT
 #' curves of the branching times
+#' @inheritParams default_params_doc
 #' @author Thijs Janzen and Richel Bilderbeek
 #' @param b_times branching times of the first phylogeny,
 #' @param lineages the number of lineages,
@@ -33,13 +34,6 @@ nltt_diff_exact <- function(
 #' \itemize{
 #'  \item{"abs: "}{the absolute distance between the two nLTTs is summed}
 #'  \item{"squ: "}{the squared distance between the two nLTTs is summed}
-#' }
-#' @param time_unit the time unit of the branching times
-#' \itemize{
-#'  \item{"ago: "}{the branching times are postive,
-#'    as these are in time units ago}
-#'  \item{"since: "}{the branching times are negative,
-#'    as these are in time units since present}
 #' }
 #' @export
 nltt_diff_exact_brts <- function(

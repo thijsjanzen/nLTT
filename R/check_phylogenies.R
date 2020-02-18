@@ -1,4 +1,7 @@
 #' Check if the input is a valid collection of one or more phylogenies
+#'
+#' Will \link{stop} if not
+#' @inheritParams default_params_doc
 #' @export
 check_phylogenies <- function(phylogenies) {
   if (length(phylogenies) < 1) {

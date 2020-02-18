@@ -1,6 +1,7 @@
 #' Check if the time unit is valid
 #'
 #' Will \link{stop} if not
+#' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' library(testthat)

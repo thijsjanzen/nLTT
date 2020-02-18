@@ -6,6 +6,12 @@
 \usage{
 check_phylogenies(phylogenies)
 }
+\arguments{
+\item{phylogenies}{a collection of one or more phylogenies,
+where the phylogenies are of type \link[ape]{phylo}.
+This collection can both be a list of \link[ape]{phylo} or
+a \link[ape]{multiPhylo}.}
+}
 \description{
-Check if the input is a valid collection of one or more phylogenies
+Will \link{stop} if not
 }

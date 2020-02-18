@@ -3,7 +3,7 @@
 #' @description Takes branching times such as (for example) as returned by a
 #' \code{\link[DAISIE]{DAISIE_sim()}} simulation.
 #' @author Pedro Neves and Richel Bilderbeek and Thijs Janzen
-#'
+#' @inheritParams default_params_doc
 #' @param event_times event times of the first phylogeny
 #' @param species_number the number of species at each evet time of the first
 #' phylogeny
@@ -14,13 +14,6 @@
 #' \itemize{
 #'  \item{"abs: "}{the absolute distance between the two nLTTs is summed}
 #'  \item{"squ: "}{the squared distance between the two nLTTs is summed}
-#' }
-#' @param time_unit the time unit of the branching times
-#' \itemize{
-#'  \item{"ago: "}{the branching times are postive,
-#'    as these are in time units ago}
-#'  \item{"since: "}{the branching times are negative,
-#'    as these are in time units since present}
 #' }
 #' @param normalize should the output be normalized? Default is TRUE.
 #'

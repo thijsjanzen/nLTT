@@ -34,7 +34,7 @@ or not (FALSE)}
 \item{iterations}{scalar      Length of the chain}
 
 \item{burnin}{scalar      Length of the burnin, default is
-30% of iterations}
+30\% of iterations}
 
 \item{thinning}{scalar      Size of thinning, default = 1}
 
