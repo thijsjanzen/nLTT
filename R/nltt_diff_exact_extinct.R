@@ -17,7 +17,7 @@
 #'
 #' @return Nothing. Throws error with helpful error message if
 #' \code{event_times} and \code{event_times2} are not correct.
-#' @noRd
+#' @export
 check_input_event_times <- function(event_times, event_times2, time_unit) {
 
   # This function doesn't handle phylo objects
@@ -85,6 +85,19 @@ nltt_diff_exact_extinct <- function(
   time_unit = "since",
   normalize = TRUE) {
   nLTT::check_time_unit(time_unit)
+  if (!is.numeric(event_times)) {
+    stop(
+    "event times should be a numeric vector of event times, not a
+       phylogeny. Use nltt_diff_exact_norm_brts for phylo objects instead."
+      )
+
+  }
+  testthat::expect_true(is.numeric(event_times2))
+  nLTT::check_input_event_times(
+    event_times = event_times,
+    event_times2 = event_times2,
+    time_unit = time_unit
+  )
 
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(event_times) == length(species_number))

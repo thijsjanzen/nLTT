@@ -1,4 +1,3 @@
-context("nltt_diff_exact_brts")
 test_that("nltt_diff_exact_brts use", {
   n <- 10
   b_times <- seq(1, n)
@@ -37,7 +36,7 @@ test_that("nltt_diff_exact_brts abuse", {
       distance_method = "abs",
       time_unit = "since"
     ),
-    regexp = "branching times must be negative, for example -3 time units since the present" # nolint
+    regexp = "times must be negative"
   )
   expect_error(
     nLTT::nltt_diff_exact_brts(
@@ -48,7 +47,7 @@ test_that("nltt_diff_exact_brts abuse", {
       distance_method = "abs",
       time_unit = "ago"
     ),
-    regexp = "branching times must be positive, for example 3 time units ago"
+    regexp = "times must be positive, for example 3 time units ago"
   )
 
   expect_error(
