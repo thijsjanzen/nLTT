@@ -12,7 +12,13 @@ stretch_nltt_matrix(m, dt, step_type)
 \item{dt}{The resulution, a value e [0.0001, 1].
 If 'dt' is set to a very small value, this function will stop}
 
-\item{step_type}{can be 'lower' or 'upper'}
+\item{step_type}{when between two points, where the second point
+ has both a higher x and y coordinat, which y coordinat to follow.
+'step_type' can be:
+\itemize{
+   \item lower maintain the y-coordinat of the leftmost point
+   \item upper already use the y-coordinat of the rightmost point
+}}
 }
 \value{
 The stretched matrix

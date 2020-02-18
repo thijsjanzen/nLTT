@@ -1,9 +1,9 @@
 #' Stretch matrix 'm' with a timestep resolution of 'dt'.
 #'
+#' @inheritParams default_params_doc
 #' @param m A matrix of 2 columns and at least 2 rows
 #' @param dt The resulution, a value e [0.0001, 1].
 #'   If 'dt' is set to a very small value, this function will stop
-#' @param step_type can be 'lower' or 'upper'
 #' @return The stretched matrix
 #' @examples
 #'   m <- matrix( c(c(0.0, 1.0), c(0.5, 1.0)), ncol = 2, nrow = 2)
@@ -32,10 +32,7 @@ stretch_nltt_matrix <- function(
     stop("stretch_nltt_matrix: m must have two columns, ",
       "m has ", ncol(m), " columns instead")
   }
-  if (step_type != "lower" && step_type != "upper") {
-    stop("stretch_nltt_matrix: step_type must be either 'lower' or 'upper', ",
-      "step_type supplied was '", step_type, "' instead")
-  }
+  nLTT::check_step_type(step_type)
 
   # Remove rows with same t's, take the first
   rows_to_delete <- NULL

@@ -20,4 +20,3 @@ check_time_unit <- function(time_unit) {
   }
 
 }
-

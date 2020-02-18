@@ -24,6 +24,14 @@ a \link[ape]{multiphylo}.}
  \item{"since: "}{the branching times are negative,
    as these are in time units since present}
 }}
+
+\item{step_type}{when between two points, where the second point
+ has both a higher x and y coordinat, which y coordinat to follow.
+'step_type' can be:
+\itemize{
+   \item lower maintain the y-coordinat of the leftmost point
+   \item upper already use the y-coordinat of the rightmost point
+}}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

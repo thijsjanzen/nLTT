@@ -15,17 +15,7 @@ get_average_nltt_matrix <- function(
   phylogenies,
   dt = 0.001
 ) {
-
-  if (length(phylogenies) < 1) {
-    stop("there must be at least one phylogeny supplied")
-  }
-  if (class(phylogenies) != "multiPhylo" && class(phylogenies) != "list") {
-    stop("phylogenies must be of class 'multiPhylo' or 'list'")
-  }
-  if (!inherits(phylogenies[[1]], "phylo")) {
-    # Stop imposed by ape::ltt.plot.coords
-    stop("phylogenies must be of type phylo")
-  }
+  nLTT::check_phylogenies(phylogenies)
   if (dt <= 0.0 || dt >= 1.0) {
     stop("dt must be between (not including) zero and one")
   }

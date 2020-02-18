@@ -7,6 +7,13 @@
 #'   where the phylogenies are of type \link[ape]{phylo}.
 #'   This collection can both be a list of \link[ape]{phylo} or
 #'   a \link[ape]{multiphylo}.
+#' @param step_type when between two points, where the second point
+#'   has both a higher x and y coordinat, which y coordinat to follow.
+#'  'step_type' can be:
+#'  \itemize{
+#'     \item lower maintain the y-coordinat of the leftmost point
+#'     \item upper already use the y-coordinat of the rightmost point
+#'  }
 #' @param time_unit the time unit of the branching times
 #' \itemize{
 #'  \item{"ago: "}{the branching times are postive,

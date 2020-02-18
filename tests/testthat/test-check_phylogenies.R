@@ -24,5 +24,3 @@ test_that("use", {
   expect_error(check_phylogenies(Inf))
   expect_error(check_phylogenies(NULL))
 })
-
-
