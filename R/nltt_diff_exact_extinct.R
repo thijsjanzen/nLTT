@@ -1,7 +1,7 @@
 #' Calculates the exact difference between the nLTT
 #' curves of the event times. This includes extinction events.
 #' @description Takes branching times such as (for example) as returned by a
-#' \code{\link[DAISIE]{DAISIE_sim()}} simulation.
+#' \code{\link[DAISIE]{DAISIE_sim}} simulation.
 #' @author Pedro Neves and Richel Bilderbeek and Thijs Janzen
 #' @inheritParams default_params_doc
 #' @param event_times event times of the first phylogeny

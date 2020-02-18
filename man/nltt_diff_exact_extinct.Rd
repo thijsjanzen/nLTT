@@ -44,7 +44,7 @@ phylogeny}
 }
 \description{
 Takes branching times such as (for example) as returned by a
-\code{\link[DAISIE]{DAISIE_sim()}} simulation.
+\code{\link[DAISIE]{DAISIE_sim}} simulation.
 }
 \examples{
 
