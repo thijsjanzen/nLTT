@@ -18,7 +18,7 @@ nltts_plot(
 \item{phylogenies}{a collection of one or more phylogenies,
 where the phylogenies are of type \link[ape]{phylo}.
 This collection can both be a list of \link[ape]{phylo} or
-a \link[ape]{multiPhylo}.}
+a \link[ape]{multiphylo}.}
 
 \item{dt}{The timestep resolution,
 a value bigger than zero and less or equal to one.

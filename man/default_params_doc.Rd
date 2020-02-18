@@ -15,7 +15,7 @@ a value bigger than zero and less or equal to one.
 \item{phylogenies}{a collection of one or more phylogenies,
 where the phylogenies are of type \link[ape]{phylo}.
 This collection can both be a list of \link[ape]{phylo} or
-a \link[ape]{multiPhylo}.}
+a \link[ape]{multiphylo}.}
 
 \item{time_unit}{the time unit of the branching times
 \itemize{

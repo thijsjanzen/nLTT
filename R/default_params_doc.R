@@ -6,7 +6,7 @@
 #' @param phylogenies a collection of one or more phylogenies,
 #'   where the phylogenies are of type \link[ape]{phylo}.
 #'   This collection can both be a list of \link[ape]{phylo} or
-#'   a \link[ape]{multiPhylo}.
+#'   a \link[ape]{multiphylo}.
 #' @param time_unit the time unit of the branching times
 #' \itemize{
 #'  \item{"ago: "}{the branching times are postive,
