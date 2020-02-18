@@ -28,6 +28,7 @@
 default_params_doc <- function(
   dt,
   phylogenies,
+  step_type,
   time_unit
 ) {
   # Nothing

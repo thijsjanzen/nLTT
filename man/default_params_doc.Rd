@@ -5,7 +5,7 @@
 \title{This function does nothing. It is intended to inherit is parameters'
 documentation.}
 \usage{
-default_params_doc(dt, phylogenies, time_unit)
+default_params_doc(dt, phylogenies, step_type, time_unit)
 }
 \arguments{
 \item{dt}{The timestep resolution,
@@ -17,20 +17,20 @@ where the phylogenies are of type \link[ape]{phylo}.
 This collection can both be a list of \link[ape]{phylo} or
 a \link[ape]{multiphylo}.}
 
-\item{time_unit}{the time unit of the branching times
-\itemize{
- \item{"ago: "}{the branching times are postive,
-   as these are in time units ago}
- \item{"since: "}{the branching times are negative,
-   as these are in time units since present}
-}}
-
 \item{step_type}{when between two points, where the second point
  has both a higher x and y coordinat, which y coordinat to follow.
 'step_type' can be:
 \itemize{
    \item lower maintain the y-coordinat of the leftmost point
    \item upper already use the y-coordinat of the rightmost point
+}}
+
+\item{time_unit}{the time unit of the branching times
+\itemize{
+ \item{"ago: "}{the branching times are postive,
+   as these are in time units ago}
+ \item{"since: "}{the branching times are negative,
+   as these are in time units since present}
 }}
 }
 \description{
