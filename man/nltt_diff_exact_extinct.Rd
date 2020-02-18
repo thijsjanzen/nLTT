@@ -18,12 +18,12 @@ nltt_diff_exact_extinct(
 \arguments{
 \item{event_times}{event times of the first phylogeny}
 
-\item{species_number}{the number of species at each evet time of the first
+\item{species_number}{the number of species at each event time of the first
 phylogeny}
 
 \item{event_times2}{event times of the second phylogeny}
 
-\item{species_number2}{the number of species at each evet time of the second
+\item{species_number2}{the number of species at each event time of the second
 phylogeny}
 
 \item{distance_method}{how the difference between the two nLTTs is summed
@@ -43,8 +43,8 @@ phylogeny}
 \item{normalize}{should the output be normalized? Default is TRUE.}
 }
 \description{
-Takes branching times such as (for example) as returned by
-the \code{DAISIE_sim} of the \code{DAISIE} R package
+Takes branching times such as (for example) as returned by the
+  DDD package.
 }
 \examples{
 

@@ -98,7 +98,7 @@ test_that("nltt_diff_exact_extinct: use normalize", {
   lineages2[133:154] <- 133:112
 
   stored <- 0.21989107217693629
-  testthat::expect_equal(
+  expect_equal(
     measured <- nLTT::nltt_diff_exact_extinct(
       event_times = event_times,
       species_number  = lineages1,

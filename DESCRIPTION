@@ -3,7 +3,8 @@ Type: Package
 Title: Calculate the NLTT Statistic
 Version: 1.4.4
 Authors@R: c(person("Thijs","Janzen", email = "thijsjanzen@gmail.com",role=c("aut","cre")),
-             person("Richel","Bilderbeek",email="richel@richelbilderbeek.nl", role=c("aut")))
+             person("Richèl J.C.", "Bilderbeek", email = "richel@richelbilderbeek.nl", role = c("aut"), comment = c(ORCID = "0000-0003-1107-7049")),
+             person("Pedro", "Neves", email = "p.m.santos.neves@rug.nl", role = "ctb"))
 Description: Provides functions to calculate the normalised Lineage-Through-
     Time (nLTT) statistic, given two phylogenetic trees. The nLTT statistic measures
     the difference between two Lineage-Through-Time curves, where each curve is
@@ -24,10 +25,11 @@ Suggests:
     rmarkdown,
     TESS,
     testthat (>= 2.1.0),
-    TreeSim
+    TreeSim,
+    DAISIE
 NeedsCompilation: no
 Packaged: 2020-02-13 10:46:57 UTC; janzen
-RoxygenNote: 7.0.2
+RoxygenNote: 7.0.2.9000
 Encoding: UTF-8
 VignetteBuilder: knitr
 URL: https://github.com/thijsjanzen/nLTT

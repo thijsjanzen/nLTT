@@ -1,14 +1,53 @@
+#' Checks that event times are correct
+#'
+#' @description Checks \code{event_times} and \code{event_times2} are of the
+#'   appropriate class and have expected characteristics for correct calculation
+#'   of NLTT in \code{\link{nltt_diff_exact_extinct}}.
+#' @author Pedro Neves and Richel Bilderbeek and Thijs Janzen
+#'
+#' @param event_times event times of the first phylogeny
+#' @param event_times2 event times of the second phylogeny
+#' @param time_unit the time unit of the branching times
+#' \itemize{
+#'  \item{"ago: "}{the branching times are postive,
+#'    as these are in time units ago}
+#'  \item{"since: "}{the branching times are negative,
+#'    as these are in time units since present}
+#' }
+#'
+#' @return Nothing. Throws error with helpful error message if
+#' \code{event_times} and \code{event_times2} are not correct.
+#' @noRd
+check_input_event_times <- function(event_times, event_times2, time_unit) {
+
+  # This function doesn't handle phylo objects
+  if (!is.numeric(event_times) || !is.numeric(event_times2)) {
+    stop("event times should be a numeric vector of event times, not a
+       phylogeny. Use nltt_diff_exact_norm_brts for phylo objects instead.")
+  }
+
+  if (time_unit == "since") {
+    if (!all(event_times <= 0.0) || !all(event_times2 <= 0.0)) {
+      stop("event times must be negative, ",
+           "for example -3 time units since the present")
+    }
+  } else if (!all(event_times >= 0.0) || !all(event_times2 >= 0.0)) {
+    stop("event times must be positive, ",
+         "for example 3 time units ago")
+  }
+}
+
 #' Calculates the exact difference between the nLTT
 #' curves of the event times. This includes extinction events.
-#' @description Takes branching times such as (for example) as returned by
-#' the \code{DAISIE_sim} of the \code{DAISIE} R package
+#' @description Takes branching times such as (for example) as returned by the
+#'   DDD package.
 #' @author Pedro Neves and Richel Bilderbeek and Thijs Janzen
 #' @inheritParams default_params_doc
 #' @param event_times event times of the first phylogeny
-#' @param species_number the number of species at each evet time of the first
+#' @param species_number the number of species at each event time of the first
 #' phylogeny
 #' @param event_times2 event times of the second phylogeny
-#' @param species_number2 the number of species at each evet time of the second
+#' @param species_number2 the number of species at each event time of the second
 #' phylogeny
 #' @param distance_method how the difference between the two nLTTs is summed
 #' \itemize{
@@ -47,31 +86,11 @@ nltt_diff_exact_extinct <- function(
   normalize = TRUE) {
   nLTT::check_time_unit(time_unit)
 
-  # This function doesn't handle phylo objects
-  if (class(event_times) == "phylo" || class(event_times) == "multiPhylo" ||
-      class(event_times2) == "phylo" || class(event_times2) == "multiPhylo") {
-    stop("event times should be a numeric vector of event times, not a
-       phylogeny. Use nltt_diff_exact_norm_brts for phylo objects instead.")
-  }
-
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(event_times) == length(species_number))
   testit::assert(length(event_times2) == length(species_number2))
 
-  if (time_unit == "since") {
-    if (!all(event_times <= 0.0) || !all(event_times2 <= 0.0)) {
-      stop("event times must be negative, ",
-           "for example -3 time units since the present")
-    }
-  }
-
   if (time_unit == "ago") {
-    if (!all(event_times >= 0.0) || !all(event_times2 >= 0.0)) {
-      stop("event times must be positive, ",
-           "for example 3 time units ago")
-    }
-
-
     # Conformize te b_times for the classic calculation
     event_times <- c(-1.0 * rev(sort(event_times)), 0)
     event_times2 <- c(-1.0 * rev(sort(event_times2)), 0)
@@ -125,10 +144,10 @@ nltt_diff_exact_extinct <- function(
 #' curves of the event times. This includes extinction events.
 #' @author Thijs Janzen and Richel Bilderbeek and Pedro Neves
 #' @param event_times event times of the first phylogeny
-#' @param species_number the number of species at each evet time of the first
+#' @param species_number the number of species at each event time of the first
 #' phylogeny
 #' @param event_times2 event times of the second phylogeny
-#' @param species_number2 the number of species at each evet time of the second
+#' @param species_number2 the number of species at each event time of the second
 #' phylogeny
 #' @param distance_method (string) absolute, or squared distance?
 #'
