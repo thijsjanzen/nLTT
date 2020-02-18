@@ -19,6 +19,7 @@ Suggests:
     ggplot2,
     Hmisc,
     knitr,
+    lintr,
     microbenchmark,
     plyr,
     reshape2,
