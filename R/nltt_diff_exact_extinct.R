@@ -3,7 +3,7 @@
 #' @description Checks \code{event_times} and \code{event_times2} are of the
 #'   appropriate class and have expected characteristics for correct calculation
 #'   of NLTT in \code{\link{nltt_diff_exact_extinct}}.
-#' @author Pedro Neves and Richel Bilderbeek and Thijs Janzen
+#' @author Pedro Neves and Richèl Bilderbeek and Thijs Janzen
 #'
 #' @param event_times event times of the first phylogeny
 #' @param event_times2 event times of the second phylogeny
@@ -41,7 +41,7 @@ check_input_event_times <- function(event_times, event_times2, time_unit) {
 #' curves of the event times. This includes extinction events.
 #' @description Takes branching times such as (for example) as returned by the
 #'   DDD package.
-#' @author Pedro Neves and Richel Bilderbeek and Thijs Janzen
+#' @author Pedro Neves and Richèl Bilderbeek and Thijs Janzen
 #' @inheritParams default_params_doc
 #' @param event_times event times of the first phylogeny
 #' @param species_number the number of species at each event time of the first
@@ -155,7 +155,7 @@ nltt_diff_exact_extinct <- function(
 
 #' Calculates the exact difference between the nLTT
 #' curves of the event times. This includes extinction events.
-#' @author Thijs Janzen and Richel Bilderbeek and Pedro Neves
+#' @author Thijs Janzen and Richèl Bilderbeek and Pedro Neves
 #' @param event_times event times of the first phylogeny
 #' @param species_number the number of species at each event time of the first
 #' phylogeny

@@ -10,7 +10,7 @@
 #'   phylogeny$root.edge <- 2 # nolint ape variable name
 #'   testthat::expect_true(
 #'     all(nLTT::get_n_lineages(phylogeny) == c(1, 2, 3)))
-#' @author Richel Bilderbeek
+#' @author Richèl Bilderbeek
 #' @export
 get_n_lineages <- function(phylogeny) {
   if (!is.null(phylogeny$root.edge)) { # nolint ape variable name
