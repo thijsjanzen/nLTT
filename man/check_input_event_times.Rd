@@ -29,5 +29,5 @@ Checks \code{event_times} and \code{event_times2} are of the
   of NLTT in \code{\link{nltt_diff_exact_extinct}}.
 }
 \author{
-Pedro Neves and Richel Bilderbeek and Thijs Janzen
+Pedro Neves and Richèl Bilderbeek and Thijs Janzen
 }

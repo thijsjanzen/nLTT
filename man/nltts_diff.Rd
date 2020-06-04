@@ -44,5 +44,5 @@ use \code{\link{nltt_diff}} to compare two
   phylogenies
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

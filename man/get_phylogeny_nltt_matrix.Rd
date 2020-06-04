@@ -16,5 +16,5 @@ a matrix
 Extract the nLTT matrix from a phylogeny
 }
 \author{
-Richel Bilderbeek
+Richèl Bilderbeek
 }

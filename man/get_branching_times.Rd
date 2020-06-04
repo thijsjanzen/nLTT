@@ -22,5 +22,5 @@ Collect the branching times from the stem age
     all(nLTT::get_branching_times(phylogeny) == c(5, 3, 2)))
 }
 \author{
-Richel Bilderbeek
+Richèl Bilderbeek
 }

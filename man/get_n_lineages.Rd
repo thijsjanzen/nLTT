@@ -26,5 +26,5 @@ Collect the number of lineages from the stem age
     all(nLTT::get_n_lineages(phylogeny) == c(1, 2, 3)))
 }
 \author{
-Richel Bilderbeek
+Richèl Bilderbeek
 }
