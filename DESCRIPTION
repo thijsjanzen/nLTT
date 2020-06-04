@@ -29,7 +29,7 @@ Suggests:
     DAISIE
 NeedsCompilation: no
 Packaged: 2020-02-13 10:46:57 UTC; janzen
-RoxygenNote: 7.0.2.9000
+RoxygenNote: 7.1.0
 Encoding: UTF-8
 VignetteBuilder: knitr
 URL: https://github.com/thijsjanzen/nLTT
