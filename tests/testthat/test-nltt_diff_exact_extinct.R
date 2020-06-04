@@ -156,7 +156,7 @@ test_that("nltt_diff_exact_extinct: abuse", {
 
   # Stop if time unit inconsistent with data and throw informative error
   expect_error(
-    measured <- nLTT::nltt_diff_exact_extinct(
+    nLTT::nltt_diff_exact_extinct(
       event_times = b_times_n,
       species_number  = lineages_n,
       event_times2 = b_times2_n,
@@ -164,7 +164,7 @@ test_that("nltt_diff_exact_extinct: abuse", {
       time_unit = "since",
       distance_method = "abs"
     ),
-    "event times must be negative, for example -3 time units since the present"
+    "times must be negative"
   )
 
   expect_error(

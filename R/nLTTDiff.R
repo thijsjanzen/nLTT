@@ -22,7 +22,8 @@ nltt_diff_exact <- function(
 
 #' Calculates the exact difference between the nLTT
 #' curves of the branching times
-#' @author Thijs Janzen and Richel Bilderbeek
+#' @inheritParams default_params_doc
+#' @author Thijs Janzen and Richèl Bilderbeek
 #' @param b_times branching times of the first phylogeny,
 #' @param lineages the number of lineages,
 #'   usually one to the number of lineages
@@ -34,13 +35,6 @@ nltt_diff_exact <- function(
 #'  \item{"abs: "}{the absolute distance between the two nLTTs is summed}
 #'  \item{"squ: "}{the squared distance between the two nLTTs is summed}
 #' }
-#' @param time_unit the time unit of the branching times
-#' \itemize{
-#'  \item{"ago: "}{the branching times are postive,
-#'    as these are in time units ago}
-#'  \item{"since: "}{the branching times are negative,
-#'    as these are in time units since present}
-#' }
 #' @export
 nltt_diff_exact_brts <- function(
   b_times,
@@ -48,27 +42,21 @@ nltt_diff_exact_brts <- function(
   b_times2,
   lineages2,
   distance_method = "abs",
-  time_unit = "since") {
-  if (time_unit != "since" && time_unit != "ago") {
-    stop("time_unit must be either 'since' or 'ago'")
-  }
+  time_unit = "since"
+) {
+  nLTT::check_time_unit(time_unit)
+  nLTT::check_input_event_times(
+    event_times = b_times,
+    event_times2 = b_times2,
+    time_unit = time_unit
+  )
+
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(b_times) == length(lineages))
   testit::assert(length(b_times2) == length(lineages2))
 
-  if (time_unit == "since") {
-    if (!all(b_times <= 0.0) || !all(b_times2 <= 0.0)) {
-      stop("branching times must be negative, ",
-        "for example -3 time units since the present")
-    }
-
-  }
   if (time_unit == "ago") {
-    if (!all(b_times >= 0.0) || !all(b_times2 >= 0.0)) {
-      stop("branching times must be positive, ",
-        "for example 3 time units ago")
-    }
-   # Conformize te b_times for the classic calculation
+    # Conformize te b_times for the classic calculation
     b_times <- c(-1.0 * rev(sort(b_times)), 0)
     b_times2 <- c(-1.0 * rev(sort(b_times2)), 0)
     lineages  <- c(lineages, utils::tail(lineages, n = 1))
@@ -108,7 +96,7 @@ nltt_diff_exact_brts <- function(
 
 #' Calculates the exact difference between the nLTT
 #' curves of the branching times
-#' @author Thijs Janzen and Richel Bilderbeek
+#' @author Thijs Janzen and Richèl Bilderbeek
 #' @param b_times_n branching times of the first phylogeny
 #' @param lineages_n the number of lineages,
 #'   usually one to the number of lineages
@@ -436,7 +424,7 @@ nLTTstat_exact <- function( # nolint keep function name non-all-lowercase,
 #'   trees <- c(ape::rcoal(4), ape::rcoal(4))
 #'   nltts <- nltts_diff(tree, trees)
 #'   testit::assert(all(nltts >= 0.0 && nltts <= 1.0))
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 nltts_diff <- function(
   tree,

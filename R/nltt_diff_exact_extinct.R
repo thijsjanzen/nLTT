@@ -3,7 +3,7 @@
 #' @description Checks \code{event_times} and \code{event_times2} are of the
 #'   appropriate class and have expected characteristics for correct calculation
 #'   of NLTT in \code{\link{nltt_diff_exact_extinct}}.
-#' @author Pedro Neves and Richel Bilderbeek and Thijs Janzen
+#' @author Pedro Neves and Richèl Bilderbeek and Thijs Janzen
 #'
 #' @param event_times event times of the first phylogeny
 #' @param event_times2 event times of the second phylogeny
@@ -17,7 +17,7 @@
 #'
 #' @return Nothing. Throws error with helpful error message if
 #' \code{event_times} and \code{event_times2} are not correct.
-#' @noRd
+#' @export
 check_input_event_times <- function(event_times, event_times2, time_unit) {
 
   # This function doesn't handle phylo objects
@@ -41,8 +41,8 @@ check_input_event_times <- function(event_times, event_times2, time_unit) {
 #' curves of the event times. This includes extinction events.
 #' @description Takes branching times such as (for example) as returned by the
 #'   DDD package.
-#' @author Pedro Neves and Richel Bilderbeek and Thijs Janzen
-#'
+#' @author Pedro Neves and Richèl Bilderbeek and Thijs Janzen
+#' @inheritParams default_params_doc
 #' @param event_times event times of the first phylogeny
 #' @param species_number the number of species at each event time of the first
 #' phylogeny
@@ -53,13 +53,6 @@ check_input_event_times <- function(event_times, event_times2, time_unit) {
 #' \itemize{
 #'  \item{"abs: "}{the absolute distance between the two nLTTs is summed}
 #'  \item{"squ: "}{the squared distance between the two nLTTs is summed}
-#' }
-#' @param time_unit the time unit of the branching times
-#' \itemize{
-#'  \item{"ago: "}{the branching times are postive,
-#'    as these are in time units ago}
-#'  \item{"since: "}{the branching times are negative,
-#'    as these are in time units since present}
 #' }
 #' @param normalize should the output be normalized? Default is TRUE.
 #'
@@ -91,13 +84,20 @@ nltt_diff_exact_extinct <- function(
   distance_method = "abs",
   time_unit = "since",
   normalize = TRUE) {
+  nLTT::check_time_unit(time_unit)
+  if (!is.numeric(event_times)) {
+    stop(
+    "event times should be a numeric vector of event times, not a
+       phylogeny. Use nltt_diff_exact_norm_brts for phylo objects instead."
+      )
 
-  check_input_event_times(event_times = event_times,
-                          event_times2 = event_times2,
-                          time_unit = time_unit)
-  if (time_unit != "since" && time_unit != "ago") {
-    stop("time_unit must be either 'since' or 'ago'")
   }
+  testthat::expect_true(is.numeric(event_times2))
+  nLTT::check_input_event_times(
+    event_times = event_times,
+    event_times2 = event_times2,
+    time_unit = time_unit
+  )
 
   # Each branching time must have a number of lineages to accompany it
   testit::assert(length(event_times) == length(species_number))
@@ -155,7 +155,7 @@ nltt_diff_exact_extinct <- function(
 
 #' Calculates the exact difference between the nLTT
 #' curves of the event times. This includes extinction events.
-#' @author Thijs Janzen and Richel Bilderbeek and Pedro Neves
+#' @author Thijs Janzen and Richèl Bilderbeek and Pedro Neves
 #' @param event_times event times of the first phylogeny
 #' @param species_number the number of species at each event time of the first
 #' phylogeny

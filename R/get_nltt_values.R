@@ -54,7 +54,7 @@
 #'   ) + stat_summary(
 #'     fun.data = "mean_cl_boot", color = "red", geom = "smooth"
 #'   )
-#' @author Richel Bilderbeek
+#' @author Richèl Bilderbeek
 #' @export
 get_nltt_values <- function(phylogenies, dt) {
   if (length(phylogenies) < 1) {

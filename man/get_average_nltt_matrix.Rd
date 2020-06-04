@@ -25,5 +25,5 @@ Get the average nLTT from a collection of phylogenies
 
 }
 \author{
-Richel Bilderbeek
+Richèl J.C. Bilderbeek
 }

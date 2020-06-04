@@ -6,7 +6,7 @@
 #'   phylogeny$root.edge <- 2 # nolint ape variable name
 #'   testthat::expect_true(
 #'     all(nLTT::get_branching_times(phylogeny) == c(5, 3, 2)))
-#' @author Richel Bilderbeek
+#' @author Richèl Bilderbeek
 #' @export
 get_branching_times <- function(phylogeny) {
   brts <- ape::branching.times(phylogeny)

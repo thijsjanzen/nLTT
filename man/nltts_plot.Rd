@@ -15,10 +15,14 @@ nltts_plot(
 )
 }
 \arguments{
-\item{phylogenies}{the phylogenies, where the phylogenies are of type 'phylo'}
+\item{phylogenies}{a collection of one or more phylogenies,
+where the phylogenies are of type \link[ape]{phylo}.
+This collection can both be a list of \link[ape]{phylo} or
+a \link[ape]{multiphylo}.}
 
 \item{dt}{The timestep resolution,
-where 1/dt is the number of points evaluated}
+a value bigger than zero and less or equal to one.
+1/dt is the number of points that will be evaluated}
 
 \item{plot_nltts}{Also plot each nLLT line}
 
@@ -40,8 +44,7 @@ Get the average nLTT from a collection of phylogenies
 \examples{
   nltts_plot(c(ape::rcoal(10), ape::rcoal(10)))
   nltts_plot(c(ape::rcoal(10), ape::rcoal(20)), dt = 0.1)
-
 }
 \author{
-Richel Bilderbeek
+Richèl J.C. Bilderbeek
 }
