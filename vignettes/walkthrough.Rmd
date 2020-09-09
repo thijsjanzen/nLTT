@@ -175,8 +175,8 @@ We have to provide the initialvalue (parameters = 0.5), set a flag whether we wa
 The MCMC chain appears to have performed well, the chain shows good mixing and doesn't get stuck in local minima. 
 ```{r}
 if (fixed_issue) {
-  b.mcmc <- coda::as.mcmc(b)
-  plot(b.mcmc)
+  b_mcmc <- coda::as.mcmc(b)
+  plot(b_mcmc)
 }
 ```
 
@@ -191,7 +191,7 @@ if (fixed_issue) {
   legend("right", c("ML", "True"),
          lty = c(2, 2),
          col = c("green", "blue"), lwd = 2)
-  hist(b, breaks = seq(0, 1, by = 0.05), col = "grey", 
+  hist(b, breaks = seq(0, 1, by = 0.05), col = "grey",
        main = "Lambda, MCMC", xlab = "")
   abline(v = 0.5, lty = 2, col = "blue", lwd = 2)
   abline(v = ml$minimum, lty = 2, col = "green", lwd = 2)

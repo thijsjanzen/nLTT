@@ -16,21 +16,21 @@ In ASCII art, I show two simple LTT plots:
 ```{r fig.width=2,}
 # normalized number of lineages
 #
-## 1.0 +   X---X
-#      |   |
-## 0.5 X---+
-#      |
-#      +---+---+
-#         0.5 1.0   normalized time
+# 1.0 +   X---X                                            #nolint
+#     |   |
+# 0.5 X---+                                                #nolint
+#     |
+#     +---+---+
+#        0.5 1.0   normalized time
 #
 #
 #
 # normalized number of lineages
 #
-##  1.0  +       X
+##  1.0  +       X                                         #nolint
 ##  0.75 |   X---+
 ##  0.5  |   |
-## 0.25 X---+
+##  0.25 X---+
 ##       +---+---+
 ##         0.5 1.0   normalized time
 ```
