@@ -1,4 +1,4 @@
-# nLTT
+# nLTT <img src="pics/nLTT_sticker.png" align="right" width="180" />
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/nLTT)](https://cran.r-project.org/package=nLTT)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/nLTT)]( https://CRAN.R-project.org/package=nLTT)
