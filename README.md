@@ -53,6 +53,8 @@ bioRxiv  (2021) 2021.07.26.453064; doi: https://doi.org/10.1101/2021.07.26.45306
 
 Bilderbeek, RJC, Laudanno, G, Etienne, RS. Quantifying the impact of an inference model in Bayesian phylogenetics. Methods Ecol Evol. (2021); 12: 351– 358. https://doi.org/10.1111/2041-210X.13514
 
+Hagen O, Flück B, Fopp F, Cabral JS, Hartig F, et al. (2021) gen3sis: A general engine for eco-evolutionary simulations of the processes that shape Earth’s biodiversity. PLOS Biology 19(7): e3001340. https://doi.org/10.1371/journal.pbio.3001340
+
 Giardina F, Romero-Severson EO, Albert J, Britton T, Leitner T  "Inference of Transmission Network Structure from HIV Phylogenetic Trees". PLOS Computational Biology (2017) 13(1): e1005316. [link](https://doi.org/10.1371/journal.pcbi.1005316)
 
 Janzen, Thijs, and Rampal Etienne. "Inferring the role of habitat dynamics in driving diversification: evidence for a species pump in Lake Tanganyika cichlids." bioRxiv (2017): 085431. [link](https://www.biorxiv.org/content/early/2017/06/07/085431)
