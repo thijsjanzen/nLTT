@@ -44,7 +44,14 @@ Apart from providing functions that calculate the nLTT statistic, the nLTT packa
 
 ## Papers using the nLTT statistic
 
-Bilderbeek, Richèl J.C., Laudanno, Giovanni and Rampal S. Etienne. "Quantifying the importance of an inference model in Bayesian phylogenetics" bioRxiv (2019): 879098; [link](https://doi.org/10.1101/2019.12.17.879098)
+Shu Xie, Luis Valente, Rampal S. Etienne. A simple island biodiversity model is robust to trait dependence in diversification and colonization rates (2022) bioRxiv 2022.01.01.474685; doi: https://doi.org/10.1101/2022.01.01.474685
+
+Thijs Janzen, Folmer Bokma, Rampal S Etienne, Nucleotide Substitutions during Speciation may Explain Substitution Rate Variation, Systematic Biology (2021), syab085, https://doi.org/10.1093/sysbio/syab085
+
+Pedro Santos Neves, Joshua W. Lambert, Luis Valente, Rampal S. Etienne. "The robustness of a simple dynamic model of island biodiversity to geological and eustatic change"
+bioRxiv  (2021) 2021.07.26.453064; doi: https://doi.org/10.1101/2021.07.26.453064
+
+Bilderbeek, RJC, Laudanno, G, Etienne, RS. Quantifying the impact of an inference model in Bayesian phylogenetics. Methods Ecol Evol. (2021); 12: 351– 358. https://doi.org/10.1111/2041-210X.13514
 
 Giardina F, Romero-Severson EO, Albert J, Britton T, Leitner T  "Inference of Transmission Network Structure from HIV Phylogenetic Trees". PLOS Computational Biology (2017) 13(1): e1005316. [link](https://doi.org/10.1371/journal.pcbi.1005316)
 
