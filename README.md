@@ -46,6 +46,9 @@ Apart from providing functions that calculate the nLTT statistic, the nLTT packa
 
 Shu Xie, Luis Valente, Rampal S. Etienne. A simple island biodiversity model is robust to trait dependence in diversification and colonization rates (2022) bioRxiv 2022.01.01.474685; doi: https://doi.org/10.1101/2022.01.01.474685
 
+
+Francisco Richter, Thijs Janzen, Hanno Hildenbrandt, Ernst C. Wit, Rampal S. Etienne. Detecting phylodiversity-dependent diversification with a general phylogenetic inference framework (2021) bioRxiv 2021.07.01.450729; doi: https://doi.org/10.1101/2021.07.01.450729
+
 Thijs Janzen, Folmer Bokma, Rampal S Etienne, Nucleotide Substitutions during Speciation may Explain Substitution Rate Variation, Systematic Biology (2021), syab085, https://doi.org/10.1093/sysbio/syab085
 
 Pedro Santos Neves, Joshua W. Lambert, Luis Valente, Rampal S. Etienne. "The robustness of a simple dynamic model of island biodiversity to geological and eustatic change"
