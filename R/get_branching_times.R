@@ -5,7 +5,7 @@
 #'   phylogeny <- ape::read.tree(text = "((a:2,b:2):1,c:3);")
 #'   phylogeny$root.edge <- 2 # nolint ape variable name
 #'   testthat::expect_true(
-#'     all(nLTT::get_branching_times(phylogeny) == c(5, 3, 2)))
+#'     all.equal(as.vector(nLTT::get_branching_times(phylogeny)), c(5, 3, 2)))
 #' @author Richèl Bilderbeek
 #' @export
 get_branching_times <- function(phylogeny) {

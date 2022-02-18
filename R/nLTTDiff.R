@@ -423,7 +423,6 @@ nLTTstat_exact <- function( # nolint keep function name non-all-lowercase,
 #'   tree <- ape::rcoal(4)
 #'   trees <- c(ape::rcoal(4), ape::rcoal(4))
 #'   nltts <- nltts_diff(tree, trees)
-#'   testit::assert(all(nltts >= 0.0 && nltts <= 1.0))
 #' @author Richèl J.C. Bilderbeek
 #' @export
 nltts_diff <- function(
