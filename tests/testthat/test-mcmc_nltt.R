@@ -1,11 +1,7 @@
 context("mcmc_nltt")
 
 test_that("mcmc_nltt use", {
-  skip_on_cran()
-  # These tests are very long
-  if (Sys.getenv("HOME") == "/home/richel" ||
-    Sys.getenv("HOME") == "/home/p230198") return()
-  print(Sys.getenv("HOME"))
+  skip_on_cran() # These tests are very long
 
   set.seed(1)
   tree1 <- TESS::tess.sim.taxa(n = 1, nTaxa = 50,
@@ -30,21 +26,29 @@ test_that("mcmc_nltt use", {
 
   max_lik <- optim(par = c(1, 0.001), fn = tofit)
 
-  expect_equal(
-    colMeans(mcmc_nltt(tree1, ll_bd, c(1, 0.001), c(TRUE, TRUE),
-                        iterations = 10000, burnin = 1000,
-                        thinning = 1, sigma = 1))[[1]],
+  testthat::expect_output(
+  mcmc_result <- mcmc_nltt(tree1, ll_bd, c(1, 0.001), c(TRUE, TRUE),
+                           iterations = 10000, burnin = 1000,
+                           thinning = 1, sigma = 1)
+  )
+  testthat::expect_equal(
+    colMeans(mcmc_result)[[1]],
     max_lik$par[[1]],
     tolerance = 0.05
   )
-
+testthat::expect_output(
+  mcmc_result1 <- mcmc_nltt(tree1, ll_bd, c(1, 0.01), c(TRUE, TRUE),
+                            iterations = 10000,
+                            burnin = 1000, thinning = 1, sigma = 0.5)
+)
+testthat::expect_output(
+  mcmc_result2 <- mcmc_nltt(tree1, ll_bd, c(1, 0.01), c(FALSE, FALSE),
+                            iterations = 10000,
+                            burnin = 1000, thinning = 1, sigma = 0.5)
+)
   expect_equal(
-    colMeans(mcmc_nltt(tree1, ll_bd, c(1, 0.01), c(TRUE, TRUE),
-                         iterations = 10000,
-                         burnin = 1000, thinning = 1, sigma = 0.5))[[1]],
-    colMeans(mcmc_nltt(tree1, ll_bd, c(1, 0.01), c(FALSE, FALSE),
-                         iterations = 10000,
-                         burnin = 1000, thinning = 1, sigma = 0.5))[[1]],
+    colMeans(mcmc_result1)[[1]],
+    colMeans(mcmc_result2)[[1]],
     tolerance = 0.05
   )
 })
@@ -64,10 +68,12 @@ test_that("mcmc_nltt abuse", {
     return(lnl + prior1 + prior2)
   }
 
-  expect_error(
-    mcmc_nltt(tree1, ll_bd, c(1, 0.0), c(TRUE, TRUE),
-               iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5),
-    "Cannot propose new value for a parameter with value 0.0."
+  expect_output(
+    expect_error(
+      mcmc_nltt(tree1, ll_bd, c(1, 0.0), c(TRUE, TRUE),
+                 iterations = 10000, burnin = 1000, thinning = 1, sigma = 0.5),
+      "Cannot propose new value for a parameter with value 0.0."
+    )
   )
 
   expect_error(

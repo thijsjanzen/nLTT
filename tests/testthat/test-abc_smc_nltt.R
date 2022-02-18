@@ -1,11 +1,7 @@
 context("abc_smc_nltt")
 
 test_that("abc_smc_nltt use", {
-  # These tests are very long
-  skip_on_cran()
-  if (Sys.getenv("HOME") == "/home/richel" ||
-   Sys.getenv("HOME") == "/home/p230198") return()
-  print(Sys.getenv("HOME"))
+  skip_on_cran() # These tests are very long
 
   treesim <- function(params) {
     t <- TreeSim::sim.bd.taxa.age(n = 100,
@@ -47,12 +43,13 @@ test_that("abc_smc_nltt use", {
     return(nLTTstat_exact(tree1, obs, "abs")) # nolint nLTTstat has uppercase due to backwards compatibility
   }
 
+  testthat::expect_output(
   results <- abc_smc_nltt(
     obs, c(statwrapper), treesim, init_epsilon_values = 0.2,
     prior_generating_function = prior_gen,
     prior_density_function = prior_dens,
     number_of_particles = 100, sigma = 0.05, stop_rate = 0.01)
-
+  )
   testthat::expect_equal(
     mean(results),
     max_lik$minimum[[1]],
