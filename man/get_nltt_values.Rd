@@ -71,5 +71,5 @@ Use\link{nltts_diff} to compare nLTT statistic between one focal
 tree and a set of one or more other trees
 }
 \author{
-Richel Bilderbeek
+Richèl Bilderbeek
 }

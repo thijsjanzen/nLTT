@@ -1,8 +1,9 @@
-# nLTT
+# nLTT <img src="pics/nLTT_sticker.png" align="right" width="180" />
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/nLTT)](https://cran.r-project.org/package=nLTT)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/nLTT)]( https://CRAN.R-project.org/package=nLTT)
 [![](http://cranlogs.r-pkg.org/badges/nLTT)](https://CRAN.R-project.org/package=nLTT)
+  [![R-CMD-check](https://github.com/thijsjanzen/nLTT/workflows/R-CMD-check/badge.svg)](https://github.com/richelbilderbeek/nLTT/actions)
 
 Branch|[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)|[![AppVeyor logo](pics/AppVeyor.png)](https://www.appveyor.com)|[![Codecov logo](pics/Codecov.png)](https://www.codecov.io)
 ---|---|---|---
@@ -43,7 +44,19 @@ Apart from providing functions that calculate the nLTT statistic, the nLTT packa
 
 ## Papers using the nLTT statistic
 
-Bilderbeek, Richèl J.C., Laudanno, Giovanni and Rampal S. Etienne. "Quantifying the importance of an inference model in Bayesian phylogenetics" bioRxiv (2019): 879098; [link](https://doi.org/10.1101/2019.12.17.879098)
+Shu Xie, Luis Valente, Rampal S. Etienne. A simple island biodiversity model is robust to trait dependence in diversification and colonization rates (2022) bioRxiv 2022.01.01.474685; doi: https://doi.org/10.1101/2022.01.01.474685
+
+
+Francisco Richter, Thijs Janzen, Hanno Hildenbrandt, Ernst C. Wit, Rampal S. Etienne. Detecting phylodiversity-dependent diversification with a general phylogenetic inference framework (2021) bioRxiv 2021.07.01.450729; doi: https://doi.org/10.1101/2021.07.01.450729
+
+Thijs Janzen, Folmer Bokma, Rampal S Etienne, Nucleotide Substitutions during Speciation may Explain Substitution Rate Variation, Systematic Biology (2021), syab085, https://doi.org/10.1093/sysbio/syab085
+
+Pedro Santos Neves, Joshua W. Lambert, Luis Valente, Rampal S. Etienne. "The robustness of a simple dynamic model of island biodiversity to geological and eustatic change"
+bioRxiv  (2021) 2021.07.26.453064; doi: https://doi.org/10.1101/2021.07.26.453064
+
+Bilderbeek, RJC, Laudanno, G, Etienne, RS. Quantifying the impact of an inference model in Bayesian phylogenetics. Methods Ecol Evol. (2021); 12: 351– 358. https://doi.org/10.1111/2041-210X.13514
+
+Hagen O, Flück B, Fopp F, Cabral JS, Hartig F, et al. (2021) gen3sis: A general engine for eco-evolutionary simulations of the processes that shape Earth’s biodiversity. PLOS Biology 19(7): e3001340. https://doi.org/10.1371/journal.pbio.3001340
 
 Giardina F, Romero-Severson EO, Albert J, Britton T, Leitner T  "Inference of Transmission Network Structure from HIV Phylogenetic Trees". PLOS Computational Biology (2017) 13(1): e1005316. [link](https://doi.org/10.1371/journal.pcbi.1005316)
 

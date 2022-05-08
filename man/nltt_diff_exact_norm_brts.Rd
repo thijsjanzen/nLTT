@@ -31,5 +31,5 @@ Calculates the exact difference between the nLTT
 curves of the branching times
 }
 \author{
-Thijs Janzen and Richel Bilderbeek
+Thijs Janzen and Richèl Bilderbeek
 }

@@ -23,7 +23,7 @@ nltt_diff_exact <- function(
 #' Calculates the exact difference between the nLTT
 #' curves of the branching times
 #' @inheritParams default_params_doc
-#' @author Thijs Janzen and Richel Bilderbeek
+#' @author Thijs Janzen and Richèl Bilderbeek
 #' @param b_times branching times of the first phylogeny,
 #' @param lineages the number of lineages,
 #'   usually one to the number of lineages
@@ -96,7 +96,7 @@ nltt_diff_exact_brts <- function(
 
 #' Calculates the exact difference between the nLTT
 #' curves of the branching times
-#' @author Thijs Janzen and Richel Bilderbeek
+#' @author Thijs Janzen and Richèl Bilderbeek
 #' @param b_times_n branching times of the first phylogeny
 #' @param lineages_n the number of lineages,
 #'   usually one to the number of lineages
@@ -423,8 +423,7 @@ nLTTstat_exact <- function( # nolint keep function name non-all-lowercase,
 #'   tree <- ape::rcoal(4)
 #'   trees <- c(ape::rcoal(4), ape::rcoal(4))
 #'   nltts <- nltts_diff(tree, trees)
-#'   testit::assert(all(nltts >= 0.0 && nltts <= 1.0))
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 nltts_diff <- function(
   tree,

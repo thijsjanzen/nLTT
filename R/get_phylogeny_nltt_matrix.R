@@ -1,7 +1,7 @@
 #' Extract the nLTT matrix from a phylogeny
 #' @param phylogeny A phylogeny of type phylo
 #' @return a matrix
-#' @author Richel Bilderbeek
+#' @author Richèl Bilderbeek
 #' @export
 get_phylogeny_nltt_matrix <- function(phylogeny) {
   if (!inherits(phylogeny, "phylo")) {

@@ -10,6 +10,7 @@
 \cr
 \cr
 Updates:
+Version 1.4.6: Fixed testing, to comply _R_CHECK_LENGTH_1_CONDITION_. \cr
 Version 1.4.4: Added support for phylogenies with extinct lineages. \cr
 Version 1.4.3: Added support for log transformation before normalization. \cr
 Version 1.4: Added the following four functions: get_branching_times, get_n_lineages, get_norm_brts and get_norm_n. Furthermore, vignette building has improved, and the underlying code base has been polished up as well. \cr
