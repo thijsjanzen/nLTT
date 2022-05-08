@@ -1,7 +1,7 @@
 Package: nLTT
 Type: Package
 Title: Calculate the NLTT Statistic
-Version: 1.4.4
+Version: 1.4.7
 Authors@R: c(person("Thijs","Janzen", email = "thijsjanzen@gmail.com",role=c("aut","cre")),
              person("Richèl J.C.", "Bilderbeek", email = "richel@richelbilderbeek.nl", role = c("aut"), comment = c(ORCID = "0000-0003-1107-7049")),
              person("Pedro", "Neves", email = "p.m.santos.neves@rug.nl", role = "ctb"))
@@ -15,6 +15,7 @@ Imports:
     coda,
     testit
 Suggests:
+    TreeSim,
     DDD,
     ggplot2,
     Hmisc,
@@ -25,12 +26,10 @@ Suggests:
     reshape2,
     rmarkdown,
     TESS,
-    testthat (>= 2.1.0),
-    TreeSim,
+    testthat,
     DAISIE
 NeedsCompilation: no
-Packaged: 2020-02-13 10:46:57 UTC; janzen
-RoxygenNote: 7.0.2.9000
+RoxygenNote: 7.1.2
 Encoding: UTF-8
 VignetteBuilder: knitr
 URL: https://github.com/thijsjanzen/nLTT
