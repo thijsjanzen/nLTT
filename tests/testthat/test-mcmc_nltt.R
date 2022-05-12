@@ -2,6 +2,7 @@ context("mcmc_nltt")
 
 test_that("mcmc_nltt use", {
   skip_on_cran() # These tests are very long
+  testthat::skip_if_not_installed("TESS")
 
   set.seed(1)
   tree1 <- TESS::tess.sim.taxa(n = 1, nTaxa = 50,
@@ -56,13 +57,10 @@ testthat::expect_output(
 test_that("mcmc_nltt abuse", {
 
   set.seed(1) #just to be safe
-  tree1 <- TESS::tess.sim.taxa(n = 1, nTaxa = 50,
-                               max = 100, lambda = 1.0, mu = 0.0)[[1]]
+  tree1 <- ape::rphylo(n = 50, birth  = 1, death = 0)
 
   ll_bd <- function(params, phy) {
-    lnl <- TESS::tess.likelihood(ape::branching.times(phy),
-                                 lambda = params[1], mu = params[2],
-                                 samplingProbability = 1, log = TRUE)
+    lnl <- dexp(params[1]) * dexp(params[2]) # fake ll, not used here
     prior1  <- dexp(params[1], rate = 10, log = TRUE)
     prior2  <- dexp(params[2], rate = 10, log = TRUE)
     return(lnl + prior1 + prior2)

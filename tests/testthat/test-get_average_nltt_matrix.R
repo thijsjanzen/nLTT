@@ -71,9 +71,6 @@ test_that(paste(
 })
 
 
-
-
-
 test_that(paste(
   "How to stretch an nLTT timepoints matrix: ",
   "Example: Harder trees", sep = ""), {
@@ -144,9 +141,16 @@ test_that("data types", {
   expect_equal(nrow(m), 1001)
 
   set.seed(41)
-  treesim_phylogenies <- TreeSim::sim.bd.age(
-    6, numbsim = n_trees, lambda = 0.4, mu = 0.0, complete = FALSE)
-  n <- get_average_nltt_matrix(treesim_phylogenies)
+
+  apesim_phylogenies <- list()
+  for (tree in 1:n_trees) {
+
+    apesim_phylogenies[[tree]] <- ape::rphylo(
+                                    n = 100, birth = 0.4,
+                                    death = 0.0)
+  }
+
+  n <- get_average_nltt_matrix(apesim_phylogenies)
   expect_equal(ncol(n), 2)
   expect_equal(nrow(n), 1001)
 

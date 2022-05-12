@@ -2,6 +2,8 @@ context("abc_smc_nltt")
 
 test_that("abc_smc_nltt use", {
   skip_on_cran() # These tests are very long
+  testthat::skip_if_not_installed("TreeSim")
+  testthat::skip_if_not_installed("TESS")
 
   treesim <- function(params) {
     t <- TreeSim::sim.bd.taxa.age(n = 100,
@@ -21,7 +23,7 @@ test_that("abc_smc_nltt use", {
   }
 
   set.seed(42)
-  obs <- treesim(c(0.50, 0))
+  observed_tree <- treesim(c(0.50, 0))
 
   ll_bd <- function(params, phy) {
     lnl <- TESS::tess.likelihood(ape::branching.times(phy),
@@ -34,21 +36,21 @@ test_that("abc_smc_nltt use", {
   tofit <- function(params) {
     if (params[1] <= 0) return(1e6)
     if (params[1] > 100) return(1e6)
-    return(-1 * ll_bd(params, obs))
+    return(-1 * ll_bd(params, observed_tree))
   }
 
   max_lik <- stats::optimize(f = tofit, interval = c(0, 1))
 
   statwrapper <- function(tree1) {
-    return(nLTTstat_exact(tree1, obs, "abs")) # nolint nLTTstat has uppercase due to backwards compatibility
+    return(nLTTstat(tree1, observed_tree, "abs")) # nolint nLTTstat has uppercase due to backwards compatibility
   }
 
   testthat::expect_output(
-  results <- abc_smc_nltt(
-    obs, c(statwrapper), treesim, init_epsilon_values = 0.2,
-    prior_generating_function = prior_gen,
-    prior_density_function = prior_dens,
-    number_of_particles = 100, sigma = 0.05, stop_rate = 0.01)
+    results <- abc_smc_nltt(
+      observed_tree, c(statwrapper), treesim, init_epsilon_values = 0.2,
+      prior_generating_function = prior_gen,
+      prior_density_function = prior_dens,
+      number_of_particles = 100, sigma = 0.05, stop_rate = 0.01)
   )
   testthat::expect_equal(
     mean(results),
@@ -60,15 +62,10 @@ test_that("abc_smc_nltt use", {
 test_that("abc_smc_nltt abuse", {
 
   treesim <- function(params) {
-    t <- TreeSim::sim.bd.taxa(n = 1000,
-                                  numbsim = 1,
-                                  lambda = params[1],
-                                  mu = params[2])[[1]]
-
-    #t <- TESS::tess.sim.taxa(n = 1,
-    #                         lambda = params[1],
-    #                         mu = params[2], nTaxa = 1000, max = 100000)[[1]]
-    return(t)
+    t <- ape::rphylo(n = 1000,
+                     birth = params[1],
+                     death = params[2])
+   return(t)
   }
 
   prior_gen <- function() {
