@@ -40,11 +40,13 @@ test_that("nltts_plot: check data types", {
   )
 
   set.seed(41)
-  treesim_phylogenies <- TreeSim::sim.bd.age(
-    6, numbsim = n_trees, lambda = 0.4, mu = 0.0, complete = FALSE)
+  multiple_phylogenies <- list()
+  for (r in 1:n_trees) {
+    multiple_phylogenies[[r]] <- ape::rphylo(n = 10, birth = 1, death = 0)
+  }
 
   expect_silent(
-    nltts_plot(treesim_phylogenies)
+    nltts_plot(multiple_phylogenies)
   )
 
   set.seed(41)
@@ -53,10 +55,7 @@ test_that("nltts_plot: check data types", {
   expect_silent(
     nltts_plot(combined_phylogenies)
   )
-
 })
-
-
 
 test_that("stop on incorrect input", {
 
