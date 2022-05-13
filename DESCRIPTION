@@ -27,7 +27,8 @@ Suggests:
     rmarkdown,
     TESS,
     testthat,
-    DAISIE
+    DAISIE,
+    MASS
 NeedsCompilation: no
 RoxygenNote: 7.1.2
 Encoding: UTF-8
