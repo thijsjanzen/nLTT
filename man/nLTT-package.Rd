@@ -10,6 +10,7 @@
 \cr
 \cr
 Updates:
+Version 1.4.7: Fixed noSuggest error, to comply _R_CHECK_DEPENDS_ONLY_ \cr
 Version 1.4.6: Fixed testing, to comply _R_CHECK_LENGTH_1_CONDITION_. \cr
 Version 1.4.4: Added support for phylogenies with extinct lineages. \cr
 Version 1.4.3: Added support for log transformation before normalization. \cr
