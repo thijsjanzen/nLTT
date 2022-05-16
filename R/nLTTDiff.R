@@ -432,10 +432,10 @@ nltts_diff <- function(
   ignore_stem = TRUE,
   log_transform = FALSE
 ) {
-  if (class(tree) != "phylo") {
+  if (!inherits(tree, "phylo")) {
     stop("'tree' must be of type 'phylo'")
   }
-  if (class(trees) != "multiPhylo") {
+  if (!inherits(trees, "multiPhylo")) {
     stop("'trees' must be of type 'multiPhylo'")
   }
   if (!distance_method %in% c("abs", "squ")) {

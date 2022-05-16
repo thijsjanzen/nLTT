@@ -18,13 +18,6 @@ check_time_unit(time_unit)
 \description{
 Will \link{stop} if not
 }
-\examples{
-library(testthat)
-
-expect_silent(check_time_unit("since"))
-expect_silent(check_time_unit("ago"))
-expect_error(check_time_unit("nonsense"))
-}
 \author{
 Richèl J.C. Bilderbeek
 }

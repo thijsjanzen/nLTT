@@ -3,12 +3,6 @@
 #' Will \link{stop} if not
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
-#' @examples
-#' library(testthat)
-#'
-#' expect_silent(check_time_unit("since"))
-#' expect_silent(check_time_unit("ago"))
-#' expect_error(check_time_unit("nonsense"))
 #' @export
 check_time_unit <- function(time_unit) {
   time_units <- c("since", "ago")

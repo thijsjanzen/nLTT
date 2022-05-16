@@ -14,7 +14,7 @@ test_that("use", {
   )
   expect_error(
     check_phylogenies(ape::rcoal(2)),
-    "phylogenies must be of class 'multiPhylo' or 'list'"
+    "phylogenies must be of type phylo"
   )
   expect_error(
     check_phylogenies("nonsense"),

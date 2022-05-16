@@ -36,7 +36,7 @@ Stretch matrix 'm' with a timestep resolution of 'dt'.
     ncol = 2, nrow = 3
   )
   result <- stretch_nltt_matrix(m = m, dt = 0.5, step_type = "lower")
-  testit::assert(identical(result, expected))
+  all.equal(result, expected)
 
 }
 \author{
