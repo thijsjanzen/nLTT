@@ -355,7 +355,7 @@ abc_smc_nltt <- function( # nolint indeed a complex function
 #'
 ################################################################################
 #' @export
-mcmc_nltt <- function( # nolint indeed a complex function
+mcmc_nltt <- function(# nolint indeed a complex function
   phy, likelihood_function,
   parameters, logtransforms, iterations,
   burnin = round(iterations / 3), thinning = 1, sigma = 1

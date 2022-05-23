@@ -293,8 +293,8 @@ nltt_diff <- function(
 #'     exampleTrees[[1]], exampleTrees[[2]],
 #'     distance_method = "abs", ignore_stem = TRUE)
 #' @export
-nLTTstat <- function(  # nolint keep function name non-all-lowercase,
-                       #  due to backwards compatibility
+nLTTstat <- function(# nolint keep function name non-all-lowercase,
+                     #  due to backwards compatibility
   tree1,
   tree2,
   distance_method = "abs",
@@ -382,8 +382,8 @@ nLTTstat <- function(  # nolint keep function name non-all-lowercase,
 #'     ignore_stem = TRUE
 #'   )
 #' @export
-nLTTstat_exact <- function( # nolint keep function name non-all-lowercase,
-                            #  due to backwards compatibility
+nLTTstat_exact <- function(# nolint keep function name non-all-lowercase,
+                           #  due to backwards compatibility
   tree1,
   tree2,
   distance_method = "abs",
