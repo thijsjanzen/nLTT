@@ -92,7 +92,7 @@ nltt_diff_exact_extinct <- function(
       )
 
   }
-  testthat::expect_true(is.numeric(event_times2))
+  testit::assert(is.numeric(event_times2))
   nLTT::check_input_event_times(
     event_times = event_times,
     event_times2 = event_times2,
@@ -190,18 +190,20 @@ nltt_diff_exact_calc_extinct <- function(
   species_number2,
   distance_method) {
 
-  # Are equally sized?
-  testit::assert(length(event_times) == length(species_number))
-  testit::assert(length(event_times2) == length(species_number2))
-  # Are non-trivial?
-  testit::assert(length(event_times) > 0)
-  testit::assert(length(species_number) > 0)
-  testit::assert(length(event_times2) > 0)
-  testit::assert(length(species_number) > 0)
+  # Are equally sized?{
+  if (requireNamespace("testit", quietly = TRUE)) {
+    testit::assert(length(event_times) == length(species_number))
+    testit::assert(length(event_times2) == length(species_number2))
+    # Are non-trivial?
+    testit::assert(length(event_times) > 0)
+    testit::assert(length(species_number) > 0)
+    testit::assert(length(event_times2) > 0)
+    testit::assert(length(species_number) > 0)
 
-  # Are sorted?
-  testit::assert(all(sort(event_times) == event_times))
-  testit::assert(all(sort(event_times2) == event_times2))
+    # Are sorted?
+    testit::assert(all(sort(event_times) == event_times))
+    testit::assert(all(sort(event_times2) == event_times2))
+  }
 
   # Make a list of all branching times, and remove duplicates
   # TODO: Use more effecient merge, as both ranges are sorted
