@@ -1,14 +1,15 @@
 Package: nLTT
 Type: Package
 Title: Calculate the NLTT Statistic
-Version: 1.4.8
+Version: 1.4.9
 Authors@R: c(person("Thijs","Janzen", email = "thijsjanzen@gmail.com",role=c("aut","cre")),
              person("Richèl J.C.", "Bilderbeek", email = "richel@richelbilderbeek.nl", role = c("aut"), comment = c(ORCID = "0000-0003-1107-7049")),
              person("Pedro", "Neves", email = "p.m.santos.neves@rug.nl", role = "ctb"))
 Description: Provides functions to calculate the normalised Lineage-Through-
     Time (nLTT) statistic, given two phylogenetic trees. The nLTT statistic measures
     the difference between two Lineage-Through-Time curves, where each curve is
-    normalised both in time and in number of lineages.
+    normalised both in time and in number of lineages. For more information,
+    see Janzen (2015) <doi:10.1111/2041-210X.12350>
 License: GPL-2
 Imports:
     ape,
