@@ -10,6 +10,8 @@
 \cr
 \cr
 Updates:
+Version 1.4.9: improve DESCRIPTION \cr
+Version 1.4.8: minor improvements to code \cr
 Version 1.4.7: Fixed noSuggest error, to comply _R_CHECK_DEPENDS_ONLY_ \cr
 Version 1.4.6: Fixed testing, to comply _R_CHECK_LENGTH_1_CONDITION_. \cr
 Version 1.4.4: Added support for phylogenies with extinct lineages. \cr
@@ -27,16 +29,6 @@ Version 1.1.1: fixed a minor bug in the ABC_SMC_nLTT function \cr
 Version 1.1.1: removed some intermediate output in ABC_SMC_nLTT function \cr
 Version 1.1: Made a universal nLTT function called "nLTTstat", with argument "distanceMethod", this serves as a more elegant wrapper for the functions "normLTTdiffABS" and "normLTTdiffSQ" \cr
 Version 1.1: Updated references in the manual \cr
-
-}
-\details{
-\tabular{ll}{
-Package: \tab nLTT\cr
-Type: \tab Package\cr
-Version: \tab 1.4.4 \cr
-Date: \tab 2020-02-13\cr
-License: GPL 2.0
-}
 
 }
 
