@@ -32,8 +32,8 @@ nltt_diff_exact <- function(
 #'   usually one to the number of lineages
 #' @param distance_method how the difference between the two nLTTs is summed
 #' \itemize{
-#'  \item{"abs: "}{the absolute distance between the two nLTTs is summed}
-#'  \item{"squ: "}{the squared distance between the two nLTTs is summed}
+#'  \item "abs: " the absolute distance between the two nLTTs is summed
+#'  \item "squ: " the squared distance between the two nLTTs is summed
 #' }
 #' @export
 nltt_diff_exact_brts <- function(

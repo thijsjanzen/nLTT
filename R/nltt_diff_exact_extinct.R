@@ -51,8 +51,8 @@ check_input_event_times <- function(event_times, event_times2, time_unit) {
 #' phylogeny
 #' @param distance_method how the difference between the two nLTTs is summed
 #' \itemize{
-#'  \item{"abs: "}{the absolute distance between the two nLTTs is summed}
-#'  \item{"squ: "}{the squared distance between the two nLTTs is summed}
+#'  \item "abs: " the absolute distance between the two nLTTs is summed
+#'  \item "squ: " the squared distance between the two nLTTs is summed
 #' }
 #' @param normalize should the output be normalized? Default is TRUE.
 #'
