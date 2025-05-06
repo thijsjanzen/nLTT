@@ -9,10 +9,10 @@
 #' @param event_times2 event times of the second phylogeny
 #' @param time_unit the time unit of the branching times
 #' \itemize{
-#'  \item{"ago: "}{the branching times are postive,
-#'    as these are in time units ago}
-#'  \item{"since: "}{the branching times are negative,
-#'    as these are in time units since present}
+#'  \item "ago: " the branching times are postive,
+#'    as these are in time units ago
+#'  \item "since: " the branching times are negative,
+#'    as these are in time units since present
 #' }
 #'
 #' @return Nothing. Throws error with helpful error message if
