@@ -1,5 +1,8 @@
 # News
 
+## nLTT 1.4.10
+  * updated some parts of the documentation
+
 Newest versions at top.
 
 ## nLTT 1.4.4 (unreleased)

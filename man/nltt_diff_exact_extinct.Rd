@@ -34,10 +34,10 @@ phylogeny}
 
 \item{time_unit}{the time unit of the branching times
 \itemize{
- \item{"ago: "}{the branching times are postive,
-   as these are in time units ago}
- \item{"since: "}{the branching times are negative,
-   as these are in time units since present}
+ \item "ago: " the branching times are postive,
+   as these are in time units ago
+ \item "since: " the branching times are negative,
+   as these are in time units since present
 }}
 
 \item{normalize}{should the output be normalized? Default is TRUE.}
